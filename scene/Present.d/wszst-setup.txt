@@ -1,0 +1,730 @@
+
+###############################################################################
+#
+# wszst settings:
+# ---------------
+#
+# This is the settings file for wszst (tool of "Wiimms SZS Tools"). It
+# was created by the EXTRACT command and is needed by the CREATE command
+# to rebuild the original source archive with or without modifications.
+# You can edit it, if you know what you do.
+#
+###############################################################################
+
+# The first part contains some general settings:
+
+# The internal archive format (U8, WU8, BRRES, BREFF or BREFT):
+archive-format = U8
+
+# The file format (YAZ0, YAZ1 or BZ for a compressed archive, other ignored):
+file-format = YAZ0
+
+# An archive format related version number (-1: unknown or not relevant)
+version = -1
+
+# For U8+WU8 archives: Is there a special '.' base directory:
+have-pt-dir = 1
+
+# The minimum and maximum file data positions:
+min-data-offset = 0x0
+max-data-offset = 0x38b620
+
+# The calculated alignment of all files:
+data-align = 0x20
+
+###############################################################################
+#
+# Some general rules for the next sections:
+#   All paths are relative to the current base directory (directory that
+#   contains the file wszst-setup.txt). Prefix at least paths that starts
+#   not with a letter, digit, point, star or underscore with "./".
+#
+#------------------------------------------------------------------------------
+
+[include-pattern]
+
+# All files and directories start with a . are hidden (unix like) and excluded
+# automatically. But filenames in one of the include sections are included
+# independent of this point. Also the include sections takes precedence over
+# the exclude sections.
+
+# This section expects file patterns with wildcards.
+
+#------------------------------------------------------------------------------
+
+[include]
+
+# This second include section accpepts only complete file names and none of
+# characters have any special meaning.
+
+
+#------------------------------------------------------------------------------
+
+[exclude-pattern]
+
+# Files and directories in this section are ignored by the CREATE command.
+# The include sections takes precedence over the exclude sections.
+
+# This section expects file patterns with wildcards.
+# Here we exclude all original, backup and temp files:
+
+*.orig
+*.bak
+*.tmp
+*.temp
+
+# Exclude all *.d directories. To enable it, remove "# " at the beginning.
+# *.d
+
+# Exclude all PNG files. The intention is to allow the creation of new PNG
+# images and mipmap files without any need to edit this setup file. All
+# extracted PNG files are automatically listed in the [exclude] section.
+# So the exclusion of all PNG is not really needed, but may help. The second
+# (disabled) line is an alternative to exclude all mipmap PNG files.
+
+*.png
+# *.mm#.png
+
+#------------------------------------------------------------------------------
+
+[exclude]
+
+# Files and directories in this section are ignored by the CREATE command.
+# This second exclude section accepts only complete file names and none of
+# characters have any special meaning.
+
+./Course/timg/tk_obi_bottom_right_course.tpl.d
+./Course/timg/tk_obi_check_course.tpl.d
+./Course/timg/tk_obi_top_curve_course.tpl.d
+./Course/timg/tk_obi_top_left_course.tpl.d
+./Course/timg/tk_obi_top_right_course.tpl.d
+./Course/timg/tk_window_course.tpl.d
+./Driver/timg/tk_obi_bottom_right_driver.tpl.d
+./Driver/timg/tk_obi_check_driver.tpl.d
+./Driver/timg/tk_obi_top_curve_driver.tpl.d
+./Driver/timg/tk_obi_top_left_driver.tpl.d
+./Driver/timg/tk_obi_top_right_driver.tpl.d
+./Driver/timg/tk_window_driver.tpl.d
+./Mii/timg/tk_obi_bottom_right_mii.tpl.d
+./Mii/timg/tk_obi_check_mii.tpl.d
+./Mii/timg/tk_obi_top_curve_mii.tpl.d
+./Mii/timg/tk_obi_top_left_mii.tpl.d
+./Mii/timg/tk_obi_top_right_mii.tpl.d
+./Mii/timg/tk_window_mii.tpl.d
+./Vehicle/timg/tk_obi_bottom_right_vehicle.tpl.d
+./Vehicle/timg/tk_obi_check_vehicle.tpl.d
+./Vehicle/timg/tk_obi_top_curve_vehicle.tpl.d
+./Vehicle/timg/tk_obi_top_left_vehicle.tpl.d
+./Vehicle/timg/tk_obi_top_right_vehicle.tpl.d
+./Vehicle/timg/tk_window_vehicle.tpl.d
+./common/timg/ht_squareWhite_00.tpl.d
+./common/timg/tt_block_16x16.tpl.d
+./common/timg/tt_obi_bottom_curve_000.tpl.d
+./common/timg/tt_obi_bottom_left_000.tpl.d
+./common/timg/tt_obi_bottom_right_000.tpl.d
+./common/timg/tt_obi_check_000.tpl.d
+./common/timg/tt_pattern_chek_bokashi_32x32.tpl.d
+./control/timg/st_battle_icon_balloon.tpl.d
+./control/timg/st_battle_icon_coin.tpl.d
+./control/timg/st_battle_icon_flag.tpl.d
+./control/timg/tk_obi_bottom_right_course.tpl.d
+./control/timg/tk_obi_bottom_right_driver.tpl.d
+./control/timg/tk_obi_bottom_right_mii.tpl.d
+./control/timg/tk_obi_bottom_right_vehicle.tpl.d
+./control/timg/tk_obi_check_course.tpl.d
+./control/timg/tk_obi_check_driver.tpl.d
+./control/timg/tk_obi_check_mii.tpl.d
+./control/timg/tk_obi_check_vehicle.tpl.d
+./control/timg/tk_obi_top_curve_course.tpl.d
+./control/timg/tk_obi_top_curve_driver.tpl.d
+./control/timg/tk_obi_top_curve_mii.tpl.d
+./control/timg/tk_obi_top_curve_vehicle.tpl.d
+./control/timg/tk_obi_top_left_course.tpl.d
+./control/timg/tk_obi_top_left_driver.tpl.d
+./control/timg/tk_obi_top_left_mii.tpl.d
+./control/timg/tk_obi_top_left_vehicle.tpl.d
+./control/timg/tk_obi_top_right_course.tpl.d
+./control/timg/tk_obi_top_right_driver.tpl.d
+./control/timg/tk_obi_top_right_mii.tpl.d
+./control/timg/tk_obi_top_right_vehicle.tpl.d
+./control/timg/tk_window_course.tpl.d
+./control/timg/tk_window_driver.tpl.d
+./control/timg/tk_window_mii.tpl.d
+./control/timg/tk_window_vehicle.tpl.d
+./control/timg/tt_block_16x16.tpl.d
+./control/timg/tt_cup_icon_banana_00.tpl.d
+./control/timg/tt_cup_icon_flower_00.tpl.d
+./control/timg/tt_cup_icon_kinoko_00.tpl.d
+./control/timg/tt_cup_icon_konoha_00.tpl.d
+./control/timg/tt_cup_icon_koura_00.tpl.d
+./control/timg/tt_cup_icon_mirror_00.tpl.d
+./control/timg/tt_cup_icon_oukan_00.tpl.d
+./control/timg/tt_cup_icon_star_00.tpl.d
+./control/timg/tt_cup_icon_thunder_00.tpl.d
+./control/timg/tt_hatena_64x64.tpl.d
+./course.kcl.d
+./course.kcl.flag
+./course.kcl.mtl
+./course.kcl.obj
+./course.kmp.d
+./course.kmp.txt
+./course.lex.txt
+./dpd_pointer/timg/cursor0.tpl.d
+./dpd_pointer/timg/tt_i_cursor_nakami_ver0.tpl.d
+./dpd_pointer/timg/tt_i_cursor_shikaku.tpl.d
+./dpd_pointer/timg/tt_i_cursor_tongari.tpl.d
+./effect/RKMenu.breff.d
+./effect/RKMenu.breft.d
+./message_window/timg/tt_fukidashi_window_kado_common.tpl.d
+./message_window/timg/tt_glass_waku_180.tpl.d
+./message_window/timg/tt_pattern_chek_32x32.tpl.d
+./message_window/timg/tt_pattern_chek_alpha_nasi_32x32.tpl.d
+./message_window/timg/tt_pattern_chek_bokashi_32x32.tpl.d
+./model/timg/tt_pattern_chek_alpha_nasi_32x32.tpl.d
+./pad_recognize/timg/tt_a_body.tpl.d
+./pad_recognize/timg/tt_a_light.tpl.d
+./pad_recognize/timg/tt_clacon_body.tpl.d
+./pad_recognize/timg/tt_clacon_light.tpl.d
+./pad_recognize/timg/tt_fukidashi_window_kado_common.tpl.d
+./pad_recognize/timg/tt_gccon_body.tpl.d
+./pad_recognize/timg/tt_gccon_light.tpl.d
+./pad_recognize/timg/tt_gccon_waku.tpl.d
+./pad_recognize/timg/tt_hatena_body.tpl.d
+./pad_recognize/timg/tt_hatena_light.tpl.d
+./pad_recognize/timg/tt_pattern_chek_alpha_nasi_32x32.tpl.d
+./pad_recognize/timg/tt_pattern_chek_bokashi_32x32.tpl.d
+./pad_recognize/timg/tt_remocon_han_body.tpl.d
+./pad_recognize/timg/tt_remocon_han_light.tpl.d
+./pad_recognize/timg/tt_remocon_nun_body.tpl.d
+./pad_recognize/timg/tt_remocon_nun_light.tpl.d
+./wszst-setup.txt
+
+#------------------------------------------------------------------------------
+
+[encode]
+
+# Encode (and overwrite without notice) the listed files before adding them
+# to the new archive. The source is searched under the same filename with the
+# correct source extension added or, if this failed, a replaced extension.
+#   Example: For "message.bmg" search files "message.bmg.txt" or "message.txt"
+# The source file itself is set on the exclude list and will not stored into
+# the new archive.
+#
+# The syntax of this file section is a little bit different as the other file
+# sections. Each line begins with a comma separated list of keywords followed
+# by an equal sign.
+#   Syntax:  COMMA_SEPARATED_FORMAT_LIST = relative_filename
+#   Example: BREFT,IA8,3 = ./files/rk_steam
+# The first keyword is the file format. The following keywords describe sub
+# formats. An additonal integer is a file type specific information:
+#  -> For image files it is the number of images (main image + mipmaps).
+#     A value of 0 means: Use the tools default (see option --n-mipmaps).
+#
+# A file is only encoded if the destination does not exist or if the source
+# is younger than the destination. Encoding can be controlled by options
+# --no-encode, --encode-img and --encode-all (short: --noenc --eimg --eall).
+
+TPL,RGB5A3,1	= ./Course/timg/tk_obi_bottom_right_course.tpl
+TPL,CMPR,1	= ./Course/timg/tk_obi_check_course.tpl
+TPL,RGB5A3,1	= ./Course/timg/tk_obi_top_curve_course.tpl
+TPL,RGB5A3,1	= ./Course/timg/tk_obi_top_left_course.tpl
+TPL,RGB5A3,1	= ./Course/timg/tk_obi_top_right_course.tpl
+TPL,CMPR,1	= ./Course/timg/tk_window_course.tpl
+TPL,RGB5A3,1	= ./Driver/timg/tk_obi_bottom_right_driver.tpl
+TPL,RGB5A3,1	= ./Driver/timg/tk_obi_check_driver.tpl
+TPL,RGB5A3,1	= ./Driver/timg/tk_obi_top_curve_driver.tpl
+TPL,RGB5A3,1	= ./Driver/timg/tk_obi_top_left_driver.tpl
+TPL,RGB5A3,1	= ./Driver/timg/tk_obi_top_right_driver.tpl
+TPL,CMPR,1	= ./Driver/timg/tk_window_driver.tpl
+TPL,RGB5A3,1	= ./Mii/timg/tk_obi_bottom_right_mii.tpl
+TPL,CMPR,1	= ./Mii/timg/tk_obi_check_mii.tpl
+TPL,RGB5A3,1	= ./Mii/timg/tk_obi_top_curve_mii.tpl
+TPL,RGB5A3,1	= ./Mii/timg/tk_obi_top_left_mii.tpl
+TPL,RGB5A3,1	= ./Mii/timg/tk_obi_top_right_mii.tpl
+TPL,CMPR,1	= ./Mii/timg/tk_window_mii.tpl
+TPL,RGB5A3,1	= ./Vehicle/timg/tk_obi_bottom_right_vehicle.tpl
+TPL,RGB5A3,1	= ./Vehicle/timg/tk_obi_check_vehicle.tpl
+TPL,RGB5A3,1	= ./Vehicle/timg/tk_obi_top_curve_vehicle.tpl
+TPL,RGB5A3,1	= ./Vehicle/timg/tk_obi_top_left_vehicle.tpl
+TPL,RGB5A3,1	= ./Vehicle/timg/tk_obi_top_right_vehicle.tpl
+TPL,CMPR,1	= ./Vehicle/timg/tk_window_vehicle.tpl
+TPL,I4,1	= ./common/timg/ht_squareWhite_00.tpl
+TPL,IA4,1	= ./common/timg/tt_block_16x16.tpl
+TPL,RGB5A3,1	= ./common/timg/tt_obi_bottom_curve_000.tpl
+TPL,RGB5A3,1	= ./common/timg/tt_obi_bottom_left_000.tpl
+TPL,RGB5A3,1	= ./common/timg/tt_obi_bottom_right_000.tpl
+TPL,RGB5A3,1	= ./common/timg/tt_obi_check_000.tpl
+TPL,IA8,1	= ./common/timg/tt_pattern_chek_bokashi_32x32.tpl
+TPL,RGB5A3,1	= ./control/timg/st_battle_icon_balloon.tpl
+TPL,RGB5A3,1	= ./control/timg/st_battle_icon_coin.tpl
+TPL,RGB5A3,1	= ./control/timg/st_battle_icon_flag.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_bottom_right_course.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_bottom_right_driver.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_bottom_right_mii.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_bottom_right_vehicle.tpl
+TPL,CMPR,1	= ./control/timg/tk_obi_check_course.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_check_driver.tpl
+TPL,CMPR,1	= ./control/timg/tk_obi_check_mii.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_check_vehicle.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_top_curve_course.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_top_curve_driver.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_top_curve_mii.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_top_curve_vehicle.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_top_left_course.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_top_left_driver.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_top_left_mii.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_top_left_vehicle.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_top_right_course.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_top_right_driver.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_top_right_mii.tpl
+TPL,RGB5A3,1	= ./control/timg/tk_obi_top_right_vehicle.tpl
+TPL,CMPR,1	= ./control/timg/tk_window_course.tpl
+TPL,CMPR,1	= ./control/timg/tk_window_driver.tpl
+TPL,CMPR,1	= ./control/timg/tk_window_mii.tpl
+TPL,CMPR,1	= ./control/timg/tk_window_vehicle.tpl
+TPL,IA4,1	= ./control/timg/tt_block_16x16.tpl
+TPL,RGB5A3,1	= ./control/timg/tt_cup_icon_banana_00.tpl
+TPL,RGB5A3,1	= ./control/timg/tt_cup_icon_flower_00.tpl
+TPL,RGB5A3,1	= ./control/timg/tt_cup_icon_kinoko_00.tpl
+TPL,RGB5A3,1	= ./control/timg/tt_cup_icon_konoha_00.tpl
+TPL,RGB5A3,1	= ./control/timg/tt_cup_icon_koura_00.tpl
+TPL,RGB5A3,1	= ./control/timg/tt_cup_icon_mirror_00.tpl
+TPL,RGB5A3,1	= ./control/timg/tt_cup_icon_oukan_00.tpl
+TPL,RGB5A3,1	= ./control/timg/tt_cup_icon_star_00.tpl
+TPL,RGB5A3,1	= ./control/timg/tt_cup_icon_thunder_00.tpl
+TPL,RGB5A3,1	= ./control/timg/tt_hatena_64x64.tpl
+KCL		= ./course.kcl
+KMP		= ./course.kmp
+LEX		= ./course.lex
+TPL,I8,1	= ./dpd_pointer/timg/cursor0.tpl
+TPL,IA4,1	= ./dpd_pointer/timg/tt_i_cursor_nakami_ver0.tpl
+TPL,IA4,1	= ./dpd_pointer/timg/tt_i_cursor_shikaku.tpl
+TPL,IA8,1	= ./dpd_pointer/timg/tt_i_cursor_tongari.tpl
+TPL,RGB5A3,1	= ./message_window/timg/tt_fukidashi_window_kado_common.tpl
+TPL,IA8,1	= ./message_window/timg/tt_glass_waku_180.tpl
+TPL,RGB565,1	= ./message_window/timg/tt_pattern_chek_32x32.tpl
+TPL,IA4,1	= ./message_window/timg/tt_pattern_chek_alpha_nasi_32x32.tpl
+TPL,RGB5A3,1	= ./message_window/timg/tt_pattern_chek_bokashi_32x32.tpl
+TPL,IA4,1	= ./model/timg/tt_pattern_chek_alpha_nasi_32x32.tpl
+TPL,RGB5A3,1	= ./pad_recognize/timg/tt_a_body.tpl
+TPL,IA8,1	= ./pad_recognize/timg/tt_a_light.tpl
+TPL,RGB5A3,1	= ./pad_recognize/timg/tt_clacon_body.tpl
+TPL,IA8,1	= ./pad_recognize/timg/tt_clacon_light.tpl
+TPL,RGB5A3,1	= ./pad_recognize/timg/tt_fukidashi_window_kado_common.tpl
+TPL,RGB5A3,1	= ./pad_recognize/timg/tt_gccon_body.tpl
+TPL,IA8,1	= ./pad_recognize/timg/tt_gccon_light.tpl
+TPL,IA8,1	= ./pad_recognize/timg/tt_gccon_waku.tpl
+TPL,RGB5A3,1	= ./pad_recognize/timg/tt_hatena_body.tpl
+TPL,IA8,1	= ./pad_recognize/timg/tt_hatena_light.tpl
+TPL,IA4,1	= ./pad_recognize/timg/tt_pattern_chek_alpha_nasi_32x32.tpl
+TPL,RGB5A3,1	= ./pad_recognize/timg/tt_pattern_chek_bokashi_32x32.tpl
+TPL,RGB5A3,1	= ./pad_recognize/timg/tt_remocon_han_body.tpl
+TPL,IA8,1	= ./pad_recognize/timg/tt_remocon_han_light.tpl
+TPL,RGB5A3,1	= ./pad_recognize/timg/tt_remocon_nun_body.tpl
+TPL,IA8,1	= ./pad_recognize/timg/tt_remocon_nun_light.tpl
+
+#------------------------------------------------------------------------------
+
+[create]
+
+# Create (and overwrite without notice) the listed files before adding them to
+# the new archive. The source directory is searched under the same filename
+# with an appended ".d" or, if this fails, with an extension replaced by ".d".
+# If a source directory does not exist, the job is ignored silently.
+#   Example: For "my.brres" search directories "my.brres.d" or "my.d"
+# The source directory itself is set on the exclude list and will not stored
+# into the new archive. Creating can be controlled by the options:
+#   --no-recurse  : Do not create archives recursively.
+#   --no-encode   : Do not encode files before creating an archive.
+#   --encode-img  : Encode all image files (TEX,TPL,BREFT/sub), overrides --no-encode.
+#   --encode-all  : Encode all files and ignore timestamps.
+#   --pt-dir      : Set `point directory' mode.
+#   --u8          : Create an U8 archive.
+#   --brres       : Create an BRRES archive.
+#   --breff       : Create an BREFF archive.
+#   --breft       : Create an BREFT archive.
+#   --no-compress : Create an uncompressed file (U8 instead of SZS).
+#   ...
+
+./effect/RKMenu.breff
+./effect/RKMenu.breft
+
+#------------------------------------------------------------------------------
+
+[order]
+
+# This list contains all extracted files in the order of the original archive.
+# If creating archives (but not U8) this list will be used to sort the found
+# files. For archives with directory support (all but not PACK) it is very
+# important, that the directories are listed before the files that resides in
+# the directories.
+#
+# The value before the equal sign is the file offset in the original archive
+# and is ignored for sorting.
+
+		= ./
+		= ./common/
+		= ./common/anim/
+    0x3540	= ./common/anim/common_w084_earth_delete_access_off.brlan
+    0x38c0	= ./common/anim/common_w084_earth_delete_free.brlan
+    0x3c80	= ./common/anim/common_w084_earth_delete_free_to_select.brlan
+    0x40e0	= ./common/anim/common_w084_earth_delete_fuchi_check_loop.brlan
+    0x41a0	= ./common/anim/common_w084_earth_delete_select.brlan
+    0x4560	= ./common/anim/common_w084_earth_delete_select_to_free.brlan
+    0x4940	= ./common/anim/common_w084_earth_delete_text_light_01_ok.brlan
+    0x4c40	= ./common/anim/common_w084_earth_delete_text_light_01_stop.brlan
+    0x4ea0	= ./common/anim/common_w084_earth_delete_text_light_02_select.brlan
+    0x51a0	= ./common/anim/common_w084_earth_delete_text_light_02_stop.brlan
+    0x5400	= ./common/anim/option_bg_Loop.brlan
+		= ./common/blyt/
+    0x54a0	= ./common/blyt/common_w084_earth_delete.brlyt
+    0x6620	= ./common/blyt/obi_bottom_message.brlyt
+    0x7220	= ./common/blyt/option_bg.brlyt
+		= ./common/ctrl/
+    0x7620	= ./common/ctrl/MenuBG.brctr
+    0x76e0	= ./common/ctrl/MenuObiInstructionText.brctr
+    0x7780	= ./common/ctrl/NextButton.brctr
+		= ./common/timg/
+    0x7b20	= ./common/timg/ht_squareWhite_00.tpl
+    0x7b80	= ./common/timg/tt_block_16x16.tpl
+    0x7fc0	= ./common/timg/tt_obi_bottom_curve_000.tpl
+   0x1b5c0	= ./common/timg/tt_obi_bottom_left_000.tpl
+   0x1c080	= ./common/timg/tt_obi_bottom_right_000.tpl
+   0x1cb40	= ./common/timg/tt_obi_check_000.tpl
+   0x20940	= ./common/timg/tt_pattern_chek_bokashi_32x32.tpl
+		= ./control/
+		= ./control/blyt/
+   0x21180	= ./control/blyt/cup_icon_64x64_common.brlyt
+   0x21f60	= ./control/blyt/cup_icon_set_position.brlyt
+   0x22120	= ./control/blyt/present_message_window_course.brlyt
+   0x22560	= ./control/blyt/present_message_window_driver.brlyt
+   0x229a0	= ./control/blyt/present_message_window_mii.brlyt
+   0x22de0	= ./control/blyt/present_message_window_vehicle.brlyt
+   0x23220	= ./control/blyt/present_obi_bottom_course.brlyt
+   0x23620	= ./control/blyt/present_obi_bottom_driver.brlyt
+   0x23a20	= ./control/blyt/present_obi_bottom_mii.brlyt
+   0x23e00	= ./control/blyt/present_obi_bottom_vehicle.brlyt
+   0x24200	= ./control/blyt/present_obi_top_course.brlyt
+   0x24860	= ./control/blyt/present_obi_top_driver.brlyt
+   0x24ec0	= ./control/blyt/present_obi_top_mii.brlyt
+   0x25520	= ./control/blyt/present_obi_top_text.brlyt
+   0x25740	= ./control/blyt/present_obi_top_text_course.brlyt
+   0x25960	= ./control/blyt/present_obi_top_text_driver.brlyt
+   0x25b80	= ./control/blyt/present_obi_top_text_mii.brlyt
+   0x25da0	= ./control/blyt/present_obi_top_vehicle.brlyt
+		= ./control/ctrl/
+   0x26420	= ./control/ctrl/Course_MenuObiBottom.brctr
+   0x26520	= ./control/ctrl/Course_MenuObiTitleText.brctr
+   0x26620	= ./control/ctrl/Course_MenuObiTop.brctr
+   0x26700	= ./control/ctrl/Course_MessageWindowHalf.brctr
+   0x267a0	= ./control/ctrl/CupIcon.brctr
+   0x26840	= ./control/ctrl/Driver_MenuObiBottom.brctr
+   0x26940	= ./control/ctrl/Driver_MenuObiTitleText.brctr
+   0x26a40	= ./control/ctrl/Driver_MenuObiTop.brctr
+   0x26b20	= ./control/ctrl/Driver_MessageWindowHalf.brctr
+   0x26bc0	= ./control/ctrl/Mii_MenuObiBottom.brctr
+   0x26cc0	= ./control/ctrl/Mii_MenuObiTitleText.brctr
+   0x26dc0	= ./control/ctrl/Mii_MenuObiTop.brctr
+   0x26ea0	= ./control/ctrl/Mii_MessageWindowHalf.brctr
+   0x26f40	= ./control/ctrl/Vehicle_MenuObiBottom.brctr
+   0x27040	= ./control/ctrl/Vehicle_MenuObiTitleText.brctr
+   0x27140	= ./control/ctrl/Vehicle_MenuObiTop.brctr
+   0x27220	= ./control/ctrl/Vehicle_MessageWindowHalf.brctr
+		= ./control/timg/
+   0x272c0	= ./control/timg/st_battle_icon_balloon.tpl
+   0x2f300	= ./control/timg/st_battle_icon_coin.tpl
+   0x37340	= ./control/timg/st_battle_icon_flag.tpl
+   0x3f380	= ./control/timg/tk_obi_bottom_right_course.tpl
+   0x3fe40	= ./control/timg/tk_obi_bottom_right_driver.tpl
+   0x40900	= ./control/timg/tk_obi_bottom_right_mii.tpl
+   0x413c0	= ./control/timg/tk_obi_bottom_right_vehicle.tpl
+   0x41e80	= ./control/timg/tk_obi_check_course.tpl
+   0x42f60	= ./control/timg/tk_obi_check_driver.tpl
+   0x46d60	= ./control/timg/tk_obi_check_mii.tpl
+   0x47e40	= ./control/timg/tk_obi_check_vehicle.tpl
+   0x4bc40	= ./control/timg/tk_obi_top_curve_course.tpl
+   0x5b300	= ./control/timg/tk_obi_top_curve_driver.tpl
+   0x6a9c0	= ./control/timg/tk_obi_top_curve_mii.tpl
+   0x7a080	= ./control/timg/tk_obi_top_curve_vehicle.tpl
+   0x89740	= ./control/timg/tk_obi_top_left_course.tpl
+   0x8a000	= ./control/timg/tk_obi_top_left_driver.tpl
+   0x8a8c0	= ./control/timg/tk_obi_top_left_mii.tpl
+   0x8b180	= ./control/timg/tk_obi_top_left_vehicle.tpl
+   0x8ba40	= ./control/timg/tk_obi_top_right_course.tpl
+   0x8c300	= ./control/timg/tk_obi_top_right_driver.tpl
+   0x8cbc0	= ./control/timg/tk_obi_top_right_mii.tpl
+   0x8d480	= ./control/timg/tk_obi_top_right_vehicle.tpl
+   0x8dd40	= ./control/timg/tk_window_course.tpl
+   0x9cac0	= ./control/timg/tk_window_driver.tpl
+   0xab840	= ./control/timg/tk_window_mii.tpl
+   0xba5c0	= ./control/timg/tk_window_vehicle.tpl
+   0xc9340	= ./control/timg/tt_block_16x16.tpl
+   0xc9780	= ./control/timg/tt_cup_icon_banana_00.tpl
+   0xd17c0	= ./control/timg/tt_cup_icon_flower_00.tpl
+   0xd9800	= ./control/timg/tt_cup_icon_kinoko_00.tpl
+   0xe1840	= ./control/timg/tt_cup_icon_konoha_00.tpl
+   0xe9880	= ./control/timg/tt_cup_icon_koura_00.tpl
+   0xf18c0	= ./control/timg/tt_cup_icon_mirror_00.tpl
+   0xf9900	= ./control/timg/tt_cup_icon_oukan_00.tpl
+  0x101940	= ./control/timg/tt_cup_icon_star_00.tpl
+  0x109980	= ./control/timg/tt_cup_icon_thunder_00.tpl
+  0x1119c0	= ./control/timg/tt_hatena_64x64.tpl
+		= ./Course/
+		= ./Course/blyt/
+  0x113a00	= ./Course/blyt/present_message_window_course.brlyt
+  0x113e40	= ./Course/blyt/present_obi_bottom_course.brlyt
+  0x114240	= ./Course/blyt/present_obi_top_course.brlyt
+  0x1148a0	= ./Course/blyt/present_obi_top_text_course.brlyt
+		= ./Course/ctrl/
+  0x114ac0	= ./Course/ctrl/MenuObiBottom.brctr
+  0x114bc0	= ./Course/ctrl/MenuObiTitleText.brctr
+  0x114cc0	= ./Course/ctrl/MenuObiTop.brctr
+  0x114da0	= ./Course/ctrl/MessageWindowHalf.brctr
+		= ./Course/timg/
+  0x114e40	= ./Course/timg/tk_obi_bottom_right_course.tpl
+  0x115900	= ./Course/timg/tk_obi_check_course.tpl
+  0x1169e0	= ./Course/timg/tk_obi_top_curve_course.tpl
+  0x1260a0	= ./Course/timg/tk_obi_top_left_course.tpl
+  0x126960	= ./Course/timg/tk_obi_top_right_course.tpl
+  0x127220	= ./Course/timg/tk_window_course.tpl
+		= ./dpd_pointer/
+		= ./dpd_pointer/anim/
+  0x135fa0	= ./dpd_pointer/anim/pointing_cursor_blue_cursor.brlan
+  0x136880	= ./dpd_pointer/anim/pointing_cursor_common_cursor.brlan
+  0x137160	= ./dpd_pointer/anim/pointing_cursor_c_left.brlan
+  0x137220	= ./dpd_pointer/anim/pointing_cursor_c_right.brlan
+  0x1372e0	= ./dpd_pointer/anim/pointing_cursor_green_cursor.brlan
+  0x137bc0	= ./dpd_pointer/anim/pointing_cursor_left.brlan
+  0x137c80	= ./dpd_pointer/anim/pointing_cursor_pointing_cursor_loop.brlan
+  0x137d40	= ./dpd_pointer/anim/pointing_cursor_race_blue_cursor.brlan
+  0x137ee0	= ./dpd_pointer/anim/pointing_cursor_race_common_cursor.brlan
+  0x138080	= ./dpd_pointer/anim/pointing_cursor_race_c_left.brlan
+  0x138140	= ./dpd_pointer/anim/pointing_cursor_race_c_right.brlan
+  0x138200	= ./dpd_pointer/anim/pointing_cursor_race_green_cursor.brlan
+  0x1383a0	= ./dpd_pointer/anim/pointing_cursor_race_left.brlan
+  0x138460	= ./dpd_pointer/anim/pointing_cursor_race_pointing_cursor_loop.brlan
+  0x138520	= ./dpd_pointer/anim/pointing_cursor_race_red_cursor.brlan
+  0x1386c0	= ./dpd_pointer/anim/pointing_cursor_race_right.brlan
+  0x138780	= ./dpd_pointer/anim/pointing_cursor_race_yellow_cursor.brlan
+  0x138920	= ./dpd_pointer/anim/pointing_cursor_red_cursor.brlan
+  0x139200	= ./dpd_pointer/anim/pointing_cursor_right.brlan
+  0x1392c0	= ./dpd_pointer/anim/pointing_cursor_yellow_cursor.brlan
+		= ./dpd_pointer/blyt/
+  0x139ba0	= ./dpd_pointer/blyt/pointing_cursor.brlyt
+  0x13b540	= ./dpd_pointer/blyt/pointing_cursor_race.brlyt
+		= ./dpd_pointer/ctrl/
+  0x13bd60	= ./dpd_pointer/ctrl/DpdPointer.brctr
+  0x13c0e0	= ./dpd_pointer/ctrl/DpdPointerRace.brctr
+		= ./dpd_pointer/timg/
+  0x13c480	= ./dpd_pointer/timg/cursor0.tpl
+  0x13ddc0	= ./dpd_pointer/timg/tt_i_cursor_nakami_ver0.tpl
+  0x13e100	= ./dpd_pointer/timg/tt_i_cursor_shikaku.tpl
+  0x13e180	= ./dpd_pointer/timg/tt_i_cursor_tongari.tpl
+		= ./Driver/
+		= ./Driver/blyt/
+  0x1413c0	= ./Driver/blyt/present_message_window_driver.brlyt
+  0x141800	= ./Driver/blyt/present_obi_bottom_driver.brlyt
+  0x141c00	= ./Driver/blyt/present_obi_top_driver.brlyt
+  0x142260	= ./Driver/blyt/present_obi_top_text_driver.brlyt
+		= ./Driver/ctrl/
+  0x142480	= ./Driver/ctrl/MenuObiBottom.brctr
+  0x142580	= ./Driver/ctrl/MenuObiTitleText.brctr
+  0x142680	= ./Driver/ctrl/MenuObiTop.brctr
+  0x142760	= ./Driver/ctrl/MessageWindowHalf.brctr
+		= ./Driver/timg/
+  0x142800	= ./Driver/timg/tk_obi_bottom_right_driver.tpl
+  0x1432c0	= ./Driver/timg/tk_obi_check_driver.tpl
+  0x1470c0	= ./Driver/timg/tk_obi_top_curve_driver.tpl
+  0x156780	= ./Driver/timg/tk_obi_top_left_driver.tpl
+  0x157040	= ./Driver/timg/tk_obi_top_right_driver.tpl
+  0x157900	= ./Driver/timg/tk_window_driver.tpl
+		= ./effect/
+  0x166680	= ./effect/RKMenu.breff
+  0x166920	= ./effect/RKMenu.breft
+		= ./message_window/
+		= ./message_window/anim/
+  0x1679c0	= ./message_window/anim/common_w004_menu_fade_in.brlan
+  0x167ba0	= ./message_window/anim/common_w004_menu_fade_in_after.brlan
+  0x167d80	= ./message_window/anim/common_w004_menu_fade_in_before.brlan
+  0x167f60	= ./message_window/anim/common_w004_menu_fade_out.brlan
+  0x168140	= ./message_window/anim/common_w004_menu_free.brlan
+  0x168320	= ./message_window/anim/common_w004_menu_free_to_select.brlan
+  0x168580	= ./message_window/anim/common_w004_menu_fuchi_check_loop.brlan
+  0x168840	= ./message_window/anim/common_w004_menu_select.brlan
+  0x168a60	= ./message_window/anim/common_w004_menu_select_to_free.brlan
+  0x168c60	= ./message_window/anim/common_w004_menu_text_light_01_ok.brlan
+  0x168ee0	= ./message_window/anim/common_w004_menu_text_light_01_stop.brlan
+  0x1690c0	= ./message_window/anim/common_w004_menu_text_light_02_select.brlan
+  0x169380	= ./message_window/anim/common_w004_menu_text_light_02_stop.brlan
+  0x169600	= ./message_window/anim/common_w008_back_fade_in.brlan
+  0x1698c0	= ./message_window/anim/common_w008_back_fade_in_after.brlan
+  0x169b60	= ./message_window/anim/common_w008_back_fade_in_before.brlan
+  0x169e00	= ./message_window/anim/common_w008_back_fade_out.brlan
+  0x16a0c0	= ./message_window/anim/common_w008_back_free.brlan
+  0x16a640	= ./message_window/anim/common_w008_back_free_to_select.brlan
+  0x16ab40	= ./message_window/anim/common_w008_back_fuchi_check_loop.brlan
+  0x16ae80	= ./message_window/anim/common_w008_back_select.brlan
+  0x16b300	= ./message_window/anim/common_w008_back_select_to_free.brlan
+  0x16b780	= ./message_window/anim/common_w008_back_text_light_01_ok.brlan
+  0x16bac0	= ./message_window/anim/common_w008_back_text_light_01_stop.brlan
+  0x16bd80	= ./message_window/anim/common_w008_back_text_light_02_select.brlan
+  0x16c0c0	= ./message_window/anim/common_w008_back_text_light_02_stop.brlan
+  0x16c380	= ./message_window/anim/common_w073_loading_loading.brlan
+		= ./message_window/blyt/
+  0x16c700	= ./message_window/blyt/a_button_for_message_window.brlyt
+  0x16c8a0	= ./message_window/blyt/black_down.brlyt
+  0x16cb00	= ./message_window/blyt/black_down_race.brlyt
+  0x16cd60	= ./message_window/blyt/common_w004_menu.brlyt
+  0x16dd00	= ./message_window/blyt/common_w008_back.brlyt
+  0x16e680	= ./message_window/blyt/common_w017_message.brlyt
+  0x16ecc0	= ./message_window/blyt/common_w022_message_half.brlyt
+  0x16f260	= ./message_window/blyt/common_w073_loading.brlyt
+  0x16fb60	= ./message_window/blyt/common_w079_message_quarter.brlyt
+  0x1700e0	= ./message_window/blyt/common_w127_yes_no_message_window.brlyt
+  0x1708e0	= ./message_window/blyt/yes_no_window_popup_container.brlyt
+		= ./message_window/ctrl/
+  0x170a60	= ./message_window/ctrl/Back.brctr
+  0x170dc0	= ./message_window/ctrl/BlackBack.brctr
+  0x170ea0	= ./message_window/ctrl/BusySymbol.brctr
+  0x170f80	= ./message_window/ctrl/ConfirmOK.brctr
+  0x1712c0	= ./message_window/ctrl/MessageWindow.brctr
+  0x171400	= ./message_window/ctrl/MessageWindowFrame.brctr
+  0x1714c0	= ./message_window/ctrl/MessageWindowHalf.brctr
+  0x171660	= ./message_window/ctrl/MessageWindowQuarter.brctr
+  0x171800	= ./message_window/ctrl/OKKey.brctr
+  0x1718e0	= ./message_window/ctrl/RaceConfirmBack.brctr
+  0x1719c0	= ./message_window/ctrl/YesNoButton.brctr
+  0x171d80	= ./message_window/ctrl/YesNoPopupContainer.brctr
+		= ./message_window/timg/
+  0x171e20	= ./message_window/timg/tt_fukidashi_window_kado_common.tpl
+  0x172ae0	= ./message_window/timg/tt_glass_waku_180.tpl
+  0x179920	= ./message_window/timg/tt_pattern_chek_32x32.tpl
+  0x17a160	= ./message_window/timg/tt_pattern_chek_alpha_nasi_32x32.tpl
+  0x17a5a0	= ./message_window/timg/tt_pattern_chek_bokashi_32x32.tpl
+		= ./Mii/
+		= ./Mii/blyt/
+  0x17ade0	= ./Mii/blyt/present_message_window_mii.brlyt
+  0x17b220	= ./Mii/blyt/present_obi_bottom_mii.brlyt
+  0x17b600	= ./Mii/blyt/present_obi_top_mii.brlyt
+  0x17bc60	= ./Mii/blyt/present_obi_top_text_mii.brlyt
+		= ./Mii/ctrl/
+  0x17be80	= ./Mii/ctrl/MenuObiBottom.brctr
+  0x17bf80	= ./Mii/ctrl/MenuObiTitleText.brctr
+  0x17c080	= ./Mii/ctrl/MenuObiTop.brctr
+  0x17c160	= ./Mii/ctrl/MessageWindowHalf.brctr
+		= ./Mii/timg/
+  0x17c200	= ./Mii/timg/tk_obi_bottom_right_mii.tpl
+  0x17ccc0	= ./Mii/timg/tk_obi_check_mii.tpl
+  0x17dda0	= ./Mii/timg/tk_obi_top_curve_mii.tpl
+  0x18d460	= ./Mii/timg/tk_obi_top_left_mii.tpl
+  0x18dd20	= ./Mii/timg/tk_obi_top_right_mii.tpl
+  0x18e5e0	= ./Mii/timg/tk_window_mii.tpl
+		= ./model/
+		= ./model/anim/
+  0x19d360	= ./model/anim/model_set_p_alpha028.brlan
+  0x19d400	= ./model/anim/model_set_p_alpha128.brlan
+  0x19d4a0	= ./model/anim/model_set_p_alpha200.brlan
+  0x19d540	= ./model/anim/model_set_p_alpha255.brlan
+		= ./model/blyt/
+  0x19d5e0	= ./model/blyt/model_set_p.brlyt
+		= ./model/ctrl/
+  0x19d840	= ./model/ctrl/CharacterSelectModel.brctr
+  0x19db60	= ./model/ctrl/MachineSelectModel.brctr
+		= ./model/timg/
+  0x19de80	= ./model/timg/tt_pattern_chek_alpha_nasi_32x32.tpl
+		= ./pad_recognize/
+		= ./pad_recognize/anim/
+  0x19e2c0	= ./pad_recognize/anim/common_w055_message_connect_blue.brlan
+  0x19e520	= ./pad_recognize/anim/common_w055_message_connect_borderline_loop.brlan
+  0x19e5c0	= ./pad_recognize/anim/common_w055_message_connect_cla_con.brlan
+  0x19e7e0	= ./pad_recognize/anim/common_w055_message_connect_connect.brlan
+  0x19ea40	= ./pad_recognize/anim/common_w055_message_connect_disconnect.brlan
+  0x19eca0	= ./pad_recognize/anim/common_w055_message_connect_entry_light.brlan
+  0x19eda0	= ./pad_recognize/anim/common_w055_message_connect_entry_light_stop.brlan
+  0x19ee80	= ./pad_recognize/anim/common_w055_message_connect_gc_con.brlan
+  0x19f080	= ./pad_recognize/anim/common_w055_message_connect_green.brlan
+  0x19f2e0	= ./pad_recognize/anim/common_w055_message_connect_han_con.brlan
+  0x19f500	= ./pad_recognize/anim/common_w055_message_connect_hatena.brlan
+  0x19f6c0	= ./pad_recognize/anim/common_w055_message_connect_nun_con.brlan
+  0x19f8c0	= ./pad_recognize/anim/common_w055_message_connect_red.brlan
+  0x19fb20	= ./pad_recognize/anim/common_w055_message_connect_white.brlan
+  0x19fd80	= ./pad_recognize/anim/common_w055_message_connect_yellow.brlan
+		= ./pad_recognize/blyt/
+  0x19ffe0	= ./pad_recognize/blyt/common_w055_message_connect.brlyt
+  0x1a0940	= ./pad_recognize/blyt/common_w056_message_connect_window.brlyt
+		= ./pad_recognize/ctrl/
+  0x1a0f40	= ./pad_recognize/ctrl/RecognizePad.brctr
+  0x1a13c0	= ./pad_recognize/ctrl/RecognizePadWindow.brctr
+		= ./pad_recognize/timg/
+  0x1a1480	= ./pad_recognize/timg/tt_a_body.tpl
+  0x1c14c0	= ./pad_recognize/timg/tt_a_light.tpl
+  0x1e1500	= ./pad_recognize/timg/tt_clacon_body.tpl
+  0x201540	= ./pad_recognize/timg/tt_clacon_light.tpl
+  0x221580	= ./pad_recognize/timg/tt_fukidashi_window_kado_common.tpl
+  0x222240	= ./pad_recognize/timg/tt_gccon_body.tpl
+  0x242280	= ./pad_recognize/timg/tt_gccon_light.tpl
+  0x2622c0	= ./pad_recognize/timg/tt_gccon_waku.tpl
+  0x282300	= ./pad_recognize/timg/tt_hatena_body.tpl
+  0x2a2340	= ./pad_recognize/timg/tt_hatena_light.tpl
+  0x2c2380	= ./pad_recognize/timg/tt_pattern_chek_alpha_nasi_32x32.tpl
+  0x2c27c0	= ./pad_recognize/timg/tt_pattern_chek_bokashi_32x32.tpl
+  0x2c3000	= ./pad_recognize/timg/tt_remocon_han_body.tpl
+  0x2e3040	= ./pad_recognize/timg/tt_remocon_han_light.tpl
+  0x303080	= ./pad_recognize/timg/tt_remocon_nun_body.tpl
+  0x3230c0	= ./pad_recognize/timg/tt_remocon_nun_light.tpl
+		= ./parameter/
+  0x343100	= ./parameter/bikePartsDispParam.bin
+  0x343d80	= ./parameter/default.blight
+  0x344340	= ./parameter/default.blmap
+  0x3445e0	= ./parameter/driverDispParam.bin
+  0x344900	= ./parameter/driverParam.bin
+  0x3472e0	= ./parameter/IconParam_140_44_L.bin
+  0x347440	= ./parameter/IconParam_140_44_M.bin
+  0x3475a0	= ./parameter/IconParam_140_44_S.bin
+  0x347700	= ./parameter/IconParam_140_60_L.bin
+  0x347860	= ./parameter/IconParam_140_60_M.bin
+  0x3479c0	= ./parameter/IconParam_140_60_S.bin
+  0x347b20	= ./parameter/IconParam_140_72_L.bin
+  0x347c80	= ./parameter/IconParam_140_72_M.bin
+  0x347de0	= ./parameter/IconParam_140_72_S.bin
+  0x347f40	= ./parameter/IconParam_140_96_L.bin
+  0x3480a0	= ./parameter/IconParam_140_96_M.bin
+  0x348200	= ./parameter/IconParam_140_96_S.bin
+  0x348360	= ./parameter/IconParam_192_44_L.bin
+  0x3484c0	= ./parameter/IconParam_192_44_M.bin
+  0x348620	= ./parameter/IconParam_192_44_S.bin
+  0x348780	= ./parameter/IconParam_192_60_L.bin
+  0x3488e0	= ./parameter/IconParam_192_60_M.bin
+  0x348a40	= ./parameter/IconParam_192_60_S.bin
+  0x348ba0	= ./parameter/IconParam_192_72_L.bin
+  0x348d00	= ./parameter/IconParam_192_72_M.bin
+  0x348e60	= ./parameter/IconParam_192_72_S.bin
+  0x348fc0	= ./parameter/IconParam_192_96_L.bin
+  0x349120	= ./parameter/IconParam_192_96_M.bin
+  0x349280	= ./parameter/IconParam_192_96_S.bin
+  0x3493e0	= ./parameter/kartCameraParam.bin
+  0x349620	= ./parameter/kartDriverDispParam.bin
+  0x361040	= ./parameter/kartParam.bin
+  0x364800	= ./parameter/kartPartsDispParam.bin
+  0x365fc0	= ./parameter/machine_para.bin
+		= ./Vehicle/
+		= ./Vehicle/blyt/
+  0x366340	= ./Vehicle/blyt/present_message_window_vehicle.brlyt
+  0x366780	= ./Vehicle/blyt/present_obi_bottom_vehicle.brlyt
+  0x366b80	= ./Vehicle/blyt/present_obi_top_text.brlyt
+  0x366da0	= ./Vehicle/blyt/present_obi_top_vehicle.brlyt
+		= ./Vehicle/ctrl/
+  0x367420	= ./Vehicle/ctrl/MenuObiBottom.brctr
+  0x367520	= ./Vehicle/ctrl/MenuObiTitleText.brctr
+  0x367620	= ./Vehicle/ctrl/MenuObiTop.brctr
+  0x367700	= ./Vehicle/ctrl/MessageWindowHalf.brctr
+		= ./Vehicle/timg/
+  0x3677a0	= ./Vehicle/timg/tk_obi_bottom_right_vehicle.tpl
+  0x368260	= ./Vehicle/timg/tk_obi_check_vehicle.tpl
+  0x36c060	= ./Vehicle/timg/tk_obi_top_curve_vehicle.tpl
+  0x37b720	= ./Vehicle/timg/tk_obi_top_left_vehicle.tpl
+  0x37bfe0	= ./Vehicle/timg/tk_obi_top_right_vehicle.tpl
+  0x37c8a0	= ./Vehicle/timg/tk_window_vehicle.tpl
+
+#------------------------------------------------------------------------------
+
