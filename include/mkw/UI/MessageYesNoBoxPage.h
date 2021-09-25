@@ -16,7 +16,7 @@ public:
     void configOption(int num, int msgId, UI::MesgRes::FormatParam* param,
                       int r7, EventBase* event);
 
-    static const TypeInfo s_typeInfo;
+    static const TypeInfo sTypeInfo;
 };
 
 } // namespace UI

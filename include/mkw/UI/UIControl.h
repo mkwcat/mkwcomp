@@ -13,28 +13,28 @@ struct UIControlCollection {
     void init(UIControl* parent, int count);
     void insert(int index, UIControl* control);
 
-    UIControl** m_children;
-    UIControl** m_childrenSorted;
-    UIControl* m_parent;
-    UIControl* m_root;
-    int m_count;
+    /* 0x00 */ UIControl** m_children;
+    /* 0x04 */ UIControl** m_childrenSorted;
+    /* 0x08 */ UIControl* m_parent;
+    /* 0x0C */ UIControl* m_root;
+    /* 0x10 */ int m_count;
 };
 
 struct UIControlPosition {
     UIControlPosition() : x(0), y(0), z(0), xScale(1), yScale(1), alpha(0xFF) {}
 
-    f32 x;
-    f32 y;
-    f32 z;
-    f32 xScale;
-    f32 yScale;
-    u8 alpha;
-    u8 fill[3];
+    /* 0x00 */ f32 x;
+    /* 0x04 */ f32 y;
+    /* 0x08 */ f32 z;
+    /* 0x0C */ f32 xScale;
+    /* 0x10 */ f32 yScale;
+    /* 0x14 */ u8 alpha;
 };
 
 class UIControl
 {
 public:
+    /* 0x8063607C */
     UIControl();
     virtual ~UIControl();
 
@@ -50,21 +50,21 @@ public:
     virtual void _30() {}
     virtual void _34() {}
 
-    UIControlPosition m_basePos;   // code position
-    UIControlPosition m_layoutPos; // layout position
-    UIControlPosition m_somePos;
-    UIControlPosition m_realPos;
+    /* 0x04 */ UIControlPosition m_basePos;   // code position
+    /* 0x1C */ UIControlPosition m_layoutPos; // layout position
+    /* 0x34 */ UIControlPosition m_somePos;
+    /* 0x4C */ UIControlPosition m_realPos;
 
-    UIControlCollection* m_parent;
-    UIControlCollection m_children;
+    /* 0x64 */ UIControlCollection* m_parent;
+    /* 0x68 */ UIControlCollection m_children;
 
-    f32 m_7C;
-    bool m_invisible;
-    u32 m_84;
-    bool m_useSlideAnim;
-    f32 m_slideDelay;
-    s32 m_slideInSound;
-    s32 m_slideOutSound;
+    /* 0x7C */ f32 m_7C;
+    /* 0x80 */ bool m_invisible;
+    /* 0x84 */ u32 m_84;
+    /* 0x88 */ bool m_useSlideAnim;
+    /* 0x8C */ f32 m_slideDelay;
+    /* 0x90 */ s32 m_slideInSound;
+    /* 0x94 */ s32 m_slideOutSound;
 };
 
 } // namespace UI
