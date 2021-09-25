@@ -66,7 +66,3 @@ enum E {
 }
 
 int msgIdForCourse(int course);
-
-struct MiiData {
-    u8 fill[0x4A];
-};

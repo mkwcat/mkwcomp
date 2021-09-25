@@ -227,12 +227,6 @@ static bool ldbEntryCompare(LdbFileEntry& entry, RaceTime* time)
     return false;
 }
 
-template <class T> static inline u32 indexInArray(T* array, T* entry)
-{
-    return (reinterpret_cast<u32>(entry) - reinterpret_cast<u32>(array)) /
-           sizeof(T);
-}
-
 int CompFile::getTimeLdbPosition(RaceTime* time)
 {
     LdbFileEntry* entry = std::lower_bound(&m_leaderboard[0], &m_leaderboard[5],

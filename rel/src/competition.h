@@ -2,6 +2,8 @@
 #include "file.h"
 #include <egg/eggFile.h>
 #include <egg/eggTaskThread.h>
+#include <mkw/LeaderboardEntry.h>
+#include <mkw/MiiData.h>
 #include <mkw/RaceTime.h>
 #include <mkw/common.h>
 #include <rvl/types.h>
@@ -48,17 +50,6 @@ static_assert(sizeof(FileHeader) == 0x4C, "sizeof(FileHeader) != 0x4C");
 
 } // namespace RKC
 
-struct LeaderboardEntry {
-    MiiData mii; // size 0x4A
-    u16 miiChecksum; // crc16
-
-    RaceTime time; // at 0x4C
-
-    int characterId;
-    int vehicleId;
-    int controllerId;
-};
-
 struct LdbFileEntry {
     MiiData mii; // size 0x4A
     u16 miiChecksum; // crc16
@@ -99,12 +90,10 @@ public:
     void openLdbFile();
     void writeLdbTask();
     void setText(const wchar_t* title, const wchar_t* explanation);
-    
 
     void getLdbEntry(u8 position, LeaderboardEntry* entry);
     int getTimeLdbPosition(RaceTime* time);
     void insertTimeInLdb(LeaderboardEntry* entry, u32 position);
-
 
     const wchar_t* m_compTitle;
     const wchar_t* m_compExplanation;
