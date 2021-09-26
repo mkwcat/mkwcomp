@@ -23,7 +23,8 @@
 
 namespace CompMode
 {
-enum E {
+enum E
+{
     TimeTrial,
     VSRace,
     SpecialTimeTrial,
@@ -33,7 +34,7 @@ enum E {
     Coins,
     Gates
 };
-}
+} // namespace CompMode
 
 struct CompNameData {
     Course::E course;
@@ -109,34 +110,6 @@ static inline int compExplanationMid(int compId)
 {
     return 10100 + compId - 1;
 }
-
-class PageScanlineBackground : public UI::UIPage
-{
-public:
-    void initInternal()
-    {
-        setEventController(&m_events);
-        initControlGroup(1);
-
-        registerControl(0, &m_background, 0);
-
-        UI::CtrlRes ctrl(&m_background);
-        const char* anims[4] = {"eAFLoop", "Loop", nullptr, nullptr};
-        ctrl.readFile("bg", "MenuBG", "MenuBG", anims);
-
-        // required for background to work
-        UI::SomeAnimation* anim = m_background.m_anim.getIndex(0);
-        anim->doSomething(0, 0);
-    }
-
-    void hideBackground()
-    {
-        m_background.m_invisible = true;
-    }
-
-    UI::LayoutUIControl m_background;
-    UI::PageEventBase m_events;
-};
 
 class PageSelection : public UI::UIPage
 {
@@ -694,13 +667,6 @@ bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)
         scene->buildPage(0xB7);
         scene->buildPage(0xB8);
         scene->buildPage(0xBB);
-#if 0
-        {
-            PageScanlineBackground* page = new PageScanlineBackground();
-            scene->registerPage(BACKGROUND_PAGE_ID, page);
-            page->init(BACKGROUND_PAGE_ID);
-        }
-#endif
         {
             PageSelection* page = new PageSelection();
             scene->registerPage(0x8C, page);
