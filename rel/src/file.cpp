@@ -142,18 +142,13 @@ static s32 riivoToFSError(s32 error)
 
 bool RiivoFile::openLow(const char* path, u32 mode)
 {
-    s32 ret = IOS_Open(path, mode);
+    m_error = IOS_Open(path, mode);
 
-    if (ret < 0)
+    if (m_error < 0)
         return false;
-    m_fd = ret;
+    m_fd = m_error;
 
-    ret = IOS_Seek(m_fd, 0, IOS_SEEK_END);
-
-    if (ret < 0)
-        return false;
-    m_length = ret;
-
+    m_length = IOS_Seek(m_fd, 0, IOS_SEEK_END);
     IOS_Seek(m_fd, 0, IOS_SEEK_SET);
 
     return true;
@@ -161,6 +156,7 @@ bool RiivoFile::openLow(const char* path, u32 mode)
 
 bool RiivoFile::openInternal(const char* path, u32 mode)
 {
+#if 0
     // IOS max path length is 63 characters. Since 64 isn't enough for many
     // cases, Riivolution implements a 'shorten path' ioctl.
     if (strlen(path) + 4 > IPC_MAX_PATH) {
@@ -172,23 +168,23 @@ bool RiivoFile::openInternal(const char* path, u32 mode)
 
         return openLow(shortPath, mode);
     }
+#endif
 
     // For normal IPC length paths
     char fpath[IPC_MAX_PATH];
 
-    snprintf(fpath, RIIVO_MAX_PATH, "file/%s", path);
+    snprintf(fpath, IPC_MAX_PATH, "file/%s", path);
 
     return openLow(fpath, mode);
 }
 
 bool RiivoFile::open(const char* path, u8 mode)
 {
-    m_error = openInternal(path, nandToRiivoMode(mode));
+    bool ret = openInternal(path, nandToRiivoMode(mode));
 
-    if (m_error < 0)
+    if (!ret)
         return false;
 
-    m_fd = m_error;
     return true;
 }
 
@@ -197,12 +193,11 @@ bool RiivoFile::openCreate(const char* path, u8 mode)
     if (!(mode & NAND_MODE_WRITE))
         return false;
 
-    m_error = openInternal(path, nandToRiivoMode(mode) | 0x600);
+    bool ret = openInternal(path, nandToRiivoMode(mode) | 0x600);
 
-    if (m_error < 0)
+    if (!ret)
         return false;
 
-    m_fd = m_error;
     return true;
 }
 

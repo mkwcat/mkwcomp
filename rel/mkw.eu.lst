@@ -26,6 +26,7 @@
 
 801a162c:DCFlushRange
 801a25d0:OSReport
+801aaca8:OSSleepTicks
 80011a2c:sprintf
 80011938:snprintf
 80021254:strlen

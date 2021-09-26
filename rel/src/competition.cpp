@@ -137,7 +137,7 @@ void CompFile::openLdbFile()
     char path[128];
     getLeaderboardPath(path);
 
-    bool ret = m_ldbFile->open(path, NAND_MODE_RW);
+    bool ret = m_ldbFile->open(path, NAND_MODE_READ);
 
     if (!ret) {
         OSReport("Failed to open leaderboard file\n");
@@ -158,7 +158,7 @@ void CompFile::writeLdbTask()
     char path[128];
     getLeaderboardPath(path);
 
-    bool ret = m_ldbFile->openCreate(path, NAND_MODE_RW);
+    bool ret = m_ldbFile->openCreate(path, NAND_MODE_WRITE);
 
     if (!ret) {
         OSReport("Failed to open leaderboard file\n");
@@ -290,6 +290,7 @@ int checkForCompetitionReplace(u8* r3, CompInfo* info)
     while (!CompFile::sInstance->isFileAvailable()) {
         if (!CompFile::sInstance->isTaskExist())
             return 0;
+        OSSleepTicks(OSMillisecondsToTicks(16));
     }
 
     info->unk_0x0 = 0;

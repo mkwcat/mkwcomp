@@ -131,6 +131,8 @@ const char* titleResourceReplace()
     return "/Scene/UI/Menu";
 }
 
+#define NDEBUG
+
 #ifndef NDEBUG
 extern "C" {
 void OSSleepThread(u32);
