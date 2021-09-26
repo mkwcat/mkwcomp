@@ -27,7 +27,7 @@ struct FileObjective {
     u16 cannonFlag;
     u16 cpuCount;
     u8 cpu[22];
-    bool wiiWheelOnly;
+    bool forceWiiWheel;
     u8 pad_0x2F;
     u16 commonObjSetting;
     u16 requiredScore;

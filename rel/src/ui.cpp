@@ -1,5 +1,6 @@
 #include "ui.h"
 #include "competition.h"
+#include <mkw/MenuSet.h>
 #include <mkw/Random.h>
 #include <mkw/UI/CtrlMenuBackButton.h>
 #include <mkw/UI/CtrlMenuPageTitleText.h>
