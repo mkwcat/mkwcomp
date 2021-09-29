@@ -9,6 +9,7 @@
 #include <mkw/UI/MesgRes.h>
 #include <mkw/UI/MessageYesNoBoxPage.h>
 #include <mkw/UI/PushButton.h>
+#include <mkw/UI/RaceHudPage.h>
 #include <mkw/UI/RaceMenuPage.h>
 #include <mkw/UI/Scene.h>
 #include <mkw/UI/SceneBGMController.h>
@@ -381,13 +382,10 @@ UI::AutoTypeInfo<UI::UIPage> PageSelection::sTypeInfo;
 
 int PageSelection::s_lastCompId = 0;
 
-const int sEndScreenButtons[4] = {
-    // UI::RaceMenu::ButtonRetry,
-    UI::RaceMenu::ButtonRestart,
-    UI::RaceMenu::ButtonChangeCharacter,
-    UI::RaceMenu::ButtonChangeMission,
-    UI::RaceMenu::ButtonQuit,
-};
+const int sEndScreenButtons[5] = {
+    UI::RaceMenu::ButtonRestart, UI::RaceMenu::ButtonChangeCharacter,
+    UI::RaceMenu::ButtonChangeMission, UI::RaceMenu::ButtonQuit,
+    UI::RaceMenu::ButtonReplay};
 
 class EventAfterMenuPage : public UI::RaceMenuPage
 {
@@ -403,7 +401,7 @@ public:
 
     int getButtonCount() const
     {
-        return 4;
+        return 5;
     }
 
     const int* getButtonList() const
@@ -485,6 +483,125 @@ public:
 };
 UI::AutoTypeInfo<UI::RaceMenuPage> EventPauseMenuPage::sTypeInfo;
 
+const int sReplayPauseScreenButtons[3] = {
+    UI::RaceMenu::ButtonContinueReplay,
+    UI::RaceMenu::ButtonRestartReplay,
+    UI::RaceMenu::ButtonQuitReplay,
+};
+
+#if 0
+class EventReplayPauseMenuPage : public UI::RaceMenuPage
+{
+public:
+    EventReplayPauseMenuPage() : m_340(0)
+    {
+    }
+
+    int _68()
+    {
+        return m_340;
+    }
+
+    int getButtonCount() const
+    {
+        return 3;
+    }
+
+    const int* getButtonList() const
+    {
+        return sReplayPauseScreenButtons;
+    }
+
+    bool isPauseMenu() const
+    {
+        return false;
+    }
+
+    const char* getButtonCtrlName() const
+    {
+        return "PauseMenuReplayTA";
+    }
+
+    int m_33C;
+    int m_340;
+
+public:
+    static UI::AutoTypeInfo<UI::RaceMenuPage> sTypeInfo;
+    virtual const UI::TypeInfo* getTypeInfo()
+    {
+        return &sTypeInfo;
+    }
+};
+UI::AutoTypeInfo<UI::RaceMenuPage> EventReplayPauseMenuPage::sTypeInfo;
+#endif
+
+class ReplayHud : public UI::RaceHudPage
+{
+public:
+    ReplayHud()
+    {
+        m_nextPage = -1;
+    }
+
+    s32 getPausePageID()
+    {
+        return 0x39;
+    }
+
+    // Decompilation of the function at 0x8085896C.
+    // I don't know what all the mask bits are.
+    virtual u32 getHudLayoutMask()
+    {
+        MenuSet::RaceSetting* set = &MenuSet::sInstance->currentRace;
+
+        if (set->modeFlags & MenuSet::RaceSetting::FLAG_TOURNAMENT) {
+            switch (set->gameMode) {
+            case MenuSet::RaceSetting::MODE_VS_RACE:
+                return 0x87E;
+            case MenuSet::RaceSetting::MODE_TIME_TRIAL:
+                return 0x86E;
+            }
+
+            switch (set->mission.gameMode) {
+            case MissionSetting::MODE_LapRun01:
+                return 0x86E;
+            case MissionSetting::MODE_LapRun02:
+                return 0x87E;
+
+            case MissionSetting::MODE_EnemyDown01:
+            case MissionSetting::MODE_EnemyDown02:
+            case MissionSetting::MODE_EnemyDown03:
+                return 0x2C4E;
+            }
+        } else {
+            switch (set->mission.gameMode) {
+            // Apparently these are both the same for non-tournament mission
+            // mode
+            case MissionSetting::MODE_LapRun01:
+            case MissionSetting::MODE_LapRun02:
+                return 0x87E;
+            }
+        }
+
+        return 0xC4E;
+    }
+
+    bool _7C()
+    {
+        if (isRaceEnded(0))
+            return true;
+        return false;
+    }
+
+public:
+    static UI::AutoTypeInfo<UI::RaceHudPage> sTypeInfo;
+    virtual const UI::TypeInfo* getTypeInfo()
+    {
+        return &sTypeInfo;
+    }
+};
+UI::AutoTypeInfo<UI::RaceHudPage> ReplayHud::sTypeInfo;
+
 // use a static variable for this I guess
 s32 s_eventExplanation_nextPage = -1;
 
@@ -532,6 +649,7 @@ public:
 
     void initInternal()
     {
+        CompFile::sInstance->m_forceHandleDisabled = false;
         setEventController(&m_events);
     }
 
@@ -550,6 +668,8 @@ public:
 
     void selectYes(UI::MessageYesNoBoxPage* page, UI::PushButton* button)
     {
+        CompFile::sInstance->m_forceHandleDisabled = true;
+
         const int sceneId = UI::MenuDataInstance->m_scene->m_sceneId;
         if (sceneId == 0x88) {
             // Normal tournament intro
@@ -620,17 +740,41 @@ void wiiWheelPageRejectController(UI::UIPage* page)
     page->showNextPage(0x87, 0);
 }
 
+asm void hudWatchReplayHook()
+{
+    // clang-format off
+    nofralloc
+
+    li      r4, -1
+
+    cmpwi   r0, 0x2D
+    bnelr
+
+    li      r4, 0x2D
+    blr
+    // clang-format on
+}
+
 bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)
 {
     OSReport("load pages for scene: 0x%X\n", id);
 
     switch (id) {
     case 0x2D:
-        scene->buildPage(0x16);
-        {
-            EventPauseMenuPage* page = new EventPauseMenuPage();
-            scene->registerPage(0x1B, page);
-            page->init(0x1B);
+        if (MenuSet::sInstance->currentRace.controlKind != 1) {
+            scene->buildPage(0x16);
+            {
+                EventPauseMenuPage* page = new EventPauseMenuPage();
+                scene->registerPage(0x1B, page);
+                page->init(0x1B);
+            }
+        } else {
+            scene->buildPage(0x39);
+            {
+                ReplayHud* page = new ReplayHud();
+                scene->registerPage(0x16, page);
+                page->init(0x16);
+            }
         }
         scene->buildPage(0x2A);
         scene->buildPage(0x35);

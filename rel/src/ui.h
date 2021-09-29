@@ -17,3 +17,5 @@ void eventExplanationBackEvent(UI::UIPage* page, int r4, int r5);
 s32 eventExplanationGetNextPage(UI::UIPage* page);
 
 void wiiWheelPageRejectController(UI::UIPage* page);
+
+asm void hudWatchReplayHook();

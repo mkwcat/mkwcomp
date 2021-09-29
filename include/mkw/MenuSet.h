@@ -26,6 +26,24 @@ struct GhostData {
 };
 
 struct MissionSetting {
+    enum GameMode
+    {
+        MODE_Miniturbo = 0,
+        MODE_LapRun01 = 1,
+        MODE_LapRun02 = 2,
+        MODE_Drift = 3,
+        MODE_ItemBox = 4,
+        MODE_EnemyDown01 = 5,
+        MODE_EnemyDown02 = 6,
+        MODE_EnemyDown03 = 7,
+        MODE_CoinGet01 = 8,
+        MODE_ToGate01 = 9,
+        MODE_RocketStart = 10,
+        MODE_ItemHit = 11,
+        MODE_Wheelie = 12,
+        MODE_Slipstream = 13
+    };
+
     /* 0x00 */ u16 mrFile;
     /* 0x02 */ u16 gameMode;
     /* 0x04 */ u8 courseId;
@@ -173,7 +191,7 @@ public:
         {
             FLAG_MIRROR = 1 << 0,
             FLAG_TEAMS = 1 << 1,
-            FLAG_MISSION = 1 << 2 // ?
+            FLAG_TOURNAMENT = 1 << 2 // ?
         };
 
         /* 0x004 */ u8 playerCount;

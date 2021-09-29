@@ -159,6 +159,7 @@ extern Instruction<25> Patch_EventExplanationPage_vtable;
 extern Instruction<1> Patch_EventExplanationVolumeChange;
 
 extern Instruction<24> Patch_ChangeMissionCase;
+extern Instruction<1> Patch_HudWatchReplayCase;
 
 extern Instruction<11> Patch_WiiWheelOnlyPage;
 
@@ -168,6 +169,7 @@ extern Instruction<1> Patch_Nwc24DlManager_GetCompetitionText;
 extern Instruction<1> Patch_Nwc24DlManager_GetLdbTimeRank;
 extern Instruction<1> Patch_Nwc24DlManager_InsertTimeInLdb;
 extern Instruction<1> Patch_Nwc24DlManager_GetLdbEntry;
+extern Instruction<1> Patch_SaveBestTime;
 
 #ifndef NDEBUG
 extern Instruction<1> DebugPatch_SleepThread;
@@ -193,6 +195,8 @@ void main()
     Patch_Nwc24DlManager_InsertTimeInLdb.setB(insertTimeInLdb);
     Patch_Nwc24DlManager_GetLdbEntry.setB(getLdbEntry);
 
+    Patch_SaveBestTime.setB(&Patch_SaveBestTime.m_instr[0x74 >> 2]);
+
     Patch_EventExplanationPage_Events.m_instr[2] =
         reinterpret_cast<u32>(&eventExplanationSelectEvent);
     Patch_EventExplanationPage_Events.m_instr[5] =
@@ -207,6 +211,8 @@ void main()
     Patch_ChangeMissionCase.m_instr[8] = 0x38800000 | 0x85;
     Patch_ChangeMissionCase.m_instr[16] = 0x36800000 | 0x2D;
     Patch_ChangeMissionCase.flush();
+    
+    Patch_HudWatchReplayCase.setBL(hudWatchReplayHook);
 
     Patch_WiiWheelOnlyPage.setBL(wiiWheelPageRejectController);
     Patch_WiiWheelOnlyPage.setB(&Patch_WiiWheelOnlyPage.m_instr[11], 1);

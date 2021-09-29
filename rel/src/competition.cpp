@@ -2,6 +2,7 @@
 #include "util.h"
 #include <algorithm>
 #include <egg/eggDvdFile.h>
+#include <mkw/MenuSet.h>
 #include <rvl/ipc.h>
 #include <rvl/nand.h>
 #include <rvl/os.h>
@@ -224,11 +225,17 @@ static bool ldbEntryCompare(LdbFileEntry& entry, RaceTime* time)
     if (entry.milliseconds != time->milliseconds)
         return entry.milliseconds < time->milliseconds;
 
-    return false;
+    return true;
 }
 
 int CompFile::getTimeLdbPosition(RaceTime* time)
 {
+    // Don't allow any leaderboard positions if the Wii Wheel restriction has
+    // been disabled
+    if (MenuSet::sInstance->currentRace.mission.forceWiiWheel &&
+        m_forceHandleDisabled)
+        return -1;
+
     LdbFileEntry* entry = std::lower_bound(&m_leaderboard[0], &m_leaderboard[5],
                                            time, ldbEntryCompare);
     if (entry == &m_leaderboard[5])

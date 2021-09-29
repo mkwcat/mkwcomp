@@ -8,6 +8,7 @@
 808c0998:Patch_EventExplanationPage_Events
 808c0a9c:Patch_EventExplanationPage_vtable
 80665958:Patch_EventExplanationVolumeChange
+8085b444:Patch_HudWatchReplayCase
 8085a67c:Patch_ChangeMissionCase
 805d1e00:Patch_WiiWheelOnlyPage
 
@@ -17,6 +18,7 @@
 80676548:Patch_Nwc24DlManager_GetLdbTimeRank
 80676990:Patch_Nwc24DlManager_InsertTimeInLdb
 806766b4:Patch_Nwc24DlManager_GetLdbEntry
+8085e024:Patch_SaveBestTime
 
 8020fe4c:DebugPatch_SleepThread
 801aa9b8:OSSleepThread
@@ -89,6 +91,7 @@
 80602488:startTransitionOut__Q22UI6UIPageFQ32UI6UIPage13TransitionDirf
 
 809c1e38:MenuDataInstance__2UI
+809bd728:sInstance__7MenuSet
 
 8063aa08:__ct__Q22UI15TitleScreenPageFv
 
@@ -179,6 +182,25 @@
 8085bd58:getTypeInfo__Q22UI12RaceMenuPageFv
 809c4688:sTypeInfo__Q22UI12RaceMenuPage
 8063240c:setNextPageID__Q22UI12RaceMenuPageFi
+
+808d4250:__vt__Q22UI11RaceHudPage
+808ae694:__vt__Q32UI11RaceHudPage13UnknownMember
+80624764:__dt__Q22UI11RaceHudPageFv
+805ef240:__ct__Q22UI12PageEventHudFv
+809c4640:sTypeInfo__Q22UI11RaceHudPage
+
+80633510:getNextPageID__Q22UI11RaceHudPageFv
+80858A34:_20__Q22UI11RaceHudPageFv
+80856278:initInternal__Q22UI11RaceHudPageFv
+80858A24:deinit__Q22UI11RaceHudPageFv
+80858A18:onHide__Q22UI11RaceHudPageFv
+80856CEC:_48__Q22UI11RaceHudPageFv
+808574B8:_4C__Q22UI11RaceHudPageFv
+80633D44:_6C__Q22UI11RaceHudPageFv
+808569BC:onPause__Q22UI11RaceHudPageFv
+808572D4:isRaceEnded__Q22UI11RaceHudPageFi
+808573AC:_78__Q22UI11RaceHudPageFv
+8085732C:_7C__Q22UI11RaceHudPageFv
 
 806525fc:configMessage__Q22UI19MessageYesNoBoxPageFiPQ32UI7MesgRes11FormatParam
 80652604:configOption__Q22UI19MessageYesNoBoxPageFiiPQ32UI7MesgRes11FormatParamiPQ22UI9EventBase

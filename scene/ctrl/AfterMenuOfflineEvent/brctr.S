@@ -96,9 +96,9 @@ section2:
 
 subHeader2:
     .short  section3 - subHeader2
-    .short  4 // count
+    .short  5 // count
     .short  section4 - subHeader2
-    .short  4 // count
+    .short  5 // count
     .short  section5 - subHeader2
     .short  0 // count
 
@@ -140,13 +140,13 @@ section3:
     .float  0
     // --- 4:3 position --- //
     .float  0
-    .float  120
+    .float  150
     .float  750
     .float  1
     .float  1
     // --- 16:9 position --- //
     .float  0
-    .float  120
+    .float  150
     .float  750
     .float  1
     .float  1
@@ -162,16 +162,16 @@ section3:
     .short  0xFF
     .short  1
     .short  0
-    .float  1
+    .float  2
     // --- 4:3 position --- //
     .float  0
-    .float  40
+    .float  0
     .float  750
     .float  1
     .float  1
     // --- 16:9 position --- //
     .float  0
-    .float  40
+    .float  0
     .float  750
     .float  1
     .float  1
@@ -187,16 +187,16 @@ section3:
     .short  0xFF
     .short  1
     .short  0
-    .float  3
+    .float  1
     // --- 4:3 position --- //
     .float  0
-    .float  -40
+    .float  75
     .float  750
     .float  1
     .float  1
     // --- 16:9 position --- //
     .float  0
-    .float  -40
+    .float  75
     .float  750
     .float  1
     .float  1
@@ -215,18 +215,43 @@ section3:
     .float  5
     // --- 4:3 position --- //
     .float  0
-    .float  -120
+    .float  -150
     .float  750
     .float  1
     .float  1
     // --- 16:9 position --- //
     .float  0
-    .float  -120
+    .float  -150
     .float  750
     .float  1
     .float  1
     // --- section 4 ID --- //
     .short  3
+    .short  1
+    // --- section 5 ID --- //
+    .short  0
+    .short  0
+
+    /* entry 4 */
+    .short  str_ButtonReplay - strtab
+    .short  0xFF
+    .short  1
+    .short  0
+    .float  3
+    // --- 4:3 position --- //
+    .float  0
+    .float  -75
+    .float  750
+    .float  1
+    .float  1
+    // --- 16:9 position --- //
+    .float  0
+    .float  -75
+    .float  750
+    .float  1
+    .float  1
+    // --- section 4 ID --- //
+    .short  4
     .short  1
     // --- section 5 ID --- //
     .short  0
@@ -249,6 +274,10 @@ section4:
     .short  0
     .short  0
     .long   0x3EC // "Quit Game"
+    /* entry 4 */
+    .short  0
+    .short  0
+    .long   0x3F4 // "Watch Replay"
 section5:
 
 /* <-------
@@ -331,3 +360,5 @@ str_ButtonChangeMission:
     .string "ButtonChangeMission"
 str_ButtonQuit:
     .string "ButtonQuit"
+str_ButtonReplay:
+    .string "ButtonReplay"

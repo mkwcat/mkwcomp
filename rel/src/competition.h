@@ -97,6 +97,7 @@ public:
 
     const wchar_t* m_compTitle;
     const wchar_t* m_compExplanation;
+    bool m_forceHandleDisabled;
 
 private:
     EGG::TaskThread* m_thread;
@@ -111,7 +112,7 @@ private:
 
     int m_compId;
     bool m_isFileAvailable;
-    bool m_isLdbAvailable;
+    bool m_isLdbAvailable;    
 };
 
 struct CompInfo {

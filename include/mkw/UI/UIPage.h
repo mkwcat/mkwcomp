@@ -32,6 +32,7 @@ public:
     u8 m_E;
     u8 m_F;
 };
+static_assert(sizeof(PageEventBase) == 0x10, "sizeof(PageEventBase) != 0x10");
 
 enum InputIndex { INPUT_BACK = 1, INPUT_START = 2 };
 
