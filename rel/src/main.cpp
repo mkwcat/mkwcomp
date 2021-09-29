@@ -160,6 +160,7 @@ extern Instruction<1> Patch_EventExplanationVolumeChange;
 
 extern Instruction<24> Patch_ChangeMissionCase;
 extern Instruction<1> Patch_HudWatchReplayCase;
+extern Instruction<4> Patch_QuitReplayCase;
 
 extern Instruction<11> Patch_WiiWheelOnlyPage;
 
@@ -213,6 +214,9 @@ void main()
     Patch_ChangeMissionCase.flush();
     
     Patch_HudWatchReplayCase.setBL(hudWatchReplayHook);
+
+    Patch_QuitReplayCase.setNop(0);
+    Patch_QuitReplayCase.setBL(hudQuitReplayHook, 3);
 
     Patch_WiiWheelOnlyPage.setBL(wiiWheelPageRejectController);
     Patch_WiiWheelOnlyPage.setB(&Patch_WiiWheelOnlyPage.m_instr[11], 1);

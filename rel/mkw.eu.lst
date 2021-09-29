@@ -9,6 +9,7 @@
 808c0a9c:Patch_EventExplanationPage_vtable
 80665958:Patch_EventExplanationVolumeChange
 8085b444:Patch_HudWatchReplayCase
+8085b48c:Patch_QuitReplayCase
 8085a67c:Patch_ChangeMissionCase
 805d1e00:Patch_WiiWheelOnlyPage
 

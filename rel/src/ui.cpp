@@ -21,6 +21,7 @@
 #include <stdio.h>
 
 #define BACKGROUND_PAGE_ID 0x5C
+#define REPLAY_SCENE_ID 0x2D
 
 namespace CompMode
 {
@@ -750,9 +751,26 @@ asm void hudWatchReplayHook()
     cmpwi   r0, 0x2D
     bnelr
 
-    li      r4, 0x2D
+    li      r4, REPLAY_SCENE_ID
     blr
     // clang-format on
+}
+
+asm void hudQuitReplayHook()
+{
+    // clang-format off
+    nofralloc
+
+    // case 0x2F
+    li      r4, 0x21
+    beqlr-
+
+    cmpwi   r0, REPLAY_SCENE_ID
+    li      r4, 0x26
+    beqlr-
+
+    li      r4, -1
+    blr
 }
 
 bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)

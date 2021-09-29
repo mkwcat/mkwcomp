@@ -19,3 +19,4 @@ s32 eventExplanationGetNextPage(UI::UIPage* page);
 void wiiWheelPageRejectController(UI::UIPage* page);
 
 asm void hudWatchReplayHook();
+void hudQuitReplayHook();
