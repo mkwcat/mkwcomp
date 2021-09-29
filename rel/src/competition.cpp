@@ -232,8 +232,7 @@ int CompFile::getTimeLdbPosition(RaceTime* time)
 {
     // Don't allow any leaderboard positions if the Wii Wheel restriction has
     // been disabled
-    if (MenuSet::sInstance->currentRace.mission.forceWiiWheel &&
-        m_forceHandleDisabled)
+    if (m_rkc.objective.forceWiiWheel && m_forceHandleDisabled)
         return -1;
 
     LdbFileEntry* entry = std::lower_bound(&m_leaderboard[0], &m_leaderboard[5],
