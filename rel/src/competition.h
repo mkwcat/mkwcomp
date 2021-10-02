@@ -4,7 +4,7 @@
 #include <egg/eggTaskThread.h>
 #include <mkw/LeaderboardEntry.h>
 #include <mkw/MiiData.h>
-#include <mkw/RaceTime.h>
+#include <mkw/GhostData.h>
 #include <mkw/common.h>
 #include <rvl/types.h>
 
@@ -51,8 +51,7 @@ static_assert(sizeof(FileHeader) == 0x4C, "sizeof(FileHeader) != 0x4C");
 } // namespace RKC
 
 struct LdbFileEntry {
-    MiiData mii; // size 0x4A
-    u16 miiChecksum; // crc16
+    MiiData mii; // size 0x4C
 
     u32 minutes : 7;
     u32 seconds : 7;
@@ -82,17 +81,22 @@ public:
     int compId() const;
     u8* data();
     RKC::FileHeader* header();
+
     void switchCompetition(int compId);
     void rewriteLeaderboard();
+    void saveGhostData(GhostData* data, u32 seed);
+
     void readFile();
     void getLeaderboardPath(char* path);
+    void getGhostDataPath(char* path);
     bool readLdbFile();
     void openLdbFile();
     void writeLdbTask();
     void setText(const wchar_t* title, const wchar_t* explanation);
+    void writeGhostDataTask();
 
     void getLdbEntry(u8 position, LeaderboardEntry* entry);
-    int getTimeLdbPosition(RaceTime* time);
+    int getTimeLdbPosition(GhostData::RaceTime* time);
     void insertTimeInLdb(LeaderboardEntry* entry, u32 position);
 
     const wchar_t* m_compTitle;
@@ -105,6 +109,9 @@ private:
     NandFile* m_ldbFile;
     LdbFileEntry m_leaderboard[5] ATTRIBUTE_ALIGN(32);
 
+    GhostData m_ghost;
+    u32 m_ghostSeed;
+
     union {
         u8 m_rkcData[0x4800] ATTRIBUTE_ALIGN(32);
         RKC::FileHeader m_rkc;
@@ -115,18 +122,4 @@ private:
     bool m_isLdbAvailable;    
 };
 
-struct CompInfo {
-    u8 unk_0x0;
-    const void* rkcData;
-    u32 unk_0x8;
-    u32 unk_0xC;
-    const wchar_t* titleText;
-    u32 titleTextLen;
-    u8 unk_0x18;
-};
-
-int checkForCompetitionReplace(u8* r3, CompInfo* info);
-const wchar_t* getCompetitionTextReplace(u8* r3, u32* len);
-int getTimeLdbPosition(u8* r3, RaceTime* time);
-void insertTimeInLdb(u8* r3, LeaderboardEntry* entry, int position);
-void getLdbEntry(u8* r3, u8 position, LeaderboardEntry* entry);
+void initCompFilePatches();

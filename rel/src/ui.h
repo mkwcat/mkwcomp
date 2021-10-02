@@ -20,3 +20,4 @@ void wiiWheelPageRejectController(UI::UIPage* page);
 
 asm void hudWatchReplayHook();
 void hudQuitReplayHook();
+int resultMusicHook(int bgmId);

@@ -12,6 +12,15 @@
 808399fc:Patch_QuitReplayCase
 80838bec:Patch_ChangeMissionCase
 80628468:Patch_WiiWheelOnlyPage
+80632c0c:Patch_LicenseSelect
+
+80835dac:Patch_ControlKindCheck_RaceFinishReset
+80834f2c:Patch_ControlKindCheck_onPause
+80838434:Patch_ControlKindCheck_PauseUpdate
+8052b2c8:Patch_SetupReplayInputCall
+8051d3ac:Patch_ReplayRearview
+8052fa40:Patch_NoRandomFinishTime
+8070a9a4:Patch_ResultMusic
 
 806653e8:Patch_Nwc24DlManager_init
 80665174:Patch_Nwc24DlManager_CheckForCompetition
@@ -19,13 +28,13 @@
 8066ede4:Patch_Nwc24DlManager_GetLdbTimeRank
 8066f22c:Patch_Nwc24DlManager_InsertTimeInLdb
 8066ef50:Patch_Nwc24DlManager_GetLdbEntry
-8085b994:Patch_SaveBestTime
+8051857c:Patch_RKGFileSaveSeed
+805186d0:Patch_GhostHeaderSaveSeed
+8085b9ec:Patch_SaveTournamentGhost
 
 8020fdac:DebugPatch_SleepThread
 801aa918:OSSleepThread
 80343E80:gcndata
-
-80632c0c:Patch_LicenseSelect
 
 801a158c:DCFlushRange
 801a2530:OSReport
@@ -81,6 +90,15 @@
 8054f558:next__6RandomFv
 8054f5ac:nextLimited__6RandomFi
 
+809b8f68:sInstance__7MenuSet
+8052a1e0:setupNextRaceInput__Q27MenuSet11RaceSettingFPCQ27MenuSet11RaceSetting
+
+809b8f88:sInstance__15SaveDataManager
+
+80517dfc:__ct__9GhostDataFv
+80517ec0:__dt__9GhostDataFv
+8051860c:makeRKG__9GhostDataFPQ23RKG4File
+
 /* UI stuff */
 80604ba4:setNextScene__Q22UI8MenuDataFii
 80604c30:startSceneTransition__Q22UI8MenuDataFiUl
@@ -92,7 +110,7 @@
 805ddba8:startTransitionOut__Q22UI6UIPageFQ32UI6UIPage13TransitionDirf
 
 809bd508:MenuDataInstance__2UI
-809b8f68:sInstance__7MenuSet
+
 
 80609668:__ct__Q22UI15TitleScreenPageFv
 

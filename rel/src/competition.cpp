@@ -1,8 +1,11 @@
 #include "competition.h"
+#include "patch.h"
 #include "util.h"
 #include <algorithm>
 #include <egg/eggDvdFile.h>
 #include <mkw/MenuSet.h>
+#include <mkw/Random.h>
+#include <mkw/SaveDataManager.h>
 #include <rvl/ipc.h>
 #include <rvl/nand.h>
 #include <rvl/os.h>
@@ -42,7 +45,7 @@ RKC::FileHeader* CompFile::header()
 
 CompFile::CompFile()
 {
-    m_thread = EGG::TaskThread::create(1, 20, 0x1000, nullptr);
+    m_thread = EGG::TaskThread::create(2, 20, 0x1000, nullptr);
     m_isFileAvailable = false;
 
     if (isRiivolution())
@@ -115,6 +118,11 @@ void CompFile::getLeaderboardPath(char* path)
     snprintf(path, 128, "%s/comp%02d.ldb", ldbPathRoot(), m_compId);
 }
 
+void CompFile::getGhostDataPath(char* path)
+{
+    snprintf(path, 128, "%s/comp%02d.rkg", ldbPathRoot(), m_compId);
+}
+
 bool CompFile::readLdbFile()
 {
     if (m_ldbFile->getFileSize() < sizeof(m_leaderboard)) {
@@ -166,11 +174,38 @@ void CompFile::writeLdbTask()
         return;
     }
 
-    ret = m_ldbFile->writeData(&m_leaderboard, sizeof(m_leaderboard), 0);
+    s32 sret = m_ldbFile->writeData(&m_leaderboard, sizeof(m_leaderboard), 0);
     m_ldbFile->close();
 
-    if (ret != sizeof(m_leaderboard)) {
-        OSReport("ERROR: Leaderboard write failed!");
+    if (sret != sizeof(m_leaderboard)) {
+        OSReport("ERROR: Leaderboard write failed!\n");
+    }
+}
+
+void CompFile::writeGhostDataTask()
+{
+    char path[128];
+    getGhostDataPath(path);
+
+    bool ret = m_ldbFile->openCreate(path, NAND_MODE_WRITE);
+
+    if (!ret) {
+        OSReport("Failed to open ghost file\n");
+        return;
+    }
+
+    RKG::File* rkg = SaveDataManager::sInstance->m_rkgFile;
+    memset(rkg, 0, sizeof(RKG::File));
+
+    // Using an unused 32-bit field in the RKG to store the seed.
+    *(u32*)((u32)rkg + 0x38) = m_ghostSeed;
+    m_ghost.makeRKG(rkg);
+
+    s32 sret = m_ldbFile->writeData(rkg, sizeof(RKG::File), 0);
+    m_ldbFile->close();
+
+    if (sret != sizeof(RKG::File)) {
+        OSReport("ERROR: Ghost write failed!\n");
     }
 }
 
@@ -185,6 +220,12 @@ static void writeLdbTaskEntry(void* arg)
 {
     CompFile* object = reinterpret_cast<CompFile*>(arg);
     object->writeLdbTask();
+}
+
+static void writeGhostTaskEntry(void* arg)
+{
+    CompFile* object = reinterpret_cast<CompFile*>(arg);
+    object->writeGhostDataTask();
 }
 
 void CompFile::switchCompetition(int compId)
@@ -205,13 +246,22 @@ void CompFile::rewriteLeaderboard()
                       nullptr);
 }
 
+void CompFile::saveGhostData(GhostData* data, u32 seed)
+{
+    m_ghost = *data;
+    m_ghostSeed = seed;
+
+    m_thread->request(writeGhostTaskEntry, reinterpret_cast<void*>(this),
+                      nullptr);
+}
+
 void CompFile::setText(const wchar_t* title, const wchar_t* explanation)
 {
     m_compTitle = title;
     m_compExplanation = explanation;
 }
 
-static bool ldbEntryCompare(LdbFileEntry& entry, RaceTime* time)
+static bool ldbEntryCompare(LdbFileEntry& entry, GhostData::RaceTime* time)
 {
     if (!entry.isEnabled)
         return false;
@@ -228,7 +278,7 @@ static bool ldbEntryCompare(LdbFileEntry& entry, RaceTime* time)
     return true;
 }
 
-int CompFile::getTimeLdbPosition(RaceTime* time)
+int CompFile::getTimeLdbPosition(GhostData::RaceTime* time)
 {
     // Don't allow any leaderboard positions if the Wii Wheel restriction has
     // been disabled
@@ -246,14 +296,13 @@ int CompFile::getTimeLdbPosition(RaceTime* time)
 void CompFile::getLdbEntry(u8 position, LeaderboardEntry* entry)
 {
     if (position > 4) {
-        entry->time.enabled = false;
+        entry->time.valid = false;
         return;
     }
 
     LdbFileEntry* ldb = &m_leaderboard[position];
 
     memcpy(&entry->mii, &ldb->mii, sizeof(MiiData));
-    entry->miiChecksum = ldb->miiChecksum;
 
     entry->time.minutes = ldb->minutes;
     entry->time.seconds = ldb->seconds;
@@ -263,7 +312,7 @@ void CompFile::getLdbEntry(u8 position, LeaderboardEntry* entry)
     entry->vehicleId = ldb->vehicleId;
     entry->controllerId = ldb->controllerId;
 
-    entry->time.enabled = ldb->isEnabled;
+    entry->time.valid = ldb->isEnabled;
 }
 
 void CompFile::insertTimeInLdb(LeaderboardEntry* entry, u32 position)
@@ -276,7 +325,6 @@ void CompFile::insertTimeInLdb(LeaderboardEntry* entry, u32 position)
     LdbFileEntry* ldb = &m_leaderboard[position];
 
     memcpy(&ldb->mii, &entry->mii, sizeof(MiiData));
-    ldb->miiChecksum = entry->miiChecksum;
 
     ldb->minutes = entry->time.minutes;
     ldb->seconds = entry->time.seconds;
@@ -286,10 +334,20 @@ void CompFile::insertTimeInLdb(LeaderboardEntry* entry, u32 position)
     ldb->vehicleId = entry->vehicleId;
     ldb->controllerId = entry->controllerId;
 
-    ldb->isEnabled = entry->time.enabled;
+    ldb->isEnabled = entry->time.valid;
 
     rewriteLeaderboard();
 }
+
+struct CompInfo {
+    u8 unk_0x0;
+    const void* rkcData;
+    u32 unk_0x8;
+    u32 unk_0xC;
+    const wchar_t* titleText;
+    u32 titleTextLen;
+    u8 unk_0x18;
+};
 
 int checkForCompetitionReplace(u8* r3, CompInfo* info)
 {
@@ -316,7 +374,7 @@ const wchar_t* getCompetitionTextReplace(u8* r3, u32* len)
     return CompFile::sInstance->m_compExplanation;
 }
 
-int getTimeLdbPosition(u8* r3, RaceTime* time)
+int getTimeLdbPosition(u8* r3, GhostData::RaceTime* time)
 {
     return CompFile::sInstance->getTimeLdbPosition(time);
 }
@@ -329,4 +387,44 @@ void insertTimeInLdb(u8* r3, LeaderboardEntry* entry, int position)
 void getLdbEntry(u8* r3, u8 position, LeaderboardEntry* entry)
 {
     CompFile::sInstance->getLdbEntry(position, entry);
+}
+
+void saveTournamentGhost(u8* r3, int r4, int r5, GhostData* ghost)
+{
+    if (!ghost->m_valid)
+        return;
+
+    CompFile::sInstance->saveGhostData(
+        ghost, MenuSet::sInstance->currentRace.seedSession);
+}
+
+// Non-race finish times normally have a 16 ms randomness to them. This patches
+// that to always give the best time.
+int randomFinishTimeHook(Random* random, int limit)
+{
+    if (isTournamentMode())
+        return 0;
+
+    return random->nextLimited(limit);
+}
+
+extern Instruction<1> Patch_Nwc24DlManager_init;
+extern Instruction<1> Patch_Nwc24DlManager_CheckForCompetition;
+extern Instruction<1> Patch_Nwc24DlManager_GetCompetitionText;
+extern Instruction<1> Patch_Nwc24DlManager_GetLdbTimeRank;
+extern Instruction<1> Patch_Nwc24DlManager_InsertTimeInLdb;
+extern Instruction<1> Patch_Nwc24DlManager_GetLdbEntry;
+extern Instruction<1> Patch_SaveTournamentGhost;
+extern Instruction<1> Patch_NoRandomFinishTime;
+void initCompFilePatches()
+{
+    Patch_Nwc24DlManager_init.setBlr();
+    Patch_Nwc24DlManager_CheckForCompetition.setB(checkForCompetitionReplace);
+    Patch_Nwc24DlManager_GetCompetitionText.setB(getCompetitionTextReplace);
+    Patch_Nwc24DlManager_GetLdbTimeRank.setB(getTimeLdbPosition);
+    Patch_Nwc24DlManager_InsertTimeInLdb.setB(insertTimeInLdb);
+    Patch_Nwc24DlManager_GetLdbEntry.setB(getLdbEntry);
+
+    Patch_SaveTournamentGhost.setBL(saveTournamentGhost);
+    Patch_NoRandomFinishTime.setBL(randomFinishTimeHook);
 }

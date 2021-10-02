@@ -187,16 +187,16 @@ section3:
     .short  0xFF
     .short  1
     .short  0
-    .float  2
+    .float  3
     // --- 4:3 position --- //
     .float  0
-    .float  0
+    .float  -75
     .float  750
     .float  1
     .float  1
     // --- 16:9 position --- //
     .float  0
-    .float  0
+    .float  -75
     .float  750
     .float  1
     .float  1
@@ -212,16 +212,16 @@ section3:
     .short  0xFF
     .short  1
     .short  0
-    .float  3
+    .float  2
     // --- 4:3 position --- //
     .float  0
-    .float  -75
+    .float  0
     .float  750
     .float  1
     .float  1
     // --- 16:9 position --- //
     .float  0
-    .float  -75
+    .float  0
     .float  750
     .float  1
     .float  1

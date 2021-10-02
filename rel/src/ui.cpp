@@ -1,5 +1,6 @@
 #include "ui.h"
 #include "competition.h"
+#include "util.h"
 #include <mkw/MenuSet.h>
 #include <mkw/Random.h>
 #include <mkw/UI/CtrlMenuBackButton.h>
@@ -21,7 +22,7 @@
 #include <stdio.h>
 
 #define BACKGROUND_PAGE_ID 0x5C
-#define REPLAY_SCENE_ID 0x2D
+#define TOURNAMENT_SCENE_ID 0x2D
 
 namespace CompMode
 {
@@ -587,13 +588,6 @@ public:
         return 0xC4E;
     }
 
-    bool _7C()
-    {
-        if (isRaceEnded(0))
-            return true;
-        return false;
-    }
-
 public:
     static UI::AutoTypeInfo<UI::RaceHudPage> sTypeInfo;
     virtual const UI::TypeInfo* getTypeInfo()
@@ -751,7 +745,7 @@ asm void hudWatchReplayHook()
     cmpwi   r0, 0x2D
     bnelr
 
-    li      r4, REPLAY_SCENE_ID
+    li      r4, TOURNAMENT_SCENE_ID
     blr
     // clang-format on
 }
@@ -765,12 +759,70 @@ asm void hudQuitReplayHook()
     li      r4, 0x21
     beqlr-
 
-    cmpwi   r0, REPLAY_SCENE_ID
+    cmpwi   r0, TOURNAMENT_SCENE_ID
     li      r4, 0x26
     beqlr-
 
     li      r4, -1
     blr
+    // clang-format on
+}
+
+int resultMusicHook(int bgmId)
+{
+    if (MenuSet::sInstance->currentRace.modeFlags &
+        MenuSet::RaceSetting::FLAG_TOURNAMENT) {
+        // Replay end depends on this sound not looping. Unfortunately not much
+        // to do about the results that don't have a fanfare only version.
+        if (isTournamentReplay()) {
+            if (bgmId == 0x6F || bgmId == 0x70)
+                return 0x63;
+            return 0x65;
+        }
+
+        // Let's do this check properly. I'm assuming that was actually a bug
+        // and it should play the boss fanfare if the intro setting is 3.
+        if ((bgmId == 0x70 || bgmId == 0x71) &&
+            CompFile::sInstance->header()->objective.introSetting == 3)
+            return 0x6F;
+    }
+
+    return bgmId;
+}
+
+static bool buildTournamentPages(UI::Scene* scene)
+{
+    scene->buildPage(0x16);
+    scene->buildPage(0x35);
+    scene->buildPage(0x3A);
+    {
+        EventPauseMenuPage* page = new EventPauseMenuPage();
+        scene->registerPage(0x1B, page);
+        page->init(0x1B);
+    }
+    {
+        EventAfterMenuPage* page = new EventAfterMenuPage();
+        scene->registerPage(0x26, page);
+        page->init(0x26);
+    }
+    return true;
+}
+
+static bool buildTournamentReplayPages(UI::Scene* scene)
+{
+    scene->buildPage(0x39);
+    scene->buildPage(0x3A);
+    {
+        ReplayHud* page = new ReplayHud();
+        scene->registerPage(0x16, page);
+        page->init(0x16);
+    }
+    {
+        EventAfterMenuPage* page = new EventAfterMenuPage();
+        scene->registerPage(0x26, page);
+        page->init(0x26);
+    }
+    return true;
 }
 
 bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)
@@ -779,30 +831,9 @@ bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)
 
     switch (id) {
     case 0x2D:
-        if (MenuSet::sInstance->currentRace.controlKind != 1) {
-            scene->buildPage(0x16);
-            {
-                EventPauseMenuPage* page = new EventPauseMenuPage();
-                scene->registerPage(0x1B, page);
-                page->init(0x1B);
-            }
-        } else {
-            scene->buildPage(0x39);
-            {
-                ReplayHud* page = new ReplayHud();
-                scene->registerPage(0x16, page);
-                page->init(0x16);
-            }
-        }
-        scene->buildPage(0x2A);
-        scene->buildPage(0x35);
-        scene->buildPage(0x3A);
-        {
-            EventAfterMenuPage* page = new EventAfterMenuPage();
-            scene->registerPage(0x26, page);
-            page->init(0x26);
-        }
-        return true;
+        if (isTournamentReplay())
+            return buildTournamentReplayPages(scene);
+        return buildTournamentPages(scene);
 
     case 0x3F ... 0x43:
         scene->buildPage(0x52);

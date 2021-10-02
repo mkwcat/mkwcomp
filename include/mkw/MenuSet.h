@@ -1,4 +1,5 @@
 #pragma once
+#include "GhostData.h"
 #include <rvl/types.h>
 
 // Documentation credit:
@@ -19,10 +20,6 @@ class ParamFile
 public:
     virtual ~ParamFile();
     u8 fill[0x18];
-};
-
-struct GhostData {
-    u8 fill[0x2800];
 };
 
 struct MissionSetting {
@@ -138,6 +135,9 @@ public:
         /* 0x8052DBC8 */
         RaceSetting();
 
+        /* 0x8052ED28 */
+        void setupNextRaceInput(const RaceSetting* lastRace);
+
         enum EngineClass
         {
             CC_50 = 0,
@@ -191,7 +191,7 @@ public:
         {
             FLAG_MIRROR = 1 << 0,
             FLAG_TEAMS = 1 << 1,
-            FLAG_TOURNAMENT = 1 << 2 // ?
+            FLAG_TOURNAMENT = 1 << 2
         };
 
         /* 0x004 */ u8 playerCount;
@@ -201,7 +201,8 @@ public:
         /* 0xB48 */ u32 courseId;
         /* 0xB4C */ u32 engineClass;
         /* 0xB50 */ u32 gameMode;
-        // unsure, but 0 = player controlled, 1 = replay
+        // unsure, but 0 = player controlled, 1 = replay, 5 = opening camera
+        // pan?
         /* 0xB54 */ u32 controlKind;
         /* 0xB58 */ u32 battleMode;
         /* 0xB5C */ u32 cpuSetting;
@@ -213,8 +214,10 @@ public:
         /* 0xB6E */ u8 unk_0xB6E;
         /* 0xB6F */ u8 unk_0xB6F;
         /* 0xB70 */ u32 modeFlags;
-        /* 0xB74 */ u32 unk_0xB74;
-        /* 0xB78 */ u32 unk_0xB78;
+        // seedSession - rng seed, persists through restart
+        // seedRace - rng seed, changes through restart
+        /* 0xB74 */ u32 seedSession;
+        /* 0xB78 */ u32 seedRace;
         /* 0xB7C */ MissionSetting mission;
         /* 0xBEC */ GhostData* ghost;
     };
@@ -226,6 +229,9 @@ public:
     /* 0x0C10 */ RaceSetting nextRace;
     /* 0x1800 */ RaceSetting unknownRace;
 
-    /* 0x23F0 */ GhostData ghosts[2];
+    /* 0x23F0 */ RKG::File ghosts[2];
 };
 static_assert(sizeof(MenuSet) == 0x73F0, "sizeof(MenuSet) != 0x73F0");
+
+// hack for asm blocks
+extern u32 sInstance__7MenuSet;

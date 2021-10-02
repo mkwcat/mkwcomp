@@ -3,6 +3,7 @@
 #include "main.cpp"
 #include "ui.cpp"
 #include "util.cpp"
+#include "replay.cpp"
 
 extern "C" {
 

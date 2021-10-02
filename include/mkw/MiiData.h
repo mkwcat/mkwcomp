@@ -3,4 +3,5 @@
 
 struct MiiData {
     u8 fill[0x4A];
+    u16 checksum;
 };

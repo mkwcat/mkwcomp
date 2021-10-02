@@ -72,6 +72,7 @@ data-align = 0x20
 *.bak
 *.tmp
 *.temp
+*.txt
 
 # Exclude all *.d directories. To enable it, remove "# " at the beginning.
 # *.d
