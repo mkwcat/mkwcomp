@@ -2,6 +2,7 @@
 #include "patch.h"
 #include "replay.h"
 #include "ui.h"
+#include "util.h"
 #include <mkw/UI/LayoutUIControl.h>
 #include <mkw/UI/Scene.h>
 
@@ -71,22 +72,6 @@ showBasePages_end:
     // clang-format on
 }
 
-#define NDEBUG
-
-#ifndef NDEBUG
-extern "C" {
-void OSSleepThread(u32);
-extern u32 gcndata;
-}
-
-void debugSleepThreadHook(u32 r3)
-{
-    // Press Y to run the game at max possible speed
-    if (!(gcndata & 0x08000000))
-        OSSleepThread(r3);
-}
-#endif
-
 extern Instruction<1> Patch_SceneBuildPages;
 extern Instruction<1> Patch_SceneShowBasePages;
 extern Instruction<1> Patch_MainMenuKind;
@@ -106,17 +91,13 @@ extern Instruction<1> Patch_ResultMusic;
 
 extern Instruction<11> Patch_WiiWheelOnlyPage;
 
-#ifndef NDEBUG
-extern Instruction<1> DebugPatch_SleepThread;
-#endif
-
 void main()
 {
     Patch_SceneBuildPages.setBL(buildPagesHook);
     Patch_SceneShowBasePages.setBL(showBasePagesHook);
 
-    Patch_MainMenuKind.m_instr[0] = 0x38600000 | UI::SceneKind::Globe;
-    Patch_MainMenuKind.flush();
+    // Patch_MainMenuKind.m_instr[0] = 0x38600000 | UI::SceneKind::Menu;
+    // Patch_MainMenuKind.flush();
 
     Patch_LicenseSelect.setBL(patchLicenseSelectGetNextScene);
 
@@ -148,12 +129,16 @@ void main()
     Patch_WiiWheelOnlyPage.setBL(wiiWheelPageRejectController);
     Patch_WiiWheelOnlyPage.setB(&Patch_WiiWheelOnlyPage.m_instr[11], 1);
 
+    if (getRegionChar() == 'E') {
+        // Skip ESRB screen patch for NTSC-U
+        Instruction<1>* esrbPatch =
+            reinterpret_cast<Instruction<1>*>(0x8060409C);
+        esrbPatch->m_instr[0] = 0x38600001;
+        esrbPatch->flush();
+    }
+
     initReplayMode();
     initCompFilePatches();
-
-#ifndef NDEBUG
-    DebugPatch_SleepThread.setBL(debugSleepThreadHook);
-#endif
 
     if (isRiivolution())
         RiivoFS::initialize();

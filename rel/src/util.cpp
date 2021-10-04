@@ -13,6 +13,11 @@ bool isRiivolution()
     return false;
 }
 
+char getRegionChar()
+{
+    return *(char*) 0x80000003;
+}
+
 bool isTournamentMode()
 {
     return MenuSet::sInstance->currentRace.modeFlags &

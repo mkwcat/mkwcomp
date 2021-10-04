@@ -2475,6 +2475,8 @@
   27dd  = Boss VS Race
   27de  = Coin Challenge
   27df  = Gate Challenge
+  27e0  = Boss Battle\n
+        + (Replica)
 
   27e8  = \z{a02,1000000001}
   27e9  = \z{a02,1000000001} 
@@ -2483,8 +2485,9 @@
   27f1  = Random
   27f2  = 
 
-  2800  = Your rank will not be saved. Do you\n
-        + want to use this controller?
+  2800  = Your rank will not be\n
+        + saved using this controller.\n
+        + Is this OK?
 
  18697	/
  18698	/

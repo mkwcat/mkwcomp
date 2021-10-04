@@ -35,7 +35,8 @@ enum E
     BossBattle,
     BossRace,
     Coins,
-    Gates
+    Gates,
+    BossBattleReplica
 };
 } // namespace CompMode
 
@@ -48,7 +49,7 @@ static const CompNameData compNameData[49] = {
     /* c01 - c09 */
     {Course::Mario_Circuit, CompMode::VSRace},
     {Course::GBA_Battle_Course_3, CompMode::Gates},
-    {Course::Galaxy_Colosseum, CompMode::BossBattle},
+    {Course::Galaxy_Colosseum, CompMode::BossBattleReplica},
     {Course::Mushroom_Gorge, CompMode::TimeTrial},
     {Course::Coconut_Mall, CompMode::Coins},
     {Course::DS_Twilight_House, CompMode::VSRace},
@@ -491,52 +492,6 @@ const int sReplayPauseScreenButtons[3] = {
     UI::RaceMenu::ButtonQuitReplay,
 };
 
-#if 0
-class EventReplayPauseMenuPage : public UI::RaceMenuPage
-{
-public:
-    EventReplayPauseMenuPage() : m_340(0)
-    {
-    }
-
-    int _68()
-    {
-        return m_340;
-    }
-
-    int getButtonCount() const
-    {
-        return 3;
-    }
-
-    const int* getButtonList() const
-    {
-        return sReplayPauseScreenButtons;
-    }
-
-    bool isPauseMenu() const
-    {
-        return false;
-    }
-
-    const char* getButtonCtrlName() const
-    {
-        return "PauseMenuReplayTA";
-    }
-
-    int m_33C;
-    int m_340;
-
-public:
-    static UI::AutoTypeInfo<UI::RaceMenuPage> sTypeInfo;
-    virtual const UI::TypeInfo* getTypeInfo()
-    {
-        return &sTypeInfo;
-    }
-};
-UI::AutoTypeInfo<UI::RaceMenuPage> EventReplayPauseMenuPage::sTypeInfo;
-#endif
-
 class ReplayHud : public UI::RaceHudPage
 {
 public:
@@ -839,12 +794,17 @@ bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)
         scene->buildPage(0x52);
         scene->buildPage(0x5E);
         scene->buildPage(0x65);
+        #if 0
         {
             UI::TitleScreenPage* page = new UI::TitleScreenPage();
             page->hideBackground(true);
             scene->registerPage(0x57, page);
             page->init(0x57);
         }
+        #endif
+        scene->buildPage(0x57);
+        scene->buildPage(0x58);
+        scene->buildPage(0x59);
         return true;
 
     case 0x85:
@@ -888,11 +848,13 @@ bool showBasePagesReplace(UI::Scene* scene, UI::SceneID id)
 {
     switch (id) {
     case 0x3F ... 0x41:
+        scene->showPageOnTop(0x58);
         scene->showPageOnTop(0x5E);
         scene->showPageOnTop(0x57);
         return true;
     case 0x42:
     case 0x43:
+        scene->showPageOnTop(0x58);
         scene->showPageOnTop(0x5E);
         scene->showPageOnTop(0x65);
         return true;
@@ -943,7 +905,7 @@ s32 sceneGetBGMReplace(UI::SceneID id)
         return 0x5A;
 
     case 0x3F ... 0x43:
-        return 2;
+        return 0x54;
     case 0x85:
     case 0x86:
         return 1;
@@ -958,7 +920,7 @@ s32 sceneGetBGMGroupReplace(UI::SceneID id)
 {
     switch (id) {
     case 0x3F ... 0x43:
-        return 2;
+        return 5;
     case 0x85:
     case 0x86:
         return 3;

@@ -2,6 +2,7 @@
 #include <rvl/types.h>
 
 bool isRiivolution();
+char getRegionChar();
 
 template <class T> static inline u32 indexInArray(T* array, T* entry)
 {

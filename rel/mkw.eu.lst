@@ -28,13 +28,8 @@
 80676548:Patch_Nwc24DlManager_GetLdbTimeRank
 80676990:Patch_Nwc24DlManager_InsertTimeInLdb
 806766b4:Patch_Nwc24DlManager_GetLdbEntry
-8051c9f0:Patch_RKGFileSaveSeed
-8051cb44:Patch_GhostHeaderSaveSeed
 8085e07c:Patch_SaveTournamentGhost
 
-8020fe4c:DebugPatch_SleepThread
-801aa9b8:OSSleepThread
-80348200:gcndata
 
 801a162c:DCFlushRange
 801a25d0:OSReport
