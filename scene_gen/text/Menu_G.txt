@@ -1,0 +1,2304 @@
+#BMG  <<<  The first 4 characters '#BMG' are the magic for a BMG text file.
+#     <<<  Don't remove them!
+#
+# Details about BMG text files are available in the Web:
+#  * Syntax and Semantics: https://szs.wiimm.de/doc/bmg/text
+#  * The BMG file format:  https://szs.wiimm.de/r/wiki/BMG
+#
+#
+#------------------------------------------------------------------------------
+
+#--- online chat
+
+  M01	= Hallo!
+  M02	= Guten Abend!
+  M03	= Lange her!
+  M04	= Viel Glück!
+  M05	= Danke fürs Warten!
+  M06	= Herzlich willkommen!
+  M07	= Alle da?
+  M08	= Moment noch!
+  M09	= Bereit?
+  M10	= Geht's bald los?
+  M11	= Warten wir noch ein bisschen...
+  M12	= Ich mach 'ne Pause...
+  M13	= O.K.!
+  M14	= Fangen wir an!
+  M15	= Etwas Nachsicht, bitte!
+  M16	= Ich geb mein Bestes!
+  M17	= Was spielen wir?
+  M18	= Irgendwelche Vorschläge?
+  M19	= Grand Prix oder Wettkampf?
+  M20	= Ich bin nicht so der Bringer...
+  M21	= Lust auf einen Grand Prix?
+  M22	= Lust auf 'nen Team-Grand Prix?
+  M23	= Spielen wir Ballonbalgerei!
+  M24	= Spielen wir Münzenjäger!
+  M25	= Ich bin für leichte Fahrzeuge!
+  M26	= Ich bin für mittlere Fahrzeuge!
+  M27	= Ich bin für schwere Fahrzeuge!
+  M28	= Ich fahre als mein Mii!
+  M29	= Ich fahre mit Wii Wheel!
+  M30	= Ich fahre ein Kart!
+  M31	= Ich fahre ein Bike!
+  M32	= Ich weiß nicht...
+  M33	= Welcher Kurs?
+  M34	= Hmm...
+  M35	= Überlassen wir's dem Zufall!
+  M36	= Wie wär's mit 'nem anderen Kurs?
+  M37	= Luigis Piste!
+  M38	= Kuhmuh-Weide!
+  M39	= Pilz-Schlucht!
+  M40	= Toads Fabrik!
+  M41	= Marios Piste!
+  M42	= Kokos-Promenade!
+  M43	= DK Skikane!
+  M44	= Warios Goldmine!
+  M45	= Daisys Piste!
+  M46	= Koopa-Kap!
+  M47	= Blätterwald!
+  M48	= Vulkangrollen!
+  M49	= Staubtrockene Ruinen!
+  M50	= Mondblickstraße!
+  M51	= Bowsers Festung!
+  M52	= Regenbogen-Boulevard!
+  M53	= GCN Peach Beach!
+  M54	= DS Yoshi-Kaskaden!
+  M55	= SNES Geistertal 2!
+  M56	= N64 Marios Rennpiste!
+  M57	= N64 Sorbet-Land!
+  M58	= GBA Shy Guy-Strand!
+  M59	= DS Piazzale Delfino!
+  M60	= GCN Waluigi-Arena!
+  M61	= DS Glühheiße Wüste!
+  M62	= GBA Bowsers Festung 3!
+  M63	= N64 DKs Dschungelpark!
+  M64	= GCN Marios Piste!
+  M65	= SNES Marios Piste 3!
+  M66	= DS Peachs Schlossgarten!
+  M67	= GCN DK Bergland!
+  M68	= N64 Bowsers Festung!
+  M69	= Block-Plaza!
+  M70	= Delfino-Pier!
+  M71	= Funky-Stadion!
+  M72	= Kettenhund-Roulette!
+  M73	= Steinwüste!
+  M74	= SNES Kampfkurs 4!
+  M75	= GBA Kampfkurs 3!
+  M76	= N64 Wolkenkratzer!
+  M77	= GCN Keks-Land!
+  M78	= DS Finstervilla!
+  M79	= Das rote Team bringt's!
+  M80	= Das blaue Team bringt's!
+  M81	= Hurraaaaa!!!
+  M82	= Ich bin Spitzenklasse!
+  M83	= Ihr seid alle so schnell!
+  M84	= Gratuliere!
+  M85	= Das hat Spaß gemacht!
+  M86	= Echt knackig!
+  M87	= Grrr! Ziemlich fies!
+  M88	= Nächstes Mal gewinne ICH!
+  M89	= Spielen wir mal wieder!
+  M90	= Das ist noch nicht vorbei!
+  M91	= Nur noch ein Spiel für mich!
+  M92	= Sollen wir aufhören?
+  M93	= Danke! Das war klasse!
+  M94	= Danke!
+  M95	= Gute Nacht!
+  M96	= Tschüss!
+
+#--- other messages
+
+     1	/
+
+   7d0	= O.K.
+   7d1	= ←\z{802,170000}Zurück
+   7d2	= Ja
+   7d3	= Nein
+   7d4	/
+   7d5	= →
+   7d6	/
+   7d7	= ←
+   7d8	/
+   7d9	= \z{a02,1000000000}/\z{a02,1000010000}
+   7da	= Mario Kart Wii
+   7db	= Einspieler
+   7dc	= Mehrspieler
+   7dd	= Nintendo WFC
+   7de	= Mario Kart-Kanal
+   7df	= Profil-Menü
+   7e0	= Rekorde
+   7e1	= Drücke den A-Knopf
+   7e2	= Hauptmenü
+   7e3	/
+   7e4	= Grand Prix und mehr für einen Spieler!
+   7e5	= Rennen oder Wettkämpfe für zwei Spieler!
+   7e6	= Rennen oder Wettkämpfe für drei Spieler!
+   7e7	= Rennen oder Wettkämpfe für vier Spieler!
+   7e8	= Spiele via Nintendo WFC!
+   7e9	= Spielt zu zweit mit anderen via Nintendo WFC!
+   7ea	= Ranglisten, Wettbewerbsdaten und mehr!
+   7eb	= Betrachte Rekorde und ändere dein Mii!
+   7ec	/
+   7ed	/
+   7ee	= Mehrspieler für 2
+   7ef	= Mehrspieler für 3
+   7f0	= Mehrspieler für 4
+   7f1	= Nintendo WFC (1S)
+   7f2	= Nintendo WFC (2S)
+   7f3	/
+   802	= Bitte schiebe die Mario Kart Wii-\n
+	+ Disc in deine Wii-Konsole ein und\n
+	+ warte, bis das Spiel gestartet wird.
+   803	= Diese Disc kann nicht gelesen\n
+	+ werden. Bitte lies die Wii-\n
+	+ Bedienungsanleitung, um weitere\n
+	+ Informationen zu erhalten.
+   804	= Ein Fehler ist aufgetreten.\n
+	+ \n
+	+ Drücke den Ausgabeknopf, entnimm\n
+	+ die Disc und schalte die Wii-\n
+	+ Konsole aus. Bitte lies die\n
+	+ Wii-Bedienungsanleitung,\n
+	+ um weitere Informationen\n
+	+ zu erhalten.
+   805	= Der Speicher der Wii-Konsole ist\n
+	+ belegt. Bitte rufe den Datenver-\n
+	+ waltungsbildschirm auf, um Daten\n
+	+ auf eine SD Card zu verschieben\n
+	+ oder zu löschen (erforderliche\n
+	+ Blöcke: 23).
+   806	= Der Speicher der Wii-Konsole ist\n
+	+ fehlerhaft. Bitte lies die\n
+	+ Wii-Bedienungsanleitung, um\n
+	+ weitere Informationen zu erhalten.
+   807	= Die Datei ist fehlerhaft und\n
+	+ kann daher nicht verwendet\n
+	+ werden.\n
+	+ \n
+	+ Fehlerhafte Datei löschen\n
+	+ und eine neue erstellen?
+   808	/
+   809	= Auf den Speicher der\n
+	+ Wii-Konsole konnte nicht\n
+	+ zugegriffen werden.\n
+	+ \n
+	+ Bitte lies die Wii-\n
+	+ Bedienungsanleitung,\n
+	+ um weitere Informationen\n
+	+ zu erhalten.
+   80a	= Du kehrst nun zurück zum Wii-Menü.
+   80b	= Ohne Speichern fortfahren
+   80c	= Zurück zum Wii-Menü
+   80d	= Dieses Menü lässt sich nicht\n
+	+ aufrufen, weil keine Speicherdatei\n
+	+ existiert.
+   80e	= Lesen der Speicherdatei\n
+	+ fehlgeschlagen.\n
+	+ Bitte schiebe eine\n
+	+ Mario Kart Wii-Disc ein.
+   80f	= Disc starten
+   810	= Möchtest du zum\n
+	+ Wii-Menü zurückkehren?
+   811	= Speichervorgang. Bitte betätige\n
+	+ weder den POWER-Schalter noch\n
+	+ den RESET-Knopf.
+   812	= Die Speicherdaten des Mii-Kanals\n
+	+ konnten nicht geladen werden.\n
+	+ Bitte rufe den Mii-Kanal auf,\n
+	+ um die Speicherdaten zu überprüfen.
+   813	= Bitte bedenke, dass dieses Mii\n
+	+ auch in Mario Kart Wii gelöscht\n
+	+ wird, wenn du es aus dem\n
+	+ Mii-Kanal löschst.
+   814	= Dein Fahrerprofil wurde unter\n
+	+ Nutzung eines Gast-Miis angelegt.\n
+	+ Du kannst auch ein eigenes Mii\n
+	+ in deinem Mii-Kanal erstellen.
+   815	= Die Geistdaten konnten nicht\n
+	+ gesendet werden. Du kannst nur\n
+	+ 5 Geistdaten auf einmal als\n
+	+ Herausforderung senden.\n
+	+ \n
+	+ Erst wenn du das nächste Mal\n
+	+ die Mario Kart Wii-Disc startest,\n
+	+ kannst du wieder Geistdaten senden.
+   816	= Keine Verbindung zur Nintendo Wi-Fi\n
+	+ Connection möglich. Es existiert\n
+	+ keine Speicherdatei.\n
+	+ Im Datenverwaltungsbildschirm\n
+	+ des Speichers der Wii-Konsole\n
+	+ kannst du den Inhalt des\n
+	+ Speichers der Wii-Konsole verwalten.
+   817	= Es können keine weiteren Dateien\n
+	+ im Speicher der Wii-Konsole\n
+	+ gespeichert werden. Bitte rufe\n
+	+ den Datenverwaltungsbildschirm auf,\n
+	+ um Daten auf eine SD Card zu\n
+	+ verschieben oder zu löschen.
+   818	= Die Verbindung zur Nintendo\n
+	+ Wi-Fi Connection wurde unter-\n
+	+ brochen. Du kehrst nun zurück\n
+	+ zum Hauptmenü.
+   819	= Die Ländereinstellung wurde geändert.\n
+	+ Aus diesem Grund muss eine neue\n
+	+ Datei erstellt werden.\n
+	+ Wenn die existierende Datei nicht\n
+	+ überschrieben werden soll, dann gib\n
+	+ im Wii-Menü bitte die ursprüngliche\n
+	+ Ländereinstellung ein.
+   81a	= Datei neu erstellen
+   81b	/
+   834	/
+   835	= Ein neues Mario Kart Wii-\n
+	+ Fahrerprofil wird angelegt.
+   836	= Profil anlegen
+   837	= Profil löschen
+   838	= Profil auswählen
+   839	/
+   83a	/
+   83b	/
+   83c	/
+   83d	/
+   83e	= \z{a02,1000000004}-\z{a02,1000010004}-\z{a02,1000020004}
+   83f	= Soll für \z{802,120000}\n
+	+ ein neues Fahrerprofil\n
+	+ angelegt werden?
+   840	= Soll das Mii für dieses Fahrerprofil\n
+	+ mit \z{802,120000} ausgetauscht\n
+	+ werden?
+   841	= \z{602,0} und \z{802,120000}\n
+	+ werden gemeinsam mit der\n
+	+ Nintendo WFC verbunden.
+   842	/
+   848	= Rekorde
+   849	= Sieh Rekorde von \z{602,0} an.
+   84a	= Ändere das Mii des Fahrerprofils.
+   84b	= Mii wählen
+   84c	/
+   84d	/
+   84e	/
+   84f	/
+   850	= Lösche das Fahrerprofil von \z{602,0}.
+   851	/
+   852	/
+   853	/
+   854	/
+   855	/
+   856	/
+   857	= Schließen
+   858	/
+   866	/
+   867	= Dein neues Fahrerprofil wurde angelegt.
+   868	= Möchtest du das Fahrerprofil von\n
+	+ \z{602,0} wirklich löschen?
+   869	= Das Fahrerprofil von\n
+	+ \z{602,0} wurde gelöscht.
+   86a	/
+   86b	= Das Mii des Profils wurde ausgetauscht.
+   86c	/
+   86d	= Fahrerprofil wird gelöscht...
+   86e	= Alle Daten dieses Fahrerprofils,\n
+	+ auch die Freundesliste und\n
+	+ Geistdaten-Rekorde, werden\n
+	+ gelöscht. Dennoch fortfahren?
+   86f	/
+   898	= Mii ändern
+   899	= Mii-Auswahl
+   89a	= Wii-Konsole
+   89b	= Gast
+   89c	/
+   89d	= Das Mii dieses Fahrerprofils\n
+	+ wurde aus deinem Mii-Kanal gelöscht.\n
+	+ \n
+	+ Bitte wähle ein anderes Mii.
+   89e	/
+   89f	/
+   8a0	/
+   8a1	/
+   8a2	/
+   8ca	/
+   8cb	/
+   8cc	/
+   8cd	/
+   8ce	/
+   8cf	/
+   8d0	/
+   8d1	/
+   8d2	= Die Ladung der Batterien\n
+	+ lässt nach.
+   8d3	/
+   8d4	/
+   8d5	/
+   8d6	/
+   8fc	/
+   8fd	= 1\n
+	+ \z{800,32}Spieler
+   8fe	= 2\n
+	+ \z{800,32}Spieler
+   8ff	= 3\n
+	+ \z{800,32}Spieler
+   900	= 4\n
+	+ \z{800,32}Spieler
+   901	= \z{e03,0,f044001ef047001e}
+   902	= \z{e03,0,f05e001ef05f001e}
+   903	/
+   960	/
+   961	= Controller-Registrierung
+   962	= Drücke den A-Knopf auf dem Controller von Spieler 2.
+   963	= Drücke den A-Knopf auf dem Controller von Spieler 3.
+   964	= Drücke den A-Knopf auf dem Controller von Spieler 4.
+   965	/
+   966	/
+   967	/
+   968	/
+   969	/
+   9c4	= Ist das okay?
+   9c5	= Ändern
+   9c6	= Drücke den A-Knopf auf dem Controller von Spieler 1.
+   9c7	= Drücke den A-Knopf auf dem Controller von Spieler 2.
+   9c8	= Drücke den A-Knopf auf dem Controller von Spieler 3.
+   9c9	= Drücke den A-Knopf auf dem Controller von Spieler 4.
+   9ca	= Verwende diese Controller.
+   9cb	= Wechsle die Controller aus.
+   9cc	= \z{802,110000}Hinzufügen
+   9cd	= Gleichzeitig \u{f043} und \u{f030} drücken.
+   9ce	= \z{802,110000}O.K.
+   9cf	/
+   9d0	/
+   9d1	/
+   9d2	/
+   9f6	= \u{f103}
+   9f7	= \u{f128}
+   9f8	= \u{f129}
+   9f9	= \u{f12a}
+   9fa	= \u{f12b}
+   9fb	= \c{yellow}O.K.
+   9fc	= \c{blue2}O.K.
+   9fd	= \c{red3}O.K.
+   9fe	= \c{green}O.K.
+   9ff	/
+   a28	= Möchtest du deinem Wii-Menü\n
+	+ den Mario Kart-Kanal\n
+	+ hinzufügen (erforderliche\n
+	+ Blöcke: \z{a02,1000000000}).
+   a29	= Ja
+   a2a	= Nein
+   a2b	/
+   a2c	/
+   a2d	/
+   a2e	/
+   a2f	= Mario Kart-Kanal hinzufügen
+   a30	= Fügst du deinem Wii-Menü den\n
+	+ Mario Kart-Kanal hinzu, kannst\n
+	+ du ihn sogar ohne eingeschobene\n
+	+ Mario Kart Wii-Disc nutzen!
+   a31	= Der Mario Kart-Kanal\n
+	+ wurde deinem Wii-Menü\n
+	+ bereits hinzugefügt.
+   a32	= Der Speicher der Wii-Konsole ist\n
+	+ belegt. Bitte rufe den Datenver-\n
+	+ waltungsbildschirm auf, um Daten\n
+	+ auf eine SD Card zu verschieben\n
+	+ oder zu löschen (erforderliche\n
+	+ Blöcke: \z{a02,1000000000}).
+   a33	= Es können keine weiteren Dateien\n
+	+ im Speicher der Wii-Konsole\n
+	+ gespeichert werden. Bitte rufe\n
+	+ den Datenverwaltungsbildschirm auf,\n
+	+ um Daten auf eine SD Card zu\n
+	+ verschieben oder zu löschen.
+   a34	= Es können keine weiteren Kanäle\n
+	+ in deinem Wii-Menü gespeichert\n
+	+ werden. Bitte rufe den\n
+	+ Datenverwaltungsbildschirm auf,\n
+	+ um Kanäle auf eine SD Card zu\n
+	+ verschieben oder zu löschen.
+   a35	= Der Speicher der Wii-Konsole ist\n
+	+ fehlerhaft. Bitte lies die Wii-\n
+	+ Bedienungsanleitung, um weitere\n
+	+ Informationen zu erhalten.
+   a36	/
+   bb8	= Grand Prix
+   bb9	= Zeitfahren
+   bba	= Versus-Rennen
+   bbb	= Wettkampf
+   bbc	/
+   bbd	/
+   bbe	= 50 ccm\n
+	+ \z{800,32}Nur Karts
+   bbf	= 100 ccm\n
+	+ \z{800,32}Nur Bikes
+   bc0	= 150 ccm\n
+	+ \z{800,32}Karts und Bikes
+   bc1	= Spiegel\n
+	+ \z{800,32}Karts und Bikes
+   bc2	= 50 ccm\n
+	+ \z{800,32}Karts und Bikes
+   bc3	= 100 ccm\n
+	+ \z{800,32}Karts und Bikes
+   bc4	= \z{802,110000}Wechseln
+   bc5	/
+   bea	= Vier-Kurs-Rennen um den ersten Platz!
+   beb	= Fahre allein und stelle Bestzeiten auf!
+   bec	= Fahre Rennen mit eigenen Regeln!
+   bed	= Fahre Rennen mit eigenen Regeln!
+   bee	= Kämpfe im Team um den Sieg!
+   bef	= Kämpfe im Team um den Sieg!
+   bf0	/
+   bf1	/
+   bf2	/
+   bf3	/
+   bf4	= Grand Prix für Anfänger (nur Karts).
+   bf5	= Grand Prix für Fortgeschrittene (nur Bikes).
+   bf6	= Grand Prix für Experten (Karts und Bikes).
+   bf7	= Grand Prix, Spiegel (Karts und Bikes).
+   bf8	= Grand Prix für Anfänger (Karts und Bikes).
+   bf9	= Grand Prix für Standardfahrer (Karts und Bikes).
+   bfa	/
+   c1c	= Zeitfahren
+   c1d	= Es gibt keine Geistdaten für diesen Kurs.
+   c1e	/
+   c1f	= Ranglisten ansehen
+   c20	/
+   c80	= Wettkampf-Auswahl
+   c81	= Ballonbalgerei
+   c82	= Münzenjäger
+   c83	/
+   c84	/
+   cb2	= Schieße die Ballons der Gegner ab.
+   cb3	= Krall dir so viele Münzen wie möglich!
+   cb4	/
+   cb5	/
+   ce9	= Drift-Modus wählen
+   cea	= Automatik
+   ceb	= Manuell
+   cec	= Hilfe
+   ced	= ■Drift-Modus■\n
+	+ Drifte in Kurven, um kein Tempo zu\n
+	+ verlieren. Es gibt zwei Drift-Modi:\n
+	+ \n
+	+ ■Automatik-Drift■\n
+	+ Drifte automatisch beim Kurvenfahren.\n
+	+ Keine \z{802,170000}Sprünge und Mini-Turbos.\n
+	+ \n
+	+ ■Manueller Drift■\n
+	+ \z{802,170000}Hüpfe kurz, drifte und löse\n
+	+ dann den Mini-Turbo aus.
+   cee	= Lies die Erklärungen zu den Drift-Modi.
+   cef	= Tempo
+   cf0	= Gewicht
+   cf1	= Beschleunigung
+   cf2	= Handling
+   cf3	= Driften
+   cf4	= Off-Road
+   cf5	= Mini-Turbo
+   cf6	/
+   d16	= Drifte automatisch (kein Mini-Turbo).
+   d17	= Drifte manuell (Mini-Turbo).
+   d18	/
+   d20	= \z{802,110000} - Pokal: \z{802,110001} Rang: \z{802,110002}
+   d21	= Zeitfahren
+   d22	= \z{802,110000}
+   d23	= Versus-Rennen, \z{802,110000}
+   d24	= \u{f069} Ballonbalgerei wurde ausgewählt.
+   d25	= \u{f068} Münzenjäger wurde ausgewählt.
+   d26	= Team-Versus-Rennen, \z{802,110000}
+   d2a	= \u{f06a}
+   d2b	= \u{f06b}
+   d2c	= \u{f06c}
+   d2d	= \u{f063}
+   d2e	= \u{f062}
+   d2f	= \u{f061}
+   d30	= \u{f078}
+   d31	= \u{f079}
+   d32	= \u{f07a}
+   d33	= \u{f07b}
+   d34	= \u{f07c}
+   d35	= F
+   d36	= 
+   d37	/
+   d38	/
+   d48	= Regeln
+   d49	= Motorklasse wählen
+   d4a	= Fahrer wählen
+   d4b	= Fahrzeug wählen
+   d4c	= Cup wählen
+   d4d	= Kurs wählen
+   d4e	= Arena wählen
+   d4f	= Geistdaten wählen
+   d50	= Wettkampf
+   d51	= Versus-Rennen
+   d52	= Motorklasse
+   d53	= 50 ccm
+   d54	= 100 ccm
+   d55	= 150 ccm
+   d56	= Spiegel
+   d57	= 50 ccm für Anfänger.
+   d58	= 100 ccm für Fortgeschrittene.
+   d59	= 150 ccm für Experten.
+   d5a	= 150 ccm, spiegelverkehrter Kurs.
+   d5c	= COM
+   d5d	= Leicht
+   d5e	= Normal
+   d5f	= Schwer
+   d60	= Keine
+   d61	= COM-Fahrer sind schwach.
+   d62	= COM-Fahrer sind mittelmäßig.
+   d63	= COM-Fahrer sind stark.
+   d64	= Keine COM-Fahrer.
+   d66	= Fahrzeug
+   d67	= Karts
+   d68	= Bikes
+   d69	= Alle
+   d6a	= COM-Fahrer fahren nur Karts.
+   d6b	= COM-Fahrer fahren nur Bikes.
+   d6c	= COM-Fahrer fahren Karts/Bikes.
+   d6d	= COM-Fahrer fahren nur Karts.
+   d6e	= COM-Fahrer fahren nur Bikes.
+   d6f	= COM-Fahrer fahren Karts/Bikes.
+   d70	= Kurs
+   d71	= Auswählen
+   d72	= Zufällig
+   d73	= Reihenfolge
+   d74	= Wähle den Kurs für jedes Rennen.
+   d75	= Die Kurse werden zufällig gewählt.
+   d76	= Fahre die Kurse in Cup-Reihenfolge.
+   d77	= Wähle die Arena für jeden Wettkampf.
+   d78	= Die Arenen werden zufällig gewählt.
+   d79	= Die Arenen der Reihe nach spielen.
+   d7a	= Rennen
+   d7b	= \z{a02,1000000001}
+   d7c	= Siege
+   d84	= \z{a02,1000000001}
+   d85	= Modus
+   d86	= Teamrennen
+   d87	= Solorennen
+   d88	/
+   d89	= Bestimme die Anzahl der Rennen.
+   d8a	= Bestimme die Anzahl der benötigten Siege.
+   d8b	= Kämpfe im Team um die meisten Punkte.
+   d8c	= Kämpfe um die meisten Punkte.
+   d8d	= Arena
+   d8e	= Möchtest du wirklich das\n
+	+ Versus-Rennen beenden?
+   d8f	= Möchtest du wirklich\n
+	+ den Wettkampf beenden?
+   d90	= Zu diesen Regeln fahren.
+   d91	= Zu diesen Regeln kämpfen.
+   d92	= Lege verschiedene Regeln fest.
+   d93	= Lege verschiedene Regeln fest.
+   d94	/
+   d98	= Items
+   d99	= Standard
+   d9a	= Furios
+   d9b	= Einfach
+   d9c	= Keine
+   d9d	= Alle Items erscheinen ausgewogen regelmäßig.
+   d9e	= Hauptsächlich Items des Angriffs tauchen auf.
+   d9f	= Items des Angriffs tauchen kaum auf.
+   da0	= Es tauchen keine Items auf.
+   da1	/
+   dac	= Team-Einstellungen
+   dad	= Blaues\n
+	+ Team
+   dae	= Rotes\n
+	+ Team
+   daf	= Team-Aufstellung
+   db0	= Die Teammitglieder im Überblick.
+   db1	= Fahrerliste
+   db2	= \c{blue1}Blaues\n
+	+ Team
+   db3	= \c{red2}Rotes\n
+	+ Team
+   db4	= Alle Spieler sind im selben Team.\n
+	+ \n
+	+ Bitte erneut wählen.
+   db5	/
+   dde	= Starten
+   ddf	= Starten
+   de0	= Starten
+   de1	/
+   fa0	= Global
+   fa1	= Kontinental
+   fa2	= Freunde
+   fa3	= Geistrennen
+   fa4	= Nintendo Wi-Fi Connection
+   fa5	/
+   fa6	/
+   fa7	/
+   fa8	= Es sind keine Freunde in deiner\n
+	+ Freundesliste registriert.\n
+	+ \n
+	+ Registriere Freunde, um mit ihnen\n
+	+ zusammen via Nintendo WFC zu\n
+	+ spielen.
+   fa9	/
+   faa	= Verbinde mit Nintendo WFC...
+   fab	= Soll die Verbindung zur\n
+	+ Nintendo Wi-Fi Connection\n
+	+ wirklich beendet werden?
+   fac	= Ja
+   fad	= Nein
+   fae	/
+   faf	/
+   fb0	= Du kannst keine Verbindung zur\n
+	+ Nintendo Wi-Fi Connection\n
+	+ herstellen, wenn du diesen\n
+	+ Mii-Namen verwendest.\n
+	+ Bitte ändere deinen Mii-Namen\n
+	+ und versuche es noch einmal.
+   fb1	/
+   fb2	= Die Verbindung zu anderen\n
+	+ Spielern wurde getrennt.
+   fb3	= Den Raum verlassen?
+   fb4	= Den Raum schließen?
+   fb5	= Die Verbindung zum Raum-Ersteller\n
+	+ wurde getrennt. Du kehrst nun\n
+	+ zurück zur Freundesliste.
+   fb6	= Du konntest dich nicht\n
+	+ mit deinem Freund treffen.\n
+	+ \n
+	+ Bitte versuche es\n
+	+ später noch einmal.
+   fb7	/
+   fb8	= Teams
+   fb9	/
+  1004	= Raum
+  1005	= Raum erstellen
+  1006	= Freund treffen...
+  1007	/
+  1008	/
+  1009	/
+  100a	= Suche nach Spielern...
+  100b	= Spieler gefunden!
+  100c	= Warte auf Freunde...
+  100d	= Start
+  100e	= Wir fahren einen Grand Prix!
+  100f	= Wir fahren 'nen Team-Grand Prix!
+  1010	= Wir spielen Ballonbalgerei!
+  1011	= Wir spielen Münzenjäger!
+  1012	/
+  1036	= Neue Freunde
+  1037	= \z{802,120000}, du bist registriert!
+  1038	= Keine neuen Freunde im Raum gefunden.
+  1039	/
+  103a	= Wir sind Freunde, \z{802,120000}!
+  103b	/
+  1068	= Nachricht
+  1069	= \z{a02,1000000002}/\z{a02,1000010002}
+  106a	= \z{a02,1000000000}\n
+	+ \z{800,46}R-Punkte
+  106b	= \z{a02,1000000000}\n
+	+ \z{800,46}W-Punkte
+  106c	= Bitte warte...
+  106d	= Globales Versus-Rennen
+  106e	= Globaler Wettkampf
+  106f	= Kontinentales Versus-Rennen
+  1070	= Kontinentaler Wettkampf
+  10cc	= Wähle einen Modus.
+  10cd	= Einen Moment bitte...
+  10ce	= Der Spielmodus wurde gewählt.
+  10cf	/
+  10d0	/
+  10d1	= Versus-Rennen
+  10d2	= Versus-Rennen
+  10d3	/
+  10d4	= Wettkampf
+  10d5	= Wettkampf
+  10d6	= Spiele mit Spielern aus der ganzen Welt.
+  10d7	= Spiele mit Spielern deines Kontinents.
+  10d8	= Spiele mit Freunden.
+  10d9	= Fahre gegen Geister anderer Spieler aus der ganzen Welt.
+  10da	= Fahre Rennen mit bis zu 12 Spielern!
+  10db	= Spiele Wettkämpfe mit bis zu 6 Personen pro Team!
+  10dc	= Erstelle einen Raum und spiele mit Freunden.
+  10dd	= Sieh nach, was deine Freunde machen.
+  10de	= Registriere Freundescodes.
+  10df	/
+  10e0	= Nächstes Rennen: 100 ccm!
+  10e1	= Nächstes Rennen: 150 ccm!
+  10e2	= Nächstes Rennen: Spiegel!
+  10e3	= \u{f069} Ballonbalgerei!
+  10e4	= \u{f068} Münzenjäger!
+  10e5	= Nächstes Rennen: 100 ccm!
+  10e6	= Nächstes Rennen: 150 ccm!
+  10e7	= Nächstens Rennen: Spiegel!
+  10e8	= Nächstes Rennen: 100 ccm!
+  10e9	= Nächstes Rennen: 150 ccm!
+  10ea	= Nächstes Rennen: Spiegel!
+  10eb	/
+  10ec	/
+  10ed	/
+  10ee	/
+  10fe	= Wähle den Kurs, den du vorschlagen\n
+	+ möchtest, oder überlass es dem Zufall.
+  10ff	= Wählen
+  1100	= Zufällig
+  1101	= ???
+  1102	= Kurs-Auswahl
+  1103	= Arena-Auswahl
+  1104	= Wähle die Arena, die du vorschlagen\n
+	+ möchtest oder überlass es dem Zufall.
+  1105	= Rennen wird vorbereitet...
+  1106	= Wettkampf wird vorbereitet...
+  1107	/
+  1108	= Bitte warte...
+  1109	= Das Roulette entscheidet...
+  110a	= Der Kurs wurde ausgewählt!
+  110b	= Die Arena wurde ausgewählt!
+  110c	/
+  1112	= Schicke jedem im Raum eine Nachricht.
+  1113	= Wähle eine Nachricht.
+  1114	= Starte ein Spiel mit diesen Spielern.
+  1115	= Wähle, was gespielt wird.
+  1116	= Biete anderen deine Freundschaft an.
+  1117	= Nur die eingeladene Person wird diese Nachricht sehen.
+  1118	/
+  1126	= Gib den Freundescode ein.
+  1127	= Registriere diesen Freundescode.
+  1128	= Spiele mit Freunden.
+  1129	= Dieser Freundescode wird gelöscht.
+  112a	/
+  112b	/
+  112c	/
+  112d	/
+  1193	= Hier bin ich!
+
+  11f4	/
+  11f5	/
+  11f6	/
+  11f7	/
+  11f8	= Fehler bei der Datenübertragung.\n
+	+ Du kehrst nun zurück zum Hauptmenü.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  11f9	= Es kann keine Verbindung zum\n
+	+ Internet hergestellt werden.\n
+	+ Bitte überprüfe die Einstellungen\n
+	+ der Verbindung in den\n
+	+ Internet-Einstellungen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  11fa	= Entweder ist die Nintendo Wi-Fi\n
+	+ Connection mit starkem Datenverkehr\n
+	+ ausgelastet oder der Service steht\n
+	+ vorübergehend nicht zur Verfügung.\n
+	+ Versuche es später noch einmal.\n
+	+ Besuche support.nintendo.com, um\n
+	+ weitere Hilfe zu erhalten.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  11fb	= Keine Verbindung zur Nintendo\n
+	+ Wi-Fi Connection möglich.\n
+	+ Besuche support.nintendo.com oder\n
+	+ lies die Software-Anleitung, um\n
+	+ weitere Hilfe zu erhalten.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  11fc	= Der Nintendo Wi-Fi Connection\n
+	+ Service für diesen Titel wurde\n
+	+ eingestellt. Besuche\n
+	+ support.nintendo.com, um eine\n
+	+ Liste der Titel einzusehen,\n
+	+ die Nintendo Wi-Fi Connection\n
+	+ unterstützen.\n
+	+ Fehlercode: \z{a02,1000000005}
+  11fd	= Keine Verbindung zur Nintendo\n
+	+ Wi-Fi Connection möglich.\n
+	+ Besuche support.nintendo.com oder\n
+	+ lies die Software-Anleitung, um\n
+	+ weitere Hilfe zu erhalten.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  11fe	= Entweder ist die Nintendo Wi-Fi\n
+	+ Connection mit starkem Datenverkehr\n
+	+ ausgelastet oder der Service steht\n
+	+ vorübergehend nicht zur Verfügung.\n
+	+ Versuche es später noch einmal.\n
+	+ Besuche support.nintendo.com,\n
+	+ um weitere Hilfe zu erhalten.\n
+	+ Fehlercode: \z{a02,1000000005}
+  11ff	= Der Speicher der Wii-Konsole\n
+	+ ist belegt.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1200	= Der Speicher der Wii-Konsole\n
+	+ ist beschädigt. Bitte lies die\n
+	+ Wii-Bedienungsanleitung, um weitere\n
+	+ Informationen zu erhalten.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1201	= Die Internet-Verbindung wurde\n
+	+ wegen eines Fehlers bei der\n
+	+ Datenübertragung getrennt.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1202	= Download fehlgeschlagen.\n
+	+ Versuche es bitte noch einmal.\n
+	+ Besuche support.nintendo.com,\n
+	+ um weitere Hilfe zu erhalten.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1203	= Die Internet-Verbindung wurde\n
+	+ wegen eines Fehlers bei der\n
+	+ Datenübertragung getrennt.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1204	= Die Internet-Verbindung wurde\n
+	+ wegen eines Fehlers bei der\n
+	+ Datenübertragung getrennt.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1205	= Die Internet-Verbindung wurde\n
+	+ wegen eines Fehlers bei der\n
+	+ Datenübertragung getrennt.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1206	= Die Internet-Verbindung wurde\n
+	+ wegen eines Fehlers bei der\n
+	+ Datenübertragung getrennt.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1207	= Die Internet-Verbindung wurde\n
+	+ wegen eines Fehlers bei der\n
+	+ Datenübertragung getrennt.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1208	= Es kann keine Verbindung zum\n
+	+ Internet hergestellt werden.\n
+	+ Bitte überprüfe die Einstellungen\n
+	+ der Verbindung in den Internet-\n
+	+ Einstellungen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1209	= Es kann keine Verbindung zum\n
+	+ Internet hergestellt werden.\n
+	+ Bitte überprüfe die Einstellungen\n
+	+ der Verbindung in den Internet-\n
+	+ Einstellungen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  120a	= Es kann keine Verbindung zum\n
+	+ Internet hergestellt werden.\n
+	+ Bitte überprüfe die Einstellungen\n
+	+ der Verbindung in den Internet-\n
+	+ Einstellungen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  120b	= Es kann keine Verbindung zum\n
+	+ Internet hergestellt werden.\n
+	+ Bitte überprüfe die Einstellungen\n
+	+ der Verbindung in den Internet-\n
+	+ Einstellungen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  120c	= Es kann keine Verbindung zum\n
+	+ Internet hergestellt werden.\n
+	+ Bitte überprüfe die Einstellungen\n
+	+ der Verbindung in den\n
+	+ Internet-Einstellungen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  120d	= Es kann keine Verbindung zum\n
+	+ Internet hergestellt werden.\n
+	+ Bitte überprüfe die Einstellungen\n
+	+ der Verbindung in den\n
+	+ Internet-Einstellungen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  120e	= Es kann keine Verbindung zum\n
+	+ Internet hergestellt werden.\n
+	+ Bitte überprüfe die Einstellungen\n
+	+ der Verbindung in den Internet-\n
+	+ Einstellungen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  120f	= Es kann keine Verbindung zum\n
+	+ Internet hergestellt werden.\n
+	+ Bitte überprüfe die Einstellungen\n
+	+ der Verbindung in den Internet-\n
+	+ Einstellungen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1210	= Keine Verbindung zur Nintendo Wi-Fi\n
+	+ Connection möglich. Besuche\n
+	+ support.nintendo.com oder lies\n
+	+ die Software-Anleitung, um weitere\n
+	+ Hilfe zu erhalten.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1211	= Es kann keine Verbindung zum\n
+	+ Internet hergestellt werden.\n
+	+ Bitte überprüfe die Einstellungen\n
+	+ der Verbindung in den Internet-\n
+	+ Einstellungen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1212	= Es kann keine Verbindung zum\n
+	+ Internet hergestellt werden.\n
+	+ Bitte überprüfe die Einstellungen\n
+	+ der Verbindung in den Internet-\n
+	+ Einstellungen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1213	= Es kann keine Verbindung zum\n
+	+ Internet hergestellt werden.\n
+	+ Bitte überprüfe die Einstellungen\n
+	+ der Verbindung in den Internet-\n
+	+ Einstellungen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1214	= Es kann keine Verbindung zum\n
+	+ Internet hergestellt werden.\n
+	+ Bitte überprüfe die Einstellungen\n
+	+ der Verbindung in den Internet-\n
+	+ Einstellungen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1215	= Die Internet-Verbindung wurde\n
+	+ wegen eines Fehlers bei der\n
+	+ Datenübertragung getrennt.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1216	/
+  1388	= Mario Kart-Kanal
+  1389	= Freundesliste
+  138a	= Ranglisten
+  138b	= Geistrennen
+  138c	= Wettbewerbe
+  138d	/
+  138e	= Freundescode registrieren
+  138f	/
+  1390	= Wii-Menü
+  1391	= Heruntergeladene Geistdaten
+  1392	= Wettbewerbe
+  1393	= Freundesliste
+  1394	/
+  1395	/
+  1396	= Rennen starten
+  1397	= Verfeinere deine Technik und tritt\n
+	+ via Nintendo Wi-Fi Connection in\n
+	+ einer Reihe von Geistrennen gegen\n
+	+ Spieler aus der ganzen Welt an!\n
+	+ Gewinne so viele Rennen wie möglich!
+  1398	= Meine Geistdaten
+  1399	= Verfeinere deine Technik und tritt\n
+	+ via Nintendo Wi-Fi Connection in\n
+	+ einer Reihe von Geistrennen gegen\n
+	+ Spieler aus der ganzen Welt an!\n
+	+ Gewinne so viele Rennen wie möglich!\n
+	+ \z{c04,13a213a3}: \z{a02,1000000000}\n
+	+ \z{c04,113a413a5}: \z{a02,1000010000}
+  139a	= Verfeinere deine Technik und tritt\n
+	+ via Nintendo Wi-Fi Connection in\n
+	+ einer Reihe von Geistrennen gegen\n
+	+ Spieler aus der ganzen Welt an!\n
+	+ Gewinne so viele Rennen wie möglich!\n
+	+ \z{c04,13a213a3}: \z{a02,1000000000}\n
+	+ \z{c04,113a413a5}: \z{a02,1000010000}
+  139b	= Verfeinere deine Technik und tritt\n
+	+ via Nintendo Wi-Fi Connection in\n
+	+ einer Reihe von Geistrennen gegen\n
+	+ Spieler aus der ganzen Welt an!\n
+	+ Gewinne so viele Rennen wie möglich!\n
+	+ \z{c04,13a213a3}: \z{a02,1000000000}\n
+	+ \z{c04,113a413a5}: \z{a02,1000010000}
+  139c	= Verfeinere deine Technik und tritt\n
+	+ via Nintendo Wi-Fi Connection in\n
+	+ einer Reihe von Geistrennen gegen\n
+	+ Spieler aus der ganzen Welt an!\n
+	+ Gewinne so viele Rennen wie möglich!\n
+	+ \z{c04,13a213a3}: \z{a02,1000000000}\n
+	+ \z{c04,113a413a5}: \z{a02,1000010000}
+  139d	= Verfeinere deine Technik und tritt\n
+	+ via Nintendo Wi-Fi Connection in\n
+	+ einer Reihe von Geistrennen gegen\n
+	+ Spieler aus der ganzen Welt an!\n
+	+ Gewinne so viele Rennen wie möglich!\n
+	+ \z{c04,13a213a3}: \z{a02,1000000000}\n
+	+ \z{c04,113a413a5}: \z{a02,1000010000}
+  139e	= Verfeinere deine Technik und tritt\n
+	+ via Nintendo Wi-Fi Connection in\n
+	+ einer Reihe von Geistrennen gegen\n
+	+ Spieler aus der ganzen Welt an!\n
+	+ Gewinne so viele Rennen wie möglich!\n
+	+ \z{c04,13a213a3}: \z{a02,1000000000}\n
+	+ \z{c04,113a413a5}: \z{a02,1000010000}
+  139f	= Verfeinere deine Technik und tritt\n
+	+ via Nintendo Wi-Fi Connection in\n
+	+ einer Reihe von Geistrennen gegen\n
+	+ Spieler aus der ganzen Welt an!\n
+	+ Gewinne so viele Rennen wie möglich!\n
+	+ \z{c04,13a213a3}: \z{a02,1000000000}\n
+	+ \z{c04,113a413a5}: \z{a02,1000010000}
+  13a0	= Verfeinere deine Technik und tritt\n
+	+ via Nintendo Wi-Fi Connection in\n
+	+ einer Reihe von Geistrennen gegen\n
+	+ Spieler aus der ganzen Welt an!\n
+	+ Gewinne so viele Rennen wie möglich!\n
+	+ \z{c04,13a213a3}: \z{a02,1000000000}\n
+	+ \z{c04,113a413a5}: \z{a02,1000010000}
+  13a1	= \z{a02,1000000000} \z{c04,13a213a3}
+  13a2	= Sieg
+  13a3	= Siege
+  13a4	= Niederlage
+  13a5	= Niederlagen
+  13a6	/
+  13ba	= Freunde
+  13bb	= Geistdaten
+  13bc	= Zeitfahren-Ranglisten
+  13bd	/
+  13be	= Wettbewerb-Ranglisten
+  13bf	/
+  13c4	= Sieh nach, was deine Freunde machen.
+  13c5	= Vergleiche dich mit anderen Spielern.
+  13c6	= Betrachte/lösche heruntergeladene Geistdaten.
+  13c7	= Nimm an Mario Kart-Wettbewerben teil.
+  13c8	= Fahre Geistrennen gegen Spieler aus aller Welt!
+  13c9	/
+  13ca	= Sende und empfange Geistdaten.
+  13cb	/
+  13cc	= Betrachte Mario Kart-Wettbewerb-Ranglisten.
+  13cd	/
+  13ce	/
+  13cf	/
+  13d0	/
+  13d1	/
+  13d2	/
+  13d3	/
+  13d8	/
+  13d9	/
+  13da	/
+  13db	/
+  13dc	/
+  13dd	/
+  13ec	= Bitte gib den Freundescode ein.
+  13ed	= Soll dieser Freundescode registriert werden?\n
+	+ \n
+	+ \z{a02,1000000004}-\z{a02,1000010004}-\z{a02,1000020004}
+  13ee	= Dieser Freundescode ist nicht korrekt.\n
+	+ \n
+	+ \z{a02,1000000004}-\z{a02,1000010004}-\z{a02,1000020004}.
+  13ef	= Dieser Freundescode\n
+	+ wurde registriert.\n
+	+ \n
+	+ \z{a02,1000000004}-\z{a02,1000010004}-\z{a02,1000020004}
+  13f0	= Um gegeneinander antreten zu\n
+	+ können, muss dein Freund deinen\n
+	+ Freundescode auch registrieren.\n
+	+ \n
+	+ Dein Freundescode lautet:\n
+	+ \n
+	+ \z{a02,1000000004}-\z{a02,1000010004}-\z{a02,1000020004}
+  13f1	= \z{a02,1000000001}
+  13f2	= -
+  13f3	/
+  13f6	= Dieser Freundescode\n
+	+ wurde bereits registriert.
+  13f7	= Deine Freundesliste enthält bereits\n
+	+ das Maximum von 30 Freunden.
+  13f8	= Du hast keinen Freundescode.
+  13f9	= Dieser Freundescode lässt\n
+	+ sich nicht registrieren.
+  13fb	/
+  141e	/
+  141f	/
+  1420	/
+  1421	/
+  1422	/
+  1423	/
+  1424	/
+  1425	/
+  1450	= Löschen
+  1451	= Freund treffen
+  1452	= Treffen nicht möglich.
+  1453	= Ihr seid noch keine Freunde.
+  1454	/
+  1455	/
+  1456	= Sieg
+  1457	= Siege
+  1458	/
+  1459	= Wettkampf
+  145a	= Diesen Freundescode löschen?
+  145b	= Dieser Freundescode wurde gelöscht.
+  145c	= Freundescode wird gelöscht...
+  145d	= Freundescode löschen
+  145e	= Freundescode löschen
+  145f	= Abbruch
+  1460	= \z{c04,14561457}
+  1461	= Alle Daten dieses Freundescodes\n
+	+ werden gelöscht.\n
+	+ Soll dieser Freundescode dennoch\n
+	+ gelöscht werden?
+  1462	/
+  14b4	= Verbunden mit Nintendo WFC!
+  14b5	= Nicht mit Nintendo WFC verbunden!
+  14b6	/
+  14b7	/
+  14b8	= Hat einen Raum erstellt!
+  14b9	= Spielt mit Freunden!
+  14ba	= Spielt mit Freunden!
+  14bb	= Im globalen Versus-Rennen!
+  14bc	= Im globalen Wettkampf!
+  14bd	= Im kontinentalen Versus-Rennen!
+  14be	= Im kontinentalen Wettkampf!
+  14bf	= Im 1. Grand Prix-Rennen!
+  14c0	= Im 2. Grand Prix-Rennen!
+  14c1	= Im 3. Grand Prix-Rennen!
+  14c2	= Im 4. Grand Prix-Rennen!
+  14c3	= Im 1. Wettkampf!
+  14c4	= Im 2. Wettkampf!
+  14c5	= Im 3. Wettkampf!
+  14c6	= Im Final-Wettkampf!
+  14c7	= Im 1. Rennen mit Freunden!
+  14c8	= Im 2. Rennen mit Freunden!
+  14c9	= Im 3. Rennen mit Freunden!
+  14ca	= Im 4. Rennen mit Freunden!
+  14cb	= Im 1. Wettkampf mit Freunden!
+  14cc	= Im 2. Wettkampf mit Freunden!
+  14cd	= Im 3. Wettkampf mit Freunden!
+  14ce	= Im Final-Wettkampf mit Freunden!
+  14cf	/
+  14d0	/
+  14e6	= Triff einen Freund.
+  14e7	/
+  1518	/
+  1519	/
+  151a	= Sollen diese Geistdaten als\n
+	+ Herausforderung gesendet werden?
+  151b	= Senden der Geistdaten...
+  151c	= Geistdaten wurden als\n
+	+ Herausforderung an\n
+	+ \z{802,120000} gesendet.\n
+	+ \n
+	+ \z{a02,1000000000}/5
+  151d	= Deine Geistdaten wurden als\n
+	+ Herausforderung an\n
+	+ \z{802,120000} gesendet!\n
+	+ 5/5\n
+	+ Erst wenn du das nächste Mal die\n
+	+ Mario Kart Wii-Disc startest,\n
+	+ kannst du wieder Geistdaten senden.
+  151e	= Das Senden der Geistdaten als\n
+	+ Herausforderung ist fehlgeschlagen,\n
+	+ da keine Geistdaten gefunden wurden.
+  151f	/
+  157c	= Geistdaten werden gelesen...
+  157d	= Ein Freund hat dich herausgefordert!
+  157e	= Du kannst im Moment keine\n
+	+ Herausforderungen von Freunden\n
+	+ erhalten, weil kein Platz für\n
+	+ weitere Geistdaten ist.\n
+	+ \n
+	+ Bitte lösche Geistdaten.
+  157f	= Dieser Kurs ist noch nicht verfügbar.\n
+	+ \n
+	+ Du kannst weitere Kurse durch das\n
+	+ Gewinnen von Pokalen im Grand\n
+	+ Prix-Modus freischalten.
+  1580	= Beim Herunterladen der Geist-\n
+	+ daten als Herausforderung ist\n
+	+ ein Fehler aufgetreten.
+  1581	/
+  15e0	= 
+  15e1	= Japan
+  15e8	= Anguilla
+  15e9	= Antigua und Barbuda
+  15ea	= Argentinien
+  15eb	= Aruba
+  15ec	= Bahamas
+  15ed	= Barbados
+  15ee	= Belize
+  15ef	= Bolivien
+  15f0	= Brasilien
+  15f1	= Britische Jungferninseln
+  15f2	= Kanada
+  15f3	= Kaimaninseln
+  15f4	= Chile
+  15f5	= Kolumbien
+  15f6	= Costa Rica
+  15f7	= Dominica
+  15f8	= Dominikanische Republik
+  15f9	= Ecuador
+  15fa	= El Salvador
+  15fc	= Grenada
+  15fe	= Guatemala
+  15ff	= Guyana
+  1600	= Haiti
+  1601	= Honduras
+  1602	= Jamaika
+  1604	= Mexiko
+  1605	= Montserrat
+  1606	= Niederländische Antillen
+  1607	= Nicaragua
+  1608	= Panama
+  1609	= Paraguay
+  160a	= Peru
+  160b	= St. Kitts und Nevis
+  160c	= St. Lucia
+  160d	= St. Vincent und die Grenadinen
+  160e	= Suriname
+  160f	= Trinidad und Tobago
+  1610	= Turks- und Caicosinseln
+  1611	= Vereinigte Staaten
+  1612	= Uruguay
+  1613	= Amerikanische Jungferninseln
+  1614	= Venezuela
+  1621	= Australien
+  1622	= Österreich
+  1623	= Belgien
+  162a	= Dänemark
+  162c	= Finnland
+  162d	= Frankreich
+  162e	= Deutschland
+  162f	= Griechenland
+  1632	= Irland
+  1633	= Italien
+  1638	= Luxemburg
+  163e	= Niederlande
+  163f	= Neuseeland
+  1640	= Norwegen
+  1642	= Portugal
+  1649	= Spanien
+  164b	= Schweden
+  164c	= Schweiz
+  164e	= Großbritannien
+  1660	= 
+  1668	= Südkorea
+  1670	= 
+  1671	= 
+  1680	= 
+  16df	/
+  1770	= Wähle einen Kurs.
+  1771	= Freundesrangliste
+  1772	= Kontinentale Rangliste
+  1773	= Globale Rangliste
+  1774	= Top 10
+  1775	= \z{802,110000} Freundes-Top 10
+  1776	= \z{802,110000} Kontinentale Top 10
+  1777	= \z{802,110000} Globale Top 10
+  1778	= 10
+  1779	= Top 10
+  177a	= Zeitfahren starten
+  177b	= Gegen den Geist antreten
+  177c	= Wiederholung ansehen
+  177d	= Geistdaten löschen
+  177e	= Geistdaten senden
+  177f	= Gegen den Geist antreten
+  1780	= Solo-Zeitfahren
+  1781	= NEU
+  1782	= Freundes-
+  1783	= Top 10
+  1784	= Kontinentale
+  1785	= Top 10
+  1786	= Globale
+  1787	= Top 10
+  1788	/
+  17a2	= ZEIT
+  17a3	= \z{a02,1000000001}:\z{a02,1000010002}
+  17a4	= \z{a02,1000000002}:\z{a02,1000010002}.\z{a02,1000020003}
+  17a5	= --:--.---
+  17a6	= Kontinentaler Champion
+  17a7	= Globaler Champion
+  17a8	= Rivale
+  17a9	= Freundes-
+  17aa	= Kontinentale
+  17ab	= Globale
+  17ac	= \z{803,100000}
+  17ad	= Familien-Geistdaten
+  17ae	= Freundes-Geistdaten
+  17af	= Spezial-Geistdaten
+  17b0	= Geistdaten der Entwickler
+  17b1	/
+  17d4	= Für \z{802,110000}\n
+	+ gibt es keine Geistdaten.
+  17d5	= Es gibt für diesen Kurs\n
+	+ keine Geistdaten von\n
+	+ \z{802,130000}.
+  17d6	= Es gibt keine Geistdaten.
+  17d7	/
+  17de	= Herunterladen der Geistdaten...
+  17df	= Die Liste heruntergeladener\n
+	+ Geistdaten ist voll. Du kannst im\n
+	+ Moment keine weiteren Geistdaten\n
+	+ herunterladen.\n
+	+ \n
+	+ Bitte lösche Geistdaten aus der\n
+	+ Liste heruntergeladener Geistdaten.
+  17e0	= Beim Herunterladen der\n
+	+ Geistdaten ist ein Fehler\n
+	+ aufgetreten.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  17e1	= Die Geistdaten wurden heruntergeladen.
+  17e2	= Herunterladen der Top 10...
+  17e3	= Beim Herunterladen der Top 10\n
+	+ ist ein Fehler aufgetreten.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  17e4	= Es gibt keine Top 10.
+  17e5	= 
+  17e8	= Eine Verbindung zur\n
+	+ Nintendo Wi-Fi Connection\n
+	+ herstellen?
+  17e9	= O.K.
+  17ea	= Eine Verbindung zur\n
+	+ Nintendo Wi-Fi Connection\n
+	+ herstellen?
+  17eb	= Sollen die bestehenden Geistdaten\n
+	+ überschrieben werden?
+  17ec	/
+  1806	= Rennen gegen Geist.
+  1807	= Geistwiederholung ansehen.
+  1808	= Möchtest du diese Geistdaten wirklich löschen?
+  1809	= Geistdaten löschen
+  180a	= Abbruch
+  180b	/
+  1839	= 1.
+  183a	= 2.
+  183b	= 3.
+  183c	= 4.
+  183d	= 5.
+  183e	= 6.
+  183f	= 7.
+  1840	= 8.
+  1841	= 9.
+  1842	= 10.
+  1843	= 11.
+  1844	= 12.
+  1845	/
+  186a	= Zeitfahren auf diesem Kurs starten.
+  186b	= \z{802,120000} herausfordern.
+  186c	= Fahre gegen den kontinentalen Champion.
+  186d	= Fahre gegen den globalen Champion.
+  186e	= Geistrennen gegen einen etwas besseren Spieler.
+  186f	= Freundes-Top 10 ansehen.
+  1870	= Kontinentale Top 10 ansehen.
+  1871	= Globale Top 10 ansehen.
+  1872	= Geistrennen gegen Mario Kart Wii-Entwickler.
+  1873	= Rekord von \z{802,120000}.
+  1874	= Rekord des kontinentalen Champion.
+  1875	= Rekord des globalen Champion.
+  1876	/
+  189c	= Geistdaten senden
+  189d	= Für \z{802,110000} gibt es\n
+	+ keinen Rekord von \z{802,120000}.
+  189e	= Für \z{802,110000} liegt der\n
+	+ Rekord von \z{802,120000} bei\n
+	+ \z{a02,1000000002}:\z{a02,1000010002}.\z{a02,1000020003}.
+  189f	= Für \z{802,110000} gibt es\n
+	+ keinen Rekord von \z{802,120000}.
+  18a0	= Für \z{802,110000} liegt der\n
+	+ Rekord von \z{802,120000} bei\n
+	+ \z{a02,1000000002}:\z{a02,1000010002}.\z{a02,1000020003}.
+  18a1	= Senden der Geistdaten...
+  18a2	/
+  18a6	= WiiConnect24 ist im Moment nicht verfügbar.\n
+	+ Bitte versuche es später erneut.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000006}
+  18a7	= Keine Verbindung zum Internet\n
+	+ möglich. WiiConnect24 ist nicht\n
+	+ verfügbar. Überprüfe die Ein-\n
+	+ stellungen der Verbindung in den\n
+	+ Internet-Einstellungen. Bitte lies\n
+	+ die Wii-Bedienungsanleitung, um\n
+	+ weitere Informationen zu erhalten.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000006}
+  18a8	= Aufgrund eines Fehlers im Speicher der\n
+	+ Wii-Konsole ist WiiConnect24 nicht verfügbar.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000006}
+  18a9	= Es muss ein Update des Wii-Systems\n
+	+ durchgeführt werden, bevor WiiConnect24\n
+	+ verwendet werden kann. Bitte lies die\n
+	+ Wii-Bedienungsanleitung, um weitere\n
+	+ Informationen zu erhalten.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000006}
+  18aa	= Ein Fehler ist aufgetreten.\n
+	+ WiiConnect24 kann\n
+	+ nicht verwendet werden.\n
+	+ Bitte betätige den\n
+	+ RESET-Knopf und versuche es erneut.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000006}
+  18ab	= WiiConnect24 ist zurzeit ausgeschaltet.\n
+	+ Prüfe die WiiConnect24-Option in\n
+	+ den Wii-Optionen. Bitte lies die\n
+	+ Wii-Bedienungsanleitung, um weitere\n
+	+ Informationen zu erhalten.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000006}
+  18ac	= Aufgrund eines Fehlers im Speicher der\n
+	+ Wii-Konsole ist WiiConnect24 nicht verfügbar.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000006}
+  18ad	= Die Verwendung der Internet-\n
+	+ Funktionen ist eingeschränkt.\n
+	+ Bitte überprüfe die\n
+	+ Altersbeschränkungen in den\n
+	+ Wii-Optionen.\040
+  18ae	= Es ist keine Verbindung\n
+	+ eingestellt. Bitte öffne die\n
+	+ Wii-Optionen und stelle in\n
+	+ den Internet-Einstellungen\n
+	+ eine Verbindung ein.\n
+	+ \n
+	+ Fehlercode: 50200
+  18af	= Der Mario Kart-Kanal verwendet\n
+	+ WiiConnect24, um Informationen\n
+	+ über Folgendes zu erhalten:\n
+	+ - Herausforderungen von Freunden\n
+	+ - Ranglisten von Spielern der\n
+	+   ganzen Welt\n
+	+ - Geistdaten von ähnlich starken\n
+	+   Spielern wie dir\n
+	+ - Wettbewerbstermine
+  18b0	= Du kannst die WiiConnect24-Option\n
+	+ in den Wii-Optionen aktivieren.\n
+	+ \n
+	+ Bitte lies die Wii-Bedienungsanleitung,\n
+	+ um weitere Informationen zu erhalten.
+  18b1	= Ein Fehler ist aufgetreten.\n
+	+ WiiConnect24 kann nicht\n
+	+ verwendet werden. Bitte\n
+	+ betätige den RESET-Knopf\n
+	+ und versuche es erneut.\n
+	+ \n
+	+ Fehlercode: ：\z{a02,1000000006}
+  18b2	= 
+  18f6	= LOS!
+  18f7	= 
+  1900	= Neue Geistdaten eines Freundes!
+  1901	= Neue Spezial-Geistdaten!
+  1902	= Ein Wettbewerb wird veranstaltet!
+  1903	= Die aktuellen Ranglisten sind da!
+  1904	= Starte ein Geistrennen!
+  1905	= Neuer Freundes-Rekord!
+  1906	= Hol dir den Mario Kart-Kanal!
+  1907	= Tritt dem Info-Service bei!
+  1908	= Nimm die Regionseinstellung vor!
+  1909	= Lade Freunde über die Wii-Pinnwand ein!
+  190a	= Lade aktuelle Daten herunter!
+  190b	/
+  190c	/
+  1964	= Zu den heruntergeladenen Geistdaten.
+  1965	= Zu den Zeitfahren-Ranglisten.
+  1966	= Zu Wettbewerben.
+  1967	= Zu den Zeitfahren-Ranglisten.
+  1968	= Zum Geistrennen.
+  1969	= Zu den Zeitfahren-Ranglisten.
+  196a	= Zu den Optionen.
+  196b	= Zu den Optionen.
+  196c	= Zu den Optionen.
+  196d	= Biete anderen deine Freundschaft an.
+  196e	= Neue Ranglisten und Wettbewerbsdaten!
+  196f	/
+  1970	/
+  1996	= Du kannst im Moment keine\n
+	+ Wettbewerb-Ranglisten einsehen.
+  1997	= Herunterladen der Wettbewerb-Ranglisten...
+  1998	= Beim Herunterladen der Wettbewerb-\n
+	+ Ranglisten ist ein Fehler aufgetreten.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1999	= Du kannst Wettbewerb-Ranglisten\n
+	+ einen Tag nach Wettbewerbsbeginn\n
+	+ einsehen.\n
+	+ \n
+	+ Bitte warte noch.
+  199a	= Erste Hälfte
+  199b	= Zweite Hälfte
+  199c	= Im Moment ist es nicht möglich,\n
+	+ Ranglisten dieses Wettbewerbs\n
+	+ einzusehen.\n
+	+ Bitte versuche es morgen noch einmal.
+  19c8	= Du kannst an globalen Mario Kart Wii-\n
+	+ Wettbewerben teilnehmen.\n
+	+ \n
+	+ Verbinde deine Wii-Konsole mit dem\n
+	+ Internet, stelle zuvor sicher, dass\n
+	+ WiiConnect24 aktiviert ist, und\n
+	+ warte auf den Start eines Wettbewerbs.
+  19c9	= Der vorherige Wettbewerb ist\n
+	+ beendet und die Ergebnisse\n
+	+ können nun eingesehen werden!
+  19ca	= \z{802,200000}
+  19cb	= \z{802,200000}
+  19cc	= Start
+  19cd	= Wettbewerb-Rekord senden
+  19ce	= Senden des Wettbewerb-Rekords...
+  19cf	= \z{802,200000}\n
+	+ \z{a02,1000000002}:\z{a02,1000010002}.\z{a02,1000020003}
+  19d0	= Dein Wettbewerb-Rekord wurde gesendet.
+  19d1	= Senden des Wettbewerb-Rekords\n
+	+ fehlgeschlagen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  19d2	= Der Wettbewerb endet am\n
+	+ \z{a02,1000020000}.\z{a02,1000010000}.\z{a02,1000000000}!
+  19d3	/
+  1a2c	= Freundesanfrage
+  1a2d	= Du kannst eine Freundesanfrage,\n
+	+ die deinen Freundescode enthält,\n
+	+ an die Wii-Pinnwand deiner Freunde\n
+	+ senden.\n
+	+ \n
+	+ Auf diese Weise kann man ganz\n
+	+ schnell Mario Kart Wii-Freunde\n
+	+ finden.
+  1a2e	= Wähle den Empfänger aus.
+  1a2f	= Soll eine Freundesanfrage an die\n
+	+ Wii-Pinnwand von \z{802,200000}\n
+	+ gesendet werden?
+  1a30	= Senden der Freundesanfrage...
+  1a31	= Eine Freundesanfrage wurde an die\n
+	+ Wii-Pinnwand von \z{802,200000}\n
+	+ gesendet.\n
+	+ \n
+	+ Du wirst über deine Wii-Pinnwand\n
+	+ informiert, wenn \z{802,200000}\n
+	+ deine Anfrage akzeptiert hat.
+  1a32	= Senden der Freundesanfrage\n
+	+ fehlgeschlagen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000006}
+  1a33	= \z{802,200000}
+  1a34	= Der Wettbewerb-Rekord\n
+	+ wurde gesendet.\n
+	+ Du gelangst nun zu den\n
+	+ Wettbewerb-Ranglisten.
+  1a35	/
+  1a36	= Freundescode registrieren
+  1a37	= Du hast eine Freundesanfrage von\n
+	+ \z{802,200000} erhalten.\n
+	+ \n
+	+ Wenn du den Freundescode dieser\n
+	+ Person in deiner Freundesliste\n
+	+ registrierst, wird ihr dein\n
+	+ Freundescode automatisch\n
+	+ zugeschickt.
+  1a38	= Soll \z{802,200000} in\n
+	+ deiner Freundesliste registriert\n
+	+ werden?
+  1a39	= Registrieren des Freundescodes...
+  1a3a	= Der Freundescode von\n
+	+ \z{802,200000} wurde\n
+	+ in deiner Freundesliste\n
+	+ registriert.
+  1a3b	= Registrieren des Freundescodes\n
+	+ fehlgeschlagen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000006}
+  1a3c	= Du hast keinen Freundescode.\n
+	+ Der Freundescode besteht aus\n
+	+ 12 Ziffern und wird dir automatisch\n
+	+ zugeteilt, wenn du zum ersten Mal eine\n
+	+ Verbindung zur Nintendo Wi-Fi\n
+	+ Connection erstellst. Lies bitte die\n
+	+ Wii-Bedienungsanleitung, um weitere\n
+	+ Informationen zu erhalten.\n
+  1a3d	= Dir wurde angeboten Freundes-\n
+	+ codes auszutauschen, aber deine\n
+	+ Freundesliste enthält bereits\n
+	+ das Maximum von 30 Freunden.\n
+	+ \n
+	+ Es können keine weiteren\n
+	+ Freundescodes registriert\n
+	+ werden.
+  1a3e	= Die Person, die dir diese Freundes-\n
+	+ anfrage gesendet hat, befindet sich\n
+	+ nicht im Adressbuch deiner Wii-Pinnwand.\n
+	+ \n
+	+ Starte bitte den Mario Kart-Kanal\n
+	+ erneut und registriere ihren\n
+	+ Freundescode.
+  1a3f	= Dir wurde angeboten Freundes-\n
+	+ codes auszutauschen, aber der\n
+	+ Freundescode des Senders ist\n
+	+ bereits in deiner Freundesliste\n
+	+ registriert.
+  1a40	= 
+  1a90	= Lade Wettbewerb-Ranglisten herunter
+  1a91	= Herunterladen der Wettbewerb-Ranglisten...
+  1a92	= Wettbewerb-Ranglisten heruntergeladen.
+  1a93	= Herunterladen der Wettbewerb-\n
+	+ Ranglisten fehlgeschlagen.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000005}
+  1a94	/
+  1a9b	/
+  1a9c	/
+  1a9d	/
+  1af4	= Aktuelle Daten herunterladen
+  1af5	= Die aktuellen Daten des\n
+	+ Mario Kart-Kanals werden\n
+	+ heruntergeladen.
+  1af6	= Herunterladen der aktuellen Daten...
+  1af7	= Aktuelle Daten des Mario Kart-\n
+	+ Kanals wurden heruntergeladen.
+  1af8	= Beim Herunterladen der aktuellen\n
+	+ Daten ist ein Fehler aufgetreten.\n
+	+ \n
+	+ Fehlercode: \z{a02,1000000006}
+  1af9	/
+  1b58	= Optionen
+  1b59	= Nintendo Wi-Fi Connection
+  1b5a	= Optionen
+  1b5b	= Weiter
+  1b5c	/
+  1bbc	= GCN Controller Rumble
+  1bbd	= Soll die Rumble-Funktion des\n
+	+ Nintendo GameCube Controllers\n
+	+ aktiviert werden?
+  1bbe	= Ja
+  1bbf	= Nein
+  1bc0	= Die Rumble-Funktion des\n
+	+ Nintendo GameCube Controllers\n
+	+ wird aktiviert.
+  1bc1	= Die Rumble-Funktion des\n
+	+ Nintendo GameCube Controllers\n
+	+ wird nicht aktiviert.
+  1bc2	/
+  1c20	= Regionseinstellung
+  1c21	= Zurück zum Wii-Menü, um\n
+	+ die Regionseinstellung\n
+	+ zu ändern?
+  1c22	/
+  1c23	/
+  1c24	/
+  1c52	= Land/Region-Info
+  1c53	= Mario Kart Wii kann deine Landes-\n
+	+ flagge und Region an folgenden\n
+	+ Stellen anzeigen:\n
+	+ - Globus-Position (Nintendo WFC)\n
+	+ - Geistdaten\n
+	+ Du kannst entscheiden, ob diese\n
+	+ Informationen für andere Spieler,\n
+	+ die via Nintendo Wi-Fi Connection\n
+	+ verbunden sind, einsehbar sind.
+  1c54	= Möchtest du, dass deine Landes-\n
+	+ flagge und deine Region erkennbar\n
+	+ sind, wenn du mit der Nintendo\n
+	+ Wi-Fi Connection verbunden bist?
+  1c55	= Ja
+  1c56	= Nein
+  1c57	= Deine Landesflagge und Regions-\n
+	+ einstellung sind für andere\n
+	+ einsehbar, während du mit der\n
+	+ Nintendo Wi-Fi Connection\n
+	+ verbunden bist.
+  1c58	= Deine Landesflagge und Regions-\n
+	+ einstellung sind für andere\n
+	+ nicht einsehbar, während du mit\n
+	+ der Nintendo Wi-Fi Connection\n
+	+ verbunden bist.
+  1c59	/
+  1c84	= Info-Service
+  1c85	= Tritt dem Info-Service bei, um via\n
+	+ WiiConnect24 die neuesten Informa-\n
+	+ tionen des Mario Kart-Kanals auf\n
+	+ deiner Wii-Pinnwand zu erhalten über:\n
+	+ - Wettbewerbsdaten\n
+	+ - herunterladbare Spezial-\n
+	+   Geistdaten\n
+	+ Der Info-Service kann jederzeit\n
+	+ abbestellt werden.
+  1c86	= Möchtest du dem Info-\n
+	+ Service des Mario Kart-\n
+	+ Kanals beitreten?
+  1c87	= Beitreten
+  1c88	= Nicht beitreten
+  1c89	= Diese Wii-Konsole ist dem Info-\n
+	+ Service des Mario Kart-Kanals\n
+	+ beigetreten und wird künftig die\n
+	+ Nachrichten dieses Services\n
+	+ erhalten.
+  1c8a	= Soll diese Wii-Konsole \n
+	+ keine Nachrichten vom Info-Service\n
+	+ des Mario Kart-Kanals erhalten?
+  1c8b	= 
+  1cb6	= Diese Wii-Konsole ist dem Info-\n
+	+ Service des Mario Kart-Kanals\n
+	+ beigetreten und erhält Nachrichten\n
+	+ dieses Services.
+  1cb7	= Bitte wähle die gewünschten\n
+	+ Info-Service-Einstellungen.
+  1cb8	= Info-Service für den\n
+	+ Mario Kart-Kanal abbestellen
+  1cb9	= Info-Service für alle\n
+	+ Kanäle abbestellen
+  1cba	= Weiterhin Nachrichten zum\n
+	+ Mario Kart-Kanal empfangen
+  1cbb	= Den Info-Service des\n
+	+ Mario Kart-Kanals abbestellen?
+  1cbc	= Alle Info-Services abbestellen?
+  1cbd	= Weiterhin Nachrichten des\n
+	+ Mario Kart-Kanals empfangen.
+  1cbe	= Du bist dem Info-Service des\n
+	+ Mario Kart-Kanals nicht\n
+	+ beigetreten.
+  1cbf	= Der Info-Service\n
+	+ des Mario Kart-Kanals\n
+	+ wurde abbestellt.
+  1cc0	= Der Info-Service aller\n
+	+ Kanäle wurde abbestellt.
+  1cc1	= 
+  1ce8	= Datenfreigabe
+  1ce9	= Spielst du Mario Kart Wii via\n
+	+ Nintendo Wi-Fi Connection, werden\n
+	+ automatisch folgende Daten an\n
+	+ Nintendo gesendet:\n
+	+ - dein Mii und Spitzname\n
+	+ - deine Rekorde und Geistdaten\n
+	+ \n
+	+ Diese Daten können andere\n
+	+ Spieler via Nintendo WFC einsehen.
+  1cea	= Dürfen Daten an\n
+	+ Nintendo gesendet werden?
+  1ceb	= Ja
+  1cec	= Nein
+  1ced	= Du hast die Erlaubnis erteilt,\n
+	+ dass Daten an Nintendo gesendet\n
+	+ werden.
+  1cee	= Du möchtest es nicht erlauben?\n
+	+ In diesem Fall kannst du\n
+	+ Mario Kart Wii nicht via\n
+	+ Nintendo Wi-Fi Connection spielen.
+  1cef	= Du hast nicht erlaubt, dass\n
+	+ Daten an Nintendo gesendet\n
+	+ werden.
+  1cf0	= Zum Schutz deiner Privatsphäre solltest\n
+	+ du vermeiden, dass der Spitzname deines\n
+	+ Miis persönliche Informationen enthält,\n
+	+ wie z. B. deinen echten Namen. Um dem\n
+	+ nachzukommen, kannst du Folgendes tun:\n
+	+ \n
+	+ - Ändere den Mii-Namen im Mii-Kanal.\n
+	+ - Wähle im Profil-Menü ein Gast-Mii.
+  1cf1	= 
+  1d4c	= Mii-Info
+  1d4d	= Miis von Spielern aus der ganzen\n
+	+ Welt werden unter anderem bei Rennen,\n
+	+ Wettkämpfen, in Ranglistendaten\n
+	+ während der Verbindung via Nintendo\n
+	+ Wi-Fi Connection dargestellt.\n
+	+ Du kannst entscheiden, ob diese\n
+	+ Miis in Mario Kart Wii dargestellt\n
+	+ werden oder ob sie von Nintendo-\n
+	+ Miis ersetzt werden sollen.
+  1d4e	= Sollen Miis in Mario Kart Wii\n
+	+ dargestellt werden, die von\n
+	+ anderen Spielern erstellt wurden?
+  1d4f	= Ja
+  1d50	= Nein
+  1d51	= Miis, die von anderen Spielern\n
+	+ erstellt wurden, dürfen in\n
+	+ Mario Kart Wii dargestellt werden.
+  1d52	= Es werden keine Miis in\n
+	+ Mario Kart Wii dargestellt,\n
+	+ die von anderen Spielern\n
+	+ erstellt wurden.
+  1d53	= Sollen Miis, die von anderen\n
+	+ Spielern erstellt wurden durch\n
+	+ Nintendo-Miis ersetzt werden?
+  1d54	/
+  1db0	/
+  1db1	/
+  1db2	/
+  1db3	/
+  1db4	/
+  1db5	/
+  1e14	= Mario Kart Wii lässt sich im\n
+	+ 60Hz (480i)-Modus darstellen. Derzeit\n
+	+ ist der 50Hz (576i)-Modus ausgewählt.\n
+	+ Falls dein Fernsehgerät - wie die meisten\n
+	+ gängigen Modelle - auch den 60Hz-Modus\n
+	+ unterstützt, wähle bitte diesen Typ in den\n
+	+ Wii-Systemeinstellungen aus, um eine\n
+	+ bessere Darstellung zu erzielen.\n
+	+ \n
+	+ Möchtest du für dein Fernsehgerät den\n
+	+ 60Hz-Modus auswählen, drücke den\n
+	+ HOME-Knopf und rufe das Wii-Menü auf.\040
+  1e15	= \z{e03,0,f035003cf034003c}
+  1e16	= GLÜCKWUNSCH!
+  1e17	= Möchtest du ein\n
+	+ Erinnerungsfoto an die\n
+	+ Wii-Pinnwand heften?
+  1e18	= Anheften...
+  1e19	= Das Erinnerungsfoto wurde\n
+	+ an die Wii-Pinnwand geheftet.
+  1e1a	= Achte darauf, nicht zu viele\n
+	+ Fotos an deine Wii-Pinnwand\n
+	+ zu heften.\n
+	+ Wenn kein Platz mehr auf deiner\n
+	+ Wii-Pinnwand ist, werden ältere\n
+	+ Nachrichten gelöscht, um Platz\n
+	+ zu schaffen für neuere.
+  1e1b	= Danke fürs Spielen!\n
+	+ \n
+	+ Weiterhin noch viel Spaß\n
+	+ mit Mario Kart Wii!
+  1f40	= Glückwunsch!\n
+	+ Du hast \z{802,110001}, \z{802,110000}\n
+	+ freigespielt!
+  1f41	= Glückwunsch!\n
+	+ Du hast eine neue Motorklasse\n
+	+ freigespielt: Spiegel!
+  1f42	= Glückwunsch!\n
+	+ Du hast einen neuen Fahrer\n
+	+ freigespielt: \z{802,110000}!
+  1f43	= Glückwunsch!\n
+	+ Du hast einen neuen Fahrer\n
+	+ freigespielt: \z{802,110000}!
+  1f44	= Glückwunsch!\n
+	+ Du hast ein neues Kart (Leicht)\n
+	+ freigespielt: \z{802,110000}!
+  1f45	= Glückwunsch!\n
+	+ Du hast ein neues Kart (Mittel)\n
+	+ freigespielt: \z{802,110000}!
+  1f46	= Glückwunsch!\n
+	+ Du hast ein neues Kart (Schwer)\n
+	+ freigespielt: \z{802,110000}!
+  1f47	= Glückwunsch!\n
+	+ Du hast ein neues Bike (Leicht)\n
+	+ freigespielt: \z{802,110000}!
+  1f48	= Glückwunsch!\n
+	+ Du hast ein neues Bike (Mittel)\n
+	+ freigespielt: \z{802,110000}!
+  1f49	= Glückwunsch!\n
+	+ Du hast ein neues Bike (Schwer)\n
+	+ freigespielt: \z{802,110000}!
+  1f4a	= Glückwunsch!\n
+	+ Du hast den 50 ccm-Cup des Grand\n
+	+ Prix (Karts/Bikes) freigespielt!
+  1f4b	= Glückwunsch!\n
+	+ Du hast den 100 ccm-Cup des Grand\n
+	+ Prix (Karts/Bikes) freigespielt!
+  1f4c	/
+  1fa4	= Pokale im Pilz- und Blumen-Cup, \z{802,110000}!
+  1fa5	= Ein Pokal im Stern-Cup, \z{802,110000}!
+  1fa6	= Pokale im Panzer- und Bananen-Cup, \z{802,110000}!
+  1fa7	= Ein Pokal im Blatt-Cup, \z{802,110000}!
+  1fa8	= Sieg in allen 150 ccm-Cups!
+  1fa9	/
+  1fae	= Sieg im Blatt-Cup, 100 ccm!
+  1faf	= Alle Kurse im Zeitfahren!
+  1fb0	= 1 000 Siege in Nintendo WFC-Rennen!
+  1fb1	= Rang \u{f061} in allen 50 ccm-Cups des Wii-Grand Prix!
+  1fb2	= 8 Spitzengeistdaten der Entwickler im Zeitfahren!
+  1fb3	= Sieg im Blitz-Cup, 50 ccm!
+  1fb4	= Rang \u{f061} in allen 100 ccm-Cups des Retro-Grand Prix!
+  1fb5	= Sieg im Spezial-Cup, 150 ccm!
+  1fb6	= 16 verschiedene Kurse im Zeitfahren!
+  1fb7	= Rang \u{f061} in allen Spiegel-Cups!
+  1fb8	= Ein Geschenk aus Super Mario Galaxy!
+  1fb9	= Rang \u{f061} in allen 150 ccm-Cups des Wii-Grand Prix!
+  1fba	= 4 Spitzengeistdaten der Entwickler im Zeitfahren!
+  1fbb	= 25 Siege in Geistrennen!
+  1fbc	= Sieg im Stern-Cup, 50 ccm!
+  1fbd	= Sieg im Spezial-Cup, 100 ccm!
+  1fbe	= Alle 32 Spitzengeistdaten der Entwickler im Zeitfahren!
+  1fbf	= 5 000 Siege in Nintendo WFC-Rennen!
+  1fc0	= 100 Siege in Geistrennen!
+  1fc1	= 250 Siege in Nintendo WFC-Rennen!
+  1fc2	/
+  1fcc	= Rang \u{f061} in allen 50 ccm-Cups des Retro-Grand Prix!
+  1fcd	= Spitzengeistdaten eines Entwicklers im Zeitfahren!
+  1fce	= 50 Siege in Nintendo WFC-Rennen!
+  1fcf	= Sieg im Blitz-Cup, Spiegel!
+  1fd0	= Sieg im Blatt-Cup, 50 ccm!
+  1fd1	= Sieg im Blatt-Cup, 150 ccm!
+  1fd2	= 24 Spitzengeistdaten der Entwickler im Zeitfahren!
+  1fd3	= Sieg im Spezial-Cup, 50 ccm!
+  1fd4	= Rang \u{f061} in allen 150 ccm-Cups des Retro-Grand Prix!
+  1fd5	= Sieg im Blitz-Cup, 150 ccm!
+  1fd6	= Sieg im Stern-Cup, 150 ccm!
+  1fd7	= 8 verschiedene Kurse im Zeitfahren!
+  1fd8	= 5 Siege in Geistrennen!
+  1fd9	= Sieg im Blatt-Cup, Spiegel!
+  1fda	= Sieg im Blitz-Cup, 100 ccm!
+  1fdb	= Rang \u{f061} in allen 100 ccm-Cups des Wii-Grand Prix!
+  1fdc	= Sieg im Stern-Cup, Spiegel!
+  1fdd	= Sieg im Stern-Cup, 100 ccm!
+  1fde	= 12 Spitzengeistdaten der Entwickler im Zeitfahren!
+  1fdf	= 200 Siege in Geistrennen!
+  1fe0	= Sieg im Spezial-Cup, Spiegel!
+  1fe1	= Sieg in allen 50 ccm-Cups!
+  1fe2	= Sieg in allen 100 ccm-Cups!
+  1fe3	= 3 000 Siege in Nintendo WFC-Rennen!
+  1fe4	= Du hast Mario Kart Wii \z{a02,1000000000}-mal gespielt!
+  1fe5	/
+  2008	= Alle Rekorde
+  2009	= Bevorzugtes
+  200a	= Freundes-Rekorde
+  200b	= Nintendo WFC-Rekorde
+  200c	= Andere Rekorde
+  2012	= Rang
+  2013	= Gefahrene Mario Kart Wii-KM
+  2014	= Zahl aller Rennen
+  2015	= Zahl aller Wettkämpfe
+  2016	= Wii Wheel-Nutzung (%)
+  2017	= Ausgeführte Stunts
+  2018	= Lieblingsfahrer
+  2019	= Lieblingsfahrzeug
+  201a	= Lieblingskurs
+  201b	= Lieblingsarena
+  201c	= Nintendo WFC-Freundes-Rekord
+  201d	/
+  201e	= Gesendete Geistdaten
+  201f	= Empfangene Geistdaten
+  2020	= R-Punkte
+  2021	= Versus-Rennen-Rekord
+  2022	= W-Punkte
+  2023	= Wettkampf-Rekord
+  2024	= Erstplatzierungen
+  2025	= Zeit als Erster (%)
+  2026	= Erzielte Itemtreffer
+  2027	= Erhaltene Itemtreffer
+  2028	= Geistrennen-Rekord
+  2029	= Wettbewerbsteilnahmen
+  202a	/
+  202b	/
+  202c	/
+  202d	/
+  202e	/
+  2044	= \z{802,110000}
+  2045	= \z{a02,1000000000}
+  2046	= \z{a02,1000000000}
+  2047	= \z{a02,1000000000}
+  2048	= \z{a02,1000000000} %
+  2049	= \z{a02,1000000000}
+  204a	= \z{802,110000}
+  204b	= \z{802,110000}
+  204c	= \z{802,110000}
+  204d	= \z{802,110000}
+  204e	= Siege: \z{a02,1000000000}/Niederl.: \z{a02,1000010000}
+  204f	/
+  2050	= \z{a02,1000000000}
+  2051	= \z{a02,1000000000}
+  2052	= \z{a02,1000000000}
+  2053	= Siege: \z{a02,1000000000}/Niederl.: \z{a02,1000010000}
+  2054	= \z{a02,1000000000}
+  2055	= Siege: \z{a02,1000000000}/Niederl.: \z{a02,1000010000}
+  2056	= \z{a02,1000000000}
+  2057	= \z{a02,1000000000} %
+  2058	= \z{a02,1000000000}
+  2059	= \z{a02,1000000000}
+  205a	= Siege: \z{a02,1000000000}/Niederl.: \z{a02,1000010000}
+  205b	= \z{a02,1000000000}
+  205c	/
+  20d0	/
+  20d1	/
+  20d2	/
+  20d3	/
+  20d4	/
+  20d5	= Glückwunsch, %ls!\n
+	+ \n
+	+ Du hast Pokale in allen Cups\n
+	+ erhalten! Als Anerkennung für\n
+	+ diese Leistung möchten wir dir\n
+	+ ein Erinnerungsfoto schenken.\n
+	+ Vielen Dank fürs Spielen!\n
+	+ Wir wünschen dir auch weiterhin\n
+	+ viel Spaß mit Mario Kart Wii!
+  20d6	= Glückwunsch, %ls!\n
+	+ \n
+	+ Du hast Goldpokale in allen Cups\n
+	+ erhalten! Als Anerkennung für\n
+	+ diese Leistung möchten wir dir\n
+	+ ein Erinnerungsfoto schenken.\n
+	+ Vielen Dank fürs Spielen!\n
+	+ Wir wünschen dir auch weiterhin\n
+	+ viel Spaß mit Mario Kart Wii!
+  20d7	/
+  20d8	/
+  20d9	/
+  20da	/
+  20db	/
+  20dc	/
+  20dd	/
+  20de	/
+  20df	/
+  20e0	/
+  20e1	/
+  20e2	/
+  20e3	/
+  20e4	/
+  20e5	/
+  20e6	/
+  20e7	/
+  20e8	/
+  20e9	/
+  20ea	/
+  20eb	/
+  20ec	/
+  20ed	/
+  20ee	/
+  20f8	/
+  20f9	/
+  20fa	/
+  20fb	/
+  20fc	/
+  20fd	/
+  20fe	/
+  20ff	/
+  2100	/
+  2101	/
+  2102	/
+  2103	/
+  2104	/
+  2105	/
+  2106	/
+  2107	/
+  2108	/
+  2109	/
+  210a	/
+  210b	/
+  210c	/
+  210d	/
+  210e	= Glückwunsch, %ls!\n
+	+ \n
+	+ Du hast Pokale in allen 100 ccm-\n
+	+ Cups erhalten! Eine neue\n
+	+ Motorklasse steht zur Verfügung:\n
+	+ \n
+	+ 100 ccm (Karts und Bikes)!
+  210f	/
+  2110	/
+  2116	/
+  2117	/
+  2118	/
+  2119	/
+  211a	/
+  211b	/
+  211c	/
+  211d	/
+  211e	/
+  211f	/
+  2120	/
+  2121	/
+  2122	/
+  2123	/
+  2124	/
+  2125	/
+  2126	/
+  212a	= Eine Nachricht des\n
+	+ Mario Kart-Kanals.\n
+	+ \n
+	+ \z{802,200000}\n
+	+ \n
+	+ \n
+	+ \n
+	+ Möchtest du keine weiteren\n
+	+ kommerziellen Nachrichten von\n
+	+ Nintendo erhalten, wähle die\n
+	+ ABBESTELLUNG-Schaltfläche\n
+	+ am oberen, rechten Rand des\n
+	+ Bildschirms.\n
+	+ \n
+	+ Du kannst entweder (1) alle Nach-\n
+	+ richten des Mario Kart-Kanals\n
+	+ oder (2) alle Nachrichten aller\n
+	+ Kanäle und Spiele abbestellen.
+  212b	= Eine Nachricht des\n
+	+ Mario Kart-Kanals.\n
+	+ \n
+	+ \z{802,200000}\n
+	+ \n
+	+ \n
+	+ \n
+	+ Möchtest du keine weiteren\n
+	+ kommerziellen Nachrichten von\n
+	+ Nintendo erhalten, wähle die\n
+	+ ABBESTELLUNG-Schaltfläche\n
+	+ am oberen, rechten Rand des\n
+	+ Bildschirms.\n
+	+ \n
+	+ Du kannst entweder (1) alle Nach-\n
+	+ richten des Mario Kart-Kanals\n
+	+ oder (2) alle Nachrichten aller\n
+	+ Kanäle und Spiele abbestellen.
+  212c	= %ls schlägt vor,\n
+	+ dass ihr eure Freundescodes\n
+	+ registriert!\n
+	+ \n
+	+ Mario Kart Wii\n
+	+ Freundescode: %04d-%04d-%04d\n
+	+ \n
+	+ Wenn ihr gegenseitig eure Freundes-\n
+	+ codes registriert, könnt ihr\n
+	+ gemeinsam Mario Kart Wii via\n
+	+ Nintendo Wi-Fi Connection spielen.\n
+	+ \n
+	+ Besitzt du eine Mario Kart Wii-Disc\n
+	+ und hast du den Mario Kart-Kanal\n
+	+ deinem Wii-Menü hinzugefügt, dann\n
+	+ kannst du die Option START wählen,\n
+	+ um die Registrierung der\n
+	+ Freundescodes zu bestätigen.\n
+	+ \n
+	+ Viel Spaß!
+  212d	= %ls hat deinen\n
+	+ Vorschlag angenommen,\n
+	+ Freundescodes zu registrieren!\n
+	+ \n
+	+ Mario Kart Wii\n
+	+ Freundescode: %04d-%04d-%04d\n
+	+ \n
+	+ Wenn noch genügend Platz in\n
+	+ deiner Freundesliste ist,\n
+	+ wird ihr dieser Freundescode\n
+	+ automatisch hinzugefügt.\n
+	+ \n
+	+ Hast du den Mario Kart-Kanal\n
+	+ deinem Wii-Menü hinzugefügt, dann\n
+	+ kannst du die Option START wählen,\n
+	+ um den Mario Kart-Kanal zu öffnen\n
+	+ und zu prüfen, ob der Freundescode\n
+	+ in deiner Freundesliste registriert\n
+	+ wurde.\n
+	+ \n
+	+ Viel Spaß!
+  212e	/
+  212f	/
+  2130	/
+  2131	/
+  2132	/
+  2133	/
+  2134	/
+  2138	/
+  2139	/
+  213e	/
+  213f	/
+  2140	/
+  2141	/
+  2142	/
+  2143	/
+  2144	/
+  2145	/
+  2146	/
+  2147	/
+  2148	/
+  2149	/
+  214a	/
+  214b	/
+  214c	/
+  214d	/
+  214e	/
+  214f	/
+  2150	/
+  2151	/
+  2152	/
+  215c	/
+  215d	/
+  215e	/
+  215f	/
+  2160	/
+  2161	/
+  2162	/
+  2163	/
+  2164	/
+  2165	/
+  2166	/
+  2167	/
+  2168	/
+  2169	/
+  216a	/
+  216b	/
+  216c	/
+  216d	/
+  216e	/
+  216f	/
+  2170	/
+  2171	/
+  2172	/
+  2173	/
+  2174	/
+  2175	/
+  2176	/
+  2177	/
+
+  2710  = c01 Name
+  2711  = c02 Name
+  2712  = c03 Name
+  2713  = c04 Name
+  2714  = c05 Name
+  2715  = c06 Name
+  2716  = c07 Name
+  2717  = c08 Name
+  2718  = c09 Name
+  2719  = c10 Name
+  271A  = c11 Name
+  271B  = c12 Name
+  271C  = c13 Name
+  271D  = c14 Name
+  271E  = c15 Name
+  271F  = c16 Name
+  2720  = c17 Name
+  2721  = c18 Name
+  2722  = c19 Name
+  2723  = c20 Name
+  2724  = c21 Name
+  2725  = c22 Name
+  2726  = c23 Name
+  2727  = c24 Name
+  2728  = c25 Name
+  2729  = c26 Name
+  272A  = c27 Name
+  272B  = c28 Name
+  272C  = c29 Name
+  272D  = c30 Name
+  272E  = c31 Name
+  272F  = c32 Name
+  2730  = c33 Name
+  2731  = c34 Name
+  2732  = c35 Name
+  2733  = c36 Name
+  2734  = c37 Name
+  2735  = c38 Name
+  2736  = c39 Name
+  2737  = c40 Name
+  2738  = c41 Name
+  2739  = c42 Name
+  273A  = c43 Name
+  273B  = c44 Name
+  273C  = c45 Name
+  273D  = c46 Name
+  273E  = c47 Name
+  273F  = c48 Name
+  2740  = c49 Name
+
+  27d8	= Zeitfahren
+  27d9	= Versus-Rennen
+  27da	= Zeitfahren
+  27db  = Enemy Score
+  27dc  = Boss Battle
+  27dd  = Boss VS Race
+  27de  = Coin Challenge
+  27df  = Gate Challenge
+
+  27e8  = \z{a02,1000000001}
+  27e9  = \z{a02,1000000001} 
+
+  27f0  = Wettbewerbe
+  27f1  = Zufällig
+  27f2  = 
+
+  2800  = Your rank will not be\n
+        + saved using this controller.\n
+        + Is this OK?
+
+ 18697	/
+ 18698	/
+ 18699	/
+ 1869a	/
+ 1869b	/
+ 1869c	/
+ 1869d	/
+ 1869e	/
+

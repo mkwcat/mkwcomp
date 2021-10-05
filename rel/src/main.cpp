@@ -96,8 +96,8 @@ void main()
     Patch_SceneBuildPages.setBL(buildPagesHook);
     Patch_SceneShowBasePages.setBL(showBasePagesHook);
 
-    // Patch_MainMenuKind.m_instr[0] = 0x38600000 | UI::SceneKind::Menu;
-    // Patch_MainMenuKind.flush();
+    Patch_MainMenuKind.m_instr[0] = 0x38600000 | UI::SceneKind::Globe;
+    Patch_MainMenuKind.flush();
 
     Patch_LicenseSelect.setBL(patchLicenseSelectGetNextScene);
 
