@@ -166,7 +166,7 @@ public:
 };
 UI::AutoTypeInfo<UI::RaceHudPage> ReplayHud::sTypeInfo;
 
-bool buildTournamentPages(UI::Scene* scene)
+void buildTournamentPages(UI::Scene* scene)
 {
     scene->buildPage(0x16);
     scene->buildPage(0x35);
@@ -181,10 +181,9 @@ bool buildTournamentPages(UI::Scene* scene)
         scene->registerPage(0x26, page);
         page->init(0x26);
     }
-    return true;
 }
 
-bool buildTournamentReplayPages(UI::Scene* scene)
+void buildTournamentReplayPages(UI::Scene* scene)
 {
     scene->buildPage(0x39);
     scene->buildPage(0x3A);
@@ -198,7 +197,6 @@ bool buildTournamentReplayPages(UI::Scene* scene)
         scene->registerPage(0x26, page);
         page->init(0x26);
     }
-    return true;
 }
 
 asm void hudWatchReplayHook()

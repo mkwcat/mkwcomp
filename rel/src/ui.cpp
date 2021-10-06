@@ -54,17 +54,23 @@ s32 eventExplanationGetNextPage(UI::UIPage* page)
     return s_eventExplanation_nextPage;
 }
 
-bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)
+void buildPagesReplace(UI::Scene* scene, int id)
 {
     OSReport("load pages for scene: 0x%X\n", id);
 
     switch (id) {
-    case 0x2D:
+    case UI::SCENE_TOURNAMENT_GAMEPLAY:
         if (isTournamentReplay())
-            return buildTournamentReplayPages(scene);
-        return buildTournamentPages(scene);
+            buildTournamentReplayPages(scene);
+        else
+            buildTournamentPages(scene);
+        break;
 
-    case 0x3F ... 0x43:
+    case UI::SCENE_MAIN_MENU_FROM_BOOT:
+    case UI::SCENE_MAIN_MENU_FROM_RESET:
+    case UI::SCENE_MAIN_MENU_FROM_MENU:
+    case UI::SCENE_MAIN_MENU_FROM_NEW_LICENSE:
+    case UI::SCENE_MAIN_MENU_FROM_LICENSE_43:
         scene->buildPage(0x52);
         scene->buildPage(0x5E);
         scene->buildPage(0x65);
@@ -74,11 +80,10 @@ bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)
             scene->registerPage(0x57, page);
             page->init(0x57);
         }
-        return true;
+        break;
 
-    case 0x85:
-    case 0x86:
-    case 0x83:
+    case UI::SCENE_TOURNAMENT:
+    case UI::SCENE_TOURNAMENT_CHANGE_CHARA:
         scene->buildPage(0x4B);
         scene->buildPage(0x4D);
         scene->buildPage(0x51);
@@ -95,10 +100,10 @@ bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)
             scene->registerPage(0x8C, page);
             page->init(0x8C);
         }
-        return true;
+        break;
 
-    case 0x88:
-    case 0x89:
+    case UI::SCENE_TOURNAMENT_WII_WHEEL_ONLY:
+    case UI::SCENE_TOURNAMENT_WII_WHEEL_ONLY_BOSSES:
         scene->buildPage(0x5B);
         scene->buildPage(0xBA);
         scene->buildPage(0x4E);
@@ -107,9 +112,9 @@ bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)
             scene->registerPage(0x87, page);
             page->init(0x87);
         }
-        return true;
+        break;
 
-    case SETTINGS_SCENE_ID:
+    case UI::SCENE_OPTIONS:
         scene->buildPage(0x4D);
         scene->buildPage(0x4E);
         scene->buildPage(0x5D);
@@ -130,44 +135,34 @@ bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)
             scene->registerPage(0xC0, page);
             page->init(0xC0);
         }
-        return true;
-
-    default:
-        return false;
+        break;
     }
 }
 
-bool showBasePagesReplace(UI::Scene* scene, UI::SceneID id)
+void showBasePagesReplace(UI::Scene* scene, int id)
 {
     switch (id) {
-    case 0x3F ... 0x41:
+    case UI::SCENE_MAIN_MENU_FROM_BOOT:
+    case UI::SCENE_MAIN_MENU_FROM_RESET:
+    case UI::SCENE_MAIN_MENU_FROM_MENU:
         scene->showPageOnTop(0x5E);
         scene->showPageOnTop(0x57);
-        return true;
-    case 0x42:
-    case 0x43:
+        break;
+    case UI::SCENE_MAIN_MENU_FROM_NEW_LICENSE:
+    case UI::SCENE_MAIN_MENU_FROM_LICENSE_43:
         scene->showPageOnTop(0x5E);
         scene->showPageOnTop(0x65);
-        return true;
-    case 0x85:
+        break;
+    case UI::SCENE_TOURNAMENT:
         scene->showPageOnTop(0xBB);
         scene->showPageOnTop(0x7F);
-        // scene->showPageOnTop(0x69);
         scene->showPageOnTop(0x8C);
-        return true;
-    case 0x86:
+        break;
+    case UI::SCENE_TOURNAMENT_CHANGE_CHARA:
         scene->showPageOnTop(0xBB);
         scene->showPageOnTop(0x7F);
         scene->showPageOnTop(0xB7);
-        return true;
-    case 0x83:
-        scene->showPageOnTop(0xBB);
-        scene->showPageOnTop(0x7F);
-        scene->showPageOnTop(0xC0);
-        return true;
-
-    default:
-        return false;
+        break;
     }
 }
 
@@ -176,122 +171,85 @@ s32 patchLicenseSelectGetNextScene()
     return 0x85;
 }
 
-bool sceneHasBackModelReplace(UI::SceneID id)
+bool sceneHasBackModelReplace(int id)
 {
     return false;
 }
 
-s32 sceneGetBGMReplace(UI::SceneID id)
+s32 sceneGetBGMReplace(int id)
 {
     switch (id) {
-    case 0x19:
+    case UI::SCENE_GRAND_PRIX_PANORAMA:
         return 0x59;
-    case 0x1B:
-    case 0x1C:
-    case 0x1D:
+    case UI::SCENE_BALLOON_BATTLE_PANORAMA:
+    case UI::SCENE_MISSION_BOSS_PANORAMA:
+    case UI::SCENE_TOURNAMENT_BOSS_PANORAMA:
         return 0x57;
-    case 0x1E:
+    case UI::SCENE_GRAND_PRIX_GAMEPLAY:
         return 0x59;
-    case 0x1F:
+    case UI::SCENE_TIME_TRIAL_GAMEPLAY:
         return 0x5A;
-    case 0x20 ... 0x27:
+
+    case UI::SCENE_1P_VS_RACE_GAMEPLAY:
+    case UI::SCENE_2P_VS_RACE_GAMEPLAY:
+    case UI::SCENE_3P_VS_RACE_GAMEPLAY:
+    case UI::SCENE_4P_VS_RACE_GAMEPLAY:
+    case UI::SCENE_1P_TEAM_VS_RACE_GAMEPLAY:
+    case UI::SCENE_2P_TEAM_VS_RACE_GAMEPLAY:
+    case UI::SCENE_3P_TEAM_VS_RACE_GAMEPLAY:
+    case UI::SCENE_4P_TEAM_VS_RACE_GAMEPLAY:
         return 0x59;
-    case 0x28 ... 0x2D:
+
+    case UI::SCENE_1P_BATTLE_GAMEPLAY:
+    case UI::SCENE_2P_BATTLE_GAMEPLAY:
+    case UI::SCENE_3P_BATTLE_GAMEPLAY:
+    case UI::SCENE_4P_BATTLE_GAMEPLAY:
+    case UI::SCENE_MISSION_MODE_GAMEPLAY:
+    case UI::SCENE_TOURNAMENT_GAMEPLAY:
         return 0x5A;
-    case 0x3F ... 0x43:
+
+    case UI::SCENE_MAIN_MENU_FROM_BOOT:
+    case UI::SCENE_MAIN_MENU_FROM_RESET:
+    case UI::SCENE_MAIN_MENU_FROM_MENU:
+    case UI::SCENE_MAIN_MENU_FROM_NEW_LICENSE:
+    case UI::SCENE_MAIN_MENU_FROM_LICENSE_43:
         return 2;
-    case 0x85:
-    case 0x86:
-    case 0x83:
+
+    case UI::SCENE_TOURNAMENT:
+    case UI::SCENE_TOURNAMENT_CHANGE_CHARA:
         return 1;
-    case 0x45 ... 0x47:
-    case 0x8C:
+
+    case UI::SCENE_MII_SELECT_1:
+    case UI::SCENE_MII_SELECT_2:
+    case UI::SCENE_LICENSE_SETTINGS:
+    case UI::SCENE_OPTIONS:
         return 0x53;
     default:
         return -1;
     }
 }
-s32 sceneGetBGMGroupReplace(UI::SceneID id)
+s32 sceneGetBGMGroupReplace(int id)
 {
     switch (id) {
-    case 0x3F ... 0x43:
+    case UI::SCENE_MAIN_MENU_FROM_BOOT:
+    case UI::SCENE_MAIN_MENU_FROM_RESET:
+    case UI::SCENE_MAIN_MENU_FROM_MENU:
+    case UI::SCENE_MAIN_MENU_FROM_NEW_LICENSE:
+    case UI::SCENE_MAIN_MENU_FROM_LICENSE_43:
         return 2;
-    case 0x85:
-    case 0x86:
-    case 0x83:
+
+    case UI::SCENE_TOURNAMENT:
+    case UI::SCENE_TOURNAMENT_CHANGE_CHARA:
         return 3;
-    case 0x45 ... 0x47:
-    case 0x8C:
+
+    case UI::SCENE_MII_SELECT_1:
+    case UI::SCENE_MII_SELECT_2:
+    case UI::SCENE_LICENSE_SETTINGS:
+    case UI::SCENE_OPTIONS:
         return 12;
     default:
         return -1;
     }
-}
-
-asm void buildPagesHook(UI::Scene* scene, UI::SceneID id)
-{
-    // clang-format off
-    nofralloc
-
-    /* original instruction */
-    bgt-    buildPages_end
-
-    stwu    r1, -0x10(r1)
-    stw     r0, 0xC(r1)
-    mflr    r0
-    stw     r0, 0x14(r1)
-
-    bl      buildPagesReplace
-    cmpwi   r3, 0
-    mr      r3, r31
-
-    lwz     r0, 0x14(r1)
-    mtlr    r0
-    lwz     r0, 0xC(r1)
-    addi    r1, r1, 0x10
-    
-    beqlr-
-
-buildPages_end:
-    lwz     r0, 0x14(r1)
-    lwz     r31, 0xC(r1)
-    mtlr    r0
-    addi    r1, r1, 0x10
-    blr
-    // clang-format on
-}
-
-asm void showBasePagesHook(UI::Scene* scene, UI::SceneID id)
-{
-    // clang-format off
-    nofralloc
-
-    /* original instruction */
-    bgt-    showBasePages_end
-
-    stwu    r1, -0x10(r1)
-    stw     r0, 0xC(r1)
-    mflr    r0
-    stw     r0, 0x14(r1)
-
-    bl      showBasePagesReplace
-    cmpwi   r3, 0
-    mr      r3, r31
-
-    lwz     r0, 0x14(r1)
-    mtlr    r0
-    lwz     r0, 0xC(r1)
-    addi    r1, r1, 0x10
-    
-    beqlr-
-
-showBasePages_end:
-    lwz     r0, 0x14(r1)
-    lwz     r31, 0xC(r1)
-    mtlr    r0
-    addi    r1, r1, 0x10
-    blr
-    // clang-format on
 }
 
 extern Instruction<1> Patch_SceneBuildPages;
@@ -319,8 +277,8 @@ void initMenu()
     ForcedHandleBypassPage::staticInit();
     initRaceMenu();
 
-    Patch_SceneBuildPages.setBL(buildPagesHook);
-    Patch_SceneShowBasePages.setBL(showBasePagesHook);
+    Patch_SceneBuildPages.setBL(buildPagesReplace);
+    Patch_SceneShowBasePages.setBL(showBasePagesReplace);
 
     Patch_MainMenuKind.m_instr[0] = 0x38600000 | UI::SceneKind::Globe;
     Patch_MainMenuKind.flush();
