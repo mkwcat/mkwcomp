@@ -7,11 +7,12 @@
 class SettingsPage : public UI::UIPage
 {
 public:
+    static void staticInit();
+
     SettingsPage();
     virtual ~SettingsPage();
 
     virtual void onInit();
-    virtual void onShow();
     virtual int getNextPageID();
 
 protected:

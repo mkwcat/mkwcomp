@@ -1,6 +1,6 @@
 /* Patch addresses */
-8062bb0c:Patch_SceneBuildPages
-8062f7fc:Patch_SceneShowBasePages
+8062bcf0:Patch_SceneBuildPages
+8062f7e0:Patch_SceneShowBasePages
 80630e10:Patch_MainMenuKind
 806311a4:Patch_SceneHasBackModel
 806313b4:Patch_SceneGetBGM
@@ -13,6 +13,7 @@
 80859ce8:Patch_ChangeMissionCase
 805d16dc:Patch_WiiWheelOnlyPage
 805eb210:Patch_LicenseSelect
+805ed6b0:Patch_LicenseSettingsBack
 
 80856ea8:Patch_ControlKindCheck_RaceFinishReset
 80856028:Patch_ControlKindCheck_onPause
@@ -47,10 +48,25 @@
 80021010:__destroy_arr
 8002125c:__register_global_object
 
+800214b4:_savegpr_23
 800214b8:_savegpr_24
 800214bc:_savegpr_25
+800214e0:_savegpr_26
+800214e4:_savegpr_27
+800214e8:_savegpr_28
+800214ec:_savegpr_29
+800214f0:_savegpr_30
+800214f4:_savegpr_31
+
+80021500:_restgpr_23
 80021504:_restgpr_24
 80021508:_restgpr_25
+8002150c:_restgpr_26
+80021510:_restgpr_27
+80021514:_restgpr_28
+80021518:_restgpr_29
+8002151c:_restgpr_30
+80021520:_restgpr_31
 
 /* EGG alloc functions */
 80229cec:__nw__FUl
@@ -151,7 +167,7 @@
 805babf8:getNextPageID__Q22UI6UIPageFv
 805babd4:_14__Q22UI6UIPageFv
 805babcc:_18__Q22UI6UIPageFv
-80601c24:startSceneTransition__Q22UI6UIPageFiQ32UI6UIPage13TransitionDirfi
+80601c24:startSceneTransition__Q22UI6UIPageFiQ32UI6UIPage13TransitionDirf
 80601ca4:_20__Q22UI6UIPageFv
 80601d24:showNextPage__Q22UI6UIPageFii
 8060124c:onInit__Q22UI6UIPageFv

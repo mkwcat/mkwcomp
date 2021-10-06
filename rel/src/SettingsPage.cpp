@@ -1,9 +1,12 @@
 #include "SettingsPage.h"
 #include "UI.h"
+#include "patch.h"
 #include <mkw/UI/PushButton.h>
 #include <mkw/UI/Scene.h>
-#include <mkw/UI/UIPage.h>
 #include <mkw/UI/SceneBGMController.h>
+#include <mkw/UI/UIPage.h>
+
+UI::AutoTypeInfo<UI::UIPage> SettingsPage::sTypeInfo;
 
 enum Button
 {
@@ -17,7 +20,6 @@ SettingsPage::SettingsPage()
       m_ptr_onBackPress(this, &SettingsPage::onBackPress)
 {
     m_nextPage = -1;
-    m_10 = 0;
 }
 SettingsPage::~SettingsPage()
 {
@@ -69,12 +71,12 @@ void SettingsPage::onInit()
 
     m_events.configureEvent(UI::INPUT_BACK, &m_ptr_onBackPress, 0, 0);
 
-    m_rumbleButton.setSelected(0);
-}
-
-void SettingsPage::onShow()
-{
-    m_rumbleButton.setSelected(0);
+    // aka options from license settings
+    if (UI::MenuDataInstance->m_scene->m_sceneId == UI::SCENE_INSTALL_CHANNEL) {
+        m_licenseButton.setSelected(0);
+    } else {
+        m_rumbleButton.setSelected(0);
+    }
 }
 
 void SettingsPage::onButtonSelect(UI::PushButton* button, int r5)
@@ -98,12 +100,12 @@ void SettingsPage::onButtonSelect(UI::PushButton* button, int r5)
 
     f32 delay = button->getSelectDelay();
     m_nextPage = -1;
-    startSceneTransition(LICENSE_SETTINGS_SCENE_ID, SLIDE_FORWARD, delay, 0);
+    startSceneTransition(LICENSE_SETTINGS_SCENE_ID, SLIDE_FORWARD, delay);
 }
 
 void SettingsPage::onBackPress(int r4, int r5)
 {
-    startSceneTransition(TOURNAMENT_SELECT_SCENE_ID, SLIDE_BACK, 0, 0);
+    startSceneTransition(TOURNAMENT_SELECT_SCENE_ID, SLIDE_BACK, 0);
 }
 
 int SettingsPage::getNextPageID()
@@ -111,4 +113,16 @@ int SettingsPage::getNextPageID()
     return m_nextPage;
 }
 
-UI::AutoTypeInfo<UI::UIPage> SettingsPage::sTypeInfo;
+void LicenseSettings_onBackPress(UI::UIPage* page)
+{
+    UI::SceneBGMControllerInstance->enableBGMPersist();
+    // aka options from license settings
+    page->startSceneTransition(UI::SCENE_INSTALL_CHANNEL,
+                               UI::UIPage::SLIDE_BACK, 0);
+}
+
+extern Instruction<1> Patch_LicenseSettingsBack;
+void SettingsPage::staticInit()
+{
+    Patch_LicenseSettingsBack.setB(LicenseSettings_onBackPress);
+}

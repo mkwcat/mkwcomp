@@ -188,15 +188,18 @@ void SelectionPage::onInit()
                                 false);
         m_buttons[i].setSelectEvent(&m_ptr_onSelectEvent, 0);
         m_buttons[i].setFreeToSelectEvent(&m_ptr_onFreeToSelectEvent);
+
         m_buttons[i].m_id = i;
     }
 
     m_selectedCompId = s_lastCompId;
     m_pageNum = m_selectedCompId / 10;
     m_selectedButtonId = compIdButton(m_selectedCompId);
+
     m_buttons[m_selectedButtonId].setSelected(0);
 
     insertControl(10, &m_arrows, 0);
+
     m_arrows.readLayout("button", "FriendListArrowRight", "ButtonArrowRight",
                         "FriendListArrowLeft", "ButtonArrowLeft", 1, 0, false);
     m_arrows.m_rightEvent = &m_ptr_onArrowRightEvent;
@@ -204,22 +207,26 @@ void SelectionPage::onInit()
 
     {
         insertControl(11, &m_pageNumControl, 0);
+
         UI::CtrlRes ctrl(&m_pageNumControl);
         ctrl.readFile("control", "TimeAttackGhostListPageNum",
                       "TimeAttackGhostListPageNum", nullptr);
     }
     {
         insertControl(12, &m_compName, 0);
+
         UI::CtrlRes ctrl(&m_compName);
         ctrl.readFile("control", "CompetitionName", "CompetitionName", nullptr);
     }
 
     insertControl(13, &m_backButton, 0);
+
     m_backButton.initLayout(1);
     m_backButton.setSelectEvent(&m_ptr_onSelectEvent, 0);
     m_backButton.setFreeToSelectEvent(&m_ptr_onFreeToSelectEvent);
 
     insertControl(14, &m_titleText, 0);
+
     m_titleText.initLayout(0);
     m_titleText.setAllText(0x27F0, 0);
 
@@ -236,16 +243,17 @@ void SelectionPage::onSelectEvent(UI::PushButton* button, int r5)
     // -100 represents the on-screen back button
     if (button->m_id == -100) {
         f32 delay = button->getSelectDelay();
-        startSceneTransition(0x42, UI::UIPage::SLIDE_BACK, delay, 0);
+        startSceneTransition(0x42, UI::UIPage::SLIDE_BACK, delay);
         return;
     }
 
     int compId = buttonCompId(button->m_id);
+    s_lastCompId = compId;
     if (compId == 0) {
         // Settings
         m_nextPage = -1;
         f32 delay = button->getSelectDelay();
-        startSceneTransition(SETTINGS_SCENE_ID, SLIDE_FORWARD, delay, 0);
+        startSceneTransition(SETTINGS_SCENE_ID, SLIDE_FORWARD, delay);
         return;
     }
 
@@ -286,7 +294,7 @@ void SelectionPage::onFreeToSelectEvent(UI::PushButton* button, int r5)
 void SelectionPage::onBackEvent(int r4, int r5)
 {
     m_nextPage = -1;
-    startSceneTransition(0x42, UI::UIPage::SLIDE_BACK, 0, 0);
+    startSceneTransition(0x42, UI::UIPage::SLIDE_BACK, 0);
 }
 
 void SelectionPage::onArrowRightEvent(UI::SheetSelectControl* arrow, int r5)

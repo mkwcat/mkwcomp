@@ -80,7 +80,7 @@ public:
         SLIDE_BACK
     };
     virtual void startSceneTransition(int sceneId, TransitionDir direction,
-                                      f32 delay, int r5);
+                                      f32 delay);
     void startTransitionOut(TransitionDir direction, f32 delay);
 
     virtual void _20();
@@ -126,7 +126,7 @@ protected:
     u32 m_8;
     bool m_C;
 
-    u32 m_10;
+    TransitionDir m_slideDir;
     u32 m_14;
     u32 m_18;
     u32 m_1C;

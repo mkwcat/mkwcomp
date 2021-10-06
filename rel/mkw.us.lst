@@ -1,6 +1,6 @@
 /* Patch addresses */
-805fb50c:Patch_SceneBuildPages
-805ff1fc:Patch_SceneShowBasePages
+805fb4f0:Patch_SceneBuildPages
+805ff1e0:Patch_SceneShowBasePages
 80600810:Patch_MainMenuKind
 80600ba4:Patch_SceneHasBackModel
 80600db4:Patch_SceneGetBGM
@@ -13,8 +13,8 @@
 80838bec:Patch_ChangeMissionCase
 80628468:Patch_WiiWheelOnlyPage
 80632c0c:Patch_LicenseSelect
-806350b8:Patch_LicenseSettingsBack
-80600b34:Patch_Scene87ResourceName
+806350ac:Patch_LicenseSettingsBack
+805f1354:Patch_BGUnloadSoundFix
 
 80835dac:Patch_ControlKindCheck_RaceFinishReset
 80834f2c:Patch_ControlKindCheck_onPause
@@ -171,7 +171,7 @@
 805b56b8:getNextPageID__Q22UI6UIPageFv
 805b5694:_14__Q22UI6UIPageFv
 805b568c:_18__Q22UI6UIPageFv
-805ddbd0:startSceneTransition__Q22UI6UIPageFiQ32UI6UIPage13TransitionDirfi
+805ddbd0:startSceneTransition__Q22UI6UIPageFiQ32UI6UIPage13TransitionDirf
 805ddc50:_20__Q22UI6UIPageFv
 805ddcd0:showNextPage__Q22UI6UIPageFii
 805dd1f8:onInit__Q22UI6UIPageFv
