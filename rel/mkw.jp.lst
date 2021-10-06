@@ -114,7 +114,7 @@
 /* UIPage and vtable stuff */
 806010f0:__ct__Q22UI6UIPageFv
 80601bd0:initControlGroup__Q22UI6UIPageFi
-80601be0:registerControl__Q22UI6UIPageFiPQ22UI9UIControli
+80601be0:insertControl__Q22UI6UIPageFiPQ22UI9UIControli
 806011d4:init__Q22UI6UIPageFl
 
 805ee444:__ct__Q22UI13PageEventBaseFv
@@ -137,9 +137,9 @@
 805bce30:__dt__Q22UI10PushButtonFv
 805bce98:readLayout__Q22UI10PushButtonFPCcPCcPCciib
 805bd448:setSelectEvent__Q22UI10PushButtonFPQ22UI9EventBasei
-805bd460:setHighlightEvent__Q22UI10PushButtonFPQ22UI9EventBase
-805bd470:setHighlighted__Q22UI10PushButtonFi
-805bd4c4:somethingHighlightRelated__Q22UI10PushButtonFi
+805bd460:setFreeToSelectEvent__Q22UI10PushButtonFPQ22UI9EventBase
+805bd470:setSelected__Q22UI10PushButtonFi
+805bd4c4:freeToSelect__Q22UI10PushButtonFi
 
 80635610:__ct__Q22UI18SheetSelectControlFv
 806357c8:__dt__Q22UI18SheetSelectControlFv
@@ -151,11 +151,11 @@
 805babf8:getNextPageID__Q22UI6UIPageFv
 805babd4:_14__Q22UI6UIPageFv
 805babcc:_18__Q22UI6UIPageFv
-80601c24:startSceneTransition__Q22UI6UIPageFfiQ32UI6UIPage13TransitionDir
+80601c24:startSceneTransition__Q22UI6UIPageFiQ32UI6UIPage13TransitionDirfi
 80601ca4:_20__Q22UI6UIPageFv
 80601d24:showNextPage__Q22UI6UIPageFii
-8060124c:initInternal__Q22UI6UIPageFv
-805babc8:deinit__Q22UI6UIPageFv
+8060124c:onInit__Q22UI6UIPageFv
+805babc8:onDeinit__Q22UI6UIPageFv
 805c9208:onShow__Q22UI6UIPageFv
 805babc4:onHide__Q22UI6UIPageFv
 805babc0:_38__Q22UI6UIPageFv
@@ -165,7 +165,7 @@
 805babb0:_48__Q22UI6UIPageFv
 805BEC58:_4C__Q22UI6UIPageFv
 805babac:calc__Q22UI6UIPageFv
-805baba8:resume__Q22UI6UIPageFv
+805baba8:onReturn__Q22UI6UIPageFv
 805baba4:_58__Q22UI6UIPageFv
 805baba0:_5C__Q22UI6UIPageFv
 805BE6E8:getTypeInfo__Q22UI6UIPageFv
@@ -186,8 +186,8 @@
 80858310:__ct__Q22UI12RaceMenuPageFv
 80624284:__dt__Q22UI12RaceMenuPageFv
 80631b60:getNextPageID__Q22UI12RaceMenuPageFv
-808583cc:initInternal__Q22UI12RaceMenuPageFv
-80859610:deinit__Q22UI12RaceMenuPageFv
+808583cc:onInit__Q22UI12RaceMenuPageFv
+80859610:onDeinit__Q22UI12RaceMenuPageFv
 80859098:onShow__Q22UI12RaceMenuPageFv
 8085960c:onHide__Q22UI12RaceMenuPageFv
 8085959c:_38__Q22UI12RaceMenuPageFv
@@ -205,8 +205,8 @@
 
 80632c5c:getNextPageID__Q22UI11RaceHudPageFv
 808580a0:_20__Q22UI11RaceHudPageFv
-808558e4:initInternal__Q22UI11RaceHudPageFv
-80858090:deinit__Q22UI11RaceHudPageFv
+808558e4:onInit__Q22UI11RaceHudPageFv
+80858090:onDeinit__Q22UI11RaceHudPageFv
 80858084:onHide__Q22UI11RaceHudPageFv
 80856358:_48__Q22UI11RaceHudPageFv
 80856b24:_4C__Q22UI11RaceHudPageFv

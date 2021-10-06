@@ -25,8 +25,8 @@ public:
 
     virtual int getNextPageID();
     virtual void _20();
-    virtual void initInternal();
-    virtual void deinit();
+    virtual void onInit();
+    virtual void onDeinit();
     virtual void onHide();
     virtual void _48();
     virtual void _4C();

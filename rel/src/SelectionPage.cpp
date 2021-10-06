@@ -1,0 +1,330 @@
+#include "SelectionPage.h"
+#include "CompFile.h"
+#include "UI.h"
+#include <mkw/common.h>
+
+namespace CompMode
+{
+enum E
+{
+    TimeTrial,
+    VSRace,
+    SpecialTimeTrial,
+    EnemyScore,
+    BossBattle,
+    BossRace,
+    Coins,
+    Gates,
+    BossBattleReplica
+};
+} // namespace CompMode
+
+struct CompNameData {
+    Course::E course;
+    CompMode::E mode;
+};
+
+static const CompNameData compNameData[49] = {
+    /* c01 - c09 */
+    {Course::Mario_Circuit, CompMode::VSRace},
+    {Course::GBA_Battle_Course_3, CompMode::Gates},
+    {Course::Galaxy_Colosseum, CompMode::BossBattle},
+    {Course::Mushroom_Gorge, CompMode::TimeTrial},
+    {Course::Coconut_Mall, CompMode::Coins},
+    {Course::DS_Twilight_House, CompMode::VSRace},
+    {Course::N64_DKs_Jungle_Parkway, CompMode::BossRace},
+    {Course::Koopa_Cape, CompMode::Gates},
+    {Course::N64_Skyscraper, CompMode::SpecialTimeTrial},
+
+    /* c10 - c19 */
+    {Course::SNES_Mario_Circuit_3, CompMode::Coins},
+    {Course::Thwomp_Desert, CompMode::BossBattle},
+    {Course::Luigi_Circuit, CompMode::VSRace},
+    {Course::Maple_Treeway, CompMode::Coins},
+    {Course::N64_Mario_Raceway, CompMode::SpecialTimeTrial},
+    {Course::Warios_Gold_Mine, CompMode::BossRace},
+    {Course::DK_Summit, CompMode::Gates},
+    {Course::Toads_Factory, CompMode::TimeTrial},
+    {Course::Funky_Stadium, CompMode::Coins},
+    {Course::Block_Plaza, CompMode::TimeTrial},
+
+    /* c20 - c29 */
+    {Course::GBA_Bowser_Castle_3, CompMode::Gates},
+    {Course::SNES_Battle_Course_4, CompMode::Coins},
+    {Course::N64_Bowsers_Castle, CompMode::BossRace},
+    {Course::GCN_Waluigi_Stadium, CompMode::Gates},
+    {Course::DS_Peach_Gardens, CompMode::SpecialTimeTrial},
+    {Course::Sunset_Luigi_Circuit, CompMode::VSRace},
+    {Course::Chain_Chomp_Roulette, CompMode::Coins},
+    {Course::Grumble_Volcano, CompMode::TimeTrial},
+    {Course::Galaxy_Colosseum, CompMode::BossBattle},
+    {Course::GCN_Peach_Beach, CompMode::Coins},
+
+    /* c30 - c39 */
+    {Course::DS_Yoshi_Falls, CompMode::VSRace},
+    {Course::GBA_Shy_Guy_Beach, CompMode::EnemyScore},
+    {Course::Bowsers_Castle, CompMode::TimeTrial},
+    {Course::GCN_Cookie_Land, CompMode::VSRace},
+    {Course::GCN_Mario_Circuit, CompMode::SpecialTimeTrial},
+    {Course::Daisy_Circuit, CompMode::Gates},
+    {Course::Dry_Dry_Ruins, CompMode::VSRace},
+    {Course::Rainbow_Road, CompMode::SpecialTimeTrial},
+    {Course::DS_Desert_Hills, CompMode::EnemyScore},
+    {Course::Delfino_Pier, CompMode::SpecialTimeTrial},
+
+    /* c40 - c49 */
+    {Course::GCN_DK_Mountain, CompMode::Gates},
+    {Course::N64_Sherbet_Land, CompMode::VSRace},
+    {Course::Mario_Circuit, CompMode::EnemyScore},
+    {Course::Luigi_Circuit, CompMode::VSRace},
+    {Course::GCN_Peach_Beach, CompMode::SpecialTimeTrial},
+    {Course::Moonview_Highway, CompMode::TimeTrial},
+    {Course::DS_Delfino_Square, CompMode::TimeTrial},
+    {Course::Mario_Circuit, CompMode::VSRace},
+    {Course::N64_Bowsers_Castle, CompMode::BossRace},
+    {Course::Galaxy_Colosseum, CompMode::BossBattle},
+};
+
+static inline int compTitleMid(int compId)
+{
+    return 10000 + compId - 1;
+}
+static inline int compExplanationMid(int compId)
+{
+    return 10100 + compId - 1;
+}
+
+SelectionPage::SelectionPage()
+    : m_ptr_onSelectEvent(this, &SelectionPage::onSelectEvent),
+      m_ptr_onFreeToSelectEvent(this, &SelectionPage::onFreeToSelectEvent),
+      m_ptr_onBackEvent(this, &SelectionPage::onBackEvent),
+      m_ptr_onArrowRightEvent(this, &SelectionPage::onArrowRightEvent),
+      m_ptr_onArrowLeftEvent(this, &SelectionPage::onArrowLeftEvent)
+{
+    m_nextPage = -1;
+}
+SelectionPage::~SelectionPage()
+{
+}
+
+void SelectionPage::updatePageNumText()
+{
+    UI::MesgRes::FormatParam param;
+    param.intParam = m_pageNum + 1;
+    param.intParam2 = 5;
+    m_pageNumControl.setAllText(0x7D9, &param);
+}
+
+void SelectionPage::updateButtonTexture()
+{
+    for (int i = 0; i < 10; i++) {
+        char texture[16];
+        snprintf(texture, 16, "comp%02d", buttonCompId(i));
+        m_buttons[i].setTexture("chara", texture);
+        UI::MesgRes::FormatParam param;
+        param.intParam = buttonCompId(i);
+
+        // The smaller digit one inserts a space at the end to push the text
+        // a little to the left lol
+        if (buttonCompId(i) == 0)
+            m_buttons[i].setAllText(0, nullptr);
+        else if (buttonCompId(i) < 10)
+            m_buttons[i].setAllText(0x27E9, &param);
+        else
+            m_buttons[i].setAllText(0x27E8, &param);
+    }
+}
+
+void SelectionPage::updateCompetitionName()
+{
+    if (m_selectedCompId == 0) {
+        m_compName.setPaneText("text", 0x1B58, 0);
+        m_compName.setPaneText("text_shadow", 0x1B58, 0);
+
+        m_compName.setPaneText("mode_text", 0x27F2, 0);
+        m_compName.setPaneText("mode_text_shadow", 0x27F2, 0);
+        return;
+    }
+    if (m_selectedCompId == -100)
+        return;
+
+    const CompNameData* data = &compNameData[m_selectedCompId - 1];
+
+    int courseMid = msgIdForCourse(data->course);
+    m_compName.setPaneText("text", courseMid, 0);
+    m_compName.setPaneText("text_shadow", courseMid, 0);
+
+    m_compName.setPaneText("mode_text", 0x27D8 + data->mode, 0);
+    m_compName.setPaneText("mode_text_shadow", 0x27D8 + data->mode, 0);
+
+    char texture[16];
+    snprintf(texture, 16, "id%02d", data->course);
+    m_compName.setTexture("course_bg", texture);
+}
+
+int SelectionPage::buttonCompId(int buttonId)
+{
+    return m_pageNum * 10 + buttonId;
+}
+int SelectionPage::compIdButton(int compId)
+{
+    return compId % 10;
+}
+
+void SelectionPage::onInit()
+{
+    m_events.init(1, 0);
+
+    setEventController(&m_events);
+    initControlGroup(15);
+
+    for (int i = 0; i < 10; i++) {
+        insertControl(i, &m_buttons[i], 0);
+
+        char name[16];
+        snprintf(name, 16, "Button%d", i);
+
+        m_buttons[i].readLayout("button", "CompetitionButton", name, 1, 0,
+                                false);
+        m_buttons[i].setSelectEvent(&m_ptr_onSelectEvent, 0);
+        m_buttons[i].setFreeToSelectEvent(&m_ptr_onFreeToSelectEvent);
+        m_buttons[i].m_id = i;
+    }
+
+    m_selectedCompId = s_lastCompId;
+    m_pageNum = m_selectedCompId / 10;
+    m_selectedButtonId = compIdButton(m_selectedCompId);
+    m_buttons[m_selectedButtonId].setSelected(0);
+
+    insertControl(10, &m_arrows, 0);
+    m_arrows.readLayout("button", "FriendListArrowRight", "ButtonArrowRight",
+                        "FriendListArrowLeft", "ButtonArrowLeft", 1, 0, false);
+    m_arrows.m_rightEvent = &m_ptr_onArrowRightEvent;
+    m_arrows.m_leftEvent = &m_ptr_onArrowLeftEvent;
+
+    {
+        insertControl(11, &m_pageNumControl, 0);
+        UI::CtrlRes ctrl(&m_pageNumControl);
+        ctrl.readFile("control", "TimeAttackGhostListPageNum",
+                      "TimeAttackGhostListPageNum", nullptr);
+    }
+    {
+        insertControl(12, &m_compName, 0);
+        UI::CtrlRes ctrl(&m_compName);
+        ctrl.readFile("control", "CompetitionName", "CompetitionName", nullptr);
+    }
+
+    insertControl(13, &m_backButton, 0);
+    m_backButton.initLayout(1);
+    m_backButton.setSelectEvent(&m_ptr_onSelectEvent, 0);
+    m_backButton.setFreeToSelectEvent(&m_ptr_onFreeToSelectEvent);
+
+    insertControl(14, &m_titleText, 0);
+    m_titleText.initLayout(0);
+    m_titleText.setAllText(0x27F0, 0);
+
+    m_events.setScreenWrapSetting(2);
+    m_events.configureEvent(UI::INPUT_BACK, &m_ptr_onBackEvent, 0, 0);
+
+    updatePageNumText();
+    updateCompetitionName();
+    updateButtonTexture();
+}
+
+void SelectionPage::onSelectEvent(UI::PushButton* button, int r5)
+{
+    // -100 represents the on-screen back button
+    if (button->m_id == -100) {
+        f32 delay = button->getSelectDelay();
+        startSceneTransition(0x42, UI::UIPage::SLIDE_BACK, delay, 0);
+        return;
+    }
+
+    int compId = buttonCompId(button->m_id);
+    if (compId == 0) {
+        // Settings
+        m_nextPage = -1;
+        f32 delay = button->getSelectDelay();
+        startSceneTransition(SETTINGS_SCENE_ID, SLIDE_FORWARD, delay, 0);
+        return;
+    }
+
+    // Search for the competition messages. The text on the event
+    // explanation screen isn't fetched from BMG files because it's
+    // meant to be stored in the save file. This is a little hacky
+    // because it hijacks the BMG used by the button that was just
+    // selected.
+    int titleMid = compTitleMid(compId);
+    int explanationMid = compExplanationMid(compId);
+
+    const UI::MesgRes* bmg = &button->m_bmg;
+    int titleIndex = bmg->getIndexFromMid(titleMid);
+    int explanationIndex = bmg->getIndexFromMid(explanationMid);
+
+    const wchar_t* titleText = L"---";
+    const wchar_t* explanationText = L"---";
+    if (titleIndex != -1)
+        titleText = bmg->getTextFromIndex(titleIndex);
+    if (explanationIndex != -1)
+        explanationText = bmg->getTextFromIndex(explanationIndex);
+
+    CompFile::sInstance->setText(titleText, explanationText);
+    CompFile::sInstance->switchCompetition(compId);
+    m_nextPage = 0xB8;
+
+    f32 delay = button->getSelectDelay();
+    startTransitionOut(SLIDE_FORWARD, delay);
+}
+
+void SelectionPage::onFreeToSelectEvent(UI::PushButton* button, int r5)
+{
+    m_selectedButtonId = button->m_id;
+    m_selectedCompId = buttonCompId(button->m_id);
+    updateCompetitionName();
+}
+
+void SelectionPage::onBackEvent(int r4, int r5)
+{
+    m_nextPage = -1;
+    startSceneTransition(0x42, UI::UIPage::SLIDE_BACK, 0, 0);
+}
+
+void SelectionPage::onArrowRightEvent(UI::SheetSelectControl* arrow, int r5)
+{
+    m_pageNum++;
+    if (m_pageNum > 4)
+        m_pageNum = 0;
+    updatePageNumText();
+    updateButtonTexture();
+
+    // Deselect arrows and select main button
+    if (m_selectedButtonId < 5) {
+        m_buttons[0].freeToSelect(0);
+        return;
+    }
+    m_buttons[5].freeToSelect(0);
+}
+
+void SelectionPage::onArrowLeftEvent(UI::SheetSelectControl* arrow, int r5)
+{
+    m_pageNum--;
+    if (m_pageNum < 0)
+        m_pageNum = 4;
+    updatePageNumText();
+    updateButtonTexture();
+
+    // Deselect arrows and select main button
+    if (m_selectedButtonId < 5) {
+        m_buttons[4].freeToSelect(0);
+        return;
+    }
+    m_buttons[9].freeToSelect(0);
+}
+
+int SelectionPage::getNextPageID()
+{
+    return m_nextPage;
+}
+
+UI::AutoTypeInfo<UI::UIPage> SelectionPage::sTypeInfo;
+int SelectionPage::s_lastCompId = 0;

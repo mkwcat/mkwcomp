@@ -1,7 +1,7 @@
-#include "competition.h"
+#include "CompFile.h"
+#include "UI.h"
 #include "patch.h"
 #include "replay.h"
-#include "ui.h"
 #include "util.h"
 #include <mkw/UI/LayoutUIControl.h>
 #include <mkw/UI/Scene.h>
@@ -72,12 +72,19 @@ showBasePages_end:
     // clang-format on
 }
 
+const char* scene87ResourceName()
+{
+    return "/Scene/UI/Event";
+}
+
 extern Instruction<1> Patch_SceneBuildPages;
 extern Instruction<1> Patch_SceneShowBasePages;
 extern Instruction<1> Patch_MainMenuKind;
 extern Instruction<1> Patch_SceneGetBGM;
 extern Instruction<1> Patch_SceneGetBGMGroup;
 extern Instruction<1> Patch_LicenseSelect;
+extern Instruction<1> Patch_LicenseSettingsBack;
+extern Instruction<1> Patch_Scene87ResourceName;
 
 extern Instruction<6> Patch_EventExplanationPage_Events;
 extern Instruction<25> Patch_EventExplanationPage_vtable;
@@ -100,6 +107,8 @@ void main()
     Patch_MainMenuKind.flush();
 
     Patch_LicenseSelect.setBL(patchLicenseSelectGetNextScene);
+    Patch_LicenseSettingsBack.m_instr[0] = 0x38800000 | SETTINGS_SCENE_ID;
+    Patch_Scene87ResourceName.setB(scene87ResourceName);
 
     Patch_SceneGetBGM.setB(sceneGetBGMReplace);
     Patch_SceneGetBGMGroup.setB(sceneGetBGMGroupReplace);

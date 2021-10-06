@@ -14,6 +14,8 @@
 805d1e00:Patch_WiiWheelOnlyPage
 805eb934:Patch_LicenseSelect
 
+80631a08:Patch_Scene87ResourceName
+
 8085783c:Patch_ControlKindCheck_RaceFinishReset
 808569bc:Patch_ControlKindCheck_onPause
 80859ec4:Patch_ControlKindCheck_PauseUpdate
@@ -47,10 +49,25 @@
 800210ec:__destroy_arr
 80021338:__register_global_object
 
+80021590:_savegpr_23
 80021594:_savegpr_24
 80021598:_savegpr_25
+8002159C:_savegpr_26
+800215A0:_savegpr_27
+800215A4:_savegpr_28
+800215A8:_savegpr_29
+800215AC:_savegpr_30
+800215B0:_savegpr_31
+
+800215DC:_restgpr_23
 800215e0:_restgpr_24
 800215e4:_restgpr_25
+800215e8:_restgpr_26
+800215ec:_restgpr_27
+800215f0:_restgpr_28
+800215f4:_restgpr_29
+800215f8:_restgpr_30
+800215fc:_restgpr_31
 
 /* EGG alloc functions */
 80229dcc:__nw__FUl
@@ -109,12 +126,15 @@
 
 8063aa08:__ct__Q22UI15TitleScreenPageFv
 
+809c2328:SceneBGMControllerInstance__2UI
+806f90b8:enableBGMPersist__Q22UI18SceneBGMControllerFv
+
 
 
 /* UIPage and vtable stuff */
 8060197c:__ct__Q22UI6UIPageFv
 8060245c:initControlGroup__Q22UI6UIPageFi
-8060246c:registerControl__Q22UI6UIPageFiPQ22UI9UIControli
+8060246c:insertControl__Q22UI6UIPageFiPQ22UI9UIControli
 80601a60:init__Q22UI6UIPageFl
 
 805eeb68:__ct__Q22UI13PageEventBaseFv
@@ -137,9 +157,9 @@
 805bd4b0:__dt__Q22UI10PushButtonFv
 805bd518:readLayout__Q22UI10PushButtonFPCcPCcPCciib
 805bdac8:setSelectEvent__Q22UI10PushButtonFPQ22UI9EventBasei
-805bdae0:setHighlightEvent__Q22UI10PushButtonFPQ22UI9EventBase
-805bdaf0:setHighlighted__Q22UI10PushButtonFi
-805bdb44:somethingHighlightRelated__Q22UI10PushButtonFi
+805bdae0:setFreeToSelectEvent__Q22UI10PushButtonFPQ22UI9EventBase
+805bdaf0:setSelected__Q22UI10PushButtonFi
+805bdb44:freeToSelect__Q22UI10PushButtonFi
 
 80635ec4:__ct__Q22UI18SheetSelectControlFv
 8063607c:__dt__Q22UI18SheetSelectControlFv
@@ -151,11 +171,11 @@
 805BB278:getNextPageID__Q22UI6UIPageFv
 805BB254:_14__Q22UI6UIPageFv
 805BB24C:_18__Q22UI6UIPageFv
-806024B0:startSceneTransition__Q22UI6UIPageFfiQ32UI6UIPage13TransitionDir
+806024B0:startSceneTransition__Q22UI6UIPageFiQ32UI6UIPage13TransitionDirfi
 80602530:_20__Q22UI6UIPageFv
 806025B0:showNextPage__Q22UI6UIPageFii
-80601AD8:initInternal__Q22UI6UIPageFv
-805BB248:deinit__Q22UI6UIPageFv
+80601AD8:onInit__Q22UI6UIPageFv
+805BB248:onDeinit__Q22UI6UIPageFv
 805C9888:onShow__Q22UI6UIPageFv
 805BB244:onHide__Q22UI6UIPageFv
 805BB240:_38__Q22UI6UIPageFv
@@ -165,7 +185,7 @@
 805BB230:_48__Q22UI6UIPageFv
 805BF2D8:_4C__Q22UI6UIPageFv
 805BB22C:calc__Q22UI6UIPageFv
-805BB228:resume__Q22UI6UIPageFv
+805BB228:onReturn__Q22UI6UIPageFv
 805BB224:_58__Q22UI6UIPageFv
 805BB220:_5C__Q22UI6UIPageFv
 805BED68:getTypeInfo__Q22UI6UIPageFv
@@ -186,8 +206,8 @@
 80858ca4:__ct__Q22UI12RaceMenuPageFv
 80624b38:__dt__Q22UI12RaceMenuPageFv
 80632414:getNextPageID__Q22UI12RaceMenuPageFv
-80858d60:initInternal__Q22UI12RaceMenuPageFv
-80859fa4:deinit__Q22UI12RaceMenuPageFv
+80858d60:onInit__Q22UI12RaceMenuPageFv
+80859fa4:onDeinit__Q22UI12RaceMenuPageFv
 80859a2c:onShow__Q22UI12RaceMenuPageFv
 80859fa0:onHide__Q22UI12RaceMenuPageFv
 80859f30:_38__Q22UI12RaceMenuPageFv
@@ -205,8 +225,8 @@
 
 80633510:getNextPageID__Q22UI11RaceHudPageFv
 80858A34:_20__Q22UI11RaceHudPageFv
-80856278:initInternal__Q22UI11RaceHudPageFv
-80858A24:deinit__Q22UI11RaceHudPageFv
+80856278:onInit__Q22UI11RaceHudPageFv
+80858A24:onDeinit__Q22UI11RaceHudPageFv
 80858A18:onHide__Q22UI11RaceHudPageFv
 80856CEC:_48__Q22UI11RaceHudPageFv
 808574B8:_4C__Q22UI11RaceHudPageFv

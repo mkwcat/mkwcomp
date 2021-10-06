@@ -1,4 +1,4 @@
-#include "competition.h"
+#include "CompFile.h"
 #include "patch.h"
 #include "util.h"
 #include <algorithm>

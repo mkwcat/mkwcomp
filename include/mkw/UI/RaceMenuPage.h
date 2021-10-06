@@ -8,7 +8,8 @@ namespace UI
 
 namespace RaceMenu
 {
-enum E {
+enum E
+{
     ButtonContinue = 0,
     ButtonQuit = 1,
     ButtonRestart = 2,
@@ -58,8 +59,8 @@ public:
     virtual int getNextPageID(); // vt + 0x10
     virtual void setNextPageID(int page); // vt + 0x64
 
-    virtual void initInternal(); // vt + 0x28
-    virtual void deinit(); // vt + 0x2C
+    virtual void onInit(); // vt + 0x28
+    virtual void onDeinit(); // vt + 0x2C
     virtual void onShow(); // vt + 0x30
     virtual void onHide(); // vt + 0x34
     virtual void _38();

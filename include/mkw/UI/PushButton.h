@@ -27,27 +27,27 @@ public:
     virtual void onSelect();
 
     void setSelectEvent(EventBase* event, int);
-    void setHighlightEvent(EventBase* event);
+    void setFreeToSelectEvent(EventBase* event);
 
     void readLayout(const char* lytSection, const char* ctrlName,
                     const char* positionEntry, int playerCount, int,
                     bool pointerExclusive);
     
-    void setHighlighted(int player);
-    void somethingHighlightRelated(int player);
+    void setSelected(int player);
+    void freeToSelect(int player);
 
     f32 getSelectDelay();
 
     ButtonEventBase m_events;
 
 protected:
-    Event<PushButton, int, int> m_defaultHighlightEvent;
-    Event<PushButton, int, int> m_defaultUnhighlightEvent;
+    Event<PushButton, int, int> m_defaultFreeToSelectEvent;
+    Event<PushButton, int, int> m_defaultSelectToFreeEvent;
     Event<PushButton, int, int> m_defaultSelectEvent;
 
 public:
-    EventBase* m_highlightEvent;
-    EventBase* m_unhighlightEvent;
+    EventBase* m_freeToSelectEvent;
+    EventBase* m_selectToFreeEvent;
     EventBase* m_selectEvent;
 
     u32 m_id;

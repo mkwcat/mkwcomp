@@ -1,8 +1,8 @@
 #pragma once
 #include "Event.h"
 #include "Scene.h"
-#include "UIControl.h"
 #include "TypeInfo.h"
+#include "UIControl.h"
 #include <rvl/types.h>
 
 namespace UI
@@ -34,7 +34,11 @@ public:
 };
 static_assert(sizeof(PageEventBase) == 0x10, "sizeof(PageEventBase) != 0x10");
 
-enum InputIndex { INPUT_BACK = 1, INPUT_START = 2 };
+enum InputIndex
+{
+    INPUT_BACK = 1,
+    INPUT_START = 2
+};
 
 class PageEventSelection : public PageEventBase
 {
@@ -70,15 +74,19 @@ public:
     virtual void _14();
     virtual void _18();
 
-    enum TransitionDir { SLIDE_FORWARD, SLIDE_BACK };
-    virtual void startSceneTransition(f32 delay, int sceneId,
-                                      TransitionDir direction);
+    enum TransitionDir
+    {
+        SLIDE_FORWARD,
+        SLIDE_BACK
+    };
+    virtual void startSceneTransition(int sceneId, TransitionDir direction,
+                                      f32 delay, int r5);
     void startTransitionOut(TransitionDir direction, f32 delay);
 
     virtual void _20();
     virtual void showNextPage(int pageId, int r5);
-    virtual void initInternal(); // vt + 0x28
-    virtual void deinit(); // vt + 0x2C
+    virtual void onInit(); // vt + 0x28
+    virtual void onDeinit(); // vt + 0x2C
     virtual void onShow(); // vt + 0x30
     virtual void onHide(); // vt + 0x34
     virtual void _38();
@@ -88,7 +96,7 @@ public:
     virtual void _48();
     virtual void _4C();
     virtual void calc();
-    virtual void resume();
+    virtual void onReturn();
     virtual void _58();
     virtual void _5C();
 
@@ -109,7 +117,7 @@ public:
 
     void init(s32 id);
     void initControlGroup(int count);
-    void registerControl(int index, UIControl* control, int);
+    void insertControl(int index, UIControl* control, int);
 
     void setEventController(PageEventBase*);
 

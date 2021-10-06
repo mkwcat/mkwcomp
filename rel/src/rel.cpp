@@ -1,9 +1,11 @@
-#include "competition.cpp"
+#include "CompFile.cpp"
+#include "SelectionPage.cpp"
+#include "SettingsPage.cpp"
+#include "UI.cpp"
 #include "file.cpp"
 #include "main.cpp"
-#include "ui.cpp"
-#include "util.cpp"
 #include "replay.cpp"
+#include "util.cpp"
 
 extern "C" {
 

@@ -1,5 +1,7 @@
 #include "ui.h"
-#include "competition.h"
+#include "replay.h"
+#include "SelectionPage.h"
+#include "SettingsPage.h"
 #include "util.h"
 #include <mkw/MenuSet.h>
 #include <mkw/Random.h>
@@ -20,500 +22,6 @@
 #include <mkw/common.h>
 #include <rvl/os.h>
 #include <stdio.h>
-
-#define BACKGROUND_PAGE_ID 0x5C
-#define TOURNAMENT_SELECT_PAGE_ID 0x8C
-#define TOURNAMENT_SCENE_ID 0x2D
-#define LICENSE_SETTINGS_SCENE_ID 0x47
-
-#define MID_SETTINGS 0x1B58
-
-namespace CompMode
-{
-enum E
-{
-    TimeTrial,
-    VSRace,
-    SpecialTimeTrial,
-    EnemyScore,
-    BossBattle,
-    BossRace,
-    Coins,
-    Gates,
-    BossBattleReplica
-};
-} // namespace CompMode
-
-struct CompNameData {
-    Course::E course;
-    CompMode::E mode;
-};
-
-static const CompNameData compNameData[49] = {
-    /* c01 - c09 */
-    {Course::Mario_Circuit, CompMode::VSRace},
-    {Course::GBA_Battle_Course_3, CompMode::Gates},
-    {Course::Galaxy_Colosseum, CompMode::BossBattle},
-    {Course::Mushroom_Gorge, CompMode::TimeTrial},
-    {Course::Coconut_Mall, CompMode::Coins},
-    {Course::DS_Twilight_House, CompMode::VSRace},
-    {Course::N64_DKs_Jungle_Parkway, CompMode::BossRace},
-    {Course::Koopa_Cape, CompMode::Gates},
-    {Course::N64_Skyscraper, CompMode::SpecialTimeTrial},
-
-    /* c10 - c19 */
-    {Course::SNES_Mario_Circuit_3, CompMode::Coins},
-    {Course::Thwomp_Desert, CompMode::BossBattle},
-    {Course::Luigi_Circuit, CompMode::VSRace},
-    {Course::Maple_Treeway, CompMode::Coins},
-    {Course::N64_Mario_Raceway, CompMode::SpecialTimeTrial},
-    {Course::Warios_Gold_Mine, CompMode::BossRace},
-    {Course::DK_Summit, CompMode::Gates},
-    {Course::Toads_Factory, CompMode::TimeTrial},
-    {Course::Funky_Stadium, CompMode::Coins},
-    {Course::Block_Plaza, CompMode::TimeTrial},
-
-    /* c20 - c29 */
-    {Course::GBA_Bowser_Castle_3, CompMode::Gates},
-    {Course::SNES_Battle_Course_4, CompMode::Coins},
-    {Course::N64_Bowsers_Castle, CompMode::BossRace},
-    {Course::GCN_Waluigi_Stadium, CompMode::Gates},
-    {Course::DS_Peach_Gardens, CompMode::SpecialTimeTrial},
-    {Course::Sunset_Luigi_Circuit, CompMode::VSRace},
-    {Course::Chain_Chomp_Roulette, CompMode::Coins},
-    {Course::Grumble_Volcano, CompMode::TimeTrial},
-    {Course::Galaxy_Colosseum, CompMode::BossBattle},
-    {Course::GCN_Peach_Beach, CompMode::Coins},
-
-    /* c30 - c39 */
-    {Course::DS_Yoshi_Falls, CompMode::VSRace},
-    {Course::GBA_Shy_Guy_Beach, CompMode::EnemyScore},
-    {Course::Bowsers_Castle, CompMode::TimeTrial},
-    {Course::GCN_Cookie_Land, CompMode::VSRace},
-    {Course::GCN_Mario_Circuit, CompMode::SpecialTimeTrial},
-    {Course::Daisy_Circuit, CompMode::Gates},
-    {Course::Dry_Dry_Ruins, CompMode::VSRace},
-    {Course::Rainbow_Road, CompMode::SpecialTimeTrial},
-    {Course::DS_Desert_Hills, CompMode::EnemyScore},
-    {Course::Delfino_Pier, CompMode::SpecialTimeTrial},
-
-    /* c40 - c49 */
-    {Course::GCN_DK_Mountain, CompMode::Gates},
-    {Course::N64_Sherbet_Land, CompMode::VSRace},
-    {Course::Mario_Circuit, CompMode::EnemyScore},
-    {Course::Luigi_Circuit, CompMode::VSRace},
-    {Course::GCN_Peach_Beach, CompMode::SpecialTimeTrial},
-    {Course::Moonview_Highway, CompMode::TimeTrial},
-    {Course::DS_Delfino_Square, CompMode::TimeTrial},
-    {Course::Mario_Circuit, CompMode::VSRace},
-    {Course::N64_Bowsers_Castle, CompMode::BossRace},
-    {Course::Galaxy_Colosseum, CompMode::BossBattle},
-};
-
-static inline int compTitleMid(int compId)
-{
-    return 10000 + compId - 1;
-}
-static inline int compExplanationMid(int compId)
-{
-    return 10100 + compId - 1;
-}
-
-class PageSelection : public UI::UIPage
-{
-public:
-    PageSelection()
-        : m_ptr_selectEvent(this, &PageSelection::selectEvent),
-          m_ptr_highlightEvent(this, &PageSelection::highlightEvent),
-          m_ptr_backEvent(this, &PageSelection::backEvent),
-          m_ptr_arrowRightEvent(this, &PageSelection::arrowRightEvent),
-          m_ptr_arrowLeftEvent(this, &PageSelection::arrowLeftEvent),
-          m_nextPage(-1)
-    {
-    }
-    virtual ~PageSelection()
-    {
-    }
-
-    void updatePageNumText()
-    {
-        UI::MesgRes::FormatParam param;
-        param.intParam = m_pageNum + 1;
-        param.intParam2 = 5;
-        m_pageNumControl.setAllText(0x7D9, &param);
-    }
-
-    void updateButtonTexture()
-    {
-        for (int i = 0; i < 10; i++) {
-            char texture[16];
-            snprintf(texture, 16, "comp%02d", buttonCompId(i));
-            m_buttons[i].setTexture("chara", texture);
-            UI::MesgRes::FormatParam param;
-            param.intParam = buttonCompId(i);
-
-            // The smaller digit one inserts a space at the end to push the text
-            // a little to the left lol
-            if (buttonCompId(i) == 0)
-                m_buttons[i].setAllText(0, nullptr);
-            else if (buttonCompId(i) < 10)
-                m_buttons[i].setAllText(0x27E9, &param);
-            else
-                m_buttons[i].setAllText(0x27E8, &param);
-        }
-    }
-
-    void updateCompetitionName()
-    {
-        if (m_highlightCompId == 0) {
-            m_compName.setPaneText("text", 0x1B58, 0);
-            m_compName.setPaneText("text_shadow", 0x1B58, 0);
-
-            m_compName.setPaneText("mode_text", 0x27F2, 0);
-            m_compName.setPaneText("mode_text_shadow", 0x27F2, 0);
-            return;
-        }
-        if (m_highlightCompId == -100)
-            return;
-
-        const CompNameData* data = &compNameData[m_highlightCompId - 1];
-
-        int courseMid = msgIdForCourse(data->course);
-        m_compName.setPaneText("text", courseMid, 0);
-        m_compName.setPaneText("text_shadow", courseMid, 0);
-
-        m_compName.setPaneText("mode_text", 0x27D8 + data->mode, 0);
-        m_compName.setPaneText("mode_text_shadow", 0x27D8 + data->mode, 0);
-
-        char texture[16];
-        snprintf(texture, 16, "id%02d", data->course);
-        m_compName.setTexture("course_bg", texture);
-    }
-
-    int buttonCompId(int buttonId)
-    {
-        return m_pageNum * 10 + buttonId;
-    }
-    int compIdButton(int compId)
-    {
-        return compId % 10;
-    }
-
-    void initInternal()
-    {
-        m_events.init(1, 0);
-
-        setEventController(&m_events);
-        initControlGroup(15);
-
-        for (int i = 0; i < 10; i++) {
-            registerControl(i, &m_buttons[i], 0);
-
-            char name[16];
-            snprintf(name, 16, "Button%d", i);
-
-            m_buttons[i].readLayout("button", "CompetitionButton", name, 1, 0,
-                                    false);
-            m_buttons[i].setSelectEvent(&m_ptr_selectEvent, 0);
-            m_buttons[i].setHighlightEvent(&m_ptr_highlightEvent);
-            m_buttons[i].m_id = i;
-        }
-
-        m_highlightCompId = s_lastCompId;
-        m_pageNum = m_highlightCompId / 10;
-        m_highlightButtonId = compIdButton(m_highlightCompId);
-        m_buttons[m_highlightButtonId].setHighlighted(0);
-
-        registerControl(10, &m_arrows, 0);
-        m_arrows.readLayout("button", "FriendListArrowRight",
-                            "ButtonArrowRight", "FriendListArrowLeft",
-                            "ButtonArrowLeft", 1, 0, false);
-        m_arrows.m_rightEvent = &m_ptr_arrowRightEvent;
-        m_arrows.m_leftEvent = &m_ptr_arrowLeftEvent;
-
-        {
-            registerControl(11, &m_pageNumControl, 0);
-            UI::CtrlRes ctrl(&m_pageNumControl);
-            ctrl.readFile("control", "TimeAttackGhostListPageNum",
-                          "TimeAttackGhostListPageNum", nullptr);
-        }
-        {
-            registerControl(12, &m_compName, 0);
-            UI::CtrlRes ctrl(&m_compName);
-            ctrl.readFile("control", "CompetitionName", "CompetitionName",
-                          nullptr);
-        }
-
-        registerControl(13, &m_backButton, 0);
-        m_backButton.initLayout(1);
-        m_backButton.setSelectEvent(&m_ptr_selectEvent, 0);
-        m_backButton.setHighlightEvent(&m_ptr_highlightEvent);
-
-        registerControl(14, &m_titleText, 0);
-        m_titleText.initLayout(0);
-        m_titleText.setAllText(0x27F0, 0);
-
-        m_events.setScreenWrapSetting(2);
-        m_events.configureEvent(UI::INPUT_BACK, &m_ptr_backEvent, 0, 0);
-
-        updatePageNumText();
-        updateCompetitionName();
-        updateButtonTexture();
-    }
-
-    void selectEvent(UI::PushButton* button, int r5)
-    {
-        // -100 represents the on-screen back button
-        if (button->m_id == -100) {
-            f32 delay = button->getSelectDelay();
-            startSceneTransition(delay, 0x42, UI::UIPage::SLIDE_BACK);
-            return;
-        }
-
-        int compId = buttonCompId(button->m_id);
-        if (compId == 0) {
-            // Settings
-            m_nextPage = 0xC0;
-
-            f32 delay = button->getSelectDelay();
-            startTransitionOut(SLIDE_FORWARD, delay);
-            return;
-        }
-
-        // Search for the competition messages. The text on the event
-        // explanation screen isn't fetched from BMG files because it's
-        // meant to be stored in the save file. This is a little hacky
-        // because it hijacks the BMG used by the button that was just
-        // selected.
-        int titleMid = compTitleMid(compId);
-        int explanationMid = compExplanationMid(compId);
-
-        const UI::MesgRes* bmg = &button->m_bmg;
-        int titleIndex = bmg->getIndexFromMid(titleMid);
-        int explanationIndex = bmg->getIndexFromMid(explanationMid);
-
-        const wchar_t* titleText = L"---";
-        const wchar_t* explanationText = L"---";
-        if (titleIndex != -1)
-            titleText = bmg->getTextFromIndex(titleIndex);
-        if (explanationIndex != -1)
-            explanationText = bmg->getTextFromIndex(explanationIndex);
-
-        CompFile::sInstance->setText(titleText, explanationText);
-        CompFile::sInstance->switchCompetition(compId);
-        m_nextPage = 0xB8;
-
-        f32 delay = button->getSelectDelay();
-        startTransitionOut(SLIDE_FORWARD, delay);
-    }
-
-    void highlightEvent(UI::PushButton* button, int r5)
-    {
-        m_highlightButtonId = button->m_id;
-        m_highlightCompId = buttonCompId(button->m_id);
-        updateCompetitionName();
-    }
-
-    void backEvent(int r4, int r5)
-    {
-        startSceneTransition(0, 0x42, UI::UIPage::SLIDE_BACK);
-    }
-
-    void arrowRightEvent(UI::SheetSelectControl* arrow, int r5)
-    {
-        m_pageNum++;
-        if (m_pageNum > 4)
-            m_pageNum = 0;
-        updatePageNumText();
-        updateButtonTexture();
-
-        // Deselect arrows and select main button
-        if (m_highlightButtonId < 5) {
-            m_buttons[0].somethingHighlightRelated(0);
-            return;
-        }
-        m_buttons[5].somethingHighlightRelated(0);
-    }
-
-    void arrowLeftEvent(UI::SheetSelectControl* arrow, int r5)
-    {
-        m_pageNum--;
-        if (m_pageNum < 0)
-            m_pageNum = 4;
-        updatePageNumText();
-        updateButtonTexture();
-
-        // Deselect arrows and select main button
-        if (m_highlightButtonId < 5) {
-            m_buttons[4].somethingHighlightRelated(0);
-            return;
-        }
-        m_buttons[9].somethingHighlightRelated(0);
-    }
-
-    int getNextPageID()
-    {
-        return m_nextPage;
-    }
-
-    UI::PushButton m_buttons[10];
-    UI::SheetSelectControl m_arrows;
-    UI::LayoutUIControl m_pageNumControl;
-    UI::LayoutUIControl m_compName;
-
-    UI::CtrlMenuPageTitleText m_titleText;
-    UI::CtrlMenuBackButton m_backButton;
-
-    UI::PageEventSelection m_events;
-
-    int m_nextPage;
-
-    UI::Event<PageSelection, UI::PushButton*, int> m_ptr_selectEvent;
-    UI::Event<PageSelection, UI::PushButton*, int> m_ptr_highlightEvent;
-    UI::Event<PageSelection, int, int> m_ptr_backEvent;
-    UI::Event<PageSelection, UI::SheetSelectControl*, int> m_ptr_arrowLeftEvent;
-    UI::Event<PageSelection, UI::SheetSelectControl*, int>
-        m_ptr_arrowRightEvent;
-
-    int m_pageNum;
-    int m_highlightButtonId;
-    int m_highlightCompId;
-
-    static int s_lastCompId;
-
-public:
-    static UI::AutoTypeInfo<UI::UIPage> sTypeInfo;
-    virtual const UI::TypeInfo* getTypeInfo()
-    {
-        return &sTypeInfo;
-    }
-};
-UI::AutoTypeInfo<UI::UIPage> PageSelection::sTypeInfo;
-int PageSelection::s_lastCompId = 0;
-
-class PageSettings : public UI::UIPage
-{
-public:
-    PageSettings()
-        : m_ptr_onButtonSelect(this, &PageSettings::onButtonSelect),
-          m_ptr_onBackPress(this, &PageSettings::onBackPress)
-    {
-        m_nextPage = -1;
-    }
-    virtual ~PageSettings()
-    {
-    }
-
-    void initInternal()
-    {
-        m_events.init(1, 0);
-        setEventController(&m_events);
-        m_events.setScreenWrapSetting(1);
-
-        initControlGroup(5);
-
-        // GCN Controller Rumble
-        {
-            registerControl(0, &m_rumbleButton, 0);
-            m_rumbleButton.readLayout("button", "OptionTopButton", "Rumble", 1,
-                                      0, false);
-            m_rumbleButton.setSelectEvent(&m_ptr_onButtonSelect, 0);
-            m_rumbleButton.m_id = BUTTON_RUMBLE;
-        }
-
-        // Normally Network Settings
-        {
-            registerControl(1, &m_seedButton, 0);
-            m_seedButton.readLayout("button", "OptionTopButton", "Network", 1,
-                                    0, false);
-            m_seedButton.setSelectEvent(&m_ptr_onButtonSelect, 0);
-            m_seedButton.m_id = BUTTON_SEED;
-        }
-
-        // Normally Add Mario Kart Channel
-        {
-            registerControl(2, &m_licenseButton, 0);
-            m_licenseButton.readLayout("button", "OptionTopButton",
-                                       "ChannelInstall", 1, 0, false);
-            m_licenseButton.setSelectEvent(&m_ptr_onButtonSelect, 0);
-            m_licenseButton.setAllText(0x7DF, nullptr);
-            m_licenseButton.m_id = BUTTON_LICENSE;
-        }
-
-        registerControl(3, &m_backButton, 0);
-        m_backButton.initLayout(1);
-        m_backButton.setSelectEvent(&m_ptr_onButtonSelect, 0);
-
-        registerControl(4, &m_titleText, 0);
-        m_titleText.initLayout(0);
-        m_titleText.setAllText(MID_SETTINGS, 0);
-
-        m_events.configureEvent(UI::INPUT_BACK, &m_ptr_onBackPress, 0, 0);
-
-        m_rumbleButton.setHighlighted(0);
-    }
-
-    void onButtonSelect(UI::PushButton* button, int r5)
-    {
-        int sceneId = -1;
-        m_nextPage = -1;
-
-        switch (button->m_id) {
-        case BUTTON_RUMBLE:
-            sceneId = 0x8D;
-            break;
-        case BUTTON_LICENSE:
-            sceneId = LICENSE_SETTINGS_SCENE_ID;
-            break;
-
-        default:
-            return;
-        }
-
-        f32 delay = button->getSelectDelay();
-        startSceneTransition(delay, sceneId, SLIDE_FORWARD);
-    }
-
-    void onBackPress(int r4, int r5)
-    {
-        m_nextPage = TOURNAMENT_SELECT_PAGE_ID;
-        startTransitionOut(SLIDE_BACK, 0);
-    }
-
-    int getNextPageID()
-    {
-        return m_nextPage;
-    }
-
-    enum Button
-    {
-        BUTTON_RUMBLE = 0,
-        BUTTON_SEED = 1,
-        BUTTON_LICENSE = 2
-    };
-
-    UI::PushButton m_rumbleButton;
-    UI::PushButton m_seedButton;
-    UI::PushButton m_licenseButton;
-
-    UI::CtrlMenuPageTitleText m_titleText;
-    UI::CtrlMenuBackButton m_backButton;
-
-    UI::PageEventSelection m_events;
-
-    UI::Event<PageSettings, UI::PushButton*, int> m_ptr_onButtonSelect;
-    UI::Event<PageSettings, int, int> m_ptr_onBackPress;
-
-    int m_nextPage;
-
-public:
-    static UI::AutoTypeInfo<UI::UIPage> sTypeInfo;
-    virtual const UI::TypeInfo* getTypeInfo()
-    {
-        return &sTypeInfo;
-    }
-};
-UI::AutoTypeInfo<UI::UIPage> PageSettings::sTypeInfo;
 
 const int sEndScreenButtons[5] = {
     UI::RaceMenu::ButtonRestart, UI::RaceMenu::ButtonChangeCharacter,
@@ -727,7 +235,7 @@ public:
         m_wiiWheelPageDisabled = false;
     }
 
-    void initInternal()
+    void onInit()
     {
         CompFile::sInstance->m_forceHandleDisabled = false;
         setEventController(&m_events);
@@ -768,7 +276,7 @@ public:
         m_noResume = true;
     }
 
-    void resume()
+    void onReturn()
     {
         UI::UIPage* lastPage = UI::MenuDataInstance->m_scene->getPage(0xBA);
         if (!m_noResume) {
@@ -934,6 +442,7 @@ bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)
 
     case 0x85:
     case 0x86:
+    case 0x83:
         scene->buildPage(0x4B);
         scene->buildPage(0x4D);
         scene->buildPage(0x51);
@@ -946,14 +455,9 @@ bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)
         scene->buildPage(0xB8);
         scene->buildPage(0xBB);
         {
-            PageSelection* page = new PageSelection();
+            SelectionPage* page = new SelectionPage();
             scene->registerPage(0x8C, page);
             page->init(0x8C);
-        }
-        {
-            PageSettings* page = new PageSettings();
-            scene->registerPage(0xC0, page);
-            page->init(0xC0);
         }
         return true;
 
@@ -966,6 +470,29 @@ bool buildPagesReplace(UI::Scene* scene, UI::SceneID id)
             ForcedHandleBypassPage* page = new ForcedHandleBypassPage();
             scene->registerPage(0x87, page);
             page->init(0x87);
+        }
+        return true;
+    
+    case SETTINGS_SCENE_ID:
+        scene->buildPage(0x4D);
+        scene->buildPage(0x4E);
+        scene->buildPage(0x5D);
+        scene->buildPage(0xC1);
+        scene->buildPage(0xC2);
+        scene->buildPage(0xC3);
+        scene->buildPage(0xC4);
+        scene->buildPage(0xC5);
+        scene->buildPage(0xC6);
+        scene->buildPage(0xC7);
+        scene->buildPage(0xC8);
+        scene->buildPage(0xC9);
+        scene->buildPage(0xCA);
+        scene->buildPage(0xCB);
+        scene->buildPage(0xCC);
+        {
+            SettingsPage* page = new SettingsPage();
+            scene->registerPage(0xC0, page);
+            page->init(0xC0);
         }
         return true;
 
@@ -996,6 +523,11 @@ bool showBasePagesReplace(UI::Scene* scene, UI::SceneID id)
         scene->showPageOnTop(0xBB);
         scene->showPageOnTop(0x7F);
         scene->showPageOnTop(0xB7);
+        return true;
+    case 0x83:
+        scene->showPageOnTop(0xBB);
+        scene->showPageOnTop(0x7F);
+        scene->showPageOnTop(0xC0);
         return true;
 
     default:
@@ -1034,6 +566,7 @@ s32 sceneGetBGMReplace(UI::SceneID id)
         return 2;
     case 0x85:
     case 0x86:
+    case 0x83:
         return 1;
     case 0x45 ... 0x47:
     case 0x8C:
@@ -1049,6 +582,7 @@ s32 sceneGetBGMGroupReplace(UI::SceneID id)
         return 2;
     case 0x85:
     case 0x86:
+    case 0x83:
         return 3;
     case 0x45 ... 0x47:
     case 0x8C:
