@@ -7,6 +7,7 @@
 #include "replay.h"
 #include "util.h"
 #include <mkw/MenuSet.h>
+#include <mkw/Sound.h>
 #include <mkw/UI/CtrlMenuBackButton.h>
 #include <mkw/UI/CtrlMenuPageTitleText.h>
 #include <mkw/UI/Event.h>
