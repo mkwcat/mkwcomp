@@ -2463,6 +2463,7 @@
 
   27a4  = The Spikey Topmen from Super Mario\n
     + Galaxy are here and ready to fight!\n
+    + 
     + Some are cowardly, though, and will run\n
     + away. Push them off the edge to win!
 
@@ -2486,6 +2487,13 @@
   2800  = Your rank will not be\n
         + saved using this controller.\n
         + Is this OK?
+  2801  = RNG Seed Control
+  2802  = The RNG Seed controls features\n
+        + such as items and CPUs.\n
+        + \n
+        + A menu to control the Seed\n
+        + will be available in a\n
+        + future update.
 
  18697	/
  18698	/

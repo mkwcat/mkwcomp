@@ -26,10 +26,13 @@ public:
     LayoutUIControl();
     virtual ~LayoutUIControl();
 
-    virtual void _38() {}
+    virtual void _38()
+    {
+    }
 
     void setAllText(int msgId, UI::MesgRes::FormatParam* param);
-    void setPaneText(const char* pane, int msgId, UI::MesgRes::FormatParam* param);
+    void setPaneText(const char* pane, int msgId,
+                     UI::MesgRes::FormatParam* param);
     void setTexture(const char* pane, const char* texture);
 
     SomeAnimationContainer m_anim;
@@ -39,6 +42,8 @@ public:
     void* m_iconPane;
     void* m_mainPane;
 };
+static_assert(sizeof(LayoutUIControl) == 0x174,
+              "sizeof(LayoutUIControl) != 0x174");
 
 class CtrlRes
 {

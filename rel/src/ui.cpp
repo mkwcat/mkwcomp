@@ -1687,14 +1687,14 @@ void buildPagesReplace(UI::Scene* scene, int id)
         scene->buildPage(0xCC);
         break;
 
-    case UI::SCENE_MSG_UNLOCK_ORANGE1:
+    case UI::SCENE_MSG_UNLOCK_PINK:
         scene->buildPage(0x5B);
         scene->buildPage(0x5E);
         scene->buildPage(0x7F);
         scene->buildPage(0xCD);
         break;
 
-    case UI::SCENE_MSG_UNLOCK_ORANGE2:
+    case UI::SCENE_MSG_UNLOCK_ORANGE:
         scene->buildPage(0x5B);
         scene->buildPage(0x5E);
         scene->buildPage(0x7F);
@@ -2563,14 +2563,14 @@ void showBasePagesReplace(UI::Scene* scene, int id)
         scene->showPageOnTop(0xC6);
         break;
 
-    case UI::SCENE_MSG_UNLOCK_ORANGE1:
+    case UI::SCENE_MSG_UNLOCK_PINK:
         scene->showPageOnTop(0x7F);
         scene->showPageOnTop(0x5B);
         scene->showPageOnTop(0x5E);
         scene->showPageOnTop(0xCD);
         break;
 
-    case UI::SCENE_MSG_UNLOCK_ORANGE2:
+    case UI::SCENE_MSG_UNLOCK_ORANGE:
         scene->showPageOnTop(0x7F);
         scene->showPageOnTop(0x5B);
         scene->showPageOnTop(0x5E);

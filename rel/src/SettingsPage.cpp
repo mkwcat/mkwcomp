@@ -1,6 +1,7 @@
 #include "SettingsPage.h"
 #include "UI.h"
 #include "patch.h"
+#include <mkw/UI/OptionMessageBoxManagerPage.h>
 #include <mkw/UI/PushButton.h>
 #include <mkw/UI/Scene.h>
 #include <mkw/UI/SceneBGMController.h>
@@ -12,12 +13,14 @@ enum Button
 {
     BUTTON_RUMBLE = 0,
     BUTTON_SEED = 1,
-    BUTTON_LICENSE = 2
+    BUTTON_LICENSE = 2,
+    BUTTON_BACK = -100
 };
 
 SettingsPage::SettingsPage()
     : m_ptr_onButtonSelect(this, &SettingsPage::onButtonSelect),
-      m_ptr_onBackPress(this, &SettingsPage::onBackPress)
+      m_ptr_onBackPress(this, &SettingsPage::onBackPress),
+      m_ptr_messageWindowEvent(this, &SettingsPage::messageWindowEvent)
 {
     m_nextPage = -1;
 }
@@ -48,6 +51,7 @@ void SettingsPage::onInit()
         m_seedButton.readLayout("button", "OptionTopButton", "Network", 1, 0,
                                 false);
         m_seedButton.setSelectEvent(&m_ptr_onButtonSelect, 0);
+        m_seedButton.setAllText(0x2801, nullptr);
         m_seedButton.m_id = BUTTON_SEED;
     }
 
@@ -81,31 +85,72 @@ void SettingsPage::onInit()
 
 void SettingsPage::onButtonSelect(UI::PushButton* button, int r5)
 {
-    int sceneId = -1;
     m_nextPage = -1;
 
     switch (button->m_id) {
     case BUTTON_RUMBLE:
-        sceneId = 0x8D;
+        selectRumble(button);
         break;
-    case BUTTON_LICENSE: {
-        UI::SceneBGMControllerInstance->enableBGMPersist();
-        sceneId = LICENSE_SETTINGS_SCENE_ID;
+
+    case BUTTON_SEED:
+        selectSeed(button);
+        break;
+
+    case BUTTON_LICENSE:
+        selectLicenseSettings(button);
+        break;
+
+    case BUTTON_BACK:
+        f32 delay = button->getSelectDelay();
+        startSceneTransition(UI::SCENE_TOURNAMENT, SLIDE_BACK, delay);
         break;
     }
-
-    default:
-        return;
-    }
-
-    f32 delay = button->getSelectDelay();
-    m_nextPage = -1;
-    startSceneTransition(LICENSE_SETTINGS_SCENE_ID, SLIDE_FORWARD, delay);
 }
 
 void SettingsPage::onBackPress(int r4, int r5)
 {
-    startSceneTransition(TOURNAMENT_SELECT_SCENE_ID, SLIDE_BACK, 0);
+    startSceneTransition(UI::SCENE_TOURNAMENT, SLIDE_BACK, 0);
+}
+
+void SettingsPage::selectRumble(UI::PushButton* button)
+{
+    UI::OptionMessageBoxManagerPage* page =
+        UI::UIPage::cast<UI::OptionMessageBoxManagerPage>(
+            UI::MenuDataInstance->m_scene->getPage(0xC6));
+
+    page->m_option = 0;
+
+    m_nextPage = 0xC6;
+    f32 delay = button->getSelectDelay();
+    startTransitionOut(SLIDE_FORWARD, delay);
+}
+
+void SettingsPage::selectSeed(UI::PushButton* button)
+{
+    UI::OptionMessageWindowPage* window =
+        UI::UIPage::cast<UI::OptionMessageWindowPage>(
+            UI::MenuDataInstance->m_scene->getPage(0xC8));
+
+    window->setTitleText(0x2801, nullptr);
+    window->setWindowText(0x2802, nullptr);
+    window->m_pressAEvent = &m_ptr_messageWindowEvent;
+
+    m_nextPage = 0xC8;
+    f32 delay = button->getSelectDelay();
+    startTransitionOut(SLIDE_FORWARD, delay);
+}
+
+void SettingsPage::selectLicenseSettings(UI::PushButton* button)
+{
+    UI::SceneBGMControllerInstance->enableBGMPersist();
+    f32 delay = button->getSelectDelay();
+    startSceneTransition(UI::SCENE_LICENSE_SETTINGS, SLIDE_FORWARD, delay);
+}
+
+void SettingsPage::messageWindowEvent(UI::OptionMessageWindowPage* page, int r5)
+{
+    UI::SceneBGMControllerInstance->enableBGMPersist();
+    page->startSceneTransition(UI::SCENE_OPTIONS, SLIDE_FORWARD, 0);
 }
 
 int SettingsPage::getNextPageID()
@@ -116,7 +161,7 @@ int SettingsPage::getNextPageID()
 void LicenseSettings_onBackPress(UI::UIPage* page)
 {
     UI::SceneBGMControllerInstance->enableBGMPersist();
-    // aka options from license settings
+    // aka Options from License Settings
     page->startSceneTransition(UI::SCENE_INSTALL_CHANNEL,
                                UI::UIPage::SLIDE_BACK, 0);
 }

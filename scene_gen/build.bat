@@ -34,6 +34,11 @@ copy out\Event_G.szs out\MenuOther_G.szs
 copy out\Event_J.szs out\MenuOther_J.szs
 copy out\Event_U.szs out\MenuOther_U.szs
 
+copy out\Event_E.szs out\Channel_E.szs
+copy out\Event_G.szs out\Channel_G.szs
+copy out\Event_J.szs out\Channel_J.szs
+copy out\Event_U.szs out\Channel_U.szs
+
 mkdir base\Race_E.d\button\ctrl base\Race_G.d\button\ctrl base\Race_J.d\button\ctrl base\Race_U.d\button\ctrl
 copy base\AfterMenuOfflineEvent.brctr base\Race_E.d\button\ctrl\AfterMenuOfflineEvent.brctr
 copy base\AfterMenuOfflineEvent.brctr base\Race_G.d\button\ctrl\AfterMenuOfflineEvent.brctr
