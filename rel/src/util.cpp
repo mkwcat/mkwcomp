@@ -1,7 +1,7 @@
 #include "util.h"
-#include <string.h>
 #include <mkw/MenuSet.h>
 #include <mkw/UI/Scene.h>
+#include <string.h>
 
 extern const char diResNameStr[];
 
@@ -9,13 +9,13 @@ bool isRiivolution()
 {
     if (strcmp(diResNameStr, "/dev/do") == 0)
         return true;
-    
+
     return false;
 }
 
 char getRegionChar()
 {
-    return *(char*) 0x80000003;
+    return *(char*)0x80000003;
 }
 
 bool isTournamentMode()
@@ -23,4 +23,3 @@ bool isTournamentMode()
     return MenuSet::sInstance->currentRace.modeFlags &
            MenuSet::RaceSetting::FLAG_TOURNAMENT;
 }
-
