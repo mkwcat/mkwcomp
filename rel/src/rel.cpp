@@ -1,4 +1,5 @@
 #include "CompFile.cpp"
+#include "ForcedHandleBypassPage.cpp"
 #include "SelectionPage.cpp"
 #include "SettingsPage.cpp"
 #include "UI.cpp"

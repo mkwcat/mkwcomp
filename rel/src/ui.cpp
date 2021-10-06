@@ -1,4 +1,5 @@
 #include "ui.h"
+#include "ForcedHandleBypassPage.h"
 #include "SelectionPage.h"
 #include "SettingsPage.h"
 #include "patch.h"
@@ -220,111 +221,6 @@ void eventExplanationBackEvent(UI::UIPage* page, int r4, int r5)
 s32 eventExplanationGetNextPage(UI::UIPage* page)
 {
     return s_eventExplanation_nextPage;
-}
-
-// The page that manages the popup choice that appears when you try to use a
-// wrong controller on a Wii Wheel only tournament.
-class ForcedHandleBypassPage : public UI::UIPage
-{
-public:
-    ForcedHandleBypassPage()
-        : m_ptr_selectYes(this, &ForcedHandleBypassPage::selectYes)
-    {
-        m_noResume = false;
-        m_wiiWheelPageDisabled = false;
-    }
-
-    void onInit()
-    {
-        CompFile::sInstance->m_forceHandleDisabled = false;
-        setEventController(&m_events);
-    }
-
-    void onShow()
-    {
-        UI::MessageYesNoBoxPage* msgPage =
-            UI::UIPage::cast<UI::MessageYesNoBoxPage>(
-                UI::MenuDataInstance->m_scene->getPage(0x4E));
-
-        msgPage->configMessage(0x2800, nullptr);
-        msgPage->configOption(0, 0xFAC, nullptr, 1, &m_ptr_selectYes);
-        msgPage->configOption(1, 0xFAD, nullptr, -1, nullptr);
-        m_noResume = false;
-        showNextPage(0x4E, 0);
-    }
-
-    void selectYes(UI::MessageYesNoBoxPage* page, UI::PushButton* button)
-    {
-        CompFile::sInstance->m_forceHandleDisabled = true;
-
-        const int sceneId = UI::MenuDataInstance->m_scene->m_sceneId;
-        if (sceneId == 0x88) {
-            // Normal tournament intro
-            UI::MenuDataInstance->setNextScene(0x2D, 0);
-        } else if (sceneId == 0x89) {
-            // For bosses specifically
-            UI::MenuDataInstance->setNextScene(0x1D, 0);
-        }
-
-        f32 delay = button->getSelectDelay();
-        UI::MenuDataInstance->startSceneTransition((int)delay, 0x000000FF);
-
-        UI::UIPage* lastPage = UI::MenuDataInstance->m_scene->getPage(0xBA);
-        lastPage->startTransitionOut(UI::UIPage::SLIDE_FORWARD, delay);
-
-        m_noResume = true;
-    }
-
-    void onReturn()
-    {
-        UI::UIPage* lastPage = UI::MenuDataInstance->m_scene->getPage(0xBA);
-        if (!m_noResume) {
-            // These calls emulate two functions required to dereference the
-            // current controller
-            lastPage->onShow();
-            lastPage->_3C();
-            m_wiiWheelPageDisabled = false;
-        }
-        startTransitionOut(UI::UIPage::SLIDE_FORWARD, 0);
-    }
-
-    static int isWiiWheelPageDisabled()
-    {
-        ForcedHandleBypassPage* page = UI::UIPage::cast<ForcedHandleBypassPage>(
-            UI::MenuDataInstance->m_scene->getPage(0x87));
-        return page->m_wiiWheelPageDisabled;
-    }
-    static void setWiiWheelPageDisabled(bool set)
-    {
-        ForcedHandleBypassPage* page = UI::UIPage::cast<ForcedHandleBypassPage>(
-            UI::MenuDataInstance->m_scene->getPage(0x87));
-        page->m_wiiWheelPageDisabled = set;
-    }
-
-protected:
-    bool m_noResume;
-    bool m_wiiWheelPageDisabled;
-
-    UI::Event<ForcedHandleBypassPage, UI::MessageYesNoBoxPage*, UI::PushButton*>
-        m_ptr_selectYes;
-    UI::PageEventBase m_events;
-
-public:
-    static UI::AutoTypeInfo<UI::UIPage> sTypeInfo;
-    virtual const UI::TypeInfo* getTypeInfo()
-    {
-        return &sTypeInfo;
-    }
-};
-UI::AutoTypeInfo<UI::UIPage> ForcedHandleBypassPage::sTypeInfo;
-
-void wiiWheelPageRejectController(UI::UIPage* page)
-{
-    if (ForcedHandleBypassPage::isWiiWheelPageDisabled())
-        return;
-
-    ForcedHandleBypassPage::setWiiWheelPageDisabled(true);
-    page->showNextPage(0x87, 0);
 }
 
 asm void hudWatchReplayHook()
@@ -591,26 +487,6 @@ s32 sceneGetBGMGroupReplace(UI::SceneID id)
     }
 }
 
-extern Instruction<1> Patch_SceneBuildPages;
-extern Instruction<1> Patch_SceneShowBasePages;
-extern Instruction<1> Patch_MainMenuKind;
-extern Instruction<1> Patch_SceneGetBGM;
-extern Instruction<1> Patch_SceneGetBGMGroup;
-extern Instruction<1> Patch_LicenseSelect;
-extern Instruction<1> Patch_LicenseSettingsBack;
-
-extern Instruction<6> Patch_EventExplanationPage_Events;
-extern Instruction<25> Patch_EventExplanationPage_vtable;
-extern Instruction<1> Patch_EventExplanationVolumeChange;
-
-extern Instruction<24> Patch_ChangeMissionCase;
-extern Instruction<1> Patch_HudWatchReplayCase;
-extern Instruction<4> Patch_QuitReplayCase;
-
-extern Instruction<1> Patch_ResultMusic;
-
-extern Instruction<11> Patch_WiiWheelOnlyPage;
-
 asm void buildPagesHook(UI::Scene* scene, UI::SceneID id)
 {
     // clang-format off
@@ -677,6 +553,24 @@ showBasePages_end:
     // clang-format on
 }
 
+extern Instruction<1> Patch_SceneBuildPages;
+extern Instruction<1> Patch_SceneShowBasePages;
+extern Instruction<1> Patch_MainMenuKind;
+extern Instruction<1> Patch_SceneGetBGM;
+extern Instruction<1> Patch_SceneGetBGMGroup;
+extern Instruction<1> Patch_LicenseSelect;
+extern Instruction<1> Patch_LicenseSettingsBack;
+
+extern Instruction<6> Patch_EventExplanationPage_Events;
+extern Instruction<25> Patch_EventExplanationPage_vtable;
+extern Instruction<1> Patch_EventExplanationVolumeChange;
+
+extern Instruction<24> Patch_ChangeMissionCase;
+extern Instruction<1> Patch_HudWatchReplayCase;
+extern Instruction<4> Patch_QuitReplayCase;
+
+extern Instruction<1> Patch_ResultMusic;
+
 void initMenu()
 {
     Patch_SceneBuildPages.setBL(buildPagesHook);
@@ -712,9 +606,6 @@ void initMenu()
 
     Patch_QuitReplayCase.setNop(0);
     Patch_QuitReplayCase.setBL(hudQuitReplayHook, 3);
-
-    Patch_WiiWheelOnlyPage.setBL(wiiWheelPageRejectController);
-    Patch_WiiWheelOnlyPage.setB(&Patch_WiiWheelOnlyPage.m_instr[11], 1);
 
     if (getRegionChar() == 'E') {
         // Skip ESRB screen patch for NTSC-U
