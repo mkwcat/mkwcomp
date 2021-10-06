@@ -88,7 +88,6 @@ void buildPagesReplace(UI::Scene* scene, int id)
         scene->buildPage(0x4B);
         scene->buildPage(0x4D);
         scene->buildPage(0x51);
-        // scene->buildPage(0x5E);
         scene->buildPage(0x6B);
         scene->buildPage(0x6C);
         scene->buildPage(0x6D);
@@ -181,15 +180,18 @@ s32 sceneGetBGMReplace(int id)
 {
     switch (id) {
     case UI::SCENE_GRAND_PRIX_PANORAMA:
-        return 0x59;
+        return Sound::STRM_O_CRS_IN_FAN;
+
     case UI::SCENE_BALLOON_BATTLE_PANORAMA:
     case UI::SCENE_MISSION_BOSS_PANORAMA:
     case UI::SCENE_TOURNAMENT_BOSS_PANORAMA:
-        return 0x57;
+        return Sound::STRM_O_B_CRS_IN_FAN;
+
     case UI::SCENE_GRAND_PRIX_GAMEPLAY:
-        return 0x59;
+        return Sound::STRM_O_START_FAN;
+
     case UI::SCENE_TIME_TRIAL_GAMEPLAY:
-        return 0x5A;
+        return Sound::STRM_O_START2_FAN;
 
     case UI::SCENE_1P_VS_RACE_GAMEPLAY:
     case UI::SCENE_2P_VS_RACE_GAMEPLAY:
@@ -199,7 +201,7 @@ s32 sceneGetBGMReplace(int id)
     case UI::SCENE_2P_TEAM_VS_RACE_GAMEPLAY:
     case UI::SCENE_3P_TEAM_VS_RACE_GAMEPLAY:
     case UI::SCENE_4P_TEAM_VS_RACE_GAMEPLAY:
-        return 0x59;
+        return Sound::STRM_O_START_FAN;
 
     case UI::SCENE_1P_BATTLE_GAMEPLAY:
     case UI::SCENE_2P_BATTLE_GAMEPLAY:
@@ -207,24 +209,24 @@ s32 sceneGetBGMReplace(int id)
     case UI::SCENE_4P_BATTLE_GAMEPLAY:
     case UI::SCENE_MISSION_MODE_GAMEPLAY:
     case UI::SCENE_TOURNAMENT_GAMEPLAY:
-        return 0x5A;
+        return Sound::STRM_O_START2_FAN;
 
     case UI::SCENE_MAIN_MENU_FROM_BOOT:
     case UI::SCENE_MAIN_MENU_FROM_RESET:
     case UI::SCENE_MAIN_MENU_FROM_MENU:
     case UI::SCENE_MAIN_MENU_FROM_NEW_LICENSE:
     case UI::SCENE_MAIN_MENU_FROM_LICENSE_43:
-        return 2;
+        return Sound::SEQ_O_SELECT_CH;
 
     case UI::SCENE_TOURNAMENT:
     case UI::SCENE_TOURNAMENT_CHANGE_CHARA:
-        return 1;
+        return Sound::SEQ_O_EARTH;
 
     case UI::SCENE_MII_SELECT_1:
     case UI::SCENE_MII_SELECT_2:
     case UI::SCENE_LICENSE_SETTINGS:
     case UI::SCENE_OPTIONS:
-        return 0x53;
+        return Sound::STRM_O_OPTION;
     default:
         return -1;
     }
@@ -237,17 +239,17 @@ s32 sceneGetBGMGroupReplace(int id)
     case UI::SCENE_MAIN_MENU_FROM_MENU:
     case UI::SCENE_MAIN_MENU_FROM_NEW_LICENSE:
     case UI::SCENE_MAIN_MENU_FROM_LICENSE_43:
-        return 2;
+        return Sound::GRP_CH_MENU;
 
     case UI::SCENE_TOURNAMENT:
     case UI::SCENE_TOURNAMENT_CHANGE_CHARA:
-        return 3;
+        return Sound::GRP_CH_EARTH;
 
     case UI::SCENE_MII_SELECT_1:
     case UI::SCENE_MII_SELECT_2:
     case UI::SCENE_LICENSE_SETTINGS:
     case UI::SCENE_OPTIONS:
-        return 12;
+        return Sound::GRP_PRESENT;
     default:
         return -1;
     }
