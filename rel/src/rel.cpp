@@ -3,6 +3,7 @@
 #include "SelectionPage.cpp"
 #include "SettingsPage.cpp"
 #include "UI.cpp"
+#include "RaceMenu.cpp"
 #include "file.cpp"
 #include "main.cpp"
 #include "replay.cpp"
