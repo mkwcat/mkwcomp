@@ -17,14 +17,14 @@ public:
         /* Like PushButton with some differences */
         SheetSelectButton(); // fake! this is always inlined actually
 
-        ButtonEventBase m_events;
+        /* 0x174 */ ButtonEventBase m_events;
 
         Event<SheetSelectControl, int, int> m_event_1F8;
         Event<SheetSelectControl, int, int> m_event_20C;
         Event<SheetSelectControl, int, int> m_event_220;
 
         int m_id;
-        int m_playerCount;
+        int m_selectable;
 
         bool m_23C;
         void* m_somePane;

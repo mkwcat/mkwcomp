@@ -261,19 +261,19 @@ void CompFile::setText(const wchar_t* title, const wchar_t* explanation)
     m_compExplanation = explanation;
 }
 
-static bool ldbEntryCompare(LdbFileEntry& entry, GhostData::RaceTime* time)
+static bool ldbEntryCompare(LdbFileEntry* entry, GhostData::RaceTime* time)
 {
-    if (!entry.isEnabled)
+    if (!entry->isEnabled)
         return false;
 
-    if (entry.minutes != time->minutes)
-        return entry.minutes < time->minutes;
+    if (entry->minutes != time->minutes)
+        return entry->minutes < time->minutes;
 
-    if (entry.seconds != time->seconds)
-        return entry.seconds < time->seconds;
+    if (entry->seconds != time->seconds)
+        return entry->seconds < time->seconds;
 
-    if (entry.milliseconds != time->milliseconds)
-        return entry.milliseconds < time->milliseconds;
+    if (entry->milliseconds != time->milliseconds)
+        return entry->milliseconds < time->milliseconds;
 
     return true;
 }
@@ -285,12 +285,11 @@ int CompFile::getTimeLdbPosition(GhostData::RaceTime* time)
     if (m_rkc.objective.forceWiiWheel && m_forceHandleDisabled)
         return -1;
 
-    LdbFileEntry* entry = std::lower_bound(&m_leaderboard[0], &m_leaderboard[5],
-                                           time, ldbEntryCompare);
-    if (entry == &m_leaderboard[5])
-        return -1;
-
-    return indexInArray(m_leaderboard, entry);
+    for (int i = 0; i < 5; i++) {
+        if (!ldbEntryCompare(&m_leaderboard[i], time))
+            return i;
+    }
+    return -1;
 }
 
 void CompFile::getLdbEntry(u8 position, LeaderboardEntry* entry)

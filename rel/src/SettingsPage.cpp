@@ -166,8 +166,16 @@ void LicenseSettings_onBackPress(UI::UIPage* page)
                                UI::UIPage::SLIDE_BACK, 0);
 }
 
+void LicenseSelect_optionsButton(UI::PushButton* button)
+{
+    button->m_hide = true;
+    button->m_selectable = 0;
+}
+
 extern Instruction<1> Patch_LicenseSettingsBack;
+extern Instruction<1> Patch_LicenseSelectOptions;
 void SettingsPage::staticInit()
 {
     Patch_LicenseSettingsBack.setB(LicenseSettings_onBackPress);
+    Patch_LicenseSelectOptions.setBL(LicenseSelect_optionsButton);
 }

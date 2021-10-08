@@ -32,13 +32,13 @@ public:
     void readLayout(const char* lytSection, const char* ctrlName,
                     const char* positionEntry, int playerCount, int,
                     bool pointerExclusive);
-    
+
     void setSelected(int player);
     void freeToSelect(int player);
 
     f32 getSelectDelay();
 
-    ButtonEventBase m_events;
+    /* 0x174 */ ButtonEventBase m_events;
 
 protected:
     Event<PushButton, int, int> m_defaultFreeToSelectEvent;
@@ -46,17 +46,17 @@ protected:
     Event<PushButton, int, int> m_defaultSelectEvent;
 
 public:
-    EventBase* m_freeToSelectEvent;
-    EventBase* m_selectToFreeEvent;
-    EventBase* m_selectEvent;
+    /* 0x234 */ EventBase* m_freeToSelectEvent;
+    /* 0x238 */ EventBase* m_selectToFreeEvent;
+    /* 0x23C */ EventBase* m_selectEvent;
 
-    u32 m_id;
-    u32 m_playerCount;
+    /* 0x240 */ u32 m_id;
+    /* 0x244 */ int m_selectable;
 
-    void* m_somePane;
-    void* m_somePane2;
+    /* 0x248 */ void* m_somePane;
+    /* 0x24C */ void* m_somePane2;
 
-    s32 m_selectSoundId;
+    /* 0x250 */ s32 m_selectSoundId;
 };
 
 static_assert(sizeof(PushButton) == 0x254, "sizeof(PushButton) != 0x254");

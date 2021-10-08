@@ -7,8 +7,7 @@ namespace UI
 class MesgRes
 {
 public:
-    struct FormatParam
-    {
+    struct FormatParam {
         int intParam;
         int intParam2;
         u8 fill[0xC0];
@@ -23,5 +22,6 @@ public:
     int getIndexFromMid(int mid) const;
     wchar_t* getTextFromIndex(int index) const;
 };
+static_assert(sizeof(MesgRes) == 0x14, "sizeof(MesgRes) != 0x14");
 
-}
+} // namespace UI

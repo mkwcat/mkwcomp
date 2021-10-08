@@ -13,6 +13,7 @@
 80838bec:Patch_ChangeMissionCase
 80628468:Patch_WiiWheelOnlyPage
 80632c0c:Patch_LicenseSelect
+806320a0:Patch_LicenseSelectOptions
 806350ac:Patch_LicenseSettingsBack
 805f1354:Patch_BGUnloadSoundFix
 

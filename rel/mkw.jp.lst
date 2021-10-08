@@ -13,6 +13,7 @@
 80859ce8:Patch_ChangeMissionCase
 805d16dc:Patch_WiiWheelOnlyPage
 805eb210:Patch_LicenseSelect
+805ea6a4:Patch_LicenseSelectOptions
 805ed6b0:Patch_LicenseSettingsBack
 
 80856ea8:Patch_ControlKindCheck_RaceFinishReset

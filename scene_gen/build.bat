@@ -56,14 +56,14 @@ copy build\Race_E.bmg base\Race_E.d\message\Race.bmg
 wszst create base\Race_E.d --dest out/Race_E.szs
 copy text\Common_G.bmg base\Race_G.d\message\Common.bmg
 copy build\Menu_G.bmg base\Race_G.d\message\Menu.bmg
-copy build\Race_E.bmg base\Race_E.d\message\Race.bmg
+copy build\Race_G.bmg base\Race_G.d\message\Race.bmg
 wszst create base\Race_G.d --dest out/Race_G.szs
 copy text\Common_J.bmg base\Race_J.d\message\Common.bmg
 copy build\Menu_J.bmg base\Race_J.d\message\Menu.bmg
-copy build\Race_E.bmg base\Race_E.d\message\Race.bmg
+copy build\Race_J.bmg base\Race_J.d\message\Race.bmg
 wszst create base\Race_J.d --dest out/Race_J.szs
 copy text\Common_U.bmg base\Race_U.d\message\Common.bmg
 copy build\Menu_U.bmg base\Race_U.d\message\Menu.bmg
-copy build\Race_E.bmg base\Race_E.d\message\Race.bmg
+copy build\Race_U.bmg base\Race_U.d\message\Race.bmg
 wszst create base\Race_U.d --dest out/Race_U.szs
 

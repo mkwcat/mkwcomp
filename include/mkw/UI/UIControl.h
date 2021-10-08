@@ -60,7 +60,7 @@ public:
     /* 0x68 */ UIControlCollection m_children;
 
     /* 0x7C */ f32 m_7C;
-    /* 0x80 */ bool m_invisible;
+    /* 0x80 */ bool m_hide;
     /* 0x84 */ u32 m_84;
     /* 0x88 */ bool m_useSlideAnim;
     /* 0x8C */ f32 m_slideDelay;

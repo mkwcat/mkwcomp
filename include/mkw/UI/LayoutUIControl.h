@@ -35,12 +35,12 @@ public:
                      UI::MesgRes::FormatParam* param);
     void setTexture(const char* pane, const char* texture);
 
-    SomeAnimationContainer m_anim;
-    char fill[0x9C];
-    MesgRes m_bmg;
-    MesgRes m_commonBmg;
-    void* m_iconPane;
-    void* m_mainPane;
+    /* 0x098 */ SomeAnimationContainer m_anim;
+    /* 0x0A8 */ char fill[0x9C];
+    /* 0x144 */ MesgRes m_bmg;
+    /* 0x158 */ MesgRes m_commonBmg;
+    /* 0x16C */ void* m_iconPane;
+    /* 0x170 */ void* m_mainPane;
 };
 static_assert(sizeof(LayoutUIControl) == 0x174,
               "sizeof(LayoutUIControl) != 0x174");

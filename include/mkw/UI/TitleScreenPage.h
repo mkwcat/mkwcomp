@@ -14,7 +14,7 @@ public:
 
     void hideBackground(bool value)
     {
-        m_background.m_invisible = value;
+        m_background.m_hide = value;
     }
 
 protected:
