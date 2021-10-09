@@ -2,34 +2,30 @@
 #include "MiiData.h"
 #include <rvl/types.h>
 
-namespace RKG
-{
-
-struct Header {
-    u8 fill[0x88];
-};
-
-struct File {
-    Header header;
-    u8 data[0x27FC - 0x88];
-    u32 checksum;
-};
-static_assert(sizeof(File) == 0x2800, "sizeof(File) != 0x2800");
-
-} // namespace RKG
-
 class GhostData
 {
 public:
+    struct RKGFile {
+        u8 header[0x88];
+        u8 data[0x27FC - 0x88];
+        u32 checksum;
+
+        /* 0x8051D0E0 */
+        bool compress(RKGFile* out); // from stebler
+        /* 0x8051D388 */
+        u32 getFileSize() const;
+    };
+    static_assert(sizeof(RKGFile) == 0x2800, "sizeof(File) != 0x2800");
+
     /* 0x8051C270 */
     GhostData();
     /* 0x8051C334 */
     ~GhostData();
 
     /* 0x8051C7F4 */
-    void makeRKGHeader(RKG::Header* out);
+    void makeRKGHeader(RKGFile* out);
     /* 0x8051CA80 */
-    void makeRKG(RKG::File* out);
+    void makeRKG(RKGFile* out);
     /* 0x8051CB1C */
     void makeGhostFromPlayer(int playerId);
 

@@ -110,7 +110,9 @@
 
 80517dfc:__ct__9GhostDataFv
 80517ec0:__dt__9GhostDataFv
-8051860c:makeRKG__9GhostDataFPQ23RKG4File
+8051860c:makeRKG__9GhostDataFPQ29GhostData7RKGFile
+80518c6c:compress__Q29GhostData7RKGFileFPQ29GhostData7RKGFile
+80518f14:getFileSize__Q29GhostData7RKGFileCFv
 
 /* UI stuff */
 80604ba4:setNextScene__Q22UI8MenuDataFii

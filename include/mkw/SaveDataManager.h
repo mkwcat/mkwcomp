@@ -11,6 +11,6 @@ public:
 
     u8 fill[0x14];
     void* m_rksys;
-    RKG::File* m_rkgFile;
+    GhostData::RKGFile* m_rkgFile;
     u8 fill2[0x28008 - 0x1C];
 };

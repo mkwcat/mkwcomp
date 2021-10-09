@@ -273,15 +273,16 @@ void CompFile::writeGhostDataTask()
         return;
     }
 
-    RKG::File* rkg = SaveDataManager::sInstance->m_rkgFile;
-    memset(rkg, 0, sizeof(RKG::File));
+    GhostData::RKGFile* rkg = SaveDataManager::sInstance->m_rkgFile;
+    memset(rkg, 0, sizeof(GhostData::RKGFile));
 
-    m_ghost.makeRKG(rkg);
+    m_ghost.makeRKG(&m_tempRkg);
+    m_tempRkg.compress(rkg);
 
-    s32 sret = m_file->writeData(rkg, sizeof(RKG::File), 0);
+    s32 sret = m_file->writeData(rkg, rkg->getFileSize(), 0);
     m_file->close();
 
-    if (sret != sizeof(RKG::File)) {
+    if (sret != rkg->getFileSize()) {
         OSReport("ERROR: Ghost write failed!\n");
         m_ghostFsError = m_file->getFSError();
         m_ghostDataStatus = SAVE_EWRITE;
@@ -475,8 +476,9 @@ void makeGhostCPU(wchar_t* cpu)
     const MenuSet::RaceSetting* set = &MenuSet::sInstance->currentRace;
     u32 count = set->playerCount;
 
-    for (int i = 1; i < count; i++)
-    {
+    // Compress the CPU character and vehicle combo into 6 bits for character
+    // and 6 for vehicle
+    for (int i = 1; i < count; i++) {
         int bit = (i - 1) * 12;
         int index = bit / 16;
         int bitInIndex = bit - index * 16;
@@ -484,7 +486,7 @@ void makeGhostCPU(wchar_t* cpu)
         u16 value = (set->players[i].characterId & 0x3F) << 6;
         value |= (set->players[i].vehicleId & 0x3F);
         value <<= 16 - 12;
-        
+
         cpu[index] |= value >> bitInIndex;
         cpu[index + 1] |= value << (16 - bitInIndex);
     }

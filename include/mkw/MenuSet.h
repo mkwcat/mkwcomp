@@ -229,7 +229,7 @@ public:
     /* 0x0C10 */ RaceSetting nextRace;
     /* 0x1800 */ RaceSetting unknownRace;
 
-    /* 0x23F0 */ RKG::File ghosts[2];
+    /* 0x23F0 */ GhostData::RKGFile ghosts[2];
 };
 static_assert(sizeof(MenuSet) == 0x73F0, "sizeof(MenuSet) != 0x73F0");
 

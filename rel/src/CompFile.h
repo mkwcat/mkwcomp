@@ -136,6 +136,7 @@ public:
     CompSaveFile m_saveData ATTRIBUTE_ALIGN(32);
 
     GhostData m_ghost;
+    GhostData::RKGFile m_tempRkg;
 
 #if 0
     struct CPUData
