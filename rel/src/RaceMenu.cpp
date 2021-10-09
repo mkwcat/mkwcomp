@@ -1,4 +1,6 @@
 #include "RaceMenu.h"
+#include "UI.h"
+#include "replay.h"
 #include "patch.h"
 #include <mkw/MenuSet.h>
 #include <mkw/UI/RaceHudPage.h>
@@ -247,7 +249,7 @@ int resultMusicHook(int bgmId)
         // Let's do this check properly. I'm assuming that was actually a bug
         // and it should play the boss fanfare if the intro setting is 3.
         if ((bgmId == 0x70 || bgmId == 0x71) &&
-            CompFile::sInstance->header()->objective.introSetting == 3)
+            CompFile::sInstance->getHeader()->objective.introSetting == 3)
             return 0x6F;
     }
 

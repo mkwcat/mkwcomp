@@ -6,13 +6,23 @@
 
 namespace FSType
 {
-enum { SAVE_NAND, SAVE_RIIVO };
-}
+enum
+{
+    SAVE_NAND,
+    SAVE_RIIVO
+};
+} // namespace FSType
 
 namespace FSError
 {
-enum { OK, FILE_NOT_FOUND, NO_ACCESS, OTHER };
-}
+enum
+{
+    OK,
+    FILE_NOT_FOUND,
+    NO_ACCESS,
+    OTHER,
+};
+} // namespace FSError
 
 class NandFile : public EGG::File
 {
@@ -70,13 +80,22 @@ public:
     static RiivoFS* sInstance;
     static void initialize();
 
-    enum Ioctl { IOCTL_Shorten = 0x60, IOCTL_SetSlotLED = 0x65 };
+    enum Ioctl
+    {
+        IOCTL_CreateDir = 0x50,
+        IOCTL_OpenDir = 0x51,
+        IOCTL_CloseDir = 0x53,
+        IOCTL_Shorten = 0x60,
+        IOCTL_SetSlotLED = 0x65
+    };
 
     RiivoFS();
     virtual ~RiivoFS();
 
     void getShortPath(const char* inPath, char* out);
     void setSlotLED(bool lit);
+    s32 createDir(const char* path);
+    bool dirExists(const char* path);
 
     s32 m_fd;
 };

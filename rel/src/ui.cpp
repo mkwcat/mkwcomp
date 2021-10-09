@@ -1,6 +1,5 @@
 #include "ui.h"
-#include "ForcedHandleBypassPage.h"
-#include "RaceMenu.h"
+#include "SaveManagerPage.h"
 #include "SelectionPage.h"
 #include "SettingsPage.h"
 #include "patch.h"
@@ -8,19 +7,10 @@
 #include "util.h"
 #include <mkw/MenuSet.h>
 #include <mkw/Sound.h>
-#include <mkw/UI/CtrlMenuBackButton.h>
-#include <mkw/UI/CtrlMenuPageTitleText.h>
-#include <mkw/UI/Event.h>
-#include <mkw/UI/LayoutUIControl.h>
-#include <mkw/UI/MesgRes.h>
-#include <mkw/UI/MessageYesNoBoxPage.h>
 #include <mkw/UI/PushButton.h>
 #include <mkw/UI/Scene.h>
 #include <mkw/UI/TitleScreenPage.h>
 #include <mkw/UI/UIPage.h>
-#include <mkw/common.h>
-#include <rvl/os.h>
-#include <stdio.h>
 
 // use a static variable for this I guess
 s32 s_eventExplanation_nextPage = -1;
@@ -319,6 +309,7 @@ void buildPagesReplace(UI::Scene* scene, int id)
 
     // Patched
     case UI::SCENE_TOURNAMENT_GAMEPLAY:
+        SaveManagerPage::build(scene);
         if (isTournamentReplay())
             buildTournamentReplayPages(scene);
         else
@@ -1582,6 +1573,7 @@ void buildPagesReplace(UI::Scene* scene, int id)
     // Patched
     case UI::SCENE_TOURNAMENT:
     case UI::SCENE_TOURNAMENT_CHANGE_CHARA:
+        SaveManagerPage::build(scene);
         scene->buildPage(0x4B);
         scene->buildPage(0x4D);
         scene->buildPage(0x51);
@@ -1647,6 +1639,7 @@ void buildPagesReplace(UI::Scene* scene, int id)
     // Patched
     case UI::SCENE_OPTIONS:
     case UI::SCENE_INSTALL_CHANNEL:
+        SaveManagerPage::build(scene);
         scene->buildPage(0x4D);
         scene->buildPage(0x4E);
         scene->buildPage(0x5D);

@@ -50,7 +50,7 @@ public:
     static_assert(sizeof(RaceTime) == 0xC, "sizeof(RaceTime) != 0xC");
 
     /* 0x00 */ bool m_valid;
-    /* 0x02 */ u16 fill_0x2[(0x18 - 0x02) >> 1];
+    /* 0x02 */ wchar_t m_userData[10];
     /* 0x18 */ MiiData m_mii;
     /* 0x64 */ u8 m_lapCount;
     /* 0x68 */ RaceTime m_lapTimes[5];

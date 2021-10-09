@@ -1,16 +1,16 @@
 #include "CompFile.h"
-#include "patch.h"
 #include "util.h"
-#include <algorithm>
 #include <egg/eggDvdFile.h>
 #include <mkw/MenuSet.h>
 #include <mkw/Random.h>
 #include <mkw/SaveDataManager.h>
+#include <patch.h>
 #include <rvl/ipc.h>
 #include <rvl/nand.h>
 #include <rvl/os.h>
 #include <stdio.h>
 #include <string.h>
+#include <utf-converter.h>
 
 #define MKWCOMP_ROOT "/mkwcomp"
 #define MKWCOMP_SAVE_ROOT MKWCOMP_ROOT "/save"
@@ -28,19 +28,19 @@ bool CompFile::isFileAvailable() const
     return m_isFileAvailable;
 }
 
-int CompFile::compId() const
-{
-    return m_compId;
-}
-
-u8* CompFile::data()
+u8* CompFile::getData()
 {
     return m_rkcData;
 }
 
-RKC::FileHeader* CompFile::header()
+RKC::FileHeader* CompFile::getHeader()
 {
     return &m_rkc;
+}
+
+int CompFile::ldbEntryIndex(int compId)
+{
+    return compId * 5;
 }
 
 CompFile::CompFile()
@@ -49,9 +49,12 @@ CompFile::CompFile()
     m_isFileAvailable = false;
 
     if (isRiivolution())
-        m_ldbFile = new RiivoFile();
+        m_file = new RiivoFile();
     else
-        m_ldbFile = new NandFile();
+        m_file = new NandFile();
+
+    openSaveFile();
+    m_ghostDataStatus = SAVE_OK;
 }
 
 CompFile::~CompFile()
@@ -97,7 +100,12 @@ void CompFile::readFile()
     m_isFileAvailable = true;
 }
 
-static const char* ldbPathRoot()
+void CompFile::setupLeaderboard()
+{
+    m_leaderboard = &m_saveData.data->ldb[ldbEntryIndex(m_compId)];
+}
+
+static const char* savePathRoot()
 {
     if (isRiivolution())
         return MKWCOMP_SAVE_ROOT;
@@ -113,113 +121,187 @@ static const char* ldbPathRoot()
     return sHomeDir;
 }
 
-void CompFile::getLeaderboardPath(char* path)
+void CompFile::getSaveDataPath(char* path)
 {
-    snprintf(path, 128, "%s/comp%02d.ldb", ldbPathRoot(), m_compId);
+    snprintf(path, 128, "%s/mktmsave.bin", savePathRoot());
 }
 
-void CompFile::getGhostDataPath(char* path)
+void CompFile::openSaveFile()
 {
-    snprintf(path, 128, "%s/comp%02d.rkg", ldbPathRoot(), m_compId);
+    m_saveDataStatus = SAVE_WAITING;
+
+    char path[128];
+    getSaveDataPath(path);
+
+    bool ret = m_file->openCreate(path, NAND_MODE_RW);
+
+    if (!ret) {
+        OSReport("ERROR: Failed to open save file\n");
+        m_saveFsError = m_file->getFSError();
+        m_saveDataStatus = SAVE_EOPEN;
+        return;
+    }
+
+    if (m_file->getFileSize() == 0)
+        ret = createSaveFile();
+    else
+        ret = readSaveFile();
+    m_file->close();
+
+    if (ret) {
+        m_saveDataStatus = SAVE_OK;
+    }
 }
 
-bool CompFile::readLdbFile()
+bool CompFile::readSaveFile()
 {
-    if (m_ldbFile->getFileSize() < sizeof(m_leaderboard)) {
-        OSReport("ERROR: Leaderboard file invalid size\n");
+    if (m_file->getFileSize() < sizeof(CompSaveFile)) {
+        OSReport("ERROR: Save file invalid size\n");
+        m_saveDataStatus = SAVE_EFORMAT;
         return false;
     }
 
-    s32 ret = m_ldbFile->readData(&m_leaderboard, sizeof(m_leaderboard), 0);
-    if (ret != sizeof(m_leaderboard)) {
-        OSReport("ERROR: Failed to read leaderboard data\n");
+    s32 ret = m_file->readData(&m_saveData, sizeof(m_saveData), 0);
+    if (ret != sizeof(m_saveData)) {
+        OSReport("ERROR: Failed to read save data\n");
+        m_saveFsError = m_file->getFSError();
+        m_saveDataStatus = SAVE_EREAD;
         return false;
     }
 
     return true;
 }
 
-void CompFile::openLdbFile()
+void CompFile::writeSaveTask()
 {
-    memset(m_leaderboard, 0, sizeof(m_leaderboard));
+    m_saveDataStatus = SAVE_WAITING;
 
     char path[128];
-    getLeaderboardPath(path);
+    getSaveDataPath(path);
 
-    bool ret = m_ldbFile->open(path, NAND_MODE_READ);
+    bool ret = m_file->open(path, NAND_MODE_WRITE);
 
     if (!ret) {
-        OSReport("Failed to open leaderboard file\n");
+        OSReport("ERROR: Failed to open save file\n");
+        m_saveDataStatus = SAVE_EOPEN;
+        m_saveFsError = m_file->getFSError();
         return;
     }
 
-    ret = readLdbFile();
-    m_ldbFile->close();
+    s32 sret = m_file->writeData(&m_saveData, sizeof(m_saveData), 0);
+    m_file->close();
 
-    if (!ret) {
-        memset(m_leaderboard, 0, sizeof(m_leaderboard));
+    if (sret != sizeof(m_saveData)) {
+        OSReport("ERROR: Save write failed!\n");
+        m_saveDataStatus = SAVE_EWRITE;
+        m_saveFsError = m_file->getFSError();
         return;
     }
+
+    m_saveDataStatus = SAVE_OK;
 }
 
-void CompFile::writeLdbTask()
+bool CompFile::createSaveFile()
 {
-    char path[128];
-    getLeaderboardPath(path);
+    memset(&m_saveData, 0, sizeof(m_saveData));
+    m_saveData.magic[0] = 'M';
+    m_saveData.magic[1] = 'K';
+    m_saveData.magic[2] = 'T';
+    m_saveData.magic[3] = 'M';
+    m_saveData.version = SAVE_VERSION;
 
-    bool ret = m_ldbFile->openCreate(path, NAND_MODE_WRITE);
+    s32 sret = m_file->writeData(&m_saveData, sizeof(m_saveData), 0);
 
-    if (!ret) {
-        OSReport("Failed to open leaderboard file\n");
-        return;
+    if (sret != sizeof(m_saveData)) {
+        OSReport("ERROR: Save write failed!\n");
+        m_saveFsError = m_file->getFSError();
+        m_saveDataStatus = SAVE_EWRITE;
+        return false;
     }
 
-    s32 sret = m_ldbFile->writeData(&m_leaderboard, sizeof(m_leaderboard), 0);
-    m_ldbFile->close();
+    return true;
+}
 
-    if (sret != sizeof(m_leaderboard)) {
-        OSReport("ERROR: Leaderboard write failed!\n");
-    }
+void CompFile::getGhostDataPath(char* path, u32 num)
+{
+    u8 utf8MiiName[64];
+    utf16_to_utf8(m_ghost.m_mii.name, 10, utf8MiiName, 64);
+
+    const char* format =
+        num == 0 ? "%s/comp%02u/comp%02u - %.64s - %02um %02us %03um.rkg"
+                 : "%s/comp%02u/comp%02u - %.64s - %02um %02us %03um - %u.rkg";
+    snprintf(path, 128, format, savePathRoot(), m_compId, m_compId, utf8MiiName,
+             m_ghost.m_finishTime.minutes, m_ghost.m_finishTime.seconds,
+             m_ghost.m_finishTime.milliseconds, num);
+}
+
+void CompFile::getGhostDataDir(char* path, int compId)
+{
+    snprintf(path, 128, "%s/comp%02u", savePathRoot(), compId);
 }
 
 void CompFile::writeGhostDataTask()
 {
-    char path[128];
-    getGhostDataPath(path);
+    m_ghostDataStatus = SAVE_WAITING;
 
-    bool ret = m_ldbFile->openCreate(path, NAND_MODE_WRITE);
+    char path[128];
+    getGhostDataDir(path, m_compId);
+
+    if (!RiivoFS::sInstance->dirExists(path)) {
+        s32 ret = RiivoFS::sInstance->createDir(path);
+        if (ret < 0) {
+            m_ghostFsError = ret;
+            m_ghostDataStatus = SAVE_EIPC;
+            return;
+        }
+    }
+
+    for (u32 num = 0;; num++) {
+        getGhostDataPath(path, num);
+        bool ret = m_file->open(path, NAND_MODE_READ);
+        if (!ret)
+            break;
+        m_file->close();
+    }
+
+    bool ret = m_file->openCreate(path, NAND_MODE_WRITE);
 
     if (!ret) {
         OSReport("Failed to open ghost file\n");
+        m_ghostFsError = m_file->getFSError();
+        m_ghostDataStatus = SAVE_EOPEN;
         return;
     }
 
     RKG::File* rkg = SaveDataManager::sInstance->m_rkgFile;
     memset(rkg, 0, sizeof(RKG::File));
 
-    // Using an unused 32-bit field in the RKG to store the seed.
-    *(u32*)((u32)rkg + 0x38) = m_ghostSeed;
     m_ghost.makeRKG(rkg);
 
-    s32 sret = m_ldbFile->writeData(rkg, sizeof(RKG::File), 0);
-    m_ldbFile->close();
+    s32 sret = m_file->writeData(rkg, sizeof(RKG::File), 0);
+    m_file->close();
 
     if (sret != sizeof(RKG::File)) {
         OSReport("ERROR: Ghost write failed!\n");
+        m_ghostFsError = m_file->getFSError();
+        m_ghostDataStatus = SAVE_EWRITE;
+        return;
     }
+
+    m_ghostDataStatus = SAVE_OK;
 }
 
 static void taskEntry(void* arg)
 {
     CompFile* object = reinterpret_cast<CompFile*>(arg);
     object->readFile();
-    object->openLdbFile();
+    object->setupLeaderboard();
 }
 
-static void writeLdbTaskEntry(void* arg)
+static void writeSaveFileTaskEntry(void* arg)
 {
     CompFile* object = reinterpret_cast<CompFile*>(arg);
-    object->writeLdbTask();
+    object->writeSaveTask();
 }
 
 static void writeGhostTaskEntry(void* arg)
@@ -235,21 +317,20 @@ void CompFile::switchCompetition(int compId)
 
     m_compId = compId;
     m_isFileAvailable = false;
-    m_isLdbAvailable = false;
 
     m_thread->request(taskEntry, reinterpret_cast<void*>(this), nullptr);
 }
 
-void CompFile::rewriteLeaderboard()
+void CompFile::requestWriteSaveFile()
 {
-    m_thread->request(writeLdbTaskEntry, reinterpret_cast<void*>(this),
+    m_saveDataStatus = SAVE_WAITING;
+    m_thread->request(writeSaveFileTaskEntry, reinterpret_cast<void*>(this),
                       nullptr);
 }
 
-void CompFile::saveGhostData(GhostData* data, u32 seed)
+void CompFile::requestSaveGhostData()
 {
-    m_ghost = *data;
-    m_ghostSeed = seed;
+    m_ghostDataStatus = SAVE_WAITING;
 
     m_thread->request(writeGhostTaskEntry, reinterpret_cast<void*>(this),
                       nullptr);
@@ -261,7 +342,8 @@ void CompFile::setText(const wchar_t* title, const wchar_t* explanation)
     m_compExplanation = explanation;
 }
 
-static bool ldbEntryCompare(LdbFileEntry* entry, GhostData::RaceTime* time)
+static bool ldbEntryCompare(CompSaveFile::LdbEntry* entry,
+                            GhostData::RaceTime* time)
 {
     if (!entry->isEnabled)
         return false;
@@ -299,7 +381,7 @@ void CompFile::getLdbEntry(u8 position, LeaderboardEntry* entry)
         return;
     }
 
-    LdbFileEntry* ldb = &m_leaderboard[position];
+    CompSaveFile::LdbEntry* ldb = &m_leaderboard[position];
 
     memcpy(&entry->mii, &ldb->mii, sizeof(MiiData));
 
@@ -318,10 +400,10 @@ void CompFile::insertTimeInLdb(LeaderboardEntry* entry, u32 position)
 {
     if (position < 4) {
         memmove(&m_leaderboard[position + 1], &m_leaderboard[position],
-                (4 - position) * sizeof(LdbFileEntry));
+                (4 - position) * sizeof(CompSaveFile::LdbEntry));
     }
 
-    LdbFileEntry* ldb = &m_leaderboard[position];
+    CompSaveFile::LdbEntry* ldb = &m_leaderboard[position];
 
     memcpy(&ldb->mii, &entry->mii, sizeof(MiiData));
 
@@ -335,7 +417,7 @@ void CompFile::insertTimeInLdb(LeaderboardEntry* entry, u32 position)
 
     ldb->isEnabled = entry->time.valid;
 
-    rewriteLeaderboard();
+    requestWriteSaveFile();
 }
 
 struct CompInfo {
@@ -364,7 +446,7 @@ int checkForCompetitionReplace(u8* r3, CompInfo* info)
     info->titleText = CompFile::sInstance->m_compTitle;
     info->titleTextLen = 5;
 
-    info->rkcData = CompFile::sInstance->data();
+    info->rkcData = CompFile::sInstance->getData();
     return 1;
 }
 
@@ -388,13 +470,37 @@ void getLdbEntry(u8* r3, u8 position, LeaderboardEntry* entry)
     CompFile::sInstance->getLdbEntry(position, entry);
 }
 
+void makeGhostCPU(wchar_t* cpu)
+{
+    const MenuSet::RaceSetting* set = &MenuSet::sInstance->currentRace;
+    u32 count = set->playerCount;
+
+    for (int i = 1; i < count; i++)
+    {
+        int bit = (i - 1) * 12;
+        int index = bit / 16;
+        int bitInIndex = bit - index * 16;
+
+        u16 value = (set->players[i].characterId & 0x3F) << 6;
+        value |= (set->players[i].vehicleId & 0x3F);
+        value <<= 16 - 12;
+        
+        cpu[index] |= value >> bitInIndex;
+        cpu[index + 1] |= value << (16 - bitInIndex);
+    }
+}
+
 void saveTournamentGhost(u8* r3, int r4, int r5, GhostData* ghost)
 {
+    if (!isRiivolution())
+        return;
     if (!ghost->m_valid)
         return;
 
-    CompFile::sInstance->saveGhostData(
-        ghost, MenuSet::sInstance->currentRace.seedSession);
+    makeGhostCPU(ghost->m_userData);
+    CompFile::sInstance->m_ghost = *ghost; // Copy
+
+    CompFile::sInstance->requestSaveGhostData();
 }
 
 // Non-race finish times normally have a 16 ms randomness to them. This patches

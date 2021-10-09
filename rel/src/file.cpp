@@ -156,19 +156,18 @@ bool RiivoFile::openLow(const char* path, u32 mode)
 
 bool RiivoFile::openInternal(const char* path, u32 mode)
 {
-#if 0
     // IOS max path length is 63 characters. Since 64 isn't enough for many
     // cases, Riivolution implements a 'shorten path' ioctl.
     if (strlen(path) + 4 > IPC_MAX_PATH) {
-        char fpath[RIIVO_MAX_PATH];
-        char shortPath[RIIVO_SHORT_PATH_LEN];
+        // This is not threadsafe!
+        static char fpath[RIIVO_MAX_PATH];
+        static char shortPath[RIIVO_SHORT_PATH_LEN];
 
         snprintf(fpath, RIIVO_MAX_PATH, "file/%s", path);
         RiivoFS::sInstance->getShortPath(fpath, shortPath);
 
         return openLow(shortPath, mode);
     }
-#endif
 
     // For normal IPC length paths
     char fpath[IPC_MAX_PATH];
@@ -271,4 +270,23 @@ void RiivoFS::getShortPath(const char* inPath, char* out)
     IOS_Ioctl(m_fd, IOCTL_Shorten, reinterpret_cast<const void*>(inPath),
               RIIVO_MAX_PATH, reinterpret_cast<void*>(out),
               RIIVO_SHORT_PATH_LEN);
+}
+
+bool RiivoFS::dirExists(const char* path)
+{
+    s32 ret =
+        IOS_Ioctl(m_fd, IOCTL_OpenDir, reinterpret_cast<const void*>(path),
+                  strlen(path) + 1, nullptr, 0);
+    if (ret >= 0) {
+        IOS_Ioctl(m_fd, IOCTL_CloseDir, reinterpret_cast<const void*>(&ret),
+                  sizeof(ret), nullptr, 0);
+        return true;
+    }
+    return false;
+}
+
+s32 RiivoFS::createDir(const char* path)
+{
+    return IOS_Ioctl(m_fd, IOCTL_CreateDir, reinterpret_cast<const void*>(path),
+                     strlen(path) + 1, nullptr, 0);
 }

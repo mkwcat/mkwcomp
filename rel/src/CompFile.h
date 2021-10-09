@@ -2,11 +2,14 @@
 #include "file.h"
 #include <egg/eggFile.h>
 #include <egg/eggTaskThread.h>
+#include <mkw/GhostData.h>
 #include <mkw/LeaderboardEntry.h>
 #include <mkw/MiiData.h>
-#include <mkw/GhostData.h>
 #include <mkw/common.h>
 #include <rvl/types.h>
+
+#define COMP_COUNT 49
+#define SAVE_VERSION 0
 
 namespace RKC
 {
@@ -18,7 +21,12 @@ struct FileObjective {
     u8 engineClass;
     u8 lapCount;
     u8 pad_0x9;
-    enum { RESTRICTION_KARTS_ONLY, RESTRICTION_BIKES_ONLY, RESTRICTION_NONE };
+    enum
+    {
+        RESTRICTION_KARTS_ONLY,
+        RESTRICTION_BIKES_ONLY,
+        RESTRICTION_NONE
+    };
     u16 vehicleRestriction;
     u16 cameraAngle;
     u16 minimapObject;
@@ -50,23 +58,35 @@ static_assert(sizeof(FileHeader) == 0x4C, "sizeof(FileHeader) != 0x4C");
 
 } // namespace RKC
 
-struct LdbFileEntry {
-    MiiData mii; // size 0x4C
+struct CompSaveFile {
+    char magic[4]; // "MKTM" 0x4D4B544D
+    u32 version;
+    u8 pad[8];
 
-    u32 minutes : 7;
-    u32 seconds : 7;
-    u32 milliseconds : 10;
+    struct LdbEntry {
+        MiiData mii; // size 0x4C
 
-    u32 vehicleId : 6;
-    u8 isEnabled : 1;
-    u8 characterId : 7;
-    u8 controllerId : 3;
+        u32 minutes : 7;
+        u32 seconds : 7;
+        u32 milliseconds : 10;
 
-    u8 unk_51_3 : 5;
-    u8 fill[14];
-} __attribute__((packed));
+        u32 vehicleId : 6;
+        u8 isEnabled : 1;
+        u8 characterId : 7;
+        u8 controllerId : 3;
 
-#define LDB_FILE_SIZE (sizeof(LdbFileEntry) * 5)
+        u8 unk_51_3 : 5;
+        u8 fill[14];
+    } __attribute__((packed));
+
+    struct Data {
+        u8 reserved[0x100]; // for future settings
+
+        LdbEntry ldb[5 * COMP_COUNT];
+    };
+
+    Data data[4];
+};
 
 class CompFile
 {
@@ -78,20 +98,23 @@ public:
 
     bool isTaskExist() const;
     bool isFileAvailable() const;
-    int compId() const;
-    u8* data();
-    RKC::FileHeader* header();
+    u8* getData();
+    RKC::FileHeader* getHeader();
+    static int ldbEntryIndex(int compId);
 
     void switchCompetition(int compId);
-    void rewriteLeaderboard();
-    void saveGhostData(GhostData* data, u32 seed);
+    void requestWriteSaveFile();
+    void requestSaveGhostData();
 
     void readFile();
-    void getLeaderboardPath(char* path);
-    void getGhostDataPath(char* path);
-    bool readLdbFile();
-    void openLdbFile();
-    void writeLdbTask();
+    void setupLeaderboard();
+    void getSaveDataPath(char* path);
+    void getGhostDataPath(char* path, u32 num);
+    void getGhostDataDir(char* path, int compId);
+    void openSaveFile();
+    bool readSaveFile();
+    bool createSaveFile();
+    void writeSaveTask();
     void setText(const wchar_t* title, const wchar_t* explanation);
     void writeGhostDataTask();
 
@@ -106,20 +129,71 @@ public:
 private:
     EGG::TaskThread* m_thread;
 
-    NandFile* m_ldbFile;
-    LdbFileEntry m_leaderboard[5] ATTRIBUTE_ALIGN(32);
+    NandFile* m_file;
+
+public:
+    CompSaveFile::LdbEntry* m_leaderboard;
+    CompSaveFile m_saveData ATTRIBUTE_ALIGN(32);
 
     GhostData m_ghost;
-    u32 m_ghostSeed;
+
+#if 0
+    struct CPUData
+    {
+        // Must unroll array to pack properly
+        u8 cpu1Character : 5;
+        u8 cpu1Vehicle : 4;
+        u8 cpu2Character : 5;
+        u8 cpu2Vehicle : 4;
+        u8 cpu3Character : 5;
+        u8 cpu3Vehicle : 4;
+        u8 cpu4Character : 5;
+        u8 cpu4Vehicle : 4;
+        u8 cpu5Character : 5;
+        u8 cpu5Vehicle : 4;
+        u8 cpu6Character : 5;
+        u8 cpu6Vehicle : 4;
+        u8 cpu7Character : 5;
+        u8 cpu7Vehicle : 4;
+        u8 cpu8Character : 5;
+        u8 cpu8Vehicle : 4;
+        u8 cpu9Character : 5;
+        u8 cpu9Vehicle : 4;
+        u8 cpu10Character : 5;
+        u8 cpu10Vehicle : 4;
+        u8 cpu11Character : 5;
+        u8 cpu11Vehicle : 4;
+    } __attribute__((packed));
+    CPUData m_ghostCPUs;
+#endif
+
+    u8 m_ghostCPUs[0x14];
 
     union {
         u8 m_rkcData[0x4800] ATTRIBUTE_ALIGN(32);
         RKC::FileHeader m_rkc;
     };
 
+public:
+    enum SaveError
+    {
+        SAVE_WAITING = 0,
+        SAVE_OK = 1,
+        SAVE_EUNKNOWN = 2,
+        SAVE_EOPEN = 3,
+        SAVE_EWRITE = 4,
+        SAVE_EREAD = 5,
+        SAVE_EVERSION = 6,
+        SAVE_EFORMAT = 7,
+        SAVE_EIPC = 8
+    };
+    SaveError m_saveDataStatus;
+    s32 m_saveFsError;
+    SaveError m_ghostDataStatus;
+    s32 m_ghostFsError;
+
     int m_compId;
     bool m_isFileAvailable;
-    bool m_isLdbAvailable;    
 };
 
 void initCompFilePatches();
