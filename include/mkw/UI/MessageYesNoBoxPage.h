@@ -2,6 +2,7 @@
 #include "Event.h"
 #include "LayoutUIControl.h"
 #include "UIPage.h"
+#include <RuntimeTypeInfo.h>
 #include <rvl/types.h>
 
 namespace UI
@@ -16,7 +17,7 @@ public:
     void configOption(int num, int msgId, UI::MesgRes::FormatParam* param,
                       int r7, EventBase* event);
 
-    static const TypeInfo sTypeInfo;
+    INSTANTIATE_TYPEINFO;
 };
 
 } // namespace UI

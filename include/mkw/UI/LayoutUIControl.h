@@ -30,8 +30,8 @@ public:
     {
     }
 
-    void setAllText(int msgId, UI::MesgRes::FormatParam* param);
-    void setPaneText(const char* pane, int msgId,
+    void setMessage(int msgId, UI::MesgRes::FormatParam* param);
+    void setMessage(const char* pane, int msgId,
                      UI::MesgRes::FormatParam* param);
     void setTexture(const char* pane, const char* texture);
 

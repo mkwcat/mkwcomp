@@ -56,9 +56,5 @@ public:
     static int s_lastCompId;
 
 public:
-    static UI::AutoTypeInfo<UI::UIPage> sTypeInfo;
-    virtual const UI::TypeInfo* getTypeInfo()
-    {
-        return &sTypeInfo;
-    }
+    INSTANTIATE_TYPEINFO;
 };

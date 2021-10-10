@@ -14,7 +14,7 @@ class MessageWindowControl : LayoutUIControl
     virtual ~MessageWindowControl();
 
     /* 0x805F9E40 */
-    virtual const TypeInfo* getTypeInfo();
+    INSTANTIATE_TYPEINFO;
     /* 0x805F96F4 */
     virtual const char* getTypeName();
 };

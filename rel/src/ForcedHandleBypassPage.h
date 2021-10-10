@@ -32,9 +32,5 @@ protected:
     UI::PageEventBase m_events;
 
 public:
-    static UI::AutoTypeInfo<UI::UIPage> sTypeInfo;
-    virtual const UI::TypeInfo* getTypeInfo()
-    {
-        return &sTypeInfo;
-    }
+    INSTANTIATE_TYPEINFO;
 };

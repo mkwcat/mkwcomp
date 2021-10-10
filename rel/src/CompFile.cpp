@@ -274,8 +274,8 @@ void CompFile::writeGhostDataTask()
     }
 
     GhostData::RKGFile* rkg = SaveDataManager::sInstance->m_rkgFile;
-    memset(rkg, 0, sizeof(GhostData::RKGFile));
 
+    memset(&m_tempRkg, 0, sizeof(GhostData::RKGFile));
     m_ghost.makeRKG(&m_tempRkg);
     m_tempRkg.compress(rkg);
 

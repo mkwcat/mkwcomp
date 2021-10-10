@@ -1,6 +1,7 @@
 #pragma once
 #include "PushButton.h"
 #include "UIPage.h"
+#include <TypeInfo.h>
 #include <rvl/types.h>
 
 namespace UI
@@ -66,8 +67,6 @@ public:
     virtual void _38();
     virtual void _40();
     virtual void _4C();
-    virtual TypeInfo* getTypeInfo();
-    static UI::AutoTypeInfo<UI::UIPage> sTypeInfo;
 
     virtual int _68() = 0; // load from 0x340?
     virtual int getButtonCount() const = 0; // vt + 0x6C
@@ -82,6 +81,8 @@ public:
     Event<RaceMenuPage, int, int> m_ptr_108;
 
     PageEventSelection m_events; // 0x118
+
+    INSTANTIATE_TYPEINFO;
 };
 static_assert(sizeof(RaceMenuPage) == 0x33C, "sizeof(RaceMenuPage) != 0x33C");
 

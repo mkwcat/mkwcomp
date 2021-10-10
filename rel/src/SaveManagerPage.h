@@ -10,7 +10,6 @@ public:
     SaveManagerPage();
     virtual ~SaveManagerPage();
 
-    static SaveManagerPage* getStaticInstance();
     static void build(UI::Scene* scene);
 
     virtual void onInit();
@@ -20,9 +19,5 @@ protected:
     UI::PageEventBase m_events;
 
 public:
-    static UI::AutoTypeInfo<UI::UIPage> sTypeInfo;
-    virtual const UI::TypeInfo* getTypeInfo()
-    {
-        return &sTypeInfo;
-    }
+    INSTANTIATE_TYPEINFO;
 };

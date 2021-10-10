@@ -25,11 +25,8 @@ public:
 
     /* 0x80601014 */
     virtual int getNextPageID();
-    /* 0x8060101C */
-    virtual const TypeInfo* getTypeInfo();
-
-    /* 0x809C1CFC */
-    static TypeInfo sTypeInfo;
+    /* func: 0x8060101C typeinfo: 0x809C1CFC */
+    INSTANTIATE_TYPEINFO;
 
 protected:
     /* 0x80600F88 */

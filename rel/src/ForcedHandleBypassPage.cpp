@@ -1,5 +1,7 @@
 #include "ForcedHandleBypassPage.h"
 
+TYPEINFO_DERIVED(ForcedHandleBypassPage, UI::UIPage);
+
 ForcedHandleBypassPage::ForcedHandleBypassPage()
     : m_ptr_selectYes(this, &ForcedHandleBypassPage::selectYes)
 {
@@ -20,7 +22,7 @@ void ForcedHandleBypassPage::onInit()
 void ForcedHandleBypassPage::onShow()
 {
     UI::MessageYesNoBoxPage* msgPage =
-        UI::UIPage::cast<UI::MessageYesNoBoxPage>(
+        RuntimeTypeInfo::cast<UI::MessageYesNoBoxPage*>(
             UI::MenuDataInstance->m_scene->getPage(0x4E));
 
     msgPage->configMessage(0x2800, nullptr);
@@ -68,18 +70,18 @@ void ForcedHandleBypassPage::onReturn()
 
 int ForcedHandleBypassPage::isWiiWheelPageDisabled()
 {
-    ForcedHandleBypassPage* page = UI::UIPage::cast<ForcedHandleBypassPage>(
-        UI::MenuDataInstance->m_scene->getPage(0x87));
+    ForcedHandleBypassPage* page =
+        RuntimeTypeInfo::cast<ForcedHandleBypassPage*>(
+            UI::MenuDataInstance->m_scene->getPage(0x87));
     return page->m_wiiWheelPageDisabled;
 }
 void ForcedHandleBypassPage::setWiiWheelPageDisabled(bool set)
 {
-    ForcedHandleBypassPage* page = UI::UIPage::cast<ForcedHandleBypassPage>(
-        UI::MenuDataInstance->m_scene->getPage(0x87));
+    ForcedHandleBypassPage* page =
+        RuntimeTypeInfo::cast<ForcedHandleBypassPage*>(
+            UI::MenuDataInstance->m_scene->getPage(0x87));
     page->m_wiiWheelPageDisabled = set;
 }
-
-UI::AutoTypeInfo<UI::UIPage> ForcedHandleBypassPage::sTypeInfo;
 
 void wiiWheelPageRejectController(UI::UIPage* page)
 {

@@ -29,12 +29,6 @@ public:
     virtual void setWindowText(int msgId, MesgRes::FormatParam* param) = 0;
     virtual void _6C();
 
-public:
-    /* 0x805F9698 */
-    virtual const TypeInfo* getTypeInfo();
-    /* 0x809C1CB0 */
-    static TypeInfo sTypeInfo;
-
 protected:
     /* 0x044 */ PageEventHud m_events;
 
@@ -45,6 +39,10 @@ protected:
     /* 0x18C */ Event<MessageWindowPage, int, int> m_ptr_pressAEvent;
     /* 0x1A0 */ u32 unk_0x1A0;
     /* 0x1A4 */ u32 unk_0x1A4;
+
+public:
+    /* func: 0x805F9698, typeinfo: 0x809C1CB0 */
+    INSTANTIATE_TYPEINFO;
 };
 static_assert(sizeof(MessageWindowPage) == 0x1A8,
               "sizeof(MessageWindowPage) != 0x1A8");
@@ -74,10 +72,8 @@ public:
 
 public:
     // For some reason this class doesn't include MessageWindowPage as inherited
-    /* 0x805F9680 */
-    virtual const TypeInfo* getTypeInfo();
-    /* 0x809C1CB8 */
-    static TypeInfo sTypeInfo;
+    /* func: 0x805F9680, typeinfo: 0x809C1CB8 */
+    INSTANTIATE_TYPEINFO;
 };
 static_assert(sizeof(OptionMessageWindowPage) == 0x608,
               "sizeof(OptionMessageWindowPage) != 0x608");

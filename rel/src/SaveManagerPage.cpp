@@ -1,7 +1,7 @@
 #include "SaveManagerPage.h"
 #include <rvl/os.h>
 
-UI::AutoTypeInfo<UI::UIPage> SaveManagerPage::sTypeInfo;
+TYPEINFO_DERIVED(SaveManagerPage, UI::UIPage);
 
 SaveManagerPage::SaveManagerPage()
 {
@@ -9,12 +9,6 @@ SaveManagerPage::SaveManagerPage()
 
 SaveManagerPage::~SaveManagerPage()
 {
-}
-
-SaveManagerPage* SaveManagerPage::getStaticInstance()
-{
-    return UI::UIPage::cast<SaveManagerPage>(
-        UI::MenuDataInstance->m_scene->getPage(SAVEMANAGER_PAGE_ID));
 }
 
 static void waitForSaveData()

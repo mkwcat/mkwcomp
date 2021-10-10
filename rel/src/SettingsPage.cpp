@@ -7,12 +7,12 @@
 #include <mkw/UI/SceneBGMController.h>
 #include <mkw/UI/UIPage.h>
 
-UI::AutoTypeInfo<UI::UIPage> SettingsPage::sTypeInfo;
+TYPEINFO_DERIVED(SettingsPage, UI::UIPage);
 
 enum Button
 {
     BUTTON_RUMBLE = 0,
-    BUTTON_SEED = 1,
+    BUTTON_GHOSTDATA = 1,
     BUTTON_LICENSE = 2,
     BUTTON_BACK = -100
 };
@@ -47,12 +47,12 @@ void SettingsPage::onInit()
 
     // Normally Network Settings
     {
-        insertControl(1, &m_seedButton, 0);
-        m_seedButton.readLayout("button", "OptionTopButton", "Network", 1, 0,
-                                false);
-        m_seedButton.setSelectEvent(&m_ptr_onButtonSelect, 0);
-        m_seedButton.setAllText(0x2801, nullptr);
-        m_seedButton.m_id = BUTTON_SEED;
+        insertControl(1, &m_ghostDataButton, 0);
+        m_ghostDataButton.readLayout("button", "OptionTopButton", "Network", 1,
+                                     0, false);
+        m_ghostDataButton.setSelectEvent(&m_ptr_onButtonSelect, 0);
+        m_ghostDataButton.setMessage(0x2801, nullptr);
+        m_ghostDataButton.m_id = BUTTON_GHOSTDATA;
     }
 
     // Normally Add Mario Kart Channel
@@ -61,7 +61,7 @@ void SettingsPage::onInit()
         m_licenseButton.readLayout("button", "OptionTopButton",
                                    "ChannelInstall", 1, 0, false);
         m_licenseButton.setSelectEvent(&m_ptr_onButtonSelect, 0);
-        m_licenseButton.setAllText(0x7DF, nullptr);
+        m_licenseButton.setMessage(0x7DF, nullptr);
         m_licenseButton.m_id = BUTTON_LICENSE;
     }
 
@@ -71,7 +71,7 @@ void SettingsPage::onInit()
 
     insertControl(4, &m_titleText, 0);
     m_titleText.initLayout(0);
-    m_titleText.setAllText(MID_SETTINGS, 0);
+    m_titleText.setMessage(MID_SETTINGS, 0);
 
     m_events.configureEvent(UI::INPUT_BACK, &m_ptr_onBackPress, 0, 0);
 
@@ -92,8 +92,8 @@ void SettingsPage::onButtonSelect(UI::PushButton* button, int r5)
         selectRumble(button);
         break;
 
-    case BUTTON_SEED:
-        selectSeed(button);
+    case BUTTON_GHOSTDATA:
+        selectGhostData(button);
         break;
 
     case BUTTON_LICENSE:
@@ -115,7 +115,7 @@ void SettingsPage::onBackPress(int r4, int r5)
 void SettingsPage::selectRumble(UI::PushButton* button)
 {
     UI::OptionMessageBoxManagerPage* page =
-        UI::UIPage::cast<UI::OptionMessageBoxManagerPage>(
+        RuntimeTypeInfo::cast<UI::OptionMessageBoxManagerPage*>(
             UI::MenuDataInstance->m_scene->getPage(0xC6));
 
     page->m_option = 0;
@@ -125,10 +125,10 @@ void SettingsPage::selectRumble(UI::PushButton* button)
     startTransitionOut(SLIDE_FORWARD, delay);
 }
 
-void SettingsPage::selectSeed(UI::PushButton* button)
+void SettingsPage::selectGhostData(UI::PushButton* button)
 {
     UI::OptionMessageWindowPage* window =
-        UI::UIPage::cast<UI::OptionMessageWindowPage>(
+        RuntimeTypeInfo::cast<UI::OptionMessageWindowPage*>(
             UI::MenuDataInstance->m_scene->getPage(0xC8));
 
     window->setTitleText(0x2801, nullptr);

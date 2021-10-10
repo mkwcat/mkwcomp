@@ -1,8 +1,8 @@
 #pragma once
 #include "Event.h"
 #include "Scene.h"
-#include "TypeInfo.h"
 #include "UIControl.h"
+#include <RuntimeTypeInfo.h>
 #include <rvl/types.h>
 
 namespace UI
@@ -101,19 +101,7 @@ public:
     virtual void _5C();
 
     // Like C++ RTTI, used for a dynamic_cast like thing
-    virtual const TypeInfo* getTypeInfo();
-    static TypeInfo sTypeInfo;
-
-    // The code this generates doesn't match!
-    template <class T> static T* cast(UIPage* rhs)
-    {
-        for (const TypeInfo* info = rhs->getTypeInfo(); info != nullptr;
-             info = info->parent) {
-            if (info == &T::sTypeInfo)
-                return reinterpret_cast<T*>(rhs);
-        }
-        return nullptr;
-    }
+    INSTANTIATE_TYPEINFO;
 
     void init(s32 id);
     void initControlGroup(int count);

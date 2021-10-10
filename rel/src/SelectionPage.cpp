@@ -3,6 +3,8 @@
 #include "UI.h"
 #include <mkw/common.h>
 
+TYPEINFO_DERIVED(SelectionPage, UI::UIPage);
+
 namespace CompMode
 {
 enum E
@@ -112,7 +114,7 @@ void SelectionPage::updatePageNumText()
     UI::MesgRes::FormatParam param;
     param.intParam = m_pageNum + 1;
     param.intParam2 = 5;
-    m_pageNumControl.setAllText(0x7D9, &param);
+    m_pageNumControl.setMessage(0x7D9, &param);
 }
 
 void SelectionPage::updateButtonTexture()
@@ -127,22 +129,22 @@ void SelectionPage::updateButtonTexture()
         // The smaller digit one inserts a space at the end to push the text
         // a little to the left lol
         if (buttonCompId(i) == 0)
-            m_buttons[i].setAllText(0, nullptr);
+            m_buttons[i].setMessage(0, nullptr);
         else if (buttonCompId(i) < 10)
-            m_buttons[i].setAllText(0x27E9, &param);
+            m_buttons[i].setMessage(0x27E9, &param);
         else
-            m_buttons[i].setAllText(0x27E8, &param);
+            m_buttons[i].setMessage(0x27E8, &param);
     }
 }
 
 void SelectionPage::updateCompetitionName()
 {
     if (m_selectedCompId == 0) {
-        m_compName.setPaneText("text", 0x1B58, 0);
-        m_compName.setPaneText("text_shadow", 0x1B58, 0);
+        m_compName.setMessage("text", 0x1B58, 0);
+        m_compName.setMessage("text_shadow", 0x1B58, 0);
 
-        m_compName.setPaneText("mode_text", 0x27F2, 0);
-        m_compName.setPaneText("mode_text_shadow", 0x27F2, 0);
+        m_compName.setMessage("mode_text", 0x27F2, 0);
+        m_compName.setMessage("mode_text_shadow", 0x27F2, 0);
         return;
     }
     if (m_selectedCompId == -100)
@@ -151,11 +153,11 @@ void SelectionPage::updateCompetitionName()
     const CompNameData* data = &compNameData[m_selectedCompId - 1];
 
     int courseMid = msgIdForCourse(data->course);
-    m_compName.setPaneText("text", courseMid, 0);
-    m_compName.setPaneText("text_shadow", courseMid, 0);
+    m_compName.setMessage("text", courseMid, 0);
+    m_compName.setMessage("text_shadow", courseMid, 0);
 
-    m_compName.setPaneText("mode_text", 0x27D8 + data->mode, 0);
-    m_compName.setPaneText("mode_text_shadow", 0x27D8 + data->mode, 0);
+    m_compName.setMessage("mode_text", 0x27D8 + data->mode, 0);
+    m_compName.setMessage("mode_text_shadow", 0x27D8 + data->mode, 0);
 
     char texture[16];
     snprintf(texture, 16, "id%02d", data->course);
@@ -228,7 +230,7 @@ void SelectionPage::onInit()
     insertControl(14, &m_titleText, 0);
 
     m_titleText.initLayout(0);
-    m_titleText.setAllText(0x27F0, 0);
+    m_titleText.setMessage(0x27F0, 0);
 
     m_events.setScreenWrapSetting(2);
     m_events.configureEvent(UI::INPUT_BACK, &m_ptr_onBackEvent, 0, 0);
@@ -334,5 +336,4 @@ int SelectionPage::getNextPageID()
     return m_nextPage;
 }
 
-UI::AutoTypeInfo<UI::UIPage> SelectionPage::sTypeInfo;
 int SelectionPage::s_lastCompId = 0;

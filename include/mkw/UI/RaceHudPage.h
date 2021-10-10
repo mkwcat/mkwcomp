@@ -64,8 +64,7 @@ public:
     /* 0x80 */ PageEventHud m_events;
     u8 fill_0x1C4[0x1DC - 0x1C4];
 
-    virtual const TypeInfo* getTypeInfo();
-    static UI::AutoTypeInfo<UI::UIPage> sTypeInfo;
+    INSTANTIATE_TYPEINFO;
 };
 static_assert(sizeof(RaceHudPage) == 0x1DC, "sizeof(RaceHudPage) != 0x1DC");
 

@@ -56,13 +56,9 @@ public:
     int m_340;
 
 public:
-    static UI::AutoTypeInfo<UI::RaceMenuPage> sTypeInfo;
-    virtual const UI::TypeInfo* getTypeInfo()
-    {
-        return &sTypeInfo;
-    }
+    INSTANTIATE_TYPEINFO;
 };
-UI::AutoTypeInfo<UI::RaceMenuPage> EventAfterMenuPage::sTypeInfo;
+TYPEINFO_DERIVED(EventAfterMenuPage, UI::RaceMenuPage);
 
 class EventPauseMenuPage : public UI::RaceMenuPage
 {
@@ -100,13 +96,9 @@ public:
     int m_340;
 
 public:
-    static UI::AutoTypeInfo<UI::RaceMenuPage> sTypeInfo;
-    virtual const UI::TypeInfo* getTypeInfo()
-    {
-        return &sTypeInfo;
-    }
+    INSTANTIATE_TYPEINFO;
 };
-UI::AutoTypeInfo<UI::RaceMenuPage> EventPauseMenuPage::sTypeInfo;
+TYPEINFO_DERIVED(EventPauseMenuPage, UI::UIPage);
 
 class ReplayHud : public UI::RaceHudPage
 {
@@ -160,13 +152,9 @@ public:
     }
 
 public:
-    static UI::AutoTypeInfo<UI::RaceHudPage> sTypeInfo;
-    virtual const UI::TypeInfo* getTypeInfo()
-    {
-        return &sTypeInfo;
-    }
+    INSTANTIATE_TYPEINFO;
 };
-UI::AutoTypeInfo<UI::RaceHudPage> ReplayHud::sTypeInfo;
+TYPEINFO_DERIVED(ReplayHud, UI::RaceHudPage);
 
 void buildTournamentPages(UI::Scene* scene)
 {

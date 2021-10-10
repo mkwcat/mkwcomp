@@ -21,14 +21,14 @@ protected:
     void onBackPress(int r4, int r5);
 
     void selectRumble(UI::PushButton* button);
-    void selectSeed(UI::PushButton* button);
+    void selectGhostData(UI::PushButton* button);
     void selectLicenseSettings(UI::PushButton* button);
 
     void messageWindowEvent(UI::OptionMessageWindowPage* page, int r5);
 
 protected:
     UI::PushButton m_rumbleButton;
-    UI::PushButton m_seedButton;
+    UI::PushButton m_ghostDataButton;
     UI::PushButton m_licenseButton;
 
     UI::CtrlMenuPageTitleText m_titleText;
@@ -44,9 +44,5 @@ protected:
     int m_nextPage;
 
 public:
-    static UI::AutoTypeInfo<UI::UIPage> sTypeInfo;
-    virtual const UI::TypeInfo* getTypeInfo()
-    {
-        return &sTypeInfo;
-    }
+    INSTANTIATE_TYPEINFO;
 };

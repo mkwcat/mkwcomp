@@ -1,6 +1,6 @@
 #pragma once
 #include <rvl/types.h>
-#include "TypeInfo.h"
+#include <RuntimeTypeInfo.h>
 
 namespace UI
 {
@@ -46,8 +46,10 @@ public:
     virtual void calcInternal() {}
     virtual void _20() {}
     virtual void _24() {}
-    virtual const TypeInfo* getTypeInfo();
+
+    INSTANTIATE_TYPEINFO; // includes vt + 0x28
     virtual const char* getTypeName();
+
     virtual void _30() {}
     virtual void _34() {}
 
