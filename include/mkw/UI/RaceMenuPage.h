@@ -1,6 +1,7 @@
 #pragma once
 #include "PushButton.h"
 #include "UIPage.h"
+#include "UIInputManager.h"
 #include <TypeInfo.h>
 #include <rvl/types.h>
 
@@ -77,10 +78,10 @@ public:
     u8 fill[0xA8];
 
     int m_nextPage;
-    Event<RaceMenuPage, PushButton*, int> m_ptr_selectEvent;
-    Event<RaceMenuPage, int, int> m_ptr_108;
+    FunctionImp<RaceMenuPage, PushButton*, int> m_ptr_selectEvent;
+    FunctionImp<RaceMenuPage, int, int> m_ptr_108;
 
-    PageEventSelection m_events; // 0x118
+    UIInputManagerMenu m_inputs; // 0x118
 
     INSTANTIATE_TYPEINFO;
 };

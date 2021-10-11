@@ -15,6 +15,8 @@ typedef unsigned long long u64;
 typedef float f32;
 typedef double f64;
 
+typedef int unk;
+
 #ifdef __cplusplus
 #   define EXTERN_C_START extern "C" {
 #   define EXTERN_C_END }

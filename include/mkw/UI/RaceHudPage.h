@@ -1,18 +1,10 @@
 #pragma once
 #include "UIPage.h"
+#include "UIInputManager.h"
 #include <rvl/types.h>
 
 namespace UI
 {
-
-class PageEventHud : public PageEventBase
-{
-public:
-    /* 0x805EF240 */
-    PageEventHud();
-    u8 fill[0x134];
-};
-static_assert(sizeof(PageEventHud) == 0x144, "sizeof(PageEventHud) != 0x144");
 
 class RaceHudPage : public UIPage
 {
@@ -61,7 +53,7 @@ public:
     s32 m_nextPage;
 
     /* 0x48 */ UnknownMember unk_0x48;
-    /* 0x80 */ PageEventHud m_events;
+    /* 0x80 */ UIInputManagerRace m_events;
     u8 fill_0x1C4[0x1DC - 0x1C4];
 
     INSTANTIATE_TYPEINFO;

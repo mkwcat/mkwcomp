@@ -1,17 +1,17 @@
 #pragma once
-#include "Event.h"
+#include "Function.h"
 #include "LayoutUIControl.h"
 #include <rvl/types.h>
 
 namespace UI
 {
 
-class ButtonEventBase
+class ButtonInputBase
 {
     u32 fill[2]; // some struct, has its own constructor
 public:
-    ButtonEventBase();
-    virtual ~ButtonEventBase();
+    ButtonInputBase();
+    virtual ~ButtonInputBase();
 
     u8 fill2[0x78];
 };
@@ -26,8 +26,8 @@ public:
     virtual void onSelectToFree();
     virtual void onSelect();
 
-    void setSelectEvent(EventBase* event, int);
-    void setFreeToSelectEvent(EventBase* event);
+    void setSelectFunction(FunctionBase<PushButton*, int>* func, int);
+    void setFreeToSelectFunction(FunctionBase<PushButton*, int>* func);
 
     void readLayout(const char* lytSection, const char* ctrlName,
                     const char* positionEntry, int playerCount, int,
@@ -38,17 +38,17 @@ public:
 
     f32 getSelectDelay();
 
-    /* 0x174 */ ButtonEventBase m_events;
+    /* 0x174 */ ButtonInputBase m_inputs;
 
 protected:
-    Event<PushButton, int, int> m_defaultFreeToSelectEvent;
-    Event<PushButton, int, int> m_defaultSelectToFreeEvent;
-    Event<PushButton, int, int> m_defaultSelectEvent;
+    FunctionImp<PushButton, int, int> mf_imp_defaultFreeToSelect;
+    FunctionImp<PushButton, int, int> mf_imp_defaultSelectToFree;
+    FunctionImp<PushButton, int, int> mf_imp_defaultSelect;
 
 public:
-    /* 0x234 */ EventBase* m_freeToSelectEvent;
-    /* 0x238 */ EventBase* m_selectToFreeEvent;
-    /* 0x23C */ EventBase* m_selectEvent;
+    /* 0x234 */ Function<PushButton*, int> mf_onFreeToSelect;
+    /* 0x238 */ Function<PushButton*, int> mf_onSelectToFree;
+    /* 0x23C */ Function<PushButton*, int> mf_onSelect;
 
     /* 0x240 */ u32 m_id;
     /* 0x244 */ int m_selectable;

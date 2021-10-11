@@ -15,7 +15,7 @@ struct UIControlCollection {
     void insert(int index, UIControl* control);
 
     /* 0x00 */ UIControl** m_children;
-    /* 0x04 */ UIControl** m_childrenSorted;
+    /* 0x04 */ UIControl** m_children2;
     /* 0x08 */ UIControl* m_parent;
     /* 0x0C */ UIControl* m_root;
     /* 0x10 */ int m_count;

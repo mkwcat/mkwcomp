@@ -1,4 +1,5 @@
 #include "SaveManagerPage.h"
+#include <mkw/UI/UIPageManager.h>
 #include <rvl/os.h>
 
 TYPEINFO_DERIVED(SaveManagerPage, UI::UIPage);
@@ -24,8 +25,8 @@ static void waitForSaveData()
 
 void SaveManagerPage::onInit()
 {
-    m_events.init(0, 0);
-    setEventController(&m_events);
+    m_inputs.init(0, 0);
+    setInputManager(&m_inputs);
 
     waitForSaveData();
 }
@@ -48,9 +49,9 @@ void SaveManagerPage::onDeinit()
     }
 }
 
-void SaveManagerPage::build(UI::Scene* scene)
+void SaveManagerPage::build(UI::UIPageManager* scene)
 {
     SaveManagerPage* page = new SaveManagerPage();
-    scene->registerPage(SAVEMANAGER_PAGE_ID, page);
+    scene->setPage(SAVEMANAGER_PAGE_ID, page);
     page->init(SAVEMANAGER_PAGE_ID);
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "UIPage.h"
 #include <rvl/types.h>
 
 namespace UI
@@ -165,37 +166,26 @@ enum
     SCENE_BROKEN_MISSION_MODE_MENU = 0x94
 };
 
-class UIPage;
-
 // thing in menudata
-class Scene
+class UIPageManager
 {
 public:
     void buildPage(s32 page);
     void showPageOnTop(s32 page);
 
-    void registerPage(s32 index, UIPage* page)
+    void setPage(s32 pageId, UIPage* page)
     {
-        m_pages[index] = page;
+        m_pages[pageId] = page;
     }
 
-    UIPage* getPage(s32 index)
+    UIPage* getPage(s32 pageId)
     {
-        return m_pages[index];
+        return m_pages[pageId];
     }
 
     int m_sceneId;
     u32 _4;
     UIPage* m_pages[210];
 };
-
-extern class MenuData
-{
-public:
-    void setNextScene(int nextScene, int r5);
-    void startSceneTransition(int delay, u32 rgbaBgColor);
-
-    Scene* m_scene;
-} * MenuDataInstance;
 
 } // namespace UI

@@ -1,6 +1,6 @@
 #pragma once
-#include <mkw/UI/Scene.h>
+#include <mkw/UI/UIPageManager.h>
 
-void buildTournamentPages(UI::Scene* scene);
-void buildTournamentReplayPages(UI::Scene* scene);
+void buildTournamentPages(UI::UIPageManager* scene);
+void buildTournamentReplayPages(UI::UIPageManager* scene);
 void initRaceMenu();

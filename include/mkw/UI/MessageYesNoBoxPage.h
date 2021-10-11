@@ -1,6 +1,7 @@
 #pragma once
-#include "Event.h"
+#include "Function.h"
 #include "LayoutUIControl.h"
+#include "PushButton.h"
 #include "UIPage.h"
 #include <RuntimeTypeInfo.h>
 #include <rvl/types.h>
@@ -15,7 +16,7 @@ private:
 public:
     void configMessage(int msgId, UI::MesgRes::FormatParam* param);
     void configOption(int num, int msgId, UI::MesgRes::FormatParam* param,
-                      int r7, EventBase* event);
+                      int r7, FunctionBase<MessageYesNoBoxPage*, PushButton*>* event);
 
     INSTANTIATE_TYPEINFO;
 };

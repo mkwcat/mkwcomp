@@ -1,10 +1,8 @@
 #include "CompFile.h"
 #include "UI.h"
-#include "patch.h"
+#include "file.h"
 #include "replay.h"
 #include "util.h"
-#include <mkw/UI/LayoutUIControl.h>
-#include <mkw/UI/Scene.h>
 
 void main()
 {

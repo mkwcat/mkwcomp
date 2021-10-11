@@ -8,9 +8,10 @@
 #include <mkw/MenuSet.h>
 #include <mkw/Sound.h>
 #include <mkw/UI/PushButton.h>
-#include <mkw/UI/Scene.h>
 #include <mkw/UI/TitleScreenPage.h>
+#include <mkw/UI/RKContext.h>
 #include <mkw/UI/UIPage.h>
+#include <mkw/UI/UIPageManager.h>
 
 // use a static variable for this I guess
 s32 s_eventExplanation_nextPage = -1;
@@ -45,7 +46,7 @@ s32 eventExplanationGetNextPage(UI::UIPage* page)
     return s_eventExplanation_nextPage;
 }
 
-void buildPagesReplace(UI::Scene* scene, int id)
+void buildPagesReplace(UI::UIPageManager* scene, int id)
 {
     switch (id) {
     case UI::SCENE_TEST_6:
@@ -449,7 +450,7 @@ void buildPagesReplace(UI::Scene* scene, int id)
         {
             UI::TitleScreenPage* page = new UI::TitleScreenPage();
             page->hideBackground(true);
-            scene->registerPage(0x57, page);
+            scene->setPage(0x57, page);
             page->init(0x57);
         }
         break;
@@ -1586,7 +1587,7 @@ void buildPagesReplace(UI::Scene* scene, int id)
         scene->buildPage(0xBB);
         {
             SelectionPage* page = new SelectionPage();
-            scene->registerPage(0x8C, page);
+            scene->setPage(0x8C, page);
             page->init(0x8C);
         }
         break;
@@ -1613,7 +1614,7 @@ void buildPagesReplace(UI::Scene* scene, int id)
         scene->buildPage(0x4E);
         {
             ForcedHandleBypassPage* page = new ForcedHandleBypassPage();
-            scene->registerPage(0x87, page);
+            scene->setPage(0x87, page);
             page->init(0x87);
         }
         break;
@@ -1657,7 +1658,7 @@ void buildPagesReplace(UI::Scene* scene, int id)
         scene->buildPage(0xCC);
         {
             SettingsPage* page = new SettingsPage();
-            scene->registerPage(0xC0, page);
+            scene->setPage(0xC0, page);
             page->init(0xC0);
         }
         break;
@@ -1717,7 +1718,7 @@ void buildPagesReplace(UI::Scene* scene, int id)
     }
 }
 
-void showBasePagesReplace(UI::Scene* scene, int id)
+void showBasePagesReplace(UI::UIPageManager* scene, int id)
 {
     switch (id) {
     case UI::SCENE_TEST_6:

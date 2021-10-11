@@ -1,67 +1,12 @@
 #pragma once
-#include "Event.h"
-#include "Scene.h"
+#include "Function.h"
 #include "UIControl.h"
+#include "UIInputManager.h"
 #include <RuntimeTypeInfo.h>
 #include <rvl/types.h>
 
 namespace UI
 {
-
-class PageEventBase
-{
-public:
-    PageEventBase();
-    virtual void _8();
-    virtual ~PageEventBase();
-    virtual void init(int, int);
-    virtual void _14();
-    virtual void _18();
-    virtual void _1C();
-    virtual void _20();
-    virtual void _24();
-    virtual void _28();
-    virtual void _2C();
-    virtual void _30();
-    virtual void _34();
-
-    u32 m_4;
-    u32 m_8;
-    u8 m_C;
-    u8 m_D;
-    u8 m_E;
-    u8 m_F;
-};
-static_assert(sizeof(PageEventBase) == 0x10, "sizeof(PageEventBase) != 0x10");
-
-enum InputIndex
-{
-    INPUT_BACK = 1,
-    INPUT_START = 2
-};
-
-class PageEventSelection : public PageEventBase
-{
-public:
-    PageEventSelection();
-    virtual ~PageEventSelection();
-
-    void configureEvent(InputIndex type, EventBase* event, u8 r6, u8 r7);
-
-    u8 fill[0xC];
-    EventBase* m_events[9];
-    u8 m_40[9];
-    u8 m_49[9];
-    u8 m_52;
-    u8 m_53;
-    u8 fill2[0x1CC];
-    u32 m_220;
-
-    void setScreenWrapSetting(int type);
-};
-
-static_assert(sizeof(PageEventSelection) == 0x224,
-              "sizeof(PageEventSelection) != 0x224");
 
 class UIPage
 {
@@ -107,7 +52,7 @@ public:
     void initControlGroup(int count);
     void insertControl(int index, UIControl* control, int);
 
-    void setEventController(PageEventBase*);
+    void setInputManager(UIInputManager*);
 
 protected:
     s32 m_id;
@@ -121,7 +66,7 @@ protected:
     u32 m_20;
 
     UIControlCollection m_children;
-    PageEventBase* m_eventController;
+    UIInputManager* m_inputManager;
 
     u32 m_3C;
     u32 m_40;

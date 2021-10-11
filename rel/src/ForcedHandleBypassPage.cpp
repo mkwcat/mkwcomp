@@ -1,9 +1,10 @@
 #include "ForcedHandleBypassPage.h"
+#include <mkw/RKContext.h>
 
 TYPEINFO_DERIVED(ForcedHandleBypassPage, UI::UIPage);
 
 ForcedHandleBypassPage::ForcedHandleBypassPage()
-    : m_ptr_selectYes(this, &ForcedHandleBypassPage::selectYes)
+    : mf_imp_selectYes(this, &ForcedHandleBypassPage::selectYes)
 {
     m_noResume = false;
     m_wiiWheelPageDisabled = false;
@@ -16,17 +17,19 @@ ForcedHandleBypassPage::~ForcedHandleBypassPage()
 void ForcedHandleBypassPage::onInit()
 {
     CompFile::sInstance->m_forceHandleDisabled = false;
-    setEventController(&m_events);
+
+    m_inputs.init(0, 0);
+    setInputManager(&m_inputs);
 }
 
 void ForcedHandleBypassPage::onShow()
 {
     UI::MessageYesNoBoxPage* msgPage =
         RuntimeTypeInfo::cast<UI::MessageYesNoBoxPage*>(
-            UI::MenuDataInstance->m_scene->getPage(0x4E));
+            RKContext::sInstance->m_scene->getPage(0x4E));
 
     msgPage->configMessage(0x2800, nullptr);
-    msgPage->configOption(0, 0xFAC, nullptr, 1, &m_ptr_selectYes);
+    msgPage->configOption(0, 0xFAC, nullptr, 1, &mf_imp_selectYes);
     msgPage->configOption(1, 0xFAD, nullptr, -1, nullptr);
     m_noResume = false;
     showNextPage(0x4E, 0);
@@ -37,19 +40,19 @@ void ForcedHandleBypassPage::selectYes(UI::MessageYesNoBoxPage* page,
 {
     CompFile::sInstance->m_forceHandleDisabled = true;
 
-    const int sceneId = UI::MenuDataInstance->m_scene->m_sceneId;
+    const int sceneId = RKContext::sInstance->m_scene->m_sceneId;
     if (sceneId == 0x88) {
         // Normal tournament intro
-        UI::MenuDataInstance->setNextScene(0x2D, 0);
+        RKContext::sInstance->setNextScene(0x2D, 0);
     } else if (sceneId == 0x89) {
         // For bosses specifically
-        UI::MenuDataInstance->setNextScene(0x1D, 0);
+        RKContext::sInstance->setNextScene(0x1D, 0);
     }
 
     f32 delay = button->getSelectDelay();
-    UI::MenuDataInstance->startSceneTransition((int)delay, 0x000000FF);
+    RKContext::sInstance->startSceneTransition((int)delay, 0x000000FF);
 
-    UI::UIPage* lastPage = UI::MenuDataInstance->m_scene->getPage(0xBA);
+    UI::UIPage* lastPage = RKContext::sInstance->m_scene->getPage(0xBA);
     lastPage->startTransitionOut(UI::UIPage::SLIDE_FORWARD, delay);
 
     m_noResume = true;
@@ -57,7 +60,7 @@ void ForcedHandleBypassPage::selectYes(UI::MessageYesNoBoxPage* page,
 
 void ForcedHandleBypassPage::onReturn()
 {
-    UI::UIPage* lastPage = UI::MenuDataInstance->m_scene->getPage(0xBA);
+    UI::UIPage* lastPage = RKContext::sInstance->m_scene->getPage(0xBA);
     if (!m_noResume) {
         // These calls emulate two functions required to dereference the
         // current controller
@@ -72,14 +75,14 @@ int ForcedHandleBypassPage::isWiiWheelPageDisabled()
 {
     ForcedHandleBypassPage* page =
         RuntimeTypeInfo::cast<ForcedHandleBypassPage*>(
-            UI::MenuDataInstance->m_scene->getPage(0x87));
+            RKContext::sInstance->m_scene->getPage(0x87));
     return page->m_wiiWheelPageDisabled;
 }
 void ForcedHandleBypassPage::setWiiWheelPageDisabled(bool set)
 {
     ForcedHandleBypassPage* page =
         RuntimeTypeInfo::cast<ForcedHandleBypassPage*>(
-            UI::MenuDataInstance->m_scene->getPage(0x87));
+            RKContext::sInstance->m_scene->getPage(0x87));
     page->m_wiiWheelPageDisabled = set;
 }
 

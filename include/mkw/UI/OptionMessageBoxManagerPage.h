@@ -1,6 +1,8 @@
 #pragma once
-#include "UIPage.h"
 #include "Event.h"
+#include "Function.h"
+#include "UIInputManager.h"
+#include "UIPage.h"
 #include <rvl/types.h>
 
 namespace UI
@@ -30,8 +32,9 @@ public:
 
 protected:
     /* 0x80600F88 */
-    /* 0x44 */ Event<OptionMessageBoxManagerPage, int, int> m_ptr_event0x44;
-    /* 0x58 */ PageEventBase m_events;
+    /* 0x44 */ FunctionImp<OptionMessageBoxManagerPage, int, int>
+        m_ptr_event0x44;
+    /* 0x58 */ UIInputManager m_inputs;
 
 public:
     /* 0x68 */ int m_option;

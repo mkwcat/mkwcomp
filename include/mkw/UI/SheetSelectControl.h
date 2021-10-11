@@ -1,8 +1,8 @@
 #pragma once
-#include "Event.h"
+#include "Function.h"
 #include "LayoutUIControl.h"
 #include "UIControl.h"
-#include "UIPage.h"
+#include "UIInputManager.h"
 #include <rvl/types.h>
 
 namespace UI
@@ -17,11 +17,11 @@ public:
         /* Like PushButton with some differences */
         SheetSelectButton(); // fake! this is always inlined actually
 
-        /* 0x174 */ ButtonEventBase m_events;
+        /* 0x174 */ ButtonInputBase m_inputs;
 
-        Event<SheetSelectControl, int, int> m_event_1F8;
-        Event<SheetSelectControl, int, int> m_event_20C;
-        Event<SheetSelectControl, int, int> m_event_220;
+        FunctionImp<SheetSelectControl, int, int> mf_imp_1F8;
+        FunctionImp<SheetSelectControl, int, int> mf_imp_20C;
+        FunctionImp<SheetSelectControl, int, int> mf_imp_220;
 
         int m_id;
         int m_selectable;
@@ -47,8 +47,8 @@ public:
     /* 0x80636264 */
     void setEnabledArrows(bool leftEnabled, bool rightEnabled);
 
-    /* 0x098 */ EventBase* m_rightEvent;
-    /* 0x09C */ EventBase* m_leftEvent;
+    /* 0x098 */ Function<SheetSelectControl, int> mf_onSelectRight;
+    /* 0x09C */ Function<SheetSelectControl, int> mf_onSelectLeft;
     /* 0x0A0 */ u32 m_A0;
     /* 0x0A4 */ u32 m_A4;
     /* 0x0A8 */ SheetSelectButton m_buttonRight;

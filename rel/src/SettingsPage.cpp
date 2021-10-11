@@ -3,7 +3,7 @@
 #include "patch.h"
 #include <mkw/UI/OptionMessageBoxManagerPage.h>
 #include <mkw/UI/PushButton.h>
-#include <mkw/UI/Scene.h>
+#include <mkw/UI/RKContext.h>
 #include <mkw/UI/SceneBGMController.h>
 #include <mkw/UI/UIPage.h>
 
@@ -76,7 +76,7 @@ void SettingsPage::onInit()
     m_events.configureEvent(UI::INPUT_BACK, &m_ptr_onBackPress, 0, 0);
 
     // aka options from license settings
-    if (UI::MenuDataInstance->m_scene->m_sceneId == UI::SCENE_INSTALL_CHANNEL) {
+    if (UI::RKContext::sInstance->m_scene->m_sceneId == UI::SCENE_INSTALL_CHANNEL) {
         m_licenseButton.setSelected(0);
     } else {
         m_rumbleButton.setSelected(0);
@@ -116,7 +116,7 @@ void SettingsPage::selectRumble(UI::PushButton* button)
 {
     UI::OptionMessageBoxManagerPage* page =
         RuntimeTypeInfo::cast<UI::OptionMessageBoxManagerPage*>(
-            UI::MenuDataInstance->m_scene->getPage(0xC6));
+            UI::RKContext::sInstance->m_scene->getPage(0xC6));
 
     page->m_option = 0;
 

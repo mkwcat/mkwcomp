@@ -1,6 +1,4 @@
 #pragma once
-#include <mkw/UI/Scene.h>
-#include <mkw/UI/PushButton.h>
 #include <rvl/types.h>
 
 #define BACKGROUND_PAGE_ID 0x5C

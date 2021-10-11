@@ -1,6 +1,7 @@
 #pragma once
-#include <mkw/UI/Scene.h>
+#include <mkw/UI/UIInputManager.h>
 #include <mkw/UI/UIPage.h>
+#include <mkw/UI/UIPageManager.h>
 
 #define SAVEMANAGER_PAGE_ID 0x00
 
@@ -10,13 +11,13 @@ public:
     SaveManagerPage();
     virtual ~SaveManagerPage();
 
-    static void build(UI::Scene* scene);
+    static void build(UI::UIPageManager* scene);
 
     virtual void onInit();
     virtual void onDeinit();
 
 protected:
-    UI::PageEventBase m_events;
+    UI::UIInputManager m_inputs;
 
 public:
     INSTANTIATE_TYPEINFO;

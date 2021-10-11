@@ -156,35 +156,35 @@ public:
 };
 TYPEINFO_DERIVED(ReplayHud, UI::RaceHudPage);
 
-void buildTournamentPages(UI::Scene* scene)
+void buildTournamentPages(UI::UIPageManager* scene)
 {
     scene->buildPage(0x16);
     scene->buildPage(0x35);
     scene->buildPage(0x3A);
     {
         EventPauseMenuPage* page = new EventPauseMenuPage();
-        scene->registerPage(0x1B, page);
+        scene->setPage(0x1B, page);
         page->init(0x1B);
     }
     {
         EventAfterMenuPage* page = new EventAfterMenuPage();
-        scene->registerPage(0x26, page);
+        scene->setPage(0x26, page);
         page->init(0x26);
     }
 }
 
-void buildTournamentReplayPages(UI::Scene* scene)
+void buildTournamentReplayPages(UI::UIPageManager* scene)
 {
     scene->buildPage(0x39);
     scene->buildPage(0x3A);
     {
         ReplayHud* page = new ReplayHud();
-        scene->registerPage(0x16, page);
+        scene->setPage(0x16, page);
         page->init(0x16);
     }
     {
         EventAfterMenuPage* page = new EventAfterMenuPage();
-        scene->registerPage(0x26, page);
+        scene->setPage(0x26, page);
         page->init(0x26);
     }
 }

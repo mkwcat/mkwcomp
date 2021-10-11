@@ -97,11 +97,11 @@ static inline int compExplanationMid(int compId)
 }
 
 SelectionPage::SelectionPage()
-    : m_ptr_onSelectEvent(this, &SelectionPage::onSelectEvent),
-      m_ptr_onFreeToSelectEvent(this, &SelectionPage::onFreeToSelectEvent),
-      m_ptr_onBackEvent(this, &SelectionPage::onBackEvent),
-      m_ptr_onArrowRightEvent(this, &SelectionPage::onArrowRightEvent),
-      m_ptr_onArrowLeftEvent(this, &SelectionPage::onArrowLeftEvent)
+    : mf_imp_onSelectEvent(this, &SelectionPage::onSelectEvent),
+      mf_imp_onFreeToSelectEvent(this, &SelectionPage::onFreeToSelectEvent),
+      mf_imp_onBackEvent(this, &SelectionPage::onBackEvent),
+      mf_imp_onArrowRightEvent(this, &SelectionPage::onArrowRightEvent),
+      mf_imp_onArrowLeftEvent(this, &SelectionPage::onArrowLeftEvent)
 {
     m_nextPage = -1;
 }
@@ -175,9 +175,9 @@ int SelectionPage::compIdButton(int compId)
 
 void SelectionPage::onInit()
 {
-    m_events.init(1, 0);
+    m_inputs.init(1, 0);
 
-    setEventController(&m_events);
+    setInputManager(&m_inputs);
     initControlGroup(15);
 
     for (int i = 0; i < 10; i++) {
@@ -188,8 +188,8 @@ void SelectionPage::onInit()
 
         m_buttons[i].readLayout("button", "CompetitionButton", name, 1, 0,
                                 false);
-        m_buttons[i].setSelectEvent(&m_ptr_onSelectEvent, 0);
-        m_buttons[i].setFreeToSelectEvent(&m_ptr_onFreeToSelectEvent);
+        m_buttons[i].setSelectFunction(&mf_imp_onSelectEvent, 0);
+        m_buttons[i].setFreeToSelectFunction(&mf_imp_onFreeToSelectEvent);
 
         m_buttons[i].m_id = i;
     }
@@ -204,8 +204,9 @@ void SelectionPage::onInit()
 
     m_arrows.readLayout("button", "FriendListArrowRight", "ButtonArrowRight",
                         "FriendListArrowLeft", "ButtonArrowLeft", 1, 0, false);
-    m_arrows.m_rightEvent = &m_ptr_onArrowRightEvent;
-    m_arrows.m_leftEvent = &m_ptr_onArrowLeftEvent;
+    // This is normally done using two functions in the SheetSelectControl
+    m_arrows.mf_onSelectRight.set(&mf_imp_onArrowRightEvent);
+    m_arrows.mf_onSelectLeft.set(&mf_imp_onArrowLeftEvent);
 
     {
         insertControl(11, &m_pageNumControl, 0);
@@ -224,16 +225,16 @@ void SelectionPage::onInit()
     insertControl(13, &m_backButton, 0);
 
     m_backButton.initLayout(1);
-    m_backButton.setSelectEvent(&m_ptr_onSelectEvent, 0);
-    m_backButton.setFreeToSelectEvent(&m_ptr_onFreeToSelectEvent);
+    m_backButton.setSelectFunction(&mf_imp_onSelectEvent, 0);
+    m_backButton.setFreeToSelectFunction(&mf_imp_onFreeToSelectEvent);
 
     insertControl(14, &m_titleText, 0);
 
     m_titleText.initLayout(0);
     m_titleText.setMessage(0x27F0, 0);
 
-    m_events.setScreenWrapSetting(2);
-    m_events.configureEvent(UI::INPUT_BACK, &m_ptr_onBackEvent, 0, 0);
+    m_inputs.setScreenWrapSetting(2);
+    m_inputs.configureInput(UI::INPUT_BACK, &mf_imp_onBackEvent, 0, 0);
 
     updatePageNumText();
     updateCompetitionName();

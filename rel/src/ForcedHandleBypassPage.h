@@ -1,6 +1,8 @@
 #pragma once
+#include <mkw/UI/Function.h>
 #include <mkw/UI/MessageYesNoBoxPage.h>
 #include <mkw/UI/PushButton.h>
+#include <mkw/UI/UIInputManager.h>
 #include <mkw/UI/UIPage.h>
 #include <rvl/types.h>
 
@@ -27,9 +29,10 @@ protected:
     bool m_noResume;
     bool m_wiiWheelPageDisabled;
 
-    UI::Event<ForcedHandleBypassPage, UI::MessageYesNoBoxPage*, UI::PushButton*>
-        m_ptr_selectYes;
-    UI::PageEventBase m_events;
+    UI::FunctionImp<ForcedHandleBypassPage, UI::MessageYesNoBoxPage*,
+                    UI::PushButton*>
+        mf_imp_selectYes;
+    UI::UIInputManagerMenu m_inputs;
 
 public:
     INSTANTIATE_TYPEINFO;
