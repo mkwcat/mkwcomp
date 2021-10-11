@@ -21,7 +21,7 @@ public:
         m_function->call(param1, param2);
     }
 
-    void set(FunctionBase<P1, P2>* function)
+    void operator=(FunctionBase<P1, P2>* function)
     {
         m_function = function;
     }

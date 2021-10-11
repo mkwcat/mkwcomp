@@ -6,10 +6,10 @@
 #include "replay.h"
 #include "util.h"
 #include <mkw/MenuSet.h>
+#include <mkw/RKContext.h>
 #include <mkw/Sound.h>
 #include <mkw/UI/PushButton.h>
 #include <mkw/UI/TitleScreenPage.h>
-#include <mkw/UI/RKContext.h>
 #include <mkw/UI/UIPage.h>
 #include <mkw/UI/UIPageManager.h>
 

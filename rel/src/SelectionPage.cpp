@@ -205,8 +205,8 @@ void SelectionPage::onInit()
     m_arrows.readLayout("button", "FriendListArrowRight", "ButtonArrowRight",
                         "FriendListArrowLeft", "ButtonArrowLeft", 1, 0, false);
     // This is normally done using two functions in the SheetSelectControl
-    m_arrows.mf_onSelectRight.set(&mf_imp_onArrowRightEvent);
-    m_arrows.mf_onSelectLeft.set(&mf_imp_onArrowLeftEvent);
+    m_arrows.mf_onSelectRight = &mf_imp_onArrowRightEvent;
+    m_arrows.mf_onSelectLeft = &mf_imp_onArrowLeftEvent;
 
     {
         insertControl(11, &m_pageNumControl, 0);

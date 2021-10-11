@@ -1,9 +1,9 @@
 #include "SettingsPage.h"
 #include "UI.h"
 #include "patch.h"
+#include <mkw/RKContext.h>
 #include <mkw/UI/OptionMessageBoxManagerPage.h>
 #include <mkw/UI/PushButton.h>
-#include <mkw/UI/RKContext.h>
 #include <mkw/UI/SceneBGMController.h>
 #include <mkw/UI/UIPage.h>
 
@@ -18,9 +18,9 @@ enum Button
 };
 
 SettingsPage::SettingsPage()
-    : m_ptr_onButtonSelect(this, &SettingsPage::onButtonSelect),
-      m_ptr_onBackPress(this, &SettingsPage::onBackPress),
-      m_ptr_messageWindowEvent(this, &SettingsPage::messageWindowEvent)
+    : m_fun_onButtonSelect(this, &SettingsPage::onButtonSelect),
+      m_fun_onBackPress(this, &SettingsPage::onBackPress),
+      m_fun_messageWindowEvent(this, &SettingsPage::messageWindowEvent)
 {
     m_nextPage = -1;
 }
@@ -30,9 +30,9 @@ SettingsPage::~SettingsPage()
 
 void SettingsPage::onInit()
 {
-    m_events.init(1, 0);
-    setEventController(&m_events);
-    m_events.setScreenWrapSetting(1);
+    m_inputs.init(1, 0);
+    setInputManager(&m_inputs);
+    m_inputs.setScreenWrapSetting(1);
 
     initControlGroup(5);
 
@@ -41,7 +41,7 @@ void SettingsPage::onInit()
         insertControl(0, &m_rumbleButton, 0);
         m_rumbleButton.readLayout("button", "OptionTopButton", "Rumble", 1, 0,
                                   false);
-        m_rumbleButton.setSelectEvent(&m_ptr_onButtonSelect, 0);
+        m_rumbleButton.setSelectFunction(&m_fun_onButtonSelect, 0);
         m_rumbleButton.m_id = BUTTON_RUMBLE;
     }
 
@@ -50,7 +50,7 @@ void SettingsPage::onInit()
         insertControl(1, &m_ghostDataButton, 0);
         m_ghostDataButton.readLayout("button", "OptionTopButton", "Network", 1,
                                      0, false);
-        m_ghostDataButton.setSelectEvent(&m_ptr_onButtonSelect, 0);
+        m_ghostDataButton.setSelectFunction(&m_fun_onButtonSelect, 0);
         m_ghostDataButton.setMessage(0x2801, nullptr);
         m_ghostDataButton.m_id = BUTTON_GHOSTDATA;
     }
@@ -60,23 +60,23 @@ void SettingsPage::onInit()
         insertControl(2, &m_licenseButton, 0);
         m_licenseButton.readLayout("button", "OptionTopButton",
                                    "ChannelInstall", 1, 0, false);
-        m_licenseButton.setSelectEvent(&m_ptr_onButtonSelect, 0);
+        m_licenseButton.setSelectFunction(&m_fun_onButtonSelect, 0);
         m_licenseButton.setMessage(0x7DF, nullptr);
         m_licenseButton.m_id = BUTTON_LICENSE;
     }
 
     insertControl(3, &m_backButton, 0);
     m_backButton.initLayout(1);
-    m_backButton.setSelectEvent(&m_ptr_onButtonSelect, 0);
+    m_backButton.setSelectFunction(&m_fun_onButtonSelect, 0);
 
     insertControl(4, &m_titleText, 0);
     m_titleText.initLayout(0);
     m_titleText.setMessage(MID_SETTINGS, 0);
 
-    m_events.configureEvent(UI::INPUT_BACK, &m_ptr_onBackPress, 0, 0);
+    m_inputs.configureInput(UI::INPUT_BACK, &m_fun_onBackPress, 0, 0);
 
     // aka options from license settings
-    if (UI::RKContext::sInstance->m_scene->m_sceneId == UI::SCENE_INSTALL_CHANNEL) {
+    if (RKContext::sInstance->m_scene->m_sceneId == UI::SCENE_INSTALL_CHANNEL) {
         m_licenseButton.setSelected(0);
     } else {
         m_rumbleButton.setSelected(0);
@@ -116,7 +116,7 @@ void SettingsPage::selectRumble(UI::PushButton* button)
 {
     UI::OptionMessageBoxManagerPage* page =
         RuntimeTypeInfo::cast<UI::OptionMessageBoxManagerPage*>(
-            UI::RKContext::sInstance->m_scene->getPage(0xC6));
+            RKContext::sInstance->m_scene->getPage(0xC6));
 
     page->m_option = 0;
 
@@ -129,11 +129,11 @@ void SettingsPage::selectGhostData(UI::PushButton* button)
 {
     UI::OptionMessageWindowPage* window =
         RuntimeTypeInfo::cast<UI::OptionMessageWindowPage*>(
-            UI::MenuDataInstance->m_scene->getPage(0xC8));
+            RKContext::sInstance->m_scene->getPage(0xC8));
 
     window->setTitleText(0x2801, nullptr);
     window->setWindowText(0x2802, nullptr);
-    window->m_pressAEvent = &m_ptr_messageWindowEvent;
+    window->m_pressAEvent = &m_fun_messageWindowEvent;
 
     m_nextPage = 0xC8;
     f32 delay = button->getSelectDelay();
@@ -147,7 +147,7 @@ void SettingsPage::selectLicenseSettings(UI::PushButton* button)
     startSceneTransition(UI::SCENE_LICENSE_SETTINGS, SLIDE_FORWARD, delay);
 }
 
-void SettingsPage::messageWindowEvent(UI::OptionMessageWindowPage* page, int r5)
+void SettingsPage::messageWindowEvent(UI::MessageWindowPage* page, int r5)
 {
     UI::SceneBGMControllerInstance->enableBGMPersist();
     page->startSceneTransition(UI::SCENE_OPTIONS, SLIDE_FORWARD, 0);

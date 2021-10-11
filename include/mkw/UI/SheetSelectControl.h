@@ -47,8 +47,8 @@ public:
     /* 0x80636264 */
     void setEnabledArrows(bool leftEnabled, bool rightEnabled);
 
-    /* 0x098 */ Function<SheetSelectControl, int> mf_onSelectRight;
-    /* 0x09C */ Function<SheetSelectControl, int> mf_onSelectLeft;
+    /* 0x098 */ Function<SheetSelectControl*, int> mf_onSelectRight;
+    /* 0x09C */ Function<SheetSelectControl*, int> mf_onSelectLeft;
     /* 0x0A0 */ u32 m_A0;
     /* 0x0A4 */ u32 m_A4;
     /* 0x0A8 */ SheetSelectButton m_buttonRight;

@@ -1,6 +1,7 @@
 #pragma once
 #include "LayoutUIControl.h"
 #include "UIPage.h"
+#include "UIInputManager.h"
 #include <rvl/types.h>
 
 namespace UI
@@ -18,7 +19,7 @@ public:
     }
 
 protected:
-    PageEventBase m_events;
+    UIInputManager m_inputs;
     LayoutUIControl m_pressStart; // actually CtrlMenuPressStart
     LayoutUIControl m_background;
     u8 fill[0x14]; // I forgot what this could be

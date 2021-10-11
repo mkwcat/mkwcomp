@@ -1,6 +1,5 @@
 #include "util.h"
 #include <mkw/MenuSet.h>
-#include <mkw/UI/Scene.h>
 #include <string.h>
 
 extern const char diResNameStr[];

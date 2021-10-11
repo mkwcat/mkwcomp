@@ -1,8 +1,10 @@
 #pragma once
 #include <mkw/UI/CtrlMenuBackButton.h>
 #include <mkw/UI/CtrlMenuPageTitleText.h>
+#include <mkw/UI/Function.h>
 #include <mkw/UI/MessageWindowPage.h>
 #include <mkw/UI/PushButton.h>
+#include <mkw/UI/UIInputManager.h>
 #include <mkw/UI/UIPage.h>
 
 class SettingsPage : public UI::UIPage
@@ -24,7 +26,7 @@ protected:
     void selectGhostData(UI::PushButton* button);
     void selectLicenseSettings(UI::PushButton* button);
 
-    void messageWindowEvent(UI::OptionMessageWindowPage* page, int r5);
+    void messageWindowEvent(UI::MessageWindowPage* page, int r5);
 
 protected:
     UI::PushButton m_rumbleButton;
@@ -34,12 +36,12 @@ protected:
     UI::CtrlMenuPageTitleText m_titleText;
     UI::CtrlMenuBackButton m_backButton;
 
-    UI::PageEventSelection m_events;
+    UI::UIInputManagerMenu m_inputs;
 
-    UI::Event<SettingsPage, UI::PushButton*, int> m_ptr_onButtonSelect;
-    UI::Event<SettingsPage, int, int> m_ptr_onBackPress;
-    UI::Event<SettingsPage, UI::OptionMessageWindowPage*, int>
-        m_ptr_messageWindowEvent;
+    UI::FunctionImp<SettingsPage, UI::PushButton*, int> m_fun_onButtonSelect;
+    UI::FunctionImp<SettingsPage, int, int> m_fun_onBackPress;
+    UI::FunctionImp<SettingsPage, UI::MessageWindowPage*, int>
+        m_fun_messageWindowEvent;
 
     int m_nextPage;
 
