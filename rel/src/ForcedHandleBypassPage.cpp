@@ -24,8 +24,8 @@ void ForcedHandleBypassPage::onInit()
 
 void ForcedHandleBypassPage::onShow()
 {
-    UI::MessageYesNoBoxPage* msgPage =
-        RuntimeTypeInfo::cast<UI::MessageYesNoBoxPage*>(
+    UI::MessagePopupTwoOptionPage* msgPage =
+        RuntimeTypeInfo::cast<UI::MessagePopupTwoOptionPage*>(
             RKContext::sInstance->m_scene->getPage(0x4E));
 
     msgPage->configMessage(0x2800, nullptr);
@@ -35,7 +35,7 @@ void ForcedHandleBypassPage::onShow()
     showNextPage(0x4E, 0);
 }
 
-void ForcedHandleBypassPage::selectYes(UI::MessageYesNoBoxPage* page,
+void ForcedHandleBypassPage::selectYes(UI::MessagePopupTwoOptionPage* page,
                                        UI::PushButton* button)
 {
     CompFile::sInstance->m_forceHandleDisabled = true;

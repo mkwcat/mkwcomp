@@ -127,8 +127,8 @@ void SettingsPage::selectRumble(UI::PushButton* button)
 
 void SettingsPage::selectGhostData(UI::PushButton* button)
 {
-    UI::OptionMessageWindowPage* window =
-        RuntimeTypeInfo::cast<UI::OptionMessageWindowPage*>(
+    UI::MessageWindowNoButtonPage* window =
+        RuntimeTypeInfo::cast<UI::MessageWindowNoButtonPage*>(
             RKContext::sInstance->m_scene->getPage(0xC8));
 
     window->setTitleText(0x2801, nullptr);

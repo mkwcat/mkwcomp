@@ -36,7 +36,17 @@ protected:
     /* 0x58 */ UIInputManager m_inputs;
 
 public:
+    enum Option
+    {
+        OPTION_RUMBLE = 0,
+        OPTION_REGION_PROFILE = 1,
+        OPTION_MESSAGE_DELIVERY = 2,
+        OPTION_MESSAGE_DELIVERY_2 = 3, // uses 3 options instead?
+        OPTION_DATA_EXCHANGE = 4,
+        OPTION_OTHERS_MIIS = 5,
+    };
     /* 0x68 */ int m_option;
+
     /* 0x6C */ int unk_0x6C; // probably nwc24 related
     /* 0x70 */ int m_nextPage;
     /* 0x74 */ int unk_0x74;

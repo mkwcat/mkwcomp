@@ -1,4 +1,3 @@
-/* Patch addresses */
 8062bcf0:Patch_SceneBuildPages
 8062f7e0:Patch_SceneShowBasePages
 80630e10:Patch_MainMenuKind
@@ -15,7 +14,7 @@
 805eb210:Patch_LicenseSelect
 805ea6a4:Patch_LicenseSelectOptions
 805ed6b0:Patch_LicenseSettingsBack
-
+80621954:Patch_BGUnloadSoundFix
 80856ea8:Patch_ControlKindCheck_RaceFinishReset
 80856028:Patch_ControlKindCheck_onPause
 80859530:Patch_ControlKindCheck_PauseUpdate
@@ -23,7 +22,6 @@
 805211a0:Patch_ReplayRearview
 80533f08:Patch_NoRandomFinishTime
 80711ab4:Patch_ResultMusic
-
 8066c1b8:Patch_Nwc24DlManager_init
 8066bf44:Patch_Nwc24DlManager_CheckForCompetition
 8066c0d0:Patch_Nwc24DlManager_GetCompetitionText
@@ -31,8 +29,6 @@
 80675ffc:Patch_Nwc24DlManager_InsertTimeInLdb
 80675d20:Patch_Nwc24DlManager_GetLdbEntry
 8085d6e8:Patch_SaveTournamentGhost
-
-
 801a154c:DCFlushRange
 801a24f0:OSReport
 801aabc8:OSSleepTicks
@@ -43,12 +39,10 @@
 80006038:memset
 8000f114:memmove
 80005f34:memcpy
-
 80021374:__ptmf_scall
 80020f18:__construct_array
 80021010:__destroy_arr
 8002125c:__register_global_object
-
 800214b4:_savegpr_23
 800214b8:_savegpr_24
 800214bc:_savegpr_25
@@ -58,7 +52,6 @@
 800214ec:_savegpr_29
 800214f0:_savegpr_30
 800214f4:_savegpr_31
-
 80021500:_restgpr_23
 80021504:_restgpr_24
 80021508:_restgpr_25
@@ -68,14 +61,10 @@
 80021518:_restgpr_29
 8002151c:_restgpr_30
 80021520:_restgpr_31
-
-/* EGG alloc functions */
 80229cec:__nw__FUl
 80229d10:__nwa__FUl
 80229d34:__dl__FPv
 80229e00:__dla__FPv
-
-/* NAND */
 8019b35c:NANDCreate
 8019c720:NANDOpen
 8019c9a0:NANDClose
@@ -84,8 +73,6 @@
 8019b884:NANDSeek
 8019be6c:NANDGetLength
 8019e32c:NANDGetHomeDir
-
-/* IPC */
 80193818:IOS_Open
 801939f8:IOS_Close
 80193ba0:IOS_Read
@@ -93,65 +80,44 @@
 80193f90:IOS_Seek
 801941b0:IOS_Ioctl
 80194500:IOS_Ioctlv
-
-/* Misc */
 80832cd4:msgIdForCourse__Fi
-
 80554de4:__ct__6RandomFv
 80554eb8:__dt__6RandomFv
 80554ef8:next__6RandomFv
 80554f4c:nextLimited__6RandomFi
-
 809bc788:sInstance__7MenuSet
 8052e6a8:setupNextRaceInput__Q27MenuSet11RaceSettingFPCQ27MenuSet11RaceSetting
-
 809bc7a8:sInstance__15SaveDataManager
-
 8051bbf0:__ct__9GhostDataFv
 8051bcb4:__dt__9GhostDataFv
 8051c400:makeRKG__9GhostDataFPQ29GhostData7RKGFile
 8051ca60:compress__Q29GhostData7RKGFileFPQ29GhostData7RKGFile
 8051cd08:getFileSize__Q29GhostData7RKGFileCFv
-
-/* UI stuff */
 80635188:setNextScene__9RKContextFii
 80635214:startSceneTransition__9RKContextFiUl
-
 80622454:buildPage__Q22UI13UIPageManagerFl
 806224ec:showPageOnTop__Q22UI13UIPageManagerFl
-
-805bd908:getSelectDelay__Q22UI10PushButtonFv
 80601bfc:startTransitionOut__Q22UI6UIPageFQ32UI6UIPage13TransitionDirf
-
 809c0e98:sInstance__9RKContext
-
-
 8063a0f4:__ct__Q22UI15TitleScreenPageFv
-
-
-
-/* UIPage and vtable stuff */
+809c1388:SceneBGMControllerInstance__2UI
+806f8724:enableBGMPersist__Q22UI18SceneBGMControllerFv
 806010f0:__ct__Q22UI6UIPageFv
 80601bd0:initControlGroup__Q22UI6UIPageFi
 80601be0:insertControl__Q22UI6UIPageFiPQ22UI9UIControli
 806011d4:init__Q22UI6UIPageFl
-
 805ee444:__ct__Q22UI14UIInputManagerFv
 805ee468:__dt__Q22UI14UIInputManagerFv
 805f0284:__ct__Q22UI18UIInputManagerMenuFv
 805f04b0:__dt__Q22UI18UIInputManagerMenuFv
 805f0690:setScreenWrapSetting__Q22UI18UIInputManagerMenuFi
 805f0660:configureInput__Q22UI18UIInputManagerMenuFQ22UI10InputIndexPQ22UI17FunctionBase<i,i>UcUc
-
 80601be8:setInputManager__Q22UI6UIPageFPQ22UI14UIInputManager
-
 8063be8c:getIndex__Q22UI22SomeAnimationContainerFi
 8063bf88:doSomething__Q22UI13SomeAnimationFif
-
 8063cf2c:__dt__Q22UI15LayoutUIControlFv
 805c2598:__ct__Q22UI7CtrlResFPQ22UI15LayoutUIControl
 805c25e0:readFile__Q22UI7CtrlResFPCcPCcPCcPPCc
-
 805bcd28:__ct__Q22UI10PushButtonFv
 805bce30:__dt__Q22UI10PushButtonFv
 805bce98:readLayout__Q22UI10PushButtonFPCcPCcPCciib
@@ -159,12 +125,11 @@
 805bd460:setFreeToSelectFunction__Q22UI10PushButtonFPQ22UI34FunctionBase<PQ22UI10PushButton,i>
 805bd470:setSelected__Q22UI10PushButtonFi
 805bd4c4:freeToSelect__Q22UI10PushButtonFi
-
+805bd908:getSelectDelay__Q22UI10PushButtonFv
 80635610:__ct__Q22UI18SheetSelectControlFv
 806357c8:__dt__Q22UI18SheetSelectControlFv
 8063586c:readLayout__Q22UI18SheetSelectControlFPCcPCcPCcPCcPCciib
 806359b0:setEnabledArrows__Q22UI18SheetSelectControlFbb
-
 80601178:__dt__Q22UI6UIPageFv
 805babdc:_C__Q22UI6UIPageFv
 805babf8:getNextPageID__Q22UI6UIPageFv
@@ -189,19 +154,14 @@
 805baba0:_5C__Q22UI6UIPageFv
 805BE6E8:getRuntimeTypeInfo__Q22UI6UIPageFv
 809c0d70:typeInfo__Q22UI6UIPage
-
-
 8063c4d8:__ct__Q22UI9UIControlFv
 8063ce04:__ct__Q22UI15LayoutUIControlFv
 8063d328:setMessage__Q22UI15LayoutUIControlFPCciPQ32UI7MesgRes11FormatParam
 8063d420:setMessage__Q22UI15LayoutUIControlFiPQ32UI7MesgRes11FormatParam
 8063d75c:setTexture__Q22UI15LayoutUIControlFPCcPCc
-
 808d289c:__vt__Q22UI18CtrlMenuBackButton
 807e8ae8:initLayout__Q22UI21CtrlMenuPageTitleTextFi
 808d2824:__vt__Q22UI21CtrlMenuPageTitleText
-
-
 80858310:__ct__Q22UI12RaceMenuPageFv
 80624284:__dt__Q22UI12RaceMenuPageFv
 80631b60:getNextPageID__Q22UI12RaceMenuPageFv
@@ -215,13 +175,11 @@
 8085b3c4:getRuntimeTypeInfo__Q22UI12RaceMenuPageFv
 809c36e8:typeInfo__Q22UI12RaceMenuPage
 80631b58:setNextPageID__Q22UI12RaceMenuPageFi
-
 808d9860:__vt__Q22UI11RaceHudPage
 808ad7f4:__vt__Q32UI11RaceHudPage13UnknownMember
 80623eb0:__dt__Q22UI11RaceHudPageFv
 805eeb1c:__ct__Q22UI18UIInputManagerRaceFv
 809c36a0:typeInfo__Q22UI11RaceHudPage
-
 80632c5c:getNextPageID__Q22UI11RaceHudPageFv
 808580a0:_20__Q22UI11RaceHudPageFv
 808558e4:onInit__Q22UI11RaceHudPageFv
@@ -234,27 +192,23 @@
 80856940:isRaceEnded__Q22UI11RaceHudPageFi
 80856a18:_78__Q22UI11RaceHudPageFv
 80856998:_7C__Q22UI11RaceHudPageFv
-
-80651c68:configMessage__Q22UI19MessageYesNoBoxPageFiPQ32UI7MesgRes11FormatParam
-80651c70:configOption__Q22UI19MessageYesNoBoxPageFiiPQ32UI7MesgRes11FormatParamiPQ22UI60FunctionBase<PQ22UI19MessageYesNoBoxPage,PQ22UI10PushButton>
-809c0f94:typeInfo__Q22UI19MessageYesNoBoxPage
-
+80651c68:configMessage__Q22UI25MessagePopupTwoOptionPageFiPQ32UI7MesgRes11FormatParam
+80651c70:configOption__Q22UI25MessagePopupTwoOptionPageFiiPQ32UI7MesgRes11FormatParamiPQ22UI66FunctionBase<PQ22UI25MessagePopupTwoOptionPage,PQ22UI10PushButton>
+809c0f94:typeInfo__Q22UI25MessagePopupTwoOptionPage
+805f8efc:setTitleText__Q22UI25MessageWindowNoButtonPageFiPQ32UI7MesgRes11FormatParam
+805f8f04:setWindowText__Q22UI25MessageWindowNoButtonPageFiPQ32UI7MesgRes11FormatParam
+809c0d18:typeInfo__Q22UI25MessageWindowNoButtonPage
+809c0d5c:typeInfo__Q22UI27OptionMessageBoxManagerPage
 805f8564:getIndexFromMid__Q22UI7MesgResCFi
 805f85cc:getTextFromIndex__Q22UI7MesgResCFi
-
-/* EGG */
 80242d74:__ct__Q23EGG10TaskThreadFiiUl
 80242bf4:__dt__Q23EGG10TaskThreadFv
 80242808:create__Q23EGG10TaskThreadFiiUlPQ23EGG4Heap
 80242b38:request__Q23EGG10TaskThreadFPFPv_vPvPv
 80242bb8:isTaskExist__Q23EGG10TaskThreadCFv
-
 8022227c:__ct__Q23EGG7DvdFileFv
 802222c0:__dt__Q23EGG7DvdFileFv
-
 80222408:open__Q23EGG7DvdFileFPCc
 802224bc:readData__Q23EGG7DvdFileFPvll
 802225f0:getFileSize__Q23EGG7DvdFileCFv
-
-/* Other */
 80385270:diResNameStr

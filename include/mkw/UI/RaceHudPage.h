@@ -53,7 +53,7 @@ public:
     s32 m_nextPage;
 
     /* 0x48 */ UnknownMember unk_0x48;
-    /* 0x80 */ UIInputManagerRace m_events;
+    /* 0x80 */ UIInputManagerRace m_inputs;
     u8 fill_0x1C4[0x1DC - 0x1C4];
 
     INSTANTIATE_TYPEINFO;

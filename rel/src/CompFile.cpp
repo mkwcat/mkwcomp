@@ -10,7 +10,6 @@
 #include <rvl/os.h>
 #include <stdio.h>
 #include <string.h>
-#include <utf-converter.h>
 
 #define MKWCOMP_ROOT "/mkwcomp"
 #define MKWCOMP_SAVE_ROOT MKWCOMP_ROOT "/save"
@@ -222,17 +221,45 @@ bool CompFile::createSaveFile()
     return true;
 }
 
+static char getFilenameChar(wchar_t wc)
+{
+    if (wc > 0xFF)
+        return '_';
+
+    switch (wc) {
+    case '/':
+    case '?':
+    case '<':
+    case '>':
+    case '\\':
+    case ':':
+    case '*':
+    case '|':
+    case '"':
+    case '^':
+        return '_';
+
+    default:
+        return (char)wc;
+    }
+}
+
 void CompFile::getGhostDataPath(char* path, u32 num)
 {
-    u8 utf8MiiName[64];
-    utf16_to_utf8(m_ghost.m_mii.name, 10, utf8MiiName, 64);
+    char asciiMiiName[10];
+    for (int i = 0; i < 10; i++) {
+        asciiMiiName[i] = getFilenameChar(m_ghost.m_mii.name[i]);
+        if (asciiMiiName[i] == 0)
+            break;
+    }
 
     const char* format =
-        num == 0 ? "%s/comp%02u/comp%02u - %.64s - %02um %02us %03um.rkg"
-                 : "%s/comp%02u/comp%02u - %.64s - %02um %02us %03um - %u.rkg";
-    snprintf(path, 128, format, savePathRoot(), m_compId, m_compId, utf8MiiName,
-             m_ghost.m_finishTime.minutes, m_ghost.m_finishTime.seconds,
-             m_ghost.m_finishTime.milliseconds, num);
+        num == 0 ? "%s/comp%02u/comp%02u - %.10s - %02um %02us %03um.rkg"
+                 : "%s/comp%02u/comp%02u - %.10s - %02um %02us %03um - %u.rkg";
+    snprintf(path, 128, format, savePathRoot(), m_compId, m_compId,
+             asciiMiiName, m_ghost.m_finishTime.minutes,
+             m_ghost.m_finishTime.seconds, m_ghost.m_finishTime.milliseconds,
+             num);
 }
 
 void CompFile::getGhostDataDir(char* path, int compId)

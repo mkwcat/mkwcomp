@@ -49,7 +49,7 @@ public:
 static_assert(sizeof(MessageWindowPage) == 0x1A8,
               "sizeof(MessageWindowPage) != 0x1A8");
 
-class OptionMessageWindowPage : public MessageWindowPage
+class MessageWindowNoButtonPage : public MessageWindowPage
 {
 public:
     /* 0x1A8 */ CtrlMenuPageTitleText m_titleText;
@@ -77,7 +77,7 @@ public:
     /* func: 0x805F9680, typeinfo: 0x809C1CB8 */
     INSTANTIATE_TYPEINFO;
 };
-static_assert(sizeof(OptionMessageWindowPage) == 0x608,
-              "sizeof(OptionMessageWindowPage) != 0x608");
+static_assert(sizeof(MessageWindowNoButtonPage) == 0x608,
+              "sizeof(MessageWindowNoButtonPage) != 0x608");
 
 } // namespace UI

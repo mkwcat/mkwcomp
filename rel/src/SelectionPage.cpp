@@ -105,6 +105,7 @@ SelectionPage::SelectionPage()
 {
     m_nextPage = -1;
 }
+
 SelectionPage::~SelectionPage()
 {
 }
