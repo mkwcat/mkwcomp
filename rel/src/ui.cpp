@@ -1,9 +1,9 @@
-#include "ui.h"
+#include "UI.h"
 #include "SaveManagerPage.h"
 #include "SelectionPage.h"
 #include "SettingsPage.h"
 #include "patch.h"
-#include "replay.h"
+#include "Replay.h"
 #include "util.h"
 #include <mkw/MenuSet.h>
 #include <mkw/RKContext.h>

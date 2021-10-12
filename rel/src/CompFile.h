@@ -1,5 +1,5 @@
 #pragma once
-#include "file.h"
+#include "File.h"
 #include <egg/eggFile.h>
 #include <egg/eggTaskThread.h>
 #include <mkw/GhostData.h>

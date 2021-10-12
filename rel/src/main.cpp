@@ -1,7 +1,7 @@
 #include "CompFile.h"
 #include "UI.h"
-#include "file.h"
-#include "replay.h"
+#include "File.h"
+#include "Replay.h"
 #include "util.h"
 
 void main()

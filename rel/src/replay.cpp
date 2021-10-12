@@ -1,4 +1,4 @@
-#include "replay.h"
+#include "Replay.h"
 #include "patch.h"
 #include "util.h"
 #include <mkw/MenuSet.h>

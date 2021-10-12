@@ -7,7 +7,7 @@
 #include "UI.cpp"
 #include "file.cpp"
 #include "main.cpp"
-#include "replay.cpp"
+#include "Replay.cpp"
 #include "util.cpp"
 
 extern "C" {
