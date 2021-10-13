@@ -9,7 +9,4 @@ void main()
     initMenu();
     initReplayMode();
     initCompFilePatches();
-
-    if (isRiivolution())
-        RiivoFS::initialize();
 }

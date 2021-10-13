@@ -12,7 +12,7 @@ struct UIControlCollection {
     ~UIControlCollection();
 
     void init(UIControl* parent, int count);
-    void insert(int index, UIControl* control);
+    void set(int index, UIControl* control);
 
     /* 0x00 */ UIControl** m_children;
     /* 0x04 */ UIControl** m_children2;
@@ -42,8 +42,8 @@ public:
     virtual void init();
     virtual void calc();
     virtual void draw();
-    virtual void initInternal() {}
-    virtual void calcInternal() {}
+    virtual void onInit() {}
+    virtual void onCalc() {}
     virtual void _20() {}
     virtual void _24() {}
 
@@ -64,10 +64,10 @@ public:
     /* 0x7C */ f32 m_7C;
     /* 0x80 */ bool m_hide;
     /* 0x84 */ u32 m_84;
-    /* 0x88 */ bool m_useSlideAnim;
-    /* 0x8C */ f32 m_slideDelay;
-    /* 0x90 */ s32 m_slideInSound;
-    /* 0x94 */ s32 m_slideOutSound;
+    /* 0x88 */ bool m_useTransAnim;
+    /* 0x8C */ f32 m_transDelay;
+    /* 0x90 */ s32 m_inSound;
+    /* 0x94 */ s32 m_outSound;
 };
 
 } // namespace UI

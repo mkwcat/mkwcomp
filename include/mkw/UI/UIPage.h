@@ -26,22 +26,24 @@ public:
     };
     virtual void startSceneTransition(int sceneId, TransitionDir direction,
                                       f32 delay);
-    void startTransitionOut(TransitionDir direction, f32 delay);
+    void toOut(TransitionDir direction, f32 delay);
 
     virtual void _20();
-    virtual void showNextPage(int pageId, int r5);
+    virtual void insertPage(int pageId, int r5);
     virtual void onInit(); // vt + 0x28
     virtual void onDeinit(); // vt + 0x2C
-    virtual void onShow(); // vt + 0x30
-    virtual void onHide(); // vt + 0x34
+    virtual void onIn(); // vt + 0x30
+    virtual void onOut(); // vt + 0x34
     virtual void _38();
     virtual void _3C();
     virtual void _40();
     virtual void _44();
-    virtual void _48();
-    virtual void _4C();
-    virtual void calc();
-    virtual void onReturn();
+    virtual void onUpdateBegin();
+    virtual void onUpdateEnd();
+    virtual void onCalc();
+
+    // Basically if a child page transitions out (I assume)
+    virtual void onChildPageOut();
     virtual void _58();
     virtual void _5C();
 
@@ -50,12 +52,12 @@ public:
 
     void init(s32 id);
     void initControlGroup(int count);
-    void insertControl(int index, UIControl* control, int);
+    void setControl(int index, UIControl* control, int);
 
     void setInputManager(UIInputManager*);
 
 protected:
-    s32 m_id;
+    s32 m_pageId;
     u32 m_8;
     bool m_C;
 

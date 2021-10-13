@@ -48,3 +48,19 @@ protected:
 public:
     INSTANTIATE_TYPEINFO;
 };
+
+class SettingsGhostDataPage : public UI::UIPage
+{
+public:
+    static const int s_pageId = 0xC5;
+
+    virtual ~SettingsGhostDataPage();
+    virtual int getNextPageID();
+    virtual void onInit();
+    virtual void onIn();
+    virtual void onChildPageOut();
+
+    UI::UIInputManager m_inputs;
+
+    int m_nextPage;
+};

@@ -4,7 +4,7 @@
 namespace UI
 {
 
-class MessageWindowControl : LayoutUIControl
+class MessageWindowControl : public LayoutUIControl
 {
     /* vtable 0x808B9EE0 */
 

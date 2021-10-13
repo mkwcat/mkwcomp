@@ -21,9 +21,9 @@ public:
     /* 0x805F8E48 */
     virtual void onInit();
     /* 0x805F8EB8 */
-    virtual void onShow();
+    virtual void onIn();
     /* 0x805F8EDC */
-    virtual void _4C();
+    virtual void onUpdateEnd();
 
     /* 0x805F8F40 */
     virtual void resetWindowText();

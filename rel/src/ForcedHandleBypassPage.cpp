@@ -22,20 +22,20 @@ void ForcedHandleBypassPage::onInit()
     setInputManager(&m_inputs);
 }
 
-void ForcedHandleBypassPage::onShow()
+void ForcedHandleBypassPage::onIn()
 {
-    UI::MessagePopupTwoOptionPage* msgPage =
-        RuntimeTypeInfo::cast<UI::MessagePopupTwoOptionPage*>(
+    UI::MessageConfirmPopupPage* msgPage =
+        RuntimeTypeInfo::cast<UI::MessageConfirmPopupPage*>(
             RKContext::sInstance->m_scene->getPage(0x4E));
 
     msgPage->configMessage(0x2800, nullptr);
     msgPage->configOption(0, 0xFAC, nullptr, 1, &mf_imp_selectYes);
     msgPage->configOption(1, 0xFAD, nullptr, -1, nullptr);
     m_noResume = false;
-    showNextPage(0x4E, 0);
+    insertPage(0x4E, 0);
 }
 
-void ForcedHandleBypassPage::selectYes(UI::MessagePopupTwoOptionPage* page,
+void ForcedHandleBypassPage::selectYes(UI::MessageConfirmPopupPage* page,
                                        UI::PushButton* button)
 {
     CompFile::sInstance->m_forceHandleDisabled = true;
@@ -53,22 +53,22 @@ void ForcedHandleBypassPage::selectYes(UI::MessagePopupTwoOptionPage* page,
     RKContext::sInstance->startSceneTransition((int)delay, 0x000000FF);
 
     UI::UIPage* lastPage = RKContext::sInstance->m_scene->getPage(0xBA);
-    lastPage->startTransitionOut(UI::UIPage::SLIDE_FORWARD, delay);
+    lastPage->toOut(UI::UIPage::SLIDE_FORWARD, delay);
 
     m_noResume = true;
 }
 
-void ForcedHandleBypassPage::onReturn()
+void ForcedHandleBypassPage::onChildPageOut()
 {
     UI::UIPage* lastPage = RKContext::sInstance->m_scene->getPage(0xBA);
     if (!m_noResume) {
         // These calls emulate two functions required to dereference the
         // current controller
-        lastPage->onShow();
+        lastPage->onIn();
         lastPage->_3C();
         m_wiiWheelPageDisabled = false;
     }
-    startTransitionOut(UI::UIPage::SLIDE_FORWARD, 0);
+    toOut(UI::UIPage::SLIDE_FORWARD, 0);
 }
 
 int ForcedHandleBypassPage::isWiiWheelPageDisabled()
@@ -92,7 +92,7 @@ void wiiWheelPageRejectController(UI::UIPage* page)
         return;
 
     ForcedHandleBypassPage::setWiiWheelPageDisabled(true);
-    page->showNextPage(0x87, 0);
+    page->insertPage(0x87, 0);
 }
 
 extern Instruction<11> Patch_WiiWheelOnlyPage;

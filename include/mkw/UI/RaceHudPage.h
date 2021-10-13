@@ -1,6 +1,6 @@
 #pragma once
-#include "UIPage.h"
 #include "UIInputManager.h"
+#include "UIPage.h"
 #include <rvl/types.h>
 
 namespace UI
@@ -19,9 +19,9 @@ public:
     virtual void _20();
     virtual void onInit();
     virtual void onDeinit();
-    virtual void onHide();
-    virtual void _48();
-    virtual void _4C();
+    virtual void onOut();
+    virtual void onUpdateBegin();
+    virtual void onUpdateEnd();
 
     /* vt + 0x64 */ virtual s32 getPausePageID() = 0;
     /* vt + 0x68 */ virtual u32 getHudLayoutMask() = 0;
@@ -30,7 +30,6 @@ public:
     /* vt + 0x74 */ virtual bool isRaceEnded(int hudIndex);
     /* vt + 0x78 */ virtual bool _78();
     /* vt + 0x7C */ virtual bool _7C();
-
 
     struct UnknownMember {
         UnknownMember()

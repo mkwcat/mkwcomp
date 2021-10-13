@@ -214,10 +214,10 @@ public:
         /* 0xB6E */ u8 unk_0xB6E;
         /* 0xB6F */ u8 unk_0xB6F;
         /* 0xB70 */ u32 modeFlags;
-        // seedSession - rng seed, persists through restart
-        // seedRace - rng seed, changes through restart
-        /* 0xB74 */ u32 seedSession;
-        /* 0xB78 */ u32 seedRace;
+        // Must be fixed for a specific race to replay properly
+        /* 0xB74 */ u32 seedFixed;
+        // Can change between race and replay
+        /* 0xB78 */ u32 seedRandom;
         /* 0xB7C */ MissionSetting mission;
         /* 0xBEC */ GhostData* ghost;
     };

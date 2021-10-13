@@ -1,6 +1,6 @@
 #pragma once
 #include <mkw/UI/Function.h>
-#include <mkw/UI/MessagePopupTwoOptionPage.h>
+#include <mkw/UI/MessageConfirmPopupPage.h>
 #include <mkw/UI/PushButton.h>
 #include <mkw/UI/UIInputManager.h>
 #include <mkw/UI/UIPage.h>
@@ -17,10 +17,10 @@ public:
     virtual ~ForcedHandleBypassPage();
 
     virtual void onInit();
-    virtual void onShow();
-    virtual void onReturn();
+    virtual void onIn();
+    virtual void onChildPageOut();
 
-    void selectYes(UI::MessagePopupTwoOptionPage* page, UI::PushButton* button);
+    void selectYes(UI::MessageConfirmPopupPage* page, UI::PushButton* button);
 
     static int isWiiWheelPageDisabled();
     static void setWiiWheelPageDisabled(bool set);
@@ -29,7 +29,7 @@ protected:
     bool m_noResume;
     bool m_wiiWheelPageDisabled;
 
-    UI::FunctionImp<ForcedHandleBypassPage, UI::MessagePopupTwoOptionPage*,
+    UI::FunctionImp<ForcedHandleBypassPage, UI::MessageConfirmPopupPage*,
                     UI::PushButton*>
         mf_imp_selectYes;
     UI::UIInputManagerMenu m_inputs;

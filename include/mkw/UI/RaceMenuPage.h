@@ -1,7 +1,7 @@
 #pragma once
 #include "PushButton.h"
-#include "UIPage.h"
 #include "UIInputManager.h"
+#include "UIPage.h"
 #include <TypeInfo.h>
 #include <rvl/types.h>
 
@@ -63,11 +63,11 @@ public:
 
     virtual void onInit(); // vt + 0x28
     virtual void onDeinit(); // vt + 0x2C
-    virtual void onShow(); // vt + 0x30
-    virtual void onHide(); // vt + 0x34
+    virtual void onIn(); // vt + 0x30
+    virtual void onOut(); // vt + 0x34
     virtual void _38();
     virtual void _40();
-    virtual void _4C();
+    virtual void onUpdateEnd();
 
     virtual int _68() = 0; // load from 0x340?
     virtual int getButtonCount() const = 0; // vt + 0x6C

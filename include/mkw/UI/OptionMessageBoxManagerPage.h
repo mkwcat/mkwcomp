@@ -18,11 +18,11 @@ public:
     /* 0x805FF40C */
     virtual void onInit();
     /* 0x805FF478 */
-    virtual void onShow();
+    virtual void onIn();
     /* 0x805FF4E0 */
-    virtual void _4C();
+    virtual void onUpdateEnd();
     /* 0x805FF6C4 */
-    virtual void onReturn();
+    virtual void onChildPageOut();
 
     /* 0x80601014 */
     virtual int getNextPageID();

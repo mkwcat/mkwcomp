@@ -3,6 +3,7 @@
 #include "patch.h"
 #include <mkw/RKContext.h>
 #include <mkw/UI/OptionMessageBoxManagerPage.h>
+#include <mkw/UI/OptionMessageBoxPromptPage.h>
 #include <mkw/UI/PushButton.h>
 #include <mkw/UI/SceneBGMController.h>
 #include <mkw/UI/UIPage.h>
@@ -15,6 +16,18 @@ enum Button
     BUTTON_GHOSTDATA = 1,
     BUTTON_LICENSE = 2,
     BUTTON_BACK = -100
+};
+
+enum Msg
+{
+    MSG_GHOST_SAVE = 0x2801,
+    MSG_GHOST_SAVE_WINDOW = 0x2802,
+    MSG_GHOST_SAVE_OPTION_ALL = 0x2803,
+    MSG_GHOST_SAVE_OPTION_BEST_TIME = 0x2804,
+    MSG_GHOST_SAVE_OPTION_NONE = 0x2805,
+    MSG_GHOST_SAVE_MESSAGE_OPTION_ALL = 0x2806,
+    MSG_GHOST_SAVE_MESSAGE_OPTION_BEST_TIME = 0x2807,
+    MSG_GHOST_SAVE_MESSAGE_OPTION_NONE = 0x2808
 };
 
 SettingsPage::SettingsPage()
@@ -38,7 +51,7 @@ void SettingsPage::onInit()
 
     // GCN Controller Rumble
     {
-        insertControl(0, &m_rumbleButton, 0);
+        setControl(0, &m_rumbleButton, 0);
         m_rumbleButton.readLayout("button", "OptionTopButton", "Rumble", 1, 0,
                                   false);
         m_rumbleButton.setSelectFunction(&m_fun_onButtonSelect, 0);
@@ -47,7 +60,7 @@ void SettingsPage::onInit()
 
     // Normally Network Settings
     {
-        insertControl(1, &m_ghostDataButton, 0);
+        setControl(1, &m_ghostDataButton, 0);
         m_ghostDataButton.readLayout("button", "OptionTopButton", "Network", 1,
                                      0, false);
         m_ghostDataButton.setSelectFunction(&m_fun_onButtonSelect, 0);
@@ -57,7 +70,7 @@ void SettingsPage::onInit()
 
     // Normally Add Mario Kart Channel
     {
-        insertControl(2, &m_licenseButton, 0);
+        setControl(2, &m_licenseButton, 0);
         m_licenseButton.readLayout("button", "OptionTopButton",
                                    "ChannelInstall", 1, 0, false);
         m_licenseButton.setSelectFunction(&m_fun_onButtonSelect, 0);
@@ -65,11 +78,11 @@ void SettingsPage::onInit()
         m_licenseButton.m_id = BUTTON_LICENSE;
     }
 
-    insertControl(3, &m_backButton, 0);
+    setControl(3, &m_backButton, 0);
     m_backButton.initLayout(1);
     m_backButton.setSelectFunction(&m_fun_onButtonSelect, 0);
 
-    insertControl(4, &m_titleText, 0);
+    setControl(4, &m_titleText, 0);
     m_titleText.initLayout(0);
     m_titleText.setMessage(MID_SETTINGS, 0);
 
@@ -122,22 +135,14 @@ void SettingsPage::selectRumble(UI::PushButton* button)
 
     m_nextPage = 0xC6;
     f32 delay = button->getSelectDelay();
-    startTransitionOut(SLIDE_FORWARD, delay);
+    toOut(SLIDE_FORWARD, delay);
 }
 
 void SettingsPage::selectGhostData(UI::PushButton* button)
 {
-    UI::MessageWindowNoButtonPage* window =
-        RuntimeTypeInfo::cast<UI::MessageWindowNoButtonPage*>(
-            RKContext::sInstance->m_scene->getPage(0xC8));
-
-    window->setTitleText(0x2801, nullptr);
-    window->setWindowText(0x2802, nullptr);
-    window->m_pressAEvent = &m_fun_messageWindowEvent;
-
-    m_nextPage = 0xC8;
+    m_nextPage = SettingsGhostDataPage::s_pageId;
     f32 delay = button->getSelectDelay();
-    startTransitionOut(SLIDE_FORWARD, delay);
+    toOut(SLIDE_FORWARD, delay);
 }
 
 void SettingsPage::selectLicenseSettings(UI::PushButton* button)
@@ -154,6 +159,47 @@ void SettingsPage::messageWindowEvent(UI::MessageWindowPage* page, int r5)
 }
 
 int SettingsPage::getNextPageID()
+{
+    return m_nextPage;
+}
+
+SettingsGhostDataPage::~SettingsGhostDataPage()
+{
+}
+
+void SettingsGhostDataPage::onInit()
+{
+    m_inputs.init(0, 0);
+    setInputManager(&m_inputs);
+}
+
+void SettingsGhostDataPage::onIn()
+{
+    UI::OptionMessageBoxPromptPage* page =
+        RuntimeTypeInfo::cast<UI::OptionMessageBoxPromptPage*>(
+            RKContext::sInstance->m_scene->getPage(0xC4));
+
+    page->m_buttonConfirmMsgIds[0] = 0;
+    page->m_buttonConfirmMsgIds[1] = 0;
+    page->m_buttonConfirmMsgIds[2] = 0;
+    page->m_defaultButton = 0;
+
+    page->m_titleText.setMessage(MSG_GHOST_SAVE, nullptr);
+    page->m_window.setMessage(MSG_GHOST_SAVE_WINDOW, nullptr);
+    page->m_buttons[0].setMessage(MSG_GHOST_SAVE_OPTION_ALL, nullptr);
+    page->m_buttons[1].setMessage(MSG_GHOST_SAVE_OPTION_BEST_TIME, nullptr);
+    page->m_buttons[2].setMessage(MSG_GHOST_SAVE_OPTION_NONE, nullptr);
+
+    insertPage(0xC4, 0);
+}
+
+void SettingsGhostDataPage::onChildPageOut()
+{
+    m_nextPage = 0xC0;
+    toOut(SLIDE_FORWARD, 0);
+}
+
+int SettingsGhostDataPage::getNextPageID()
 {
     return m_nextPage;
 }

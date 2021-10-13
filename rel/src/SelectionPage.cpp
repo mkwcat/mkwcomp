@@ -182,7 +182,7 @@ void SelectionPage::onInit()
     initControlGroup(15);
 
     for (int i = 0; i < 10; i++) {
-        insertControl(i, &m_buttons[i], 0);
+        setControl(i, &m_buttons[i], 0);
 
         char name[16];
         snprintf(name, 16, "Button%d", i);
@@ -201,7 +201,7 @@ void SelectionPage::onInit()
 
     m_buttons[m_selectedButtonId].setSelected(0);
 
-    insertControl(10, &m_arrows, 0);
+    setControl(10, &m_arrows, 0);
 
     m_arrows.readLayout("button", "FriendListArrowRight", "ButtonArrowRight",
                         "FriendListArrowLeft", "ButtonArrowLeft", 1, 0, false);
@@ -210,26 +210,26 @@ void SelectionPage::onInit()
     m_arrows.mf_onSelectLeft = &mf_imp_onArrowLeftEvent;
 
     {
-        insertControl(11, &m_pageNumControl, 0);
+        setControl(11, &m_pageNumControl, 0);
 
         UI::CtrlRes ctrl(&m_pageNumControl);
         ctrl.readFile("control", "TimeAttackGhostListPageNum",
                       "TimeAttackGhostListPageNum", nullptr);
     }
     {
-        insertControl(12, &m_compName, 0);
+        setControl(12, &m_compName, 0);
 
         UI::CtrlRes ctrl(&m_compName);
         ctrl.readFile("control", "CompetitionName", "CompetitionName", nullptr);
     }
 
-    insertControl(13, &m_backButton, 0);
+    setControl(13, &m_backButton, 0);
 
     m_backButton.initLayout(1);
     m_backButton.setSelectFunction(&mf_imp_onSelectEvent, 0);
     m_backButton.setFreeToSelectFunction(&mf_imp_onFreeToSelectEvent);
 
-    insertControl(14, &m_titleText, 0);
+    setControl(14, &m_titleText, 0);
 
     m_titleText.initLayout(0);
     m_titleText.setMessage(0x27F0, 0);
@@ -285,7 +285,7 @@ void SelectionPage::onSelectEvent(UI::PushButton* button, int r5)
     m_nextPage = 0xB8;
 
     f32 delay = button->getSelectDelay();
-    startTransitionOut(SLIDE_FORWARD, delay);
+    toOut(SLIDE_FORWARD, delay);
 }
 
 void SelectionPage::onFreeToSelectEvent(UI::PushButton* button, int r5)

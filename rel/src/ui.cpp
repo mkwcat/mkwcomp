@@ -1,9 +1,9 @@
 #include "UI.h"
+#include "Replay.h"
 #include "SaveManagerPage.h"
 #include "SelectionPage.h"
 #include "SettingsPage.h"
 #include "patch.h"
-#include "Replay.h"
 #include "util.h"
 #include <mkw/MenuSet.h>
 #include <mkw/RKContext.h>
@@ -24,13 +24,13 @@ void eventExplanationSelectEvent(UI::UIPage* page, UI::PushButton* button,
     if (button->m_id == 2) {
         // Start/Next button
         s_eventExplanation_nextPage = 0xB7;
-        page->startTransitionOut(UI::UIPage::SLIDE_FORWARD, delay);
+        page->toOut(UI::UIPage::SLIDE_FORWARD, delay);
         return;
     }
     if (button->m_id == 3) {
         // Back button
         s_eventExplanation_nextPage = 0x8C;
-        page->startTransitionOut(UI::UIPage::SLIDE_BACK, delay);
+        page->toOut(UI::UIPage::SLIDE_BACK, delay);
         return;
     }
 }
@@ -38,7 +38,7 @@ void eventExplanationSelectEvent(UI::UIPage* page, UI::PushButton* button,
 void eventExplanationBackEvent(UI::UIPage* page, int r4, int r5)
 {
     s_eventExplanation_nextPage = 0x8C;
-    page->startTransitionOut(UI::UIPage::SLIDE_BACK, 0);
+    page->toOut(UI::UIPage::SLIDE_BACK, 0);
 }
 
 s32 eventExplanationGetNextPage(UI::UIPage* page)
@@ -1644,22 +1644,23 @@ void buildPagesReplace(UI::UIPageManager* scene, int id)
         scene->buildPage(0x4D);
         scene->buildPage(0x4E);
         scene->buildPage(0x5D);
-        scene->buildPage(0xC1);
         scene->buildPage(0xC2);
         scene->buildPage(0xC3);
         scene->buildPage(0xC4);
-        scene->buildPage(0xC5);
         scene->buildPage(0xC6);
         scene->buildPage(0xC7);
         scene->buildPage(0xC8);
         scene->buildPage(0xC9);
-        scene->buildPage(0xCA);
-        scene->buildPage(0xCB);
         scene->buildPage(0xCC);
         {
             SettingsPage* page = new SettingsPage();
             scene->setPage(0xC0, page);
             page->init(0xC0);
+        }
+        {
+            SettingsGhostDataPage* page = new SettingsGhostDataPage();
+            scene->setPage(SettingsGhostDataPage::s_pageId, page);
+            page->init(SettingsGhostDataPage::s_pageId);
         }
         break;
 

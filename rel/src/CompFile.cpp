@@ -2,6 +2,7 @@
 #include "util.h"
 #include <egg/eggDvdFile.h>
 #include <mkw/MenuSet.h>
+#include <mkw/RKContext.h>
 #include <mkw/Random.h>
 #include <mkw/SaveDataManager.h>
 #include <patch.h>
@@ -47,10 +48,12 @@ CompFile::CompFile()
     m_thread = EGG::TaskThread::create(2, 20, 0x1000, nullptr);
     m_isFileAvailable = false;
 
-    if (isRiivolution())
+    if (isRiivolution()) {
+        RiivoFS::initialize();
         m_file = new RiivoFile();
-    else
+    } else {
         m_file = new NandFile();
+    }
 
     openSaveFile();
     m_ghostDataStatus = SAVE_OK;
@@ -99,9 +102,11 @@ void CompFile::readFile()
     m_isFileAvailable = true;
 }
 
+// TODO before release: test this
 void CompFile::setupLeaderboard()
 {
-    m_leaderboard = &m_saveData.data->ldb[ldbEntryIndex(m_compId)];
+    m_leaderboard = &m_saveData.data[RKContext::sInstance->m_98->m_licenseId]
+                         .ldb[ldbEntryIndex(m_compId)];
 }
 
 static const char* savePathRoot()
@@ -132,6 +137,10 @@ void CompFile::openSaveFile()
     char path[128];
     getSaveDataPath(path);
 
+    if (isRiivolution() && !RiivoFS::sInstance->dirExists(savePathRoot())) {
+        RiivoFS::sInstance->createDir(savePathRoot());
+    }
+
     bool ret = m_file->openCreate(path, NAND_MODE_RW);
 
     if (!ret) {
@@ -141,10 +150,11 @@ void CompFile::openSaveFile()
         return;
     }
 
-    if (m_file->getFileSize() == 0)
+    if (m_file->getFileSize() == 0) {
         ret = createSaveFile();
-    else
+    } else {
         ret = readSaveFile();
+    }
     m_file->close();
 
     if (ret) {
@@ -498,7 +508,7 @@ void getLdbEntry(u8* r3, u8 position, LeaderboardEntry* entry)
     CompFile::sInstance->getLdbEntry(position, entry);
 }
 
-void makeGhostCPU(wchar_t* cpu)
+void makeGhostUserData(wchar_t* userData)
 {
     const MenuSet::RaceSetting* set = &MenuSet::sInstance->currentRace;
     u32 count = set->playerCount;
@@ -514,9 +524,11 @@ void makeGhostCPU(wchar_t* cpu)
         value |= (set->players[i].vehicleId & 0x3F);
         value <<= 16 - 12;
 
-        cpu[index] |= value >> bitInIndex;
-        cpu[index + 1] |= value << (16 - bitInIndex);
+        userData[index] |= value >> bitInIndex;
+        userData[index + 1] |= value << (16 - bitInIndex);
     }
+
+    // And maybe save the random seed?
 }
 
 void saveTournamentGhost(u8* r3, int r4, int r5, GhostData* ghost)
@@ -526,7 +538,7 @@ void saveTournamentGhost(u8* r3, int r4, int r5, GhostData* ghost)
     if (!ghost->m_valid)
         return;
 
-    makeGhostCPU(ghost->m_userData);
+    makeGhostUserData(ghost->m_userData);
     CompFile::sInstance->m_ghost = *ghost; // Copy
 
     CompFile::sInstance->requestSaveGhostData();
