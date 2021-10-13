@@ -137,7 +137,7 @@
 805a92a4:_18__Q22UI6UIPageFv
 805f08d0:toNextScene__Q22UI6UIPageFiQ32UI6UIPage13TransitionDirf
 805f0950:_20__Q22UI6UIPageFv
-805f09d0:insertPage__Q22UI6UIPageFii
+805f09d0:insertPage__Q22UI6UIPageFiQ32UI6UIPage13TransitionDir
 805efef8:onInit__Q22UI6UIPageFv
 805a92a0:onDeinit__Q22UI6UIPageFv
 805b78ec:onIn__Q22UI6UIPageFv

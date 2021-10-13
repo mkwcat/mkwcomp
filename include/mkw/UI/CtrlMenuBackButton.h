@@ -1,5 +1,6 @@
 #pragma once
 #include "PushButton.h"
+#include <TypeInfo.h>
 #include <rvl/types.h>
 
 namespace UI
@@ -8,13 +9,14 @@ namespace UI
 class CtrlMenuBackButton : public PushButton
 {
 public:
-    CtrlMenuBackButton() : msgId(0x7D1), m_258(0), m_25C(0) {}
+    CtrlMenuBackButton() : msgId(0x7D1), m_258(0), m_25C(0)
+    {
+    }
 
-    virtual void initInternal();
-    virtual void calcInternal();
+    virtual void onInit();
+    virtual void onCalc();
     virtual void _20();
-    virtual void _28();
-    virtual const char* getKindString();
+    virtual const char* getTypeName();
 
     void initLayout(int playerCount)
     {
@@ -27,6 +29,8 @@ public:
     int m_258;
     f32 m_25C;
     int m_260;
+
+    INSTANTIATE_TYPEINFO;
 };
 
 static_assert(sizeof(CtrlMenuBackButton) == 0x264,

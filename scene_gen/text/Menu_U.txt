@@ -2484,16 +2484,36 @@
   27f1  = Random
   27f2  = 
 
-  2800  = Your rank will not be\n
-        + saved using this controller.\n
+  2800  = Your rank will not be saved\n 
+        + if you use this controller.\n
         + Is this OK?
-  2801  = RNG Seed Control
-  2802  = The RNG Seed controls features\n
-        + such as items and CPUs.\n
+  2801  = Ghost Data Saving
+  2802  = Save Ghost Data to the SD Card?
+  2803  = Always Save
+  2804  = Save Fastest Time
+  2805  = Don't Save
+
+  2806  = The Ghost Data Saving\n
+        + feature has been set to\n
+        + Always Save.\n
         + \n
-        + A menu to control the Seed\n
-        + will be available in a\n
-        + future update.
+        + Ghost Data will only be saved\n
+        + if you use Riivolution.
+
+  2807  = The Ghost Data Saving\n
+        + feature has been set to\n
+        + Save Fastest Time.\n
+        + \n
+        + Ghost Data will only be saved\n
+        + if you use Riivolution.
+
+  2808  = The Ghost Data Saving\n
+        + feature has been set to\n
+        + Don't Save.\n
+        + \n
+        + Ghost Data will only be saved\n
+        + if you use Riivolution.
+
 
  18697	/
  18698	/

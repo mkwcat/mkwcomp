@@ -24,12 +24,11 @@ public:
         SLIDE_FORWARD,
         SLIDE_BACK
     };
-    virtual void toNextScene(int sceneId, TransitionDir direction,
-                                      f32 delay);
+    virtual void toNextScene(int sceneId, TransitionDir direction, f32 delay);
     void toOut(TransitionDir direction, f32 delay);
 
     virtual void _20();
-    virtual void insertPage(int pageId, int r5);
+    virtual void insertPage(int pageId, TransitionDir direction);
     virtual void onInit(); // vt + 0x28
     virtual void onDeinit(); // vt + 0x2C
     virtual void onIn(); // vt + 0x30
@@ -70,8 +69,8 @@ protected:
     UIControlCollection m_children;
     UIInputManager* m_inputManager;
 
-    u32 m_3C;
-    u32 m_40;
+    /* 0x3C */ int m_forwardSound;
+    /* 0x40 */ int m_backSound;
 };
 static_assert(sizeof(UIPage) == 0x44, "sizeof(UIPage) != 0x44");
 

@@ -181,6 +181,10 @@ void SettingsGhostDataPage::onInit()
 {
     m_inputs.init(0, 0);
     setInputManager(&m_inputs);
+
+    initControlGroup(0);
+
+    m_backSound = 0;
 }
 
 void SettingsGhostDataPage::onIn()
@@ -200,20 +204,26 @@ void SettingsGhostDataPage::onIn()
     page->m_buttons[1].setMessage(MSG_GHOST_SAVE_OPTION_BEST_TIME, nullptr);
     page->m_buttons[2].setMessage(MSG_GHOST_SAVE_OPTION_NONE, nullptr);
 
-    insertPage(0xC4, 0);
+    insertPage(0xC4, SLIDE_FORWARD);
 }
 
 void SettingsGhostDataPage::onChildPageOut()
 {
-    UI::MessageWindowNoButtonPage* window =
-        RuntimeTypeInfo::cast<UI::MessageWindowNoButtonPage*>(
-            RKContext::sInstance->m_scene->getPage(0xC8));
     UI::OptionMessageBoxPromptPage* prompt =
         RuntimeTypeInfo::cast<UI::OptionMessageBoxPromptPage*>(
             RKContext::sInstance->m_scene->getPage(0xC4));
 
     int id = prompt->m_selectedButton;
+    if (id == -1) {
+        // Back
+        m_nextPage = 0xC0;
+        toOut(SLIDE_FORWARD, 0);
+        return;
+    }
 
+    UI::MessageWindowNoButtonPage* window =
+        RuntimeTypeInfo::cast<UI::MessageWindowNoButtonPage*>(
+            RKContext::sInstance->m_scene->getPage(0xC8));
     window->setWindowText(MSG_GHOST_SAVE_MESSAGE_OPTION + id, nullptr);
     window->m_pressAFunc = &m_fun_windowOut;
 

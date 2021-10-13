@@ -52,7 +52,7 @@ public:
 class SettingsGhostDataPage : public UI::UIPage
 {
 public:
-    static const int s_pageId = 0xC5;
+    static const int s_pageId = 0xCA;
 
     SettingsGhostDataPage();
     virtual ~SettingsGhostDataPage();

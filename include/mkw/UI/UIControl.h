@@ -66,8 +66,8 @@ public:
     /* 0x84 */ u32 m_84;
     /* 0x88 */ bool m_useTransAnim;
     /* 0x8C */ f32 m_transDelay;
-    /* 0x90 */ s32 m_inSound;
-    /* 0x94 */ s32 m_outSound;
+    /* 0x90 */ s32 m_forwardSound;
+    /* 0x94 */ s32 m_backSound;
 };
 
 } // namespace UI

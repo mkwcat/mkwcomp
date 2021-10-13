@@ -32,7 +32,7 @@ void ForcedHandleBypassPage::onIn()
     msgPage->configOption(0, 0xFAC, nullptr, 1, &mf_imp_selectYes);
     msgPage->configOption(1, 0xFAD, nullptr, -1, nullptr);
     m_noResume = false;
-    insertPage(0x4E, 0);
+    insertPage(0x4E, SLIDE_FORWARD);
 }
 
 void ForcedHandleBypassPage::selectYes(UI::MessageConfirmPopupPage* page,
@@ -92,7 +92,7 @@ void wiiWheelPageRejectController(UI::UIPage* page)
         return;
 
     ForcedHandleBypassPage::setWiiWheelPageDisabled(true);
-    page->insertPage(0x87, 0);
+    page->insertPage(0x87, UI::UIPage::SLIDE_FORWARD);
 }
 
 extern Instruction<11> Patch_WiiWheelOnlyPage;
