@@ -98,7 +98,7 @@ public:
 public:
     INSTANTIATE_TYPEINFO;
 };
-TYPEINFO_DERIVED(EventPauseMenuPage, UI::UIPage);
+TYPEINFO_DERIVED(EventPauseMenuPage, UI::RaceMenuPage);
 
 class ReplayHud : public UI::RaceHudPage
 {

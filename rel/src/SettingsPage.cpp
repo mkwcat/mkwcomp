@@ -88,7 +88,7 @@ void SettingsPage::onInit()
     m_backButton.setSelectFunction(&m_fun_onButtonSelect, 0);
 
     setControl(4, &m_titleText, 0);
-    m_titleText.initLayout(0);
+    m_titleText.initLayout(1);
     m_titleText.setMessage(MID_SETTINGS, 0);
 
     m_inputs.configureInput(UI::INPUT_BACK, &m_fun_onBackPress, 0, 0);
@@ -169,7 +169,9 @@ int SettingsPage::getNextPageID()
 }
 
 SettingsGhostDataPage::SettingsGhostDataPage()
-    : m_fun_windowOut(this, &SettingsGhostDataPage::windowOut)
+    : m_fun_windowOut(this, &SettingsGhostDataPage::windowOut),
+      m_fun_onButtonSelect(this, &SettingsGhostDataPage::onButtonSelect),
+      m_fun_onBackPress(this, &SettingsGhostDataPage::onBackPress)
 {
 }
 
@@ -179,56 +181,67 @@ SettingsGhostDataPage::~SettingsGhostDataPage()
 
 void SettingsGhostDataPage::onInit()
 {
-    m_inputs.init(0, 0);
+    m_inputs.init(1, 0);
     setInputManager(&m_inputs);
+    m_inputs.setScreenWrapSetting(1);
+    m_inputs.configureInput(UI::INPUT_BACK, &m_fun_onBackPress, 0, 0);
 
-    initControlGroup(0);
+    initControlGroup(6);
 
-    m_backSound = 0;
+    for (int i = 0; i < 3; i++) {
+        setControl(i, &m_buttons[i], 0);
+
+        char ctrl[16];
+        snprintf(ctrl, 15, "Option%d_%d", i, 3);
+
+        m_buttons[i].readLayout("button", "OptionSelectButton", ctrl, 1, 0,
+                                false);
+        m_buttons[i].setSelectFunction(&m_fun_onButtonSelect, 0);
+        m_buttons[i].setMessage(MSG_GHOST_SAVE_OPTION + i, nullptr);
+    }
+
+    setControl(3, &m_titleText, 0);
+    m_titleText.initLayout(1);
+    m_titleText.setMessage(MSG_GHOST_SAVE, nullptr);
+
+    setControl(4, &m_backButton, 0);
+    m_backButton.initLayout(1);
+    m_backButton.setSelectFunction(&m_fun_onButtonSelect, 0);
+
+    setControl(5, &m_window, 0);
+    m_window.readWindowLayout("message_window", "OptionMessageWindowQuarter",
+                              "MessageWindowQuarter");
+    m_window.setMessage(MSG_GHOST_SAVE_WINDOW, nullptr);
+
+    m_buttons[0].setSelected(0);
 }
 
-void SettingsGhostDataPage::onIn()
+void SettingsGhostDataPage::onButtonSelect(UI::PushButton* button, int r5)
 {
-    UI::OptionMessageBoxPromptPage* page =
-        RuntimeTypeInfo::cast<UI::OptionMessageBoxPromptPage*>(
-            RKContext::sInstance->m_scene->getPage(0xC4));
+    f32 delay = button->getSelectDelay();
 
-    page->m_buttonConfirmMsgIds[0] = 0;
-    page->m_buttonConfirmMsgIds[1] = 0;
-    page->m_buttonConfirmMsgIds[2] = 0;
-    page->m_defaultButton = 0;
-
-    page->m_titleText.setMessage(MSG_GHOST_SAVE, nullptr);
-    page->m_window.setMessage(MSG_GHOST_SAVE_WINDOW, nullptr);
-    page->m_buttons[0].setMessage(MSG_GHOST_SAVE_OPTION, nullptr);
-    page->m_buttons[1].setMessage(MSG_GHOST_SAVE_OPTION_BEST_TIME, nullptr);
-    page->m_buttons[2].setMessage(MSG_GHOST_SAVE_OPTION_NONE, nullptr);
-
-    insertPage(0xC4, SLIDE_FORWARD);
-}
-
-void SettingsGhostDataPage::onChildPageOut()
-{
-    UI::OptionMessageBoxPromptPage* prompt =
-        RuntimeTypeInfo::cast<UI::OptionMessageBoxPromptPage*>(
-            RKContext::sInstance->m_scene->getPage(0xC4));
-
-    int id = prompt->m_selectedButton;
-    if (id == -1) {
+    if (button->m_id == -100) {
         // Back
         m_nextPage = 0xC0;
-        toOut(SLIDE_FORWARD, 0);
+        toOut(SLIDE_BACK, delay);
         return;
     }
 
-    UI::MessageWindowNoButtonPage* window =
+    UI::MessageWindowNoButtonPage* windowPage =
         RuntimeTypeInfo::cast<UI::MessageWindowNoButtonPage*>(
             RKContext::sInstance->m_scene->getPage(0xC8));
-    window->setWindowText(MSG_GHOST_SAVE_MESSAGE_OPTION + id, nullptr);
-    window->m_pressAFunc = &m_fun_windowOut;
+    windowPage->setWindowText(MSG_GHOST_SAVE_MESSAGE_OPTION + button->m_id,
+                              nullptr);
+    windowPage->m_pressAFunc = &m_fun_windowOut;
 
     m_nextPage = 0xC8;
-    toOut(SLIDE_FORWARD, 0);
+    toOut(SLIDE_FORWARD, delay);
+}
+
+void SettingsGhostDataPage::onBackPress(int r4, int r5)
+{
+    m_nextPage = 0xC0;
+    toOut(SLIDE_BACK, 0);
 }
 
 void SettingsGhostDataPage::windowOut(UI::MessageWindowPage* page, int r5)

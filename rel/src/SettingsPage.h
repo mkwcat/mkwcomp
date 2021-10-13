@@ -58,13 +58,21 @@ public:
     virtual ~SettingsGhostDataPage();
     virtual int getNextPageID();
     virtual void onInit();
-    virtual void onIn();
-    virtual void onChildPageOut();
 
     void windowOut(UI::MessageWindowPage* page, int r5);
+    void onButtonSelect(UI::PushButton* button, int r5);
+    void onBackPress(int r4, int r5);
 
-    UI::UIInputManager m_inputs;
     UI::FunctionImp<SettingsGhostDataPage, UI::MessageWindowPage*, int> m_fun_windowOut;
+    UI::FunctionImp<SettingsGhostDataPage, UI::PushButton*, int> m_fun_onButtonSelect;
+    UI::FunctionImp<SettingsGhostDataPage, int, int> m_fun_onBackPress;
+
+    UI::UIInputManagerMenu m_inputs;
+
+    UI::CtrlMenuPageTitleText m_titleText;
+    UI::MessageWindowControl m_window;
+    UI::PushButton m_buttons[3];
+    UI::CtrlMenuBackButton m_backButton;
 
     int m_nextPage;
 };
