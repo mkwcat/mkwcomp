@@ -45,14 +45,10 @@ public:
     // MessageConfirmPopupPage appear with the window text set to the specific
     // message ID.
     /* 0xED8 */ int m_buttonConfirmMsgIds[3];
-
-protected:
     // page 0xC3 = 2, page 0xC4 = 3
     /* 0xEE4 */ int m_buttonCount;
     // When a button is selected, this is set to the button ID.
     /* 0xEE8 */ int m_selectedButton;
-
-public:
     // The button to default selected when the page shows.
     /* 0xEEC */ u8 m_defaultButton;
 

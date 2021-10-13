@@ -247,7 +247,7 @@ void SelectionPage::onSelectEvent(UI::PushButton* button, int r5)
     // -100 represents the on-screen back button
     if (button->m_id == -100) {
         f32 delay = button->getSelectDelay();
-        startSceneTransition(0x42, UI::UIPage::SLIDE_BACK, delay);
+        toNextScene(0x42, UI::UIPage::SLIDE_BACK, delay);
         return;
     }
 
@@ -257,7 +257,7 @@ void SelectionPage::onSelectEvent(UI::PushButton* button, int r5)
         // Settings
         m_nextPage = -1;
         f32 delay = button->getSelectDelay();
-        startSceneTransition(SETTINGS_SCENE_ID, SLIDE_FORWARD, delay);
+        toNextScene(SETTINGS_SCENE_ID, SLIDE_FORWARD, delay);
         return;
     }
 
@@ -298,7 +298,7 @@ void SelectionPage::onFreeToSelectEvent(UI::PushButton* button, int r5)
 void SelectionPage::onBackEvent(int r4, int r5)
 {
     m_nextPage = -1;
-    startSceneTransition(0x42, UI::UIPage::SLIDE_BACK, 0);
+    toNextScene(0x42, UI::UIPage::SLIDE_BACK, 0);
 }
 
 void SelectionPage::onArrowRightEvent(UI::SheetSelectControl* arrow, int r5)

@@ -24,7 +24,7 @@ public:
         SLIDE_FORWARD,
         SLIDE_BACK
     };
-    virtual void startSceneTransition(int sceneId, TransitionDir direction,
+    virtual void toNextScene(int sceneId, TransitionDir direction,
                                       f32 delay);
     void toOut(TransitionDir direction, f32 delay);
 

@@ -54,13 +54,17 @@ class SettingsGhostDataPage : public UI::UIPage
 public:
     static const int s_pageId = 0xC5;
 
+    SettingsGhostDataPage();
     virtual ~SettingsGhostDataPage();
     virtual int getNextPageID();
     virtual void onInit();
     virtual void onIn();
     virtual void onChildPageOut();
 
+    void windowOut(UI::MessageWindowPage* page, int r5);
+
     UI::UIInputManager m_inputs;
+    UI::FunctionImp<SettingsGhostDataPage, UI::MessageWindowPage*, int> m_fun_windowOut;
 
     int m_nextPage;
 };

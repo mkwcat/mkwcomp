@@ -34,7 +34,7 @@ protected:
     /* 0x044 */ UIInputManagerRace m_inputs;
 
 public:
-    /* 0x188 */ Function<MessageWindowPage*, int> m_pressAEvent;
+    /* 0x188 */ Function<MessageWindowPage*, int> m_pressAFunc;
 
 protected:
     /* 0x18C */ FunctionImp<MessageWindowPage, MessageWindowPage*, int>

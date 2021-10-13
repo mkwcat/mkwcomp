@@ -2,6 +2,7 @@
 #include "UI.h"
 #include "patch.h"
 #include <mkw/RKContext.h>
+#include <mkw/UI/MessageWindowPage.h>
 #include <mkw/UI/OptionMessageBoxManagerPage.h>
 #include <mkw/UI/OptionMessageBoxPromptPage.h>
 #include <mkw/UI/PushButton.h>
@@ -22,9 +23,13 @@ enum Msg
 {
     MSG_GHOST_SAVE = 0x2801,
     MSG_GHOST_SAVE_WINDOW = 0x2802,
+
+    MSG_GHOST_SAVE_OPTION = 0x2803,
     MSG_GHOST_SAVE_OPTION_ALL = 0x2803,
     MSG_GHOST_SAVE_OPTION_BEST_TIME = 0x2804,
     MSG_GHOST_SAVE_OPTION_NONE = 0x2805,
+
+    MSG_GHOST_SAVE_MESSAGE_OPTION = 0x2806,
     MSG_GHOST_SAVE_MESSAGE_OPTION_ALL = 0x2806,
     MSG_GHOST_SAVE_MESSAGE_OPTION_BEST_TIME = 0x2807,
     MSG_GHOST_SAVE_MESSAGE_OPTION_NONE = 0x2808
@@ -115,14 +120,14 @@ void SettingsPage::onButtonSelect(UI::PushButton* button, int r5)
 
     case BUTTON_BACK:
         f32 delay = button->getSelectDelay();
-        startSceneTransition(UI::SCENE_TOURNAMENT, SLIDE_BACK, delay);
+        toNextScene(UI::SCENE_TOURNAMENT, SLIDE_BACK, delay);
         break;
     }
 }
 
 void SettingsPage::onBackPress(int r4, int r5)
 {
-    startSceneTransition(UI::SCENE_TOURNAMENT, SLIDE_BACK, 0);
+    toNextScene(UI::SCENE_TOURNAMENT, SLIDE_BACK, 0);
 }
 
 void SettingsPage::selectRumble(UI::PushButton* button)
@@ -149,18 +154,23 @@ void SettingsPage::selectLicenseSettings(UI::PushButton* button)
 {
     UI::SceneBGMControllerInstance->enableBGMPersist();
     f32 delay = button->getSelectDelay();
-    startSceneTransition(UI::SCENE_LICENSE_SETTINGS, SLIDE_FORWARD, delay);
+    toNextScene(UI::SCENE_LICENSE_SETTINGS, SLIDE_FORWARD, delay);
 }
 
 void SettingsPage::messageWindowEvent(UI::MessageWindowPage* page, int r5)
 {
     UI::SceneBGMControllerInstance->enableBGMPersist();
-    page->startSceneTransition(UI::SCENE_OPTIONS, SLIDE_FORWARD, 0);
+    page->toNextScene(UI::SCENE_OPTIONS, SLIDE_FORWARD, 0);
 }
 
 int SettingsPage::getNextPageID()
 {
     return m_nextPage;
+}
+
+SettingsGhostDataPage::SettingsGhostDataPage()
+    : m_fun_windowOut(this, &SettingsGhostDataPage::windowOut)
+{
 }
 
 SettingsGhostDataPage::~SettingsGhostDataPage()
@@ -186,7 +196,7 @@ void SettingsGhostDataPage::onIn()
 
     page->m_titleText.setMessage(MSG_GHOST_SAVE, nullptr);
     page->m_window.setMessage(MSG_GHOST_SAVE_WINDOW, nullptr);
-    page->m_buttons[0].setMessage(MSG_GHOST_SAVE_OPTION_ALL, nullptr);
+    page->m_buttons[0].setMessage(MSG_GHOST_SAVE_OPTION, nullptr);
     page->m_buttons[1].setMessage(MSG_GHOST_SAVE_OPTION_BEST_TIME, nullptr);
     page->m_buttons[2].setMessage(MSG_GHOST_SAVE_OPTION_NONE, nullptr);
 
@@ -195,8 +205,26 @@ void SettingsGhostDataPage::onIn()
 
 void SettingsGhostDataPage::onChildPageOut()
 {
-    m_nextPage = 0xC0;
+    UI::MessageWindowNoButtonPage* window =
+        RuntimeTypeInfo::cast<UI::MessageWindowNoButtonPage*>(
+            RKContext::sInstance->m_scene->getPage(0xC8));
+    UI::OptionMessageBoxPromptPage* prompt =
+        RuntimeTypeInfo::cast<UI::OptionMessageBoxPromptPage*>(
+            RKContext::sInstance->m_scene->getPage(0xC4));
+
+    int id = prompt->m_selectedButton;
+
+    window->setWindowText(MSG_GHOST_SAVE_MESSAGE_OPTION + id, nullptr);
+    window->m_pressAFunc = &m_fun_windowOut;
+
+    m_nextPage = 0xC8;
     toOut(SLIDE_FORWARD, 0);
+}
+
+void SettingsGhostDataPage::windowOut(UI::MessageWindowPage* page, int r5)
+{
+    UI::SceneBGMControllerInstance->enableBGMPersist();
+    toNextScene(UI::SCENE_OPTIONS, SLIDE_FORWARD, 0);
 }
 
 int SettingsGhostDataPage::getNextPageID()
@@ -208,8 +236,7 @@ void LicenseSettings_onBackPress(UI::UIPage* page)
 {
     UI::SceneBGMControllerInstance->enableBGMPersist();
     // aka Options from License Settings
-    page->startSceneTransition(UI::SCENE_INSTALL_CHANNEL,
-                               UI::UIPage::SLIDE_BACK, 0);
+    page->toNextScene(UI::SCENE_INSTALL_CHANNEL, UI::UIPage::SLIDE_BACK, 0);
 }
 
 void LicenseSelect_optionsButton(UI::PushButton* button)
