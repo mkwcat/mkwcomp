@@ -1991,17 +1991,7 @@ void showBasePagesReplace(UI::UIPageManager* scene, int id)
 
     // Patched
     case UI::SCENE_MAIN_MENU_FROM_BOOT:
-        scene->showPageOnTop(0x5E);
-        scene->showPageOnTop(0x57);
-        break;
-
-    // Patched
     case UI::SCENE_MAIN_MENU_FROM_RESET:
-        scene->showPageOnTop(0x5E);
-        scene->showPageOnTop(0x57);
-        break;
-
-    // Patched
     case UI::SCENE_MAIN_MENU_FROM_MENU:
         scene->showPageOnTop(0x5E);
         scene->showPageOnTop(0x57);
@@ -2009,11 +1999,6 @@ void showBasePagesReplace(UI::UIPageManager* scene, int id)
 
     // Patched
     case UI::SCENE_MAIN_MENU_FROM_NEW_LICENSE:
-        scene->showPageOnTop(0x5E);
-        scene->showPageOnTop(0x65);
-        break;
-
-    // Patched
     case UI::SCENE_MAIN_MENU_FROM_LICENSE_43:
         scene->showPageOnTop(0x5E);
         scene->showPageOnTop(0x65);

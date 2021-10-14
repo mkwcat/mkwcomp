@@ -28,7 +28,7 @@
 8066ede4:Patch_Nwc24DlManager_GetLdbTimeRank
 8066f22c:Patch_Nwc24DlManager_InsertTimeInLdb
 8066ef50:Patch_Nwc24DlManager_GetLdbEntry
-8085b9ec:Patch_SaveTournamentGhost
+8085b994:Patch_SaveTournamentGhost
 801a158c:DCFlushRange
 801a2530:OSReport
 801aac08:OSSleepTicks
@@ -39,6 +39,8 @@
 80006038:memset
 8000e690:memmove
 80005f34:memcpy
+80016cb4:swprintf
+80016e38:wcslen
 800208f0:__ptmf_scall
 80020494:__construct_array
 8002058c:__destroy_arr

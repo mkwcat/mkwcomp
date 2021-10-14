@@ -18,7 +18,7 @@ public:
     void readWindowLayout(const char* lytSection, const char* ctrlName,
                           const char* positionEntry);
 
-    /* 0x805F9E40 */
+    /* func: 0x805F9E40, typeinfo: 0x809C1CC0 */
     INSTANTIATE_TYPEINFO;
     /* 0x805F96F4 */
     virtual const char* getTypeName();

@@ -1,4 +1,5 @@
 #include "SettingsPage.h"
+#include "CompFile.h"
 #include "UI.h"
 #include "patch.h"
 #include <mkw/RKContext.h>
@@ -19,7 +20,7 @@ enum Button
     BUTTON_BACK = -100
 };
 
-enum Msg
+enum
 {
     MSG_GHOST_SAVE = 0x2801,
     MSG_GHOST_SAVE_WINDOW = 0x2802,
@@ -198,6 +199,7 @@ void SettingsGhostDataPage::onInit()
                                 false);
         m_buttons[i].setSelectFunction(&m_fun_onButtonSelect, 0);
         m_buttons[i].setMessage(MSG_GHOST_SAVE_OPTION + i, nullptr);
+        m_buttons[i].m_id = i;
     }
 
     setControl(3, &m_titleText, 0);
@@ -212,8 +214,16 @@ void SettingsGhostDataPage::onInit()
     m_window.readWindowLayout("message_window", "OptionMessageWindowQuarter",
                               "MessageWindowQuarter");
     m_window.setMessage(MSG_GHOST_SAVE_WINDOW, nullptr);
+}
 
-    m_buttons[0].setSelected(0);
+void SettingsGhostDataPage::onIn()
+{
+    u8 opt = CompFile::sInstance->m_saveData.data[RKContext::sInstance->m_98->m_licenseId].ghostSaveMode;
+
+    if (opt > 2)
+        opt = 0;
+
+    m_buttons[opt].setSelected(0);
 }
 
 void SettingsGhostDataPage::onButtonSelect(UI::PushButton* button, int r5)
@@ -227,12 +237,21 @@ void SettingsGhostDataPage::onButtonSelect(UI::PushButton* button, int r5)
         return;
     }
 
+    if (button->m_id < 0 || button->m_id > 2)
+        return;
+
+    int opt = button->m_id;
+
     UI::MessageWindowNoButtonPage* windowPage =
         RuntimeTypeInfo::cast<UI::MessageWindowNoButtonPage*>(
             RKContext::sInstance->m_scene->getPage(0xC8));
-    windowPage->setWindowText(MSG_GHOST_SAVE_MESSAGE_OPTION + button->m_id,
-                              nullptr);
+    windowPage->setWindowText(MSG_GHOST_SAVE_MESSAGE_OPTION + opt, nullptr);
     windowPage->m_pressAFunc = &m_fun_windowOut;
+
+    CompFile::sInstance->m_saveData
+        .data[RKContext::sInstance->m_98->m_licenseId]
+        .ghostSaveMode = opt;
+    CompFile::sInstance->requestWriteSaveFile();
 
     m_nextPage = 0xC8;
     toOut(SLIDE_FORWARD, delay);

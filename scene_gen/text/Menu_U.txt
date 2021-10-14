@@ -2144,56 +2144,6 @@
   2176	/
   2177	/
 
-  2710  = c01 Name
-  2711  = c02 Name
-  2712  = c03 Name
-  2713  = c04 Name
-  2714  = c05 Name
-  2715  = c06 Name
-  2716  = c07 Name
-  2717  = c08 Name
-  2718  = c09 Name
-  2719  = c10 Name
-  271A  = c11 Name
-  271B  = c12 Name
-  271C  = c13 Name
-  271D  = c14 Name
-  271E  = c15 Name
-  271F  = c16 Name
-  2720  = c17 Name
-  2721  = c18 Name
-  2722  = c19 Name
-  2723  = c20 Name
-  2724  = c21 Name
-  2725  = c22 Name
-  2726  = c23 Name
-  2727  = c24 Name
-  2728  = c25 Name
-  2729  = c26 Name
-  272A  = c27 Name
-  272B  = c28 Name
-  272C  = c29 Name
-  272D  = c30 Name
-  272E  = c31 Name
-  272F  = c32 Name
-  2730  = c33 Name
-  2731  = c34 Name
-  2732  = c35 Name
-  2733  = c36 Name
-  2734  = c37 Name
-  2735  = c38 Name
-  2736  = c39 Name
-  2737  = c40 Name
-  2738  = c41 Name
-  2739  = c42 Name
-  273A  = c43 Name
-  273B  = c44 Name
-  273C  = c45 Name
-  273D  = c46 Name
-  273E  = c47 Name
-  273F  = c48 Name
-  2740  = c49 Name
-
   2774	= The first tournament has begun. Race\n
 	+ other vehicles for the fastest time!\n
 	+ You can repeat this challenge as\n
@@ -2481,7 +2431,7 @@
   27e9  = \z{a02,1000000001} 
 
   27f0  = Tournaments
-  27f1  = Random
+  27f1  = Tournament %02d
   27f2  = 
 
   2800  = Your rank will not be saved\n 

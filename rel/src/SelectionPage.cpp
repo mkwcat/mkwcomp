@@ -5,6 +5,12 @@
 
 TYPEINFO_DERIVED(SelectionPage, UI::UIPage);
 
+enum
+{
+    MSG_TOURNAMENTS_PAGE_TITLE = 0x27F0,
+    MSG_TOURNAMENT_NUMBER_PAGE_TITLE = 0x27F1
+};
+
 namespace CompMode
 {
 enum E
@@ -87,10 +93,6 @@ static const CompNameData compNameData[49] = {
     {Course::Galaxy_Colosseum, CompMode::BossBattle},
 };
 
-static inline int compTitleMid(int compId)
-{
-    return 10000 + compId - 1;
-}
 static inline int compExplanationMid(int compId)
 {
     return 10100 + compId - 1;
@@ -232,7 +234,7 @@ void SelectionPage::onInit()
     setControl(14, &m_titleText, 0);
 
     m_titleText.initLayout(0);
-    m_titleText.setMessage(0x27F0, 0);
+    m_titleText.setMessage(MSG_TOURNAMENTS_PAGE_TITLE, 0);
 
     m_inputs.setScreenWrapSetting(2);
     m_inputs.configureInput(UI::INPUT_BACK, &mf_imp_onBackEvent, 0, 0);
@@ -266,7 +268,7 @@ void SelectionPage::onSelectEvent(UI::PushButton* button, int r5)
     // meant to be stored in the save file. This is a little hacky
     // because it hijacks the BMG used by the button that was just
     // selected.
-    int titleMid = compTitleMid(compId);
+    int titleMid = MSG_TOURNAMENT_NUMBER_PAGE_TITLE;
     int explanationMid = compExplanationMid(compId);
 
     const UI::MesgRes* bmg = &button->m_bmg;

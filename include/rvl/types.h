@@ -17,6 +17,8 @@ typedef double f64;
 
 typedef int unk;
 
+typedef u32 size_t;
+
 #ifdef __cplusplus
 #   define EXTERN_C_START extern "C" {
 #   define EXTERN_C_END }

@@ -80,7 +80,15 @@ struct CompSaveFile {
     } __attribute__((packed));
 
     struct Data {
-        u8 reserved[0x100]; // for future settings
+        enum GhostSaveMode
+        {
+            GHOST_SAVE_ALL = 0,
+            GHOST_SAVE_BEST_TIME = 1,
+            GHOST_SAVE_NONE = 2
+        };
+
+        u8 ghostSaveMode;
+        u8 reserved[0x100 - 1]; // for future settings
 
         LdbEntry ldb[5 * COMP_COUNT];
     };
@@ -115,8 +123,10 @@ public:
     bool readSaveFile();
     bool createSaveFile();
     void writeSaveTask();
+    CompSaveFile::Data* getLicenseSaveData();
     void setText(const wchar_t* title, const wchar_t* explanation);
     void writeGhostDataTask();
+    bool shouldGhostSave(GhostData::RaceTime* time);
 
     void getLdbEntry(u8 position, LeaderboardEntry* entry);
     int getTimeLdbPosition(GhostData::RaceTime* time);
@@ -137,36 +147,6 @@ public:
 
     GhostData m_ghost;
     GhostData::RKGFile m_tempRkg;
-
-#if 0
-    struct CPUData
-    {
-        // Must unroll array to pack properly
-        u8 cpu1Character : 5;
-        u8 cpu1Vehicle : 4;
-        u8 cpu2Character : 5;
-        u8 cpu2Vehicle : 4;
-        u8 cpu3Character : 5;
-        u8 cpu3Vehicle : 4;
-        u8 cpu4Character : 5;
-        u8 cpu4Vehicle : 4;
-        u8 cpu5Character : 5;
-        u8 cpu5Vehicle : 4;
-        u8 cpu6Character : 5;
-        u8 cpu6Vehicle : 4;
-        u8 cpu7Character : 5;
-        u8 cpu7Vehicle : 4;
-        u8 cpu8Character : 5;
-        u8 cpu8Vehicle : 4;
-        u8 cpu9Character : 5;
-        u8 cpu9Vehicle : 4;
-        u8 cpu10Character : 5;
-        u8 cpu10Vehicle : 4;
-        u8 cpu11Character : 5;
-        u8 cpu11Vehicle : 4;
-    } __attribute__((packed));
-    CPUData m_ghostCPUs;
-#endif
 
     u8 m_ghostCPUs[0x14];
 

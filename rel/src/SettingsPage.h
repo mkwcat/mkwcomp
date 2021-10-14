@@ -58,6 +58,7 @@ public:
     virtual ~SettingsGhostDataPage();
     virtual int getNextPageID();
     virtual void onInit();
+    virtual void onIn();
 
     void windowOut(UI::MessageWindowPage* page, int r5);
     void onButtonSelect(UI::PushButton* button, int r5);

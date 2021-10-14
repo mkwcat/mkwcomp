@@ -11,6 +11,7 @@
 #include <rvl/os.h>
 #include <stdio.h>
 #include <string.h>
+#include <wchar.h>
 
 #define MKWCOMP_ROOT "/mkwcomp"
 #define MKWCOMP_SAVE_ROOT MKWCOMP_ROOT "/save"
@@ -40,7 +41,7 @@ RKC::FileHeader* CompFile::getHeader()
 
 int CompFile::ldbEntryIndex(int compId)
 {
-    return compId * 5;
+    return (compId - 1) * 5;
 }
 
 CompFile::CompFile()
@@ -102,11 +103,9 @@ void CompFile::readFile()
     m_isFileAvailable = true;
 }
 
-// TODO before release: test this
 void CompFile::setupLeaderboard()
 {
-    m_leaderboard = &m_saveData.data[RKContext::sInstance->m_98->m_licenseId]
-                         .ldb[ldbEntryIndex(m_compId)];
+    m_leaderboard = &getLicenseSaveData()->ldb[ldbEntryIndex(m_compId)];
 }
 
 static const char* savePathRoot()
@@ -218,6 +217,15 @@ bool CompFile::createSaveFile()
     m_saveData.magic[2] = 'T';
     m_saveData.magic[3] = 'M';
     m_saveData.version = SAVE_VERSION;
+    m_saveData.pad[0] = 0;
+    m_saveData.pad[1] = 0;
+
+    for (int i = 0; i < 4; i++) {
+        m_saveData.data[i].ghostSaveMode = CompSaveFile::Data::GHOST_SAVE_ALL;
+        memset(m_saveData.data[i].reserved, 0,
+               sizeof(m_saveData.data[i].reserved));
+        memset(&m_saveData.data[i].ldb, 0, sizeof(m_saveData.data[i].ldb));
+    }
 
     s32 sret = m_file->writeData(&m_saveData, sizeof(m_saveData), 0);
 
@@ -329,6 +337,11 @@ void CompFile::writeGhostDataTask()
     m_ghostDataStatus = SAVE_OK;
 }
 
+CompSaveFile::Data* CompFile::getLicenseSaveData()
+{
+    return &m_saveData.data[RKContext::sInstance->m_98->m_licenseId];
+}
+
 static void taskEntry(void* arg)
 {
     CompFile* object = reinterpret_cast<CompFile*>(arg);
@@ -374,12 +387,6 @@ void CompFile::requestSaveGhostData()
                       nullptr);
 }
 
-void CompFile::setText(const wchar_t* title, const wchar_t* explanation)
-{
-    m_compTitle = title;
-    m_compExplanation = explanation;
-}
-
 static bool ldbEntryCompare(CompSaveFile::LdbEntry* entry,
                             GhostData::RaceTime* time)
 {
@@ -398,10 +405,38 @@ static bool ldbEntryCompare(CompSaveFile::LdbEntry* entry,
     return true;
 }
 
+bool CompFile::shouldGhostSave(GhostData::RaceTime* time)
+{
+    // Don't allow ghosts to save if the Wii Wheel restriction has been
+    // disabled.
+    if (m_rkc.objective.forceWiiWheel && m_forceHandleDisabled)
+        return false;
+
+    u8 mode = getLicenseSaveData()->ghostSaveMode;
+
+    if (mode == CompSaveFile::Data::GHOST_SAVE_ALL) {
+        return true;
+    }
+
+    if (mode == CompSaveFile::Data::GHOST_SAVE_BEST_TIME) {
+        if (!ldbEntryCompare(&m_leaderboard[0], time))
+            return true;
+        return false;
+    }
+
+    return false;
+}
+
+void CompFile::setText(const wchar_t* title, const wchar_t* explanation)
+{
+    m_compTitle = title;
+    m_compExplanation = explanation;
+}
+
 int CompFile::getTimeLdbPosition(GhostData::RaceTime* time)
 {
     // Don't allow any leaderboard positions if the Wii Wheel restriction has
-    // been disabled
+    // been disabled.
     if (m_rkc.objective.forceWiiWheel && m_forceHandleDisabled)
         return -1;
 
@@ -470,6 +505,8 @@ struct CompInfo {
 
 int checkForCompetitionReplace(u8* r3, CompInfo* info)
 {
+    static wchar_t titleText[64];
+
     while (!CompFile::sInstance->isFileAvailable()) {
         if (!CompFile::sInstance->isTaskExist())
             return 0;
@@ -481,8 +518,10 @@ int checkForCompetitionReplace(u8* r3, CompInfo* info)
     info->unk_0x18 = 1;
     info->unk_0x0 = 1;
 
-    info->titleText = CompFile::sInstance->m_compTitle;
-    info->titleTextLen = 5;
+    swprintf(titleText, 63, CompFile::sInstance->m_compTitle,
+             CompFile::sInstance->m_compId);
+    info->titleText = titleText;
+    info->titleTextLen = wcslen(titleText);
 
     info->rkcData = CompFile::sInstance->getData();
     return 1;
@@ -537,6 +576,8 @@ void saveTournamentGhost(u8* r3, int r4, int r5, GhostData* ghost)
         return;
     if (!ghost->m_valid)
         return;
+    if (!CompFile::sInstance->shouldGhostSave(&ghost->m_finishTime))
+        return;
 
     makeGhostUserData(ghost->m_userData);
     CompFile::sInstance->m_ghost = *ghost; // Copy
@@ -571,6 +612,8 @@ void initCompFilePatches()
     Patch_Nwc24DlManager_InsertTimeInLdb.setB(insertTimeInLdb);
     Patch_Nwc24DlManager_GetLdbEntry.setB(getLdbEntry);
 
-    Patch_SaveTournamentGhost.setBL(saveTournamentGhost);
+    Patch_SaveTournamentGhost.m_instr[0] = 0x60000000;
+    Patch_SaveTournamentGhost.setBL(saveTournamentGhost, 0x58 / 4);
+
     Patch_NoRandomFinishTime.setBL(randomFinishTimeHook);
 }

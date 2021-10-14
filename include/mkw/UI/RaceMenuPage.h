@@ -2,7 +2,7 @@
 #include "PushButton.h"
 #include "UIInputManager.h"
 #include "UIPage.h"
-#include <TypeInfo.h>
+#include <RuntimeTypeInfo.h>
 #include <rvl/types.h>
 
 namespace UI

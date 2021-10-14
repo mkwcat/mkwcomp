@@ -1,6 +1,6 @@
 #pragma once
 #include "PushButton.h"
-#include <TypeInfo.h>
+#include <RuntimeTypeInfo.h>
 #include <rvl/types.h>
 
 namespace UI

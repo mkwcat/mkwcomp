@@ -35,7 +35,7 @@ public:
     u8 m_E;
     u8 m_F;
 };
-static_assert(sizeof(UIInputManager) == 0x10, "sizeof(UIInputState) != 0x10");
+static_assert(sizeof(UIInputManager) == 0x10, "sizeof(UIInputManager) != 0x10");
 
 class UIInputManagerMenu : public UIInputManager
 {
@@ -43,7 +43,8 @@ public:
     UIInputManagerMenu();
     virtual ~UIInputManagerMenu();
 
-    void configureInput(InputIndex type, FunctionBase<int, int>* func, u8 r6, u8 r7);
+    void configureInput(InputIndex type, FunctionBase<int, int>* func, u8 r6,
+                        u8 r7);
 
     u8 fill[0xC];
     FunctionBase<int, int>* m_input[9];
@@ -54,6 +55,7 @@ public:
     u8 fill2[0x1CC];
     u32 m_220;
 
+    // From khacker35000vr
     void setScreenWrapSetting(int type);
 };
 static_assert(sizeof(UIInputManagerMenu) == 0x224,

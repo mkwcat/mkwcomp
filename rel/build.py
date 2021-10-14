@@ -33,12 +33,6 @@ MWCC_ARGS = [
 	"-sdata2 0",
 
 	"-gccinc",
-	"-Isource",
-	"-Idecomp",
-	"-I" + PPC_EABI_SUPPORT+ "\\MSL\\MSL_C\\MSL_Common\\Include",
-	"-I" + PPC_EABI_SUPPORT+ "\\MSL\\MSL_C\\PPC_EABI\\Include",
-    "-I" + PPC_EABI_SUPPORT+ "\\MSL\\MSL_C++\\MSL_Common\\Include",
-	"-I" + PPC_EABI_SUPPORT+ "\\MSL\\MSL_C++\\PPC_EABI\\Include",
     "-I" + "../include"
 ]
 
