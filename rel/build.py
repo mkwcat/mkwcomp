@@ -6,8 +6,6 @@ CLANGPP = "tools\\clang++.exe"
 LDLLD = "tools\\ld.lld.exe"
 KCONV = "tools\\KuriboConverter.exe"
 
-PPC_EABI_SUPPORT = "C:\\Users\\rii\\Downloads\\wii_development_package\\wii_development_package\\CW_Wii_V1.7_Build_20111019\\PowerPC_EABI_Support"
-
 MWCC_ARGS = [
 	"-DGEKKO -DRII_CLIENT",
 	"-gccext on",
