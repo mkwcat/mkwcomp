@@ -10,6 +10,7 @@
 808399b4:Patch_HudWatchReplayCase
 808399fc:Patch_QuitReplayCase
 80838bec:Patch_ChangeMissionCase
+807e0a08:Patch_2DMapCharaSizeFix
 80628468:Patch_WiiWheelOnlyPage
 80632c0c:Patch_LicenseSelect
 806320a0:Patch_LicenseSelectOptions

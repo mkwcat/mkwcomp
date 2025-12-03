@@ -16,7 +16,7 @@
    3ed	= Kurs wechseln
    3ee	= Fahrer wechseln
    3ef	= Neustart
-   3f0	= Wettbewerb wechseln
+3f0 = Wettbewerb ändern
    3f1	= Nächstes Rennen
    3f2	= Weiter
    3f3	= Erneut versuchen

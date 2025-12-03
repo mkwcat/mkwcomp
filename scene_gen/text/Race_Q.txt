@@ -1,0 +1,224 @@
+#BMG  <<<  The first 4 characters '#BMG' are the magic for a BMG text file.
+#     <<<  Don't remove them!
+#
+# Details about BMG text files are available in the Web:
+#  * Syntax and Semantics: https://szs.wiimm.de/doc/bmg/text
+#  * The BMG file format:  https://szs.wiimm.de/r/wiki/BMG
+#
+#
+#------------------------------------------------------------------------------
+
+   3e8	= 
+   3e9	= Non
+   3ea	= Oui
+   3eb	= Continuer la partie
+   3ec	= Quitter la partie
+   3ed	= Changer de circuit
+   3ee	= Changer de pilote
+   3ef	= Recommencer
+3f0 = Changer de tournoi
+   3f1	= Course suivante
+   3f2	= Suite
+   3f3	= Réessayer
+   3f4	= Revoir la course
+   3f5	= Reprendre
+   3f6	= Revoir depuis le début
+   3f7	= Voir le classement
+   3f8	= Liste de fantômes
+   3f9	/
+   3fa	= Fantôme suivant
+   3fb	/
+   3fc	= Menu CWF Nintendo
+   3fd	= Quitter
+   3fe	= Commencer la course
+   3ff	= Course suivante
+   400	= Bataille suivante
+   401	= Veuillez patienter...
+   402	= Changer de fantôme
+   403	= Affronter ce fantôme
+   404	= Reprendre
+   405	= Quitter
+   406	= Revoir depuis le début
+   407	= Partie suivante: \z{a02,1000000000} joueurs prévus
+   408	= Envoyer votre record
+   409	= 
+   44d	= Voulez-vous vraiment quitter?
+   44e	= Voulez-vous consulter\n
+	+ le classement de la\n
+	+ Chaîne Mario Kart?
+   44f	= OK
+   450	/
+   451	= Félicitations!\n
+	+ Vous avez battu le fantôme \n
+	+ de \z{802,120000}!\n
+	+ \n
+	+ Voulez-vous lui envoyer \n
+	+ votre fantôme?
+   452	= Oui
+   453	= Non
+   454	= Oui
+   455	= Non
+   456	= 
+   457	= Voulez-vous accéder\n
+	+ à votre liste d'amis?
+   458	= Vous pouvez envoyer autant de\n
+	+ records que vous voulez avant\n
+	+ la fin du tournoi. Voulez-vous\n
+	+ envoyer votre record?
+   459	= Voulez-vous vraiment quitter\n
+	+ cette course et télécharger\n
+	+ le fantôme suivant?
+   45a	= Voulez-vous vraiment quitter\n
+	+ cette course et retourner au\n
+	+ menu principal?
+   45b	= Un fantôme a été créé pour \z{602,0}!
+   45c	= Impossible de créér le fantôme.
+   45d	= Impossible d'envoyer un fantôme en défi.
+   45e	= Voulez-vous retourner à \n
+	+ l'écran de choix du circuit?
+   45f	= Impossible de créer un fantôme.
+   460	= 
+   461	= Vous avez déverrouillé un super fantôme des développeurs!
+   4b1 [0] = 3
+   4b2 [0] = 2
+   4b3 [0] = 1
+   4b4 [0] = PARTEZ!
+   4b5 [0] = TERMINÉ!
+   4b6 [0] = VICTOIRE!
+   4b7 [0] = DÉFAITE!
+   4b8	/
+   4b9	/
+   4ba	= Félicitations!
+   4bb [0] = NOUVEAU RECORD!
+   4bc	= Record
+   4bd	= Meil. tour
+   4be	= \c{red2}VICTOIRE DES ROUGES!
+   4bf	= \c{blue1}VICTOIRE DES BLEUS!
+   4c0	= \c{red2}LES ROUGES L'EMPORTENT!
+   4c1	= \c{blue1}LES BLEUS L'EMPORTENT!
+   4c2	= ÉGALITÉ!
+   4c3	= PREMIÈRE PLACE!
+   4c4	= DEUXIÈME PLACE!
+   4c5	= TROISIÈME PLACE!
+   4c6	= QUEL DOMMAGE!
+   4c7	= \c{red2}DÉFAITE DES ROUGES!
+   4c8	= \c{blue1}DÉFAITE DES BLEUS!
+   4c9	= \c{red2}DÉFAITE DES ROUGES!
+   4ca	= \c{blue1}DÉFAITE DES BLEUS!
+   4cb	= 
+   515	= 1\u{e068}
+   516	= 2\u{e06a}
+   517	= 3\u{e06a}
+   518	= 4\u{e06a}
+   519	= 5\u{e06a}
+   51a	= 6\u{e06a}
+   51b	= 7\u{e06a}
+   51c	= 8\u{e06a}
+   51d	= 9\u{e06a}
+   51e	= 10\u{e06a}
+   51f	= 11\u{e06a}
+   520	= 12\u{e06a}
+   521	= \z{c04,5240525}
+   522	= \z{a02,1000000000}
+   523	= \z{a02,1600000000}
+   524	= pt
+   525	= pts
+   526	= \z{c04,5270528}
+   527	= \c{red2}victoire
+   528	= \c{red2}victoires
+   529	= \z{c04,52a052b}
+   52a	= \c{blue1}victoire
+   52b	= \c{blue1}victoires
+   52c	= \z{c04,52d052e}
+   52d	= \c{red2}pt
+   52e	= \c{red2}pts
+   52f	= \z{c04,5300531}
+   530	= \c{blue1}pt
+   531	= \c{blue1}pts
+   532	= Course fantôme - Victoires: \z{a02,1000000000} Défaites: 
+	+ \z{a02,1000010000}
+   533	= Course fantôme - Victoires: \z{a02,1000000000} Défaites: 
+	+ \z{a02,1000010000}
+   534	= \c{red2}\z{802,110000}
+   535	= \c{blue1}\z{802,110000}
+   536	= TEMPS
+   537	= TOUR
+   538	= POINTAGE
+   539	= EN DIRECT
+   53a	= Vous allez participer\n
+	+ à la course suivante\n
+	+ (\z{a02,1000000000} joueurs prévus).
+   53b	= Vous allez participer\n
+	+ à la bataille suivante\n
+	+ (\z{a02,1000000000} joueurs prévus).
+   53c	= \n
+	+ Le classement a été établi.\n
+	+ La course est terminée.
+   53d	= \n
+	+ 5 minutes se sont écoulées.\n
+	+ La course est terminée.
+   53e	= Le pilote gagnant a franchi la\n
+	+ ligne d'arrivée il y a 30 secondes.\n
+	+ La partie est terminée.
+   53f	= 
+   540	= 
+   541	= \u{f06d}
+   578	= \z{a02,1000000002}:\z{a02,1000010002}.\z{a02,1000020003}
+   579	= --:--.---
+   57a	= :
+   57b	= .
+   57c	= 
+   581	= Course VS par équipes \z{802,110000} - \z{a02,1000000000}/
+	+ \z{a02,1000010000}
+   582	= \z{802,110001} \z{802,110000} - 1\u{e069} course
+   583	= \z{802,110001} \z{802,110000} - 2\u{e06a} course
+   584	= \z{802,110001} \z{802,110000} - 3\u{e06a} course
+   585	= \z{802,110001} \z{802,110000} - Course finale
+   586	= Course VS \z{802,110000} - \z{a02,1000000000}/\z{a02,1000010000}
+   587	= Bataille de Ballons
+   588	= Pilotes Pièces
+
+#--- [589:58c] engines
+   589	= 50cc
+   58a	= 100cc
+   58b	= 150cc
+   58c	= Miroir
+
+   58d	= \z{802,110001} \z{802,110000}
+   58e	= Course VS \z{802,110000}
+   58f	= CLASSE:
+   590	= \u{f063}
+   591	= \u{f062}
+   592	= \u{f061}
+   593	= \u{f078}
+   594	= \u{f079}
+   595	= \u{f07a}
+   596	= \u{f07b}
+   597	= \u{f07c}
+   598	= F
+   599	= Course VS \z{802,110000}
+   59a	= Course VS amis par équipes \z{802,110000}
+   59b	= Course VS par équipes \z{802,110000}
+   59c	/
+   59d	/
+   59e	/
+   59f	/
+   5a0	= Course VS \z{802,110000} \z{802,110001}
+   5a1	= \z{802,110002}Course VS \z{802,110000} - 1\u{e069} course
+   5a2	= \z{802,110002}Course VS \z{802,110000} - 2\u{e06a} course
+   5a3	= \z{802,110002}Course VS \z{802,110000} \z{802,110002} - 3\u{e06a} course
+   5a4	= \z{802,110002}Course VS \z{802,110000} \z{802,110002} - Course finale
+   5a5	= \z{802,110002}Bataille de Ballons
+   5a6	= \z{802,110002}Pilotes Pièces
+   5a7	= (\z{a02,1000000000} joueurs)
+   5a8	= 
+   5a9	= \c{red2}
+   5aa	= \c{blue1}
+   5ab	= 
+   5dc	= Utiliser un objet
+   5dd	= Tourner
+   5de	= Accélérer
+   5df	= Freiner/Déraper
+   5e0	= Freiner
+   5e1	= 
+

@@ -1,3 +1,25 @@
+// CompFile.cpp - Competition file reader and save data manager
+//
+// Copyright (c) 2021 TheLordScruffy
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
 #include "CompFile.h"
 #include "util.h"
 #include <egg/eggDvdFile.h>
@@ -419,7 +441,7 @@ bool CompFile::shouldGhostSave(GhostData::RaceTime* time)
     }
 
     if (mode == CompSaveFile::Data::GHOST_SAVE_BEST_TIME) {
-        if (!ldbEntryCompare(&m_leaderboard[0], time))
+        if (RKContext::sInstance->m_98->m_leaderboardRank == 0)
             return true;
         return false;
     }
@@ -510,7 +532,8 @@ int checkForCompetitionReplace(u8* r3, CompInfo* info)
     while (!CompFile::sInstance->isFileAvailable()) {
         if (!CompFile::sInstance->isTaskExist())
             return 0;
-        OSSleepTicks(OSMillisecondsToTicks(16));
+        // Sleep 16ms
+        OSSleepTicks(0xED4E0);
     }
 
     info->unk_0x0 = 0;

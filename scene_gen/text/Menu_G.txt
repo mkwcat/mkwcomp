@@ -111,6 +111,8 @@
 
      1	/
 
+27e8  = \z{a02,1000000001}
+
    7d0	= O.K.
    7d1	= ←\z{802,170000}Zurück
    7d2	= Ja
@@ -2223,75 +2225,76 @@
   2176	/
   2177	/
 
-  2710  = c01 Name
-  2711  = c02 Name
-  2712  = c03 Name
-  2713  = c04 Name
-  2714  = c05 Name
-  2715  = c06 Name
-  2716  = c07 Name
-  2717  = c08 Name
-  2718  = c09 Name
-  2719  = c10 Name
-  271A  = c11 Name
-  271B  = c12 Name
-  271C  = c13 Name
-  271D  = c14 Name
-  271E  = c15 Name
-  271F  = c16 Name
-  2720  = c17 Name
-  2721  = c18 Name
-  2722  = c19 Name
-  2723  = c20 Name
-  2724  = c21 Name
-  2725  = c22 Name
-  2726  = c23 Name
-  2727  = c24 Name
-  2728  = c25 Name
-  2729  = c26 Name
-  272A  = c27 Name
-  272B  = c28 Name
-  272C  = c29 Name
-  272D  = c30 Name
-  272E  = c31 Name
-  272F  = c32 Name
-  2730  = c33 Name
-  2731  = c34 Name
-  2732  = c35 Name
-  2733  = c36 Name
-  2734  = c37 Name
-  2735  = c38 Name
-  2736  = c39 Name
-  2737  = c40 Name
-  2738  = c41 Name
-  2739  = c42 Name
-  273A  = c43 Name
-  273B  = c44 Name
-  273C  = c45 Name
-  273D  = c46 Name
-  273E  = c47 Name
-  273F  = c48 Name
-  2740  = c49 Name
+2774 = Willkommen zum ersten Mario Kart\nWii-Wettbewerb! Fahr' die beste\nZeit im Versus-Rennen auf\nMarios Piste. Du kannst dein\nRekord so oft du willst verbessern.
+27a2 = Nimm bei einem Versus-Rennen mit\n11 anderen Fahrern auf Marios Piste\nteil! Probiere es so oft du\nwillst und fahre die beste Zeit.
+2775 = Passiere alle Tore auf dem\nKampfkurs 3 (GBA). Die angezeigte\nStreckenkarte ist unverzichtbar\nin diesem Wettbewerb! Außerdem\nbrauchst du dein Wii Wheel!
+2777 = Ein Zeitfahren (Retour) in\nder Pilz-Schlucht. Finde heraus,\nwelche Route die schnellste ist!\nAchtung, nur Kartfahrer\nsind auf der Piste erlaubt!
+2778 = Auf der Kokos-Promenade liegt das\nGeld buchstäblich auf der Straße!\nSammle, so schnell du kannst,\nalle Münzen ein, damit du sie dem\narmen Tropf, der sie verloren hat,\nzurückgeben kannst!
+2779 = Nimm an einem Versus-Rennen auf der\nunheimlichen, dunklen Strecke DS\nTwilight House teil.\nDafür brauchst du den\nNintendo Wii Wheel!
+277a = Donkey Kong und Diddy Kong lieben\nes Bananen auf der ganzen Strecke\nN64 DKs Dschungel Parkweg zu\nverteilen. Weiche den Bananen aus\nund erreiche das Ziel so\nschnell du kannst!
+277b = Wasserrutsche, Sprungschanzen,\nSteilküste, das Meer! Koopa-Kap\nist ein Urlaubsparadies, aber bei\ndiesem Wettbewerb gilt es, alle\nTore in der richtigen Reihenfolge\nzu durchfahren! Lass keins aus!
+277c = Schauplatz dieses Zeitfahrens, bei\ndem das Wii Wheel benötigt wird,\nist der Wolkenkratzer (N64).\nBestzeiten erreichst du, indem\ndu den Bob-omb-Mobilen ausweichst\nund die Items geschickt einsetzt!
+277d = Dieses Mal musst du nicht nur alle\nMünzen auf Marios Piste 3 (SNES)\neinsammeln: Setze Turbo-Pilze so\ngeschickt ein, dass du dabei auch\nnoch richtig schnell bist! Nur Karts\ndürfen am Wettbewerb teilnehmen.
+277e = Die Steinwüste wird von einem\ngigantischen Pokey heimgesucht!\nWeiche seinen Attacken aus und\nbesiege ihn drei Mal!
+277f = Bist du ein Wii Wheel-Ass? Beweise\nes und schnapp dir dein Wii Wheel - \nohne geht's nicht! Aber Items suchst du\nin dem Versus-Rennen auf Luigis Piste\nvergeblich. Nutze den Windschatten!\nNur im Kart ist die Teilnahme möglich.
+2780 = Im Blätterwald verstecken sich\nMünzen in den Blätterhaufen!\nSammle alle ein und nimm dich\nvor den wankelmütigen Wigglern\nin Acht!
+2781 = Da bei diesem Zeitfahren auf\nMarios Rennpiste (N64) nur\nGoldene Turbo-Pilze zur Verfügung\nstehen, scheint es eine gute Idee\nzu sein, so viele Abkürzungen zu\nnehmen, wie es eben gibt.
+2782 = Dieses Zeitfahren in Warios\nGoldmine wird dadurch erschwert,\ndass sich ein Wiggler in die\nMine verirrt hat und jetzt\netwas verwirrt durch die\nGegend trampelt!
+2783 = Wintersport auf der DK Skikane!\nPassiere alle Tore in korrekter\nReihenfolge und leg dabei gleich\nein paar coole Stunts hin!
+2784 = Fahre ein Zeitfahren (Retour)\ndurch Toads Fabrik! Dank der neuen\nStreckenführung kommst du oft nur\nmit einem Stunt weiter! Außerdem\nbrauchst du Temposchübe für\ndie Bestzeit!
+2785 = Sammle alle Münzen im Funky-Stadion\nein! Bei diesem weiträumigen Gelände\nhilft dir die eingeblendete\nStreckenkarte, eine gute Route\nzu finden, um möglichst schnell\nalle Münzen einzusammeln.
+2786 = Suche dir in diesem Zeitfahren\ndie schnellste Route durch\ndas Labyrinth der Block-Plaza!\nÖlpfützen und Gumbas machen\nes auch nicht gerade leichter.
+2787 = Passiere der Reihe nach alle Tore in\nBowsers Festung 3 (GBA). Einige sind\nin der Luft und nur über Rampen zu\nerreichen. Also zeig dein Können als\nAkrobat und vollführe ein paar Stunts!\nDie Teilnahme ist auf Karts begrenzt!
+2788 = Auf dem Kampfkurs 4 (SNES)\nsind überall Münzen verteilt!\nVersuche, in diesem Irrgarten\neine gute Route zu finden, um\nmöglichst schnell alle Münzen\neinzusammeln!
+2789 = Fordere Knochen-Bowser auf dem\nKurs Bowsers Festung (N64) zu\neinem rasanten Versus-Rennen\nheraus! Aber hüte dich vor seinem\nüblen Feueratem! Die Teilnahme am\nRennen ist auf Karts beschränkt.
+27a3 = Fordere Knochen-Bowser auf der\nStrecke N64 Bowsers Schloss zu einem\nrasanten Versus-Rennen heraus!\nPass auf seinem bösen Feueratem\nauf und erreiche das Ziel!
+278a = Das Publikum will eine heiße Show\nsehen in der Waluigi-Arena (GCN)!\nFahre durch alle Tore und zeige deine\ntollsten Stunts, dann wird das Publikum\nauf dich fliegen! Aber verpass kein Tor!
+278b = Weiche in Peachs Schlossgarten (DS)\nstreunenden Kettenhunden und\ngriesgrämigen Monty Maulwürfen aus!\nAllerdings ziehen manche Kettenhunde\nTurbo-Pilze hinter sich her, die\ndu für Bestzeiten brauchst!
+278c = Die Sonne geht auf Luigis Piste unter.\nAus irgendeinem Grund fahren\nBob-Omb-Fahrzeuge Runden auf der\nStrecke! Lass dich nicht in diesem\nVersus-Rennen explodieren lassen!
+278d = Beim Kettenhund-Roulette hat\njemand den Jackpot geknackt!\nVerwende die Items sinnvoll\nund sammle alle Münzen ein!\nBei diesem Wettbewerb wird\ndas Wii Wheel benötigt.
+278e = Bei diesem Zeitfahren (Retour) auf\ndem Kurs Vulkangrollen solltest du\nüber die Rampen Stunts ausführen,\num möglichst viele Mini-Turbos zu\nerhalten! Nur am Lenker eines Karts\ndarfst du dich ins Rennen stürzen!
+2776 = Über dem ganzen weg von Super Mario\nGalaxy, ist hier der stachelige Champion!\nSchlage alle stacheligen Champions von\nder Kante der Super Mario Galaxy-Arena\nso schnell du kannst!\n\n\c{green}(Der Wettbewerb wurde neu erstellt)\c{off}
+278f = Die Dornenbegomanen kamen den\nganzen weiten Weg aus Super Mario\nGalaxy hierher! Kicke alle Dornen-\nBegomanen aus der Galaxis-Arena und\nzwar so schnell du kannst! Aber pass\nauf! Die Arena löst sich auf!
+27a4 = Die Dornenbegomanen kamen den\nganzen weiten Weg aus Super Mario\nGalaxy hierher! Kicke alle Dornen-\nBegomanen aus der Galaxis-Arena und\nzwar so schnell du kannst! Aber pass\nauf! Die Arena löst sich auf!
+2790 = Auf dem Peach Beach (GCN) sind\nüberall Münzen verstreut!\nUnglücklicherweise werden sie\nvon Kataquax bewacht! Versuche,\nso schnell du kannst, alle\nMünzen einzusammeln!
+2791 = Vorsicht ist geboten in den\nYoshi-Kaskaden (DS), denn da\nwuchern riesige Trampolin-Pilze!\nDu brauchst das Wii Wheel und pass\nauf, dass du in diesem Versus-\nRennen nicht in die Tiefe stürzt!
+2792 = Eine Krabbeninvasion am\nschönen Shy Guy-Stand (GBA)!\nVerwende die Items am Strand,\num diese nervigen Krustentiere\naus der Schale zu hauen!
+2793 = Bowser fordert jeden in einem\nZeitfahren in Bowsers Festung\nheraus! Er hat den Kurs dieses\nMal noch fieser gestaltet!\nKommst du dennoch nach drei\nRunden unversehrt durchs Ziel?
+2794 = Fordere die Baby-Fahrer zu einem\nVersus-Rennen nur mit\nMotorrad-Fahrern auf der Strecke\nGCN Cookie Land heraus. Den richtigen\nWeg zu wählen ist der\nSchlüssel zum Sieg!
+2795 = Der Kurs Marios Piste (GCN) ist schon\neine Klasse für sich, aber jetzt sind\nsogar noch mehr Piranha-Pflanzen und\nandere Plagegeister auf Streifzug!\nKannst du in diesem Zeitfahren\ndie Gegner austricksen?
+2796 = Auf Daisys Piste finden sich\nan der Achterschikane scheinbar\nachtlos platzierte Tore!\nDurchfahre der Reihe nach alle\nTore und zeige, wie ein Profi\nin Kurven driftet!
+2797 = Ein Rennen ist auf der sonnigen,\nsandigen Strecke Staubtrockene\nWüste im Gange. Pilz-änliche Items sind\ndie einzigen verfügbaren. Vielleicht\nzeigen dir die Pokys wo\ndu sie nutzen solltest.
+2798 = Ohne diese wilden Kettenhunde\nkönnte das Zeitfahren auf dem\nRegenbogen-Boulevard richtig\nschön sein. Lass dich bloß nicht\nbeißen! Aus Sicherheitsgründen\nwerden nur Karts zugelassen!
+2799 = Die Glühheiße Wüste (DS) wimmelt von\nPokeys! Finde heraus, wie schnell du\ndie Pokeys umnieten kannst!\nDu kannst beliebig viele Runden\nfahren, aber sieh zu, dass du\nmöglichst viele Pokeys erwischst!
+279a = Der Trick bei diesem Zeitfahren\nauf dem Delfino-Pier liegt darin,\neine gute Route zu finden.\nVielleicht solltest du nicht\nimmer dieselbe Route fahren?\nDu wirst schon sehen, warum ...
+279b = Als Bergziege hättest du vielleicht\nkeine Probleme, alle Tore im\nDK Bergland (GCN) in der richtigen\nReihenfolge zu passieren. Aber die\nkönnte das Wii Wheel nicht halten,\ndas du hier brauchst! Viel Spaß!
+279c = N64 Sorbet-Land ist die Kulisse\nfür ein kaltes Rennen. Pinguine\nsind gekommen, um das Rennen zu\nbeobachten. Behalte sie im Auge um\nungehindert ins Ziel zu kommen!
+279d = Bekämpfe die Gumbaplage auf\nMarios Piste, so schnell du\nkannst! Setzt du die Items\nsinnvoll ein, könnte dir das\nwertvolle Zeit verschaffen!\nAchtung: Nur für Karts!
+279e = Bist du ein Wii Wheel-Ass? Dann kannst\ndu das nun beweisen! Schnapp dir dein\nWii Wheel - ohne geht's nicht! Auf\nItems musst du in diesem Versus-Rennen\nauf Luigis Piste, nur für Bikes,\nverzichten. Nutze den Windschatten!
+279f = Vor dem wunderschönen\nPeach Beach (GCN) wachsen\nTrampolin-Pilze! Passt das?\nBei diesem Zeitfahren empfiehlt\nsich der Automatik-Drift.
+27a0 = Fahre in fahlem Mondlicht ein\nZeitfahren auf der mondänen\nMondblickstraße! Aber achte\nauf den Verkehr, der dieses\nMal irgendwie verkehrt zu\nsein scheint ...
+27a1 = Fahre ein Zeitfahren auf dem\nbelebten Piazzale Delfino (DS)!\nDabei musst du unzerbrechlichen\nHolzkisten und Gumbas ausweichen\nund Wegsperrungen einplanen!\nAlso, Augen auf im Straßenverkehr!
 
-  27d8	= Zeitfahren
-  27d9	= Versus-Rennen
-  27da	= Zeitfahren
-  27db  = Enemy Score
-  27dc  = Boss Battle
-  27dd  = Boss VS Race
-  27de  = Coin Challenge
-  27df  = Gate Challenge
-
-  27e8  = \z{a02,1000000001}
-  27e9  = \z{a02,1000000001} 
-
-  27f0  = Wettbewerbe
-  27f1  = Zufällig
-  27f2  = 
-
-  2800  = Your rank will not be\n
-        + saved using this controller.\n
-        + Is this OK?
+27f0 = Wettbewerbe
+27d8 = Zeitfahren
+27da = Zeitfahren
+27d9 = Versus-Rennen
+27db = Gegner-Punkte
+27dc = Boss-Kampf
+27dd = Boss-VS-Rennen
+27de = Münzherausforderung
+27df = Tor-Herausforderung
+27f1 = %02d. Wettbewerb
+27f2 = Wettbewerbsmuseum
+2800 = Dein Rang wird nicht gespeichert,\nwenn du diesen Controller benutzt.\nIst das OK?
+2801 = Speichern von Geisterdaten
+2802 = Geisterdaten auf der SD Card speichern?
+2803 = Immer speichern
+2804 = Schnellste Zeit speichern
+2805 = Nicht speichern
+2806 = Das Speichern der Geisterdaten\nwurde auf "Immer" gesetzt.\n\nGeisterdaten werden nur gespeichert,\nwenn du Riivolution verwendest.
+2807 = Das Speichern der Geisterdaten\nwurde auf "Schnellste Zeit"\ngesetzt.\n\nGeisterdaten werden nur gespeichert,\nwenn du Riivolution verwendest.
+2808 = Das Speichern der Geisterdaten\nwurde deaktiviert.\n\nGeisterdaten werden nur gespeichert,\nwenn du Riivolution verwendest.
 
  18697	/
  18698	/

@@ -13,7 +13,9 @@ public:
     u8 fill_0x4[0x94];
 
     struct {
-        u8 fill[0x4E8];
+        u8 fill_0x0[0x4B4];
+        int m_leaderboardRank;
+        u8 fill_0x4B8[0x4E8 - 0x4B8];
         u8 m_licenseId;
         u8 fill_0x4E9[0x510 - 0x4E9];
     } * m_98;

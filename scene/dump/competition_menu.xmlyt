@@ -9,7 +9,7 @@
 			</tag>
 			<tag type="txl1">
 				<entries>
-					<name>smh.tpl</name>
+					<name>comp_base.tpl</name>
 					<name>tt_pattern_chek_bokashi_32x32.tpl</name>
 				</entries>
 			</tag>
@@ -57,7 +57,7 @@
 						<tev_k3 r="ff" g="ff" b="ff" a="ff" />
 						<tev_k4 r="ff" g="ff" b="ff" a="69" />
 					</colors>
-					<texture name="smh.tpl">
+					<texture name="comp_base.tpl">
 						<wrap_s>GX_CLAMP</wrap_s>
 						<wrap_t>GX_CLAMP</wrap_t>
 					</texture>
@@ -443,7 +443,7 @@
 						<tev_k3 r="ff" g="ff" b="ff" a="ff" />
 						<tev_k4 r="ff" g="ff" b="ff" a="69" />
 					</colors>
-					<texture name="smh.tpl">
+					<texture name="comp_base.tpl">
 						<wrap_s>GX_CLAMP</wrap_s>
 						<wrap_t>GX_CLAMP</wrap_t>
 					</texture>
@@ -471,7 +471,7 @@
 						<tev_k3 r="ff" g="ff" b="ff" a="ff" />
 						<tev_k4 r="ff" g="ff" b="ff" a="69" />
 					</colors>
-					<texture name="smh.tpl">
+					<texture name="comp_base.tpl">
 						<wrap_s>GX_CLAMP</wrap_s>
 						<wrap_t>GX_CLAMP</wrap_t>
 					</texture>
@@ -499,7 +499,7 @@
 						<tev_k3 r="ff" g="ff" b="ff" a="ff" />
 						<tev_k4 r="ff" g="ff" b="ff" a="69" />
 					</colors>
-					<texture name="smh.tpl">
+					<texture name="comp_base.tpl">
 						<wrap_s>GX_CLAMP</wrap_s>
 						<wrap_t>GX_CLAMP</wrap_t>
 					</texture>
@@ -2094,7 +2094,7 @@
 				<alpha>ff</alpha>
 				<padding>00</padding>
 				<translate>
-					<x>-32.3049621582031250000000000</x>
+					<x>-18.3049621582031250000000000</x>
 					<y>19.63593387603759765625</y>
 					<z>55.0000000000000000000000000</z>
 				</translate>
@@ -2118,7 +2118,7 @@
 					<ysize>37.740002</ysize>
 					<charsize>0.000000</charsize>
 					<linesize>0.000000</linesize>
-					<alignment x="Center" y="Center" />
+					<alignment x="Left" y="Center" />
 					<whatAmI>00</whatAmI>
 				</font>
 				<topcolor r="d2" g="d2" b="d2" a="ff" />
@@ -2133,7 +2133,7 @@
 				<alpha>ff</alpha>
 				<padding>00</padding>
 				<translate>
-					<x>-32.3049621582031250000000000</x>
+					<x>-18.3049621582031250000000000</x>
 					<y>22.0000000000000000000000000</y>
 					<z>55.0000000000000000000000000</z>
 				</translate>
@@ -2157,7 +2157,7 @@
 					<ysize>37.740002</ysize>
 					<charsize>0.000000</charsize>
 					<linesize>0.000000</linesize>
-					<alignment x="Center" y="Center" />
+					<alignment x="Left" y="Center" />
 					<whatAmI>00</whatAmI>
 				</font>
 				<topcolor r="d2" g="d2" b="d2" a="ff" />

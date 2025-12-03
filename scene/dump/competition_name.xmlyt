@@ -92,6 +92,28 @@
 						<tev_k4 r="ff" g="ff" b="ff" a="ff" />
 					</colors>
 				</entries>
+				<entries name="time_text">
+					<colors>
+						<forecolor r="0" g="0" b="0" a="0" />
+						<backcolor r="220" g="220" b="220" a="255" />
+						<colorReg3 r="255" g="255" b="255" a="255" />
+						<tev_k1 r="ff" g="ff" b="ff" a="ff" />
+						<tev_k2 r="ff" g="ff" b="ff" a="ff" />
+						<tev_k3 r="ff" g="ff" b="ff" a="ff" />
+						<tev_k4 r="ff" g="ff" b="ff" a="ff" />
+					</colors>
+				</entries>
+				<entries name="time_text_shadow">
+					<colors>
+						<forecolor r="0" g="0" b="0" a="0" />
+						<backcolor r="0" g="0" b="0" a="255" />
+						<colorReg3 r="255" g="255" b="255" a="255" />
+						<tev_k1 r="ff" g="ff" b="ff" a="ff" />
+						<tev_k2 r="ff" g="ff" b="ff" a="ff" />
+						<tev_k3 r="ff" g="ff" b="ff" a="ff" />
+						<tev_k4 r="ff" g="ff" b="ff" a="ff" />
+					</colors>
+				</entries>
 				<entries name="check_light">
 					<colors>
 						<forecolor r="0" g="0" b="255" a="0" />
@@ -269,7 +291,7 @@
 					<width>230.000000</width>
 					<height>45.000000</height>
 				</size>
-				<length>0030-0030</length>
+				<length>0060-0060</length>
 				<material name="text_shadow" />
 				<font index="0">
 					<xsize>43.000000</xsize>
@@ -308,7 +330,7 @@
 					<width>230.000000</width>
 					<height>45.000000</height>
 				</size>
-				<length>0030-0030</length>
+				<length>0060-0060</length>
 				<material name="text" />
 				<font index="0">
 					<xsize>43.000000</xsize>
@@ -607,6 +629,112 @@
 				</size>
 				<length>0030-0030</length>
 				<material name="mode_text" />
+				<font index="0">
+					<xsize>38</xsize>
+					<ysize>51</ysize>
+					<charsize>0.000000</charsize>
+					<linesize>0.000000</linesize>
+					<alignment x="Center" y="Center" />
+					<whatAmI>00</whatAmI>
+				</font>
+				<topcolor r="ff" g="ff" b="ff" a="ff" />
+				<bottomcolor r="ff" g="ff" b="ff" a="ff" />
+				<text>000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</text>
+			</tag>
+			<tag type="pae1" />
+			<tag type="pan1" name="time_text_null" userdata="">
+				<visible>01</visible>
+				<WidescreenAffected>00</WidescreenAffected>
+				<flag>00</flag>
+				<origin x="Center" y="Center" />
+				<alpha>ff</alpha>
+				<padding>00</padding>
+				<translate>
+					<x>-0.0000000000000000000000000</x>
+					<y>-82.0000000000000000000000000</y>
+					<z>0.0000000000000000000000000</z>
+				</translate>
+				<rotate>
+					<x>0.00000000000000000000</x>
+					<y>0.00000000000000000000</y>
+					<z>0.00000000000000000000</z>
+				</rotate>
+				<scale>
+					<x>0.8</x>
+					<y>0.8</y>
+				</scale>
+				<size>
+					<width>200.000000</width>
+					<height>40.000000</height>
+				</size>
+			</tag>
+			<tag type="pas1" />
+			<tag type="txt1" name="time_text_shadow" userdata="">
+				<visible>01</visible>
+				<WidescreenAffected>00</WidescreenAffected>
+				<flag>00</flag>
+				<origin x="Center" y="Center" />
+				<alpha>ff</alpha>
+				<padding>00</padding>
+				<translate>
+					<x>-0.0000000000000000000000000</x>
+					<y>-2.5000000000000000000000000</y>
+					<z>30.0000000000000000000000000</z>
+				</translate>
+				<rotate>
+					<x>0.00000000000000000000</x>
+					<y>0.00000000000000000000</y>
+					<z>0.00000000000000000000</z>
+				</rotate>
+				<scale>
+					<x>1.0000000000</x>
+					<y>1.0000000000</y>
+				</scale>
+				<size>
+					<width>200.000000</width>
+					<height>40.000000</height>
+				</size>
+				<length>0030-0030</length>
+				<material name="time_text_shadow" />
+				<font index="0">
+					<xsize>38</xsize>
+					<ysize>51</ysize>
+					<charsize>0.000000</charsize>
+					<linesize>0.000000</linesize>
+					<alignment x="Center" y="Center" />
+					<whatAmI>00</whatAmI>
+				</font>
+				<topcolor r="ff" g="ff" b="ff" a="ff" />
+				<bottomcolor r="ff" g="ff" b="ff" a="ff" />
+				<text>000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</text>
+			</tag>
+			<tag type="txt1" name="time_text" userdata="">
+				<visible>01</visible>
+				<WidescreenAffected>00</WidescreenAffected>
+				<flag>00</flag>
+				<origin x="Center" y="Center" />
+				<alpha>ff</alpha>
+				<padding>00</padding>
+				<translate>
+					<x>0.0000000000000000000000000</x>
+					<y>0.8333340287208557128906250</y>
+					<z>30.0000000000000000000000000</z>
+				</translate>
+				<rotate>
+					<x>0.00000000000000000000</x>
+					<y>0.00000000000000000000</y>
+					<z>0.00000000000000000000</z>
+				</rotate>
+				<scale>
+					<x>1.0000000000</x>
+					<y>1.0000000000</y>
+				</scale>
+				<size>
+					<width>200.000000</width>
+					<height>40.000000</height>
+				</size>
+				<length>0030-0030</length>
+				<material name="time_text" />
 				<font index="0">
 					<xsize>38</xsize>
 					<ysize>51</ysize>

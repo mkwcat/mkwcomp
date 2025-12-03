@@ -16,7 +16,7 @@
    3ed	= Change Course
    3ee	= Change Character
    3ef	= Restart
-   3f0	= Change Tournament
+3f0 = Change Tournament
    3f1	= Next Race
    3f2	= Next
    3f3	= Retry

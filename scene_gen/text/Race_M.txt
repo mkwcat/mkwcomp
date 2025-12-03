@@ -1,0 +1,220 @@
+#BMG  <<<  The first 4 characters '#BMG' are the magic for a BMG text file.
+#     <<<  Don't remove them!
+#
+# Details about BMG text files are available in the Web:
+#  * Syntax and Semantics: https://szs.wiimm.de/doc/bmg/text
+#  * The BMG file format:  https://szs.wiimm.de/r/wiki/BMG
+#
+#
+#------------------------------------------------------------------------------
+
+   3e8	= 
+   3e9	= Continuar
+   3ea	= Salir
+   3eb	= Continuar
+   3ec	= Salir
+   3ed	= Cambiar de circuito
+   3ee	= Cambiar de personaje
+   3ef	= Volver a empezar
+3f0 = Cambiar torneo
+   3f1	= Siguiente carrera
+   3f2	= Siguiente
+   3f3	= Volver a correr
+   3f4	= Ver repetición
+   3f5	= Continuar repetición
+   3f6	= Ver desde el principio
+   3f7	= Ver las clasificaciones
+   3f8	= Ver la lista de fantasmas
+   3f9	/
+   3fa	= Siguiente fantasma
+   3fb	/
+   3fc	= Menú de la CWF de Nintendo
+   3fd	= Salir de la repetición
+   3fe	= Empezar la carrera
+   3ff	= Siguiente carrera
+   400	= Siguiente batalla
+   401	= Espera un momento...
+   402	= Cambiar el fantasma
+   403	= Correr contra este fantasma
+   404	= Continuar la repetición
+   405	= Salir de la repetición
+   406	= Ver desde el principio
+   407	= Siguiente partida:\n
+	+ \z{a02,1000000000} jugadores previstos
+   408	= Enviar resultado
+   409	= 
+   44d	= ¿Seguro que quieres salir?
+   44e	= ¿Quieres acceder a las \n
+	+ clasificaciones del Canal \n
+	+ Mario Kart?
+   44f	= OK
+   450	/
+   451	= ¡Felicidades!\n
+	+ ¡Has batido el récord de \z{802,120000}!\n
+	+ \n
+	+ ¿Quieres enviar tu fantasma a\n
+	+ \z{802,120000}?
+   452	= Enviar
+   453	= No enviar
+   454	= Sí
+   455	= No
+   456	= 
+   457	= ¿Quieres ir a tu lista de amigos?
+   458	= Puedes enviar todos los resultados que \n
+	+ quieras hasta la fecha límite del \n
+	+ torneo. ¿Envías este resultado?
+   459	= ¿Seguro que quieres finalizar\n
+	+ esta carrera y descargar el\n
+	+ siguiente fantasma?
+   45a	= ¿Seguro que quieres\n
+	+ salir de esta carrera y\n
+	+ volver al menú principal?
+   45b	= ¡Se ha guardado el fantasma de \z{602,0}!
+   45c	= No se ha podido guardar el fantasma.
+   45d	= No se ha podido enviar el fantasma.
+   45e	= ¿Quieres volver a la pantalla \n
+	+ de selección de circuitos?
+   45f	= No ha sido posible guardar el fantasma.
+   460	= 
+   461	= ¡Has desbloqueado un fantasma experto del personal!
+   4b1 [0] = 3
+   4b2 [0] = 2
+   4b3 [0] = 1
+   4b4 [0] = ¡YA!
+   4b5 [0] = ¡META!
+   4b6 [0] = ¡HAS GANADO!
+   4b7 [0] = ¡MALA SUERTE!
+   4b8	/
+   4b9	/
+   4ba	= ¡Felicidades!
+   4bb [0] = ¡NUEVO RÉCORD!
+   4bc	= Récord
+   4bd	= Mejor vuelta
+   4be	= \c{red2}¡Victoria roja!
+   4bf	= \c{blue1}¡Victoria azul!
+   4c0	= \c{red2}¡Victoria roja!
+   4c1	= \c{blue1}¡Victoria azul!
+   4c2	= Empate
+   4c3	= ¡Felicidades!
+   4c4	= ¡Felicidades!
+   4c5	= ¡Felicidades!
+   4c6	= ¡Quizá la próxima vez!
+   4c7	= \c{red2}¡Pierde el rojo!
+   4c8	= \c{blue1}¡Pierde el azul!
+   4c9	= \c{red2}¡Pierde el rojo!
+   4ca	= \c{blue1}¡Pierde el azul!
+   4cb	= 
+   515	= 1.º
+   516	= 2.º
+   517	= 3.º
+   518	= 4.º
+   519	= 5.º
+   51a	= 6.º
+   51b	= 7.º
+   51c	= 8.º
+   51d	= 9.º
+   51e	= 10.º
+   51f	= 11.º
+   520	= 12.º
+   521	= \z{c04,5240525}
+   522	= \z{a02,1000000000}
+   523	= \z{a02,1600000000}
+   524	= pto.
+   525	= ptos.
+   526	= \z{c04,5270528}
+   527	= \c{red2}victoria
+   528	= \c{red2}victorias
+   529	= \z{c04,52a052b}
+   52a	= \c{blue1}victoria
+   52b	= \c{blue1}victorias
+   52c	= \z{c04,52d052e}
+   52d	= \c{red2}pto.
+   52e	= \c{red2}ptos.
+   52f	= \z{c04,5300531}
+   530	= \c{blue1}pto.
+   531	= \c{blue1}ptos.
+   532	= Victorias: \z{a02,1000000000} - Derrotas: \z{a02,1000010000}
+   533	= Victorias: \z{a02,1000000000} - Derrotas: \z{a02,1000010000}
+   534	= \c{red2}\z{802,110000}
+   535	= \c{blue1}\z{802,110000}
+   536	= TIEMPO
+   537	= VUELTA
+   538	= PUNTOS
+   539	= EN DIRECTO
+   53a	= Te unirás a la siguiente carrera.\n
+	+ Núm. de jugadores previsto: \z{a02,1000000000}\n
+	+ Espera un momento...
+   53b	= Te unirás a la siguiente batalla.\n
+	+ Núm. de jugadores previsto: \z{a02,1000000000}\n
+	+ Espera un momento...
+   53c	= \n
+	+ Se han establecido los resultados.\n
+	+ La carrera ha terminado.
+   53d	= \n
+	+ Han pasado 5 minutos.\n
+	+ La carrera ha terminado.
+   53e	= Han pasado 30 segundos desde\n
+	+ que el ganador cruzó la línea\n
+	+ de meta. La carrera ha terminado.
+   53f	= PC
+   540	= PB
+   541	= \u{f06d}
+   578	= \z{a02,1000000002}:\z{a02,1000010002}.\z{a02,1000020003}
+   579	= --:--.---
+   57a	= :
+   57b	= .
+   57c	= 
+   581	= Carrera VS. en equipo \z{802,110000} \z{a02,1000000000}/
+	+ \z{a02,1000010000}
+   582	= \z{802,110001} \z{802,110000} - Primera carrera
+   583	= \z{802,110001} \z{802,110000} - Segunda carrera
+   584	= \z{802,110001} \z{802,110000} - Tercera carrera
+   585	= \z{802,110001} \z{802,110000} - Última carrera
+   586	= Carrera VS. \z{802,110000} - \z{a02,1000000000} de \z{a02,1000010000}
+   587	= Batalla de globos
+   588	= Carrera de monedas
+
+#--- [589:58c] engines
+   589	= 50cc
+   58a	= 100cc
+   58b	= 150cc
+   58c	= Espejo
+
+   58d	= \z{802,110001} \z{802,110000}
+   58e	= Carrera VS. \z{802,110000}\040
+   58f	= Clase:
+   590	= \u{f063}
+   591	= \u{f062}
+   592	= \u{f061}
+   593	= \u{f078}
+   594	= \u{f079}
+   595	= \u{f07a}
+   596	= \u{f07b}
+   597	= \u{f07c}
+   598	= F
+   599	= Carrera VS. \z{802,110000}
+   59a	= Carrera VS. en equipo \z{802,110000}
+   59b	= Carrera VS. en equipo \z{802,110000}
+   59c	/
+   59d	/
+   59e	/
+   59f	/
+   5a0	= Carrera VS. \z{802,110000} \z{802,110001}
+   5a1	= \z{802,110002}Carrera VS. \z{802,110000} - 1.ª carrera
+   5a2	= \z{802,110002}Carrera VS. \z{802,110000} - 2.ª carrera
+   5a3	= \z{802,110002}Carrera VS. \z{802,110000} - 3.ª carrera
+   5a4	= \z{802,110002}Carrera VS. \z{802,110000} - Última carrera
+   5a5	= \z{802,110002}Batalla de globos
+   5a6	= \z{802,110002}Carrera de monedas
+   5a7	= (\z{a02,1000000000} jugadores)
+   5a8	= 
+   5a9	= \c{red2}
+   5aa	= \c{blue1}
+   5ab	= 
+   5dc	= Usar objeto
+   5dd	= Manejar
+   5de	= Acelerar
+   5df	= Frenar/Derrapar
+   5e0	= Frenar
+   5e1	= 
+

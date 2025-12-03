@@ -2144,326 +2144,78 @@
   2176	/
   2177	/
 
-  2774	= The first tournament has begun. Race\n
-	+ other vehicles for the fastest time!\n
-	+ You can repeat this challenge as\n
-	+ many times as you'd like!
-	
-  2775  = Clear the gates in order in\n
-	+ GBA Battle Course 3. Look at the map\n
-	+ carefully and clear the gates quickly.\n
-	+ \n
-	+ This race is for Wii Wheels only!
-	
-  2776  = All the way from Super Mario Galaxy,\n
-	+ it's the Spiky Topmen!\n
-	+ \n
-	+ Knock all the Spiky Topmen out of the\n
-	+ arena as fast as you can!
-
-  2777  = Race Mushroom Gorge in reverse in\n
-    + this karts-only Time Trial!\n
-    + \n
-    + Which route is best? Try a variety\n
-    + and see what works for you!
-	
-  2778  = Collect the coins scattered around\n
-    + Coconut Mall.\n
-    + \n
-    + Did customers drop them?\n
-    + Act fast to grab them!
-
-  2779  = A race has started in the darkness of\n
-    + DS Twilight House.\n
-    + \n
-    + This tournament is for Wii Wheels only.\n
-    + Show off those Wii Wheel skills!
-
-  277a  = Jungle superstars Donkey Kong and\n
-    + Diddy Kong ride their bikes, littering\n
-    + Bananas about. Can you reach the goal\n
-    + without hitting any?
-
-  277b  = Clear each of the gates in order on\n
-    + Koopa Cape, where the blue sea shines!\n
-    + \n
-    + Watch the gate numbers closely. Gates\n
-    + cleared out of order won't be counted.
-
-  277c  = A Wii Wheel Time Trial is under way\n
-    + on Bomb-car-infested N64 Skyscraper.\n
-    + \n
-    + Grabbing the most items is the key\n
-    + to earning the best time.
-
-  277d  = Collect the trail of coins on\n
-    + SNES Mario Circuit 3 in this karts-only\n
-    + tournament! The key to earning the best\n
-    + time is using your Mushrooms in the\n
-    + right place!
-
-  277e  = Here's your chance to duke it out with\n
-    + the giant Pokey in Thwomp Desert!\n
-    + \n
-    + Avoid its attacks and whack it three\n
-    + times to defeat it!
-
-  277f  = A Wii Wheel and karts-only race is under\n
-    + way at Luigi Circuit. There are\n
-    + no items in this race, so use\n
-    + slipstreaming to take first place!
-	
-  2780  = Grab the coins hidden in the fallen\n
-    + leaves of Maple Treeway!\n
-    + \n
-    + Wiggler loves coins too? Be careful\n
-    + not to run into him!
-
-  2781  = A Time Trial is under way on\n
-    + N64 Mario Raceway. The Golden\n
-    + Mushroom is the only item that\n
-    + appears, but shortcuts are\n
-    + also available!
-
-  2782  = Wiggler has made his way down to\n
-    + Wario's Gold Mine! Swerve around\n
-    + him in this Time Trial! Just when\n
-    + you think you've passed him, he'll\n
-    + dash ahead of you, so watch out!
-
-  2783  = Pass through the gates in order\n
-    + on DK Summit.\n
-    + \n
-    + The gate in the sky is key. Clear\n
-    + it by pulling off an awesome trick!
-
-  2784  = Race in reverse on Toad's Factory in\n
-    + this Time Trial! Try busting out\n
-    + some tricks for those areas that seem\n
-    + impossible to clear!
-
-  2785  = Collect all the coins scattered\n
-    + around Funky Stadium. The key\n
-    + is to collect the coins in the\n
-    + right order. Look at the map\n
-    + carefully to plot your path.
-
-  2786  = There's a Time Trial under\n
-    + way on Block Plaza.\n
-    + \n
-    + Pick the best route and avoid\n
-    + oil slicks and Goombas!
-
-  2787  = Pass through the gates in order\n
-    + on GBA Bowser Castle 3 in this\n
-    + karts-only tournament.\n
-    + Gates await on the other side of\n
-    + jumps, so pull off tricks with skill!
-
-  2788  = Grab coins on SNES Battle Course 4.\n
-    + Which route is the fastest on this\n
-    + mazelike course?
-
-  2789  = Challenge Dry Bowser to a one-on-one\n
-    + race in N64 Bowser's Castle! Watch out\n
-    + for his wicked fire breath and go\n
-    + for the goal in this karts-only\n
-    + tournament.
-
-  278a  = Drive through the gates in\n
-    + GCN Waluigi Stadium!\n
-    + \n
-    + Get the crowd going by pulling\n
-    + off some wild tricks!
-
-  278b  = Race through DS Peach Gardens in this\n
-    + Time Trial, dodging Chain Chomps and\n
-    + Monty Moles along the way.\n
-    + Chain Chomps hold the Mushrooms, so\n
-    + grab a bunch to earn your best time!
-
-  278c  = The sun is setting on Luigi Circuit,\n
-    + and a race is under way. Bomb-cars are\n
-    + driving laps around the course, so be\n
-    + careful not to get blown up!
-
-  278d  = Collect all the coins on Chain Chomp\n
-    + Wheel in this Wii Wheel-only tournament.\n
-    + \n
-    + Collect all the coins, using the items to\n
-    + your advantage.
-
-  278e  = Compete in a Time Trial on reverse\n
-    + Grumble Volcano in this karts-only\n
-    + tournament. The jump platforms are\n
-    + the key. Pull off those tricks!
-
-  278f  = The Spikey Topmen from Super Mario\n
-    + Galaxy are here and ready to fight!\n
-    + Some are cowardly, though, and will run\n
-    + away. Push them off the edge to win!
-
-  2790  = Collect the coins scattered around\n
-    + GCN Peach Beach.\n
-    + \n
-    + Avoid the Cataquacks and grab the\n
-    + coins as quickly as you can!
-
-  2791  = DS Yoshi Falls is infested with\n
-    + trampoline mushrooms, and a Wii Wheel\n
-    + race is under way! Try not to fall off!
-
-  2792  = Oh, no! The calm of GBA Shy Guy Beach\n
-    + has been shattered by a crazy crab\n
-    + Invasion! Use the items on the course to\n
-    + knock out these crustacean creeps!
-
-  2793  = Bowser's Challenge!\n
-    + \n
-    + Test your Time Trial skills in a\n
-    + harder version of Bowser's Castle.
-
-  2794  = A bikes-only race is under way on\n
-    + GCN Cookie Land! Compete with the\n
-    + babies on bikes! Forks in the road\n
-    + are the keys to victory!
-
-  2795  = GCN Mario Circuit is crawling with\n
-    + enemies in this challenging Time Trial.\n
-    + Watch out for the Piranha Plants.\n
-    + Hurry past them to sneak by!
-
-  2796  = Swiftly clear each of the gates in the\n
-    + Figure-eight corners of Daisy Circuit.\n
-    + \n
-    + Do you have what it takes to make\n
-    + it through these crazy turns?
-
-  2797  = A race is under way on sunny, sandy\n
-    + Dry Dry Ruins. Mushroom-type items\n
-    + are the only ones available. Maybe the\n
-    + Pokeys will show you where to use them.
-
-  2798  = Chain Chomps have taken over\n
-    + Rainbow Road in this karts-only\n
-    + Time Trial. Anticipating their\n
-    + movements and avoiding them is\n
-    + the key to a good score.
-
-  2799  = Defeat all the Pokeys hidden around\n
-    + DS Desert Hills! You can take the course\n
-    + as many times as you'd like.
-
-  279a  = There's a Time Trial under way in\n
-    + mazelike Delfino Pier. Finding the best\n
-    + route is key, and it might not be the\n
-    + one that's most familiar.
-
-  279b  = Pass through the gates in order on\n
-    + GCN DK Mountain! This race is only\n
-    + for Wii Wheels! It's a high-speed\n
-    + adventure, so have fun!
-
-  279c  = A race is under way on\n
-    + penguin-infested N64 Sherbet Land.\n
-    + There are lots of cute penguins\n
-    + everywhere, but keep your eyes\n
-    + on the road!
-
-  279d  = Defeat the Goombas as you speed\n
-    + through Mario Circuit. Use all\n
-    + the items on the course to earn the\n
-    + best time. This tournament is\n
-    + for karts only!
-
-  279e  = This race on Luigi Circuit is for\n
-    + bikes and Wii Wheels only!\n
-    + \n
-    + There are no items, so make the\n
-    + most out of your slipstream!
-
-  279f  = Mushrooms on GCN Peach Beach?\n
-    + Ride the trampoline mushrooms\n
-    + and complete three laps in this\n
-    + Time Trial! Automatic drift is\n
-    + recommended!
-
-  27a0  = Join the Time Trial on\n
-    + Moonview Highway!\n
-    + \n
-    + Does the flow of traffic look different?\n
-    + You'll have to weave your way\n
-    + to victory!
-
-  27a1  = There's always something going on\n
-    + in DS Delfino Square, and this time\n
-    + it's a Time Trial! Look out for the\n
-    + crates, Goombas, and dead ends!
-
-  27a2  = Take on a kart-only VS Race against 11\n
-    + other racers on Mario Circuit!\n
-    + Using the Wii Wheel, try as many times as you like\n
-    + and get the best time you can!
-	
-  27a3  = Challenge Dry Bowser to a one-on-one\n
-    + race in N64 Bowser's Castle!\n
-    + \n
-    + Watch out for his wicked fire breath\n
-    + and go for the goal!
-
-  27a4  = The Spikey Topmen from Super Mario\n
-    + Galaxy are here and ready to fight!\n
-    + 
-    + Some are cowardly, though, and will run\n
-    + away. Push them off the edge to win!
-
-
-  27d8  = Time Trial
-  27d9  = VS Race
-  27da  = Time Trial
-  27db  = Enemy Score
-  27dc  = Boss Battle
-  27dd  = Boss VS Race
-  27de  = Coin Challenge
-  27df  = Gate Challenge
+2774 = The first tournament has begun. Race\nother vehicles for the fastest time!\nYou can repeat this challenge as\nmany times as you'd like!
+27a2 = Compete against other racers\nfor the fastest time on Mario\nCircuit. This tournament is\nonly for Wii Wheels and karts.
+2775 = Clear the gates in order in\nGBA Battle Course 3. Look at the map\ncarefully and clear the gates quickly.\n\nThis race is for Wii Wheels only!
+2777 = Race Mushroom Gorge in reverse in\nthis karts-only Time Trial!\n\nWhich route is best? Try a variety\nand see what works for you!
+2778 = Collect the coins scattered around\nCoconut Mall.\n\nDid customers drop them?\nAct fast to grab them!
+2779 = A race has started in the darkness of\nDS Twilight House.\n\nThis tournament is for Wii Wheels only.\nShow off those Wii Wheel skills!
+277a = Jungle superstars Donkey Kong and\nDiddy Kong ride their bikes, littering\nBananas about. Can you reach the goal\nwithout hitting any?
+277b = Clear each of the gates in order on\nKoopa Cape, where the blue sea shines!\n\nWatch the gate numbers closely. Gates\ncleared out of order won't be counted.
+277c = A Wii Wheel Time Trial is under way\non Bomb-car-infested N64 Skyscraper.\n\nGrabbing the most items is the key\nto earning the best time.
+277d = Collect the trail of coins on\nSNES Mario Circuit 3 in this karts-only\ntournament! The key to earning the best\ntime is using your Mushrooms in the\nright place!
+277e = Here's your chance to duke it out with\nthe giant Pokey in Thwomp Desert!\n\nAvoid its attacks and whack it three\ntimes to defeat it!
+277f = A Wii Wheel and karts-only race is under\nway at Luigi Circuit. There are\nno items in this race, so use\nslipstreaming to take first place!
+2780 = Grab the coins hidden in the fallen\nleaves of Maple Treeway!\n\nWiggler loves coins too? Be careful\nnot to run into him!
+2781 = A Time Trial is under way on\nN64 Mario Raceway. The Golden\nMushroom is the only item that\nappears, but shortcuts are\nalso available!
+2782 = Wiggler has made his way down to\nWario's Gold Mine! Swerve around\nhim in this Time Trial! Just when\nyou think you've passed him, he'll\ndash ahead of you, so watch out!
+2783 = Pass through the gates in order\non DK Summit.\n\nThe gate in the sky is key. Clear\nit by pulling off an awesome trick!
+2784 = Race in reverse on Toad's Factory in\nthis Time Trial! Try busting out\nsome tricks for those areas that seem\nimpossible to clear!
+2785 = Collect all the coins scattered\naround Funky Stadium. The key\nis to collect the coins in the\nright order. Look at the map\ncarefully to plot your path.
+2786 = There's a Time Trial under\nway on Block Plaza.\n\nPick the best route and avoid\noil slicks and Goombas!
+2787 = Pass through the gates in order\non GBA Bowser Castle 3 in this\nkarts-only tournament.\nGates await on the other side of\njumps, so pull off tricks with skill!
+2788 = Grab coins on SNES Battle Course 4.\nWhich route is the fastest on this\nmazelike course?
+2789 = Challenge Dry Bowser to a one-on-one\nrace in N64 Bowser's Castle! Watch out\nfor his wicked fire breath and go\nfor the goal in this karts-only\ntournament.
+27a3 = Challenge Dry Bowser to a one-on-one\nrace in N64 Bowser's Castle!\n\nWatch out for his wicked fire breath\nand go for the goal!
+278a = Drive through the gates in\nGCN Waluigi Stadium!\n\nGet the crowd going by pulling\noff some wild tricks!
+278b = Race through DS Peach Gardens in this\nTime Trial, dodging Chain Chomps and\nMonty Moles along the way.\nChain Chomps hold the Mushrooms, so\ngrab a bunch to earn your best time!
+278c = The sun is setting on Luigi Circuit,\nand a race is under way. Bomb-cars are\ndriving laps around the course, so be\ncareful not to get blown up!
+278d = Collect all the coins on Chain Chomp\nWheel in this Wii Wheel-only tournament.\n\nCollect all the coins, using the items to\nyour advantage.
+278e = Compete in a Time Trial on reverse\nGrumble Volcano in this karts-only\ntournament. The jump platforms are\nthe key. Pull off those tricks!
+2776 = All the way from Super Mario Galaxy,\nit's the Spiky Topmen!\n\nKnock all the Spiky Topmen out of the\narena as fast as you can!\n\n\c{green}(This tournament has been recreated)\c{off}
+278f = The Spiky Topmen from Super Mario\nGalaxy are here and ready to fight!\n\nPush them off the edge to win!\nAnd watch out for the outer ring!
+27a4 = The Spikey Topmen from Super Mario\nGalaxy are here and ready to fight!\n\nSome are cowardly, though, and will run\naway. Push them off the edge to win!
+2790 = Collect the coins scattered around\nGCN Peach Beach.\n\nAvoid the Cataquacks and grab the\ncoins as quickly as you can!
+2791 = DS Yoshi Falls is infested with\ntrampoline mushrooms, and a Wii Wheel\nrace is under way! Try not to fall off!
+2792 = Oh, no! The calm of GBA Shy Guy Beach\nhas been shattered by a crazy crab\nInvasion! Use the items on the course to\nknock out these crustacean creeps!
+2793 = Bowser's Challenge!\n\nTest your Time Trial skills in a\nharder version of Bowser's Castle.
+2794 = A bikes-only race is under way on\nGCN Cookie Land! Compete with the\nbabies on bikes! Forks in the road\nare the keys to victory!
+2795 = GCN Mario Circuit is crawling with\nenemies in this challenging Time Trial.\nWatch out for the Piranha Plants.\nHurry past them to sneak by!
+2796 = Swiftly clear each of the gates in the\nFigure-eight corners of Daisy Circuit.\n\nDo you have what it takes to make\nit through these crazy turns?
+2797 = A race is under way on sunny, sandy\nDry Dry Ruins. Mushroom-type items\nare the only ones available. Maybe the\nPokeys will show you where to use them.
+2798 = Chain Chomps have taken over\nRainbow Road in this karts-only\nTime Trial. Anticipating their\nmovements and avoiding them is\nthe key to a good score.
+2799 = Defeat all the Pokeys hidden around\nDS Desert Hills! You can take the course\nas many times as you'd like.
+279a = There's a Time Trial under way in\nmazelike Delfino Pier. Finding the best\nroute is key, and it might not be the\none that's most familiar.
+279b = Pass through the gates in order on\nGCN DK Mountain! This race is only\nfor Wii Wheels! It's a high-speed\nadventure, so have fun!
+279c = A race is under way on\npenguin-infested N64 Sherbet Land.\nThere are lots of cute penguins\neverywhere, but keep your eyes\non the road!
+279d = Defeat the Goombas as you speed\nthrough Mario Circuit. Use all\nthe items on the course to earn the\nbest time. This tournament is\nfor karts only!
+279e = This race on Luigi Circuit is for\nbikes and Wii Wheels only!\n\nThere are no items, so make the\nmost out of your slipstream!
+279f = Mushrooms on GCN Peach Beach?\nRide the trampoline mushrooms\nand complete three laps in this\nTime Trial! Automatic drift is\nrecommended!
+27a0 = Join the Time Trial on\nMoonview Highway!\n\nDoes the flow of traffic look different?\nYou'll have to weave your way\nto victory!
+27a1 = There's always something going on\nin DS Delfino Square, and this time\nit's a Time Trial! Look out for the\ncrates, Goombas, and dead ends!
 
   27e8  = \z{a02,1000000001}
-  27e9  = \z{a02,1000000001} 
 
-  27f0  = Tournaments
-  27f1  = Tournament %02d
-  27f2  = 
-
-  2800  = Your rank will not be saved\n 
-        + if you use this controller.\n
-        + Is this OK?
-  2801  = Ghost Data Saving
-  2802  = Save Ghost Data to the SD Card?
-  2803  = Always Save
-  2804  = Save Fastest Time
-  2805  = Don't Save
-
-  2806  = The Ghost Data Saving\n
-        + feature has been set to\n
-        + Always Save.\n
-        + \n
-        + Ghost Data will only be saved\n
-        + if you use Riivolution.
-
-  2807  = The Ghost Data Saving\n
-        + feature has been set to\n
-        + Save Fastest Time.\n
-        + \n
-        + Ghost Data will only be saved\n
-        + if you use Riivolution.
-
-  2808  = The Ghost Data Saving\n
-        + feature has been set to\n
-        + Don't Save.\n
-        + \n
-        + Ghost Data will only be saved\n
-        + if you use Riivolution.
-
+27f0 = Tournaments
+27d8 = Time Trial
+27da = Time Trial
+27d9 = VS Race
+27db = Enemy Score
+27dc = Boss Battle
+27dd = Boss VS Race
+27de = Coin Challenge
+27df = Gate Challenge
+27f1 = Tournament %02d
+27f2 = Tournament Museum
+2800 = Your rank will not be saved\nif you use this controller.\nIs this OK?
+2801 = Ghost Data Saving
+2802 = Save Ghost Data to the SD Card?
+2803 = Always Save
+2804 = Save Fastest Time
+2805 = Don't Save
+2806 = The Ghost Data Saving\nfeature has been set to\nAlways Save.\n\nGhost Data will only be saved\nif you use Riivolution.
+2807 = The Ghost Data Saving\nfeature has been set to\nSave Fastest Time.\n\nGhost Data will only be saved\nif you use Riivolution.
+2808 = The Ghost Data Saving\nfeature has been set to\nDon't Save.\n\nGhost Data will only be saved\nif you use Riivolution.
 
  18697	/
  18698	/

@@ -1,3 +1,25 @@
+// UI.cpp - Manage scene and patch UI
+//
+// Copyright (c) 2021 TheLordScruffy
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
 #include "UI.h"
 #include "Replay.h"
 #include "SaveManagerPage.h"
@@ -2675,6 +2697,22 @@ asm void bgUnloadSoundFix()
     // clang-format on
 }
 
+const float defaultValues[2] = {0.6, 0.65};
+asm void fix2DMapCharaSize()
+{
+    // clang-format on
+    lis r6, defaultValues @ha lfsu f0, defaultValues @l(r6) stfs f0,
+        0x18(r31)lfs f0, 4(r6)stfs f0,
+        0x1C(r31)
+
+        // Original instruction
+        cmpwi r0,
+        2
+
+        blr
+    // clang-format off
+}
+
 extern Instruction<1> Patch_SceneBuildPages;
 extern Instruction<1> Patch_SceneShowBasePages;
 extern Instruction<1> Patch_MainMenuKind;
@@ -2686,6 +2724,8 @@ extern Instruction<1> Patch_BGUnloadSoundFix;
 extern Instruction<6> Patch_EventExplanationPage_Events;
 extern Instruction<25> Patch_EventExplanationPage_vtable;
 extern Instruction<1> Patch_EventExplanationVolumeChange;
+
+extern Instruction<1> Patch_2DMapCharaSizeFix;
 
 void initMenu()
 {
@@ -2710,6 +2750,8 @@ void initMenu()
     Patch_LicenseSelect.setBL(patchLicenseSelectGetNextScene);
 
     Patch_BGUnloadSoundFix.setBL(bgUnloadSoundFix);
+
+    Patch_2DMapCharaSizeFix.setBL(fix2DMapCharaSize);
 
     Patch_SceneGetBGM.setB(sceneGetBGMReplace);
     Patch_SceneGetBGMGroup.setB(sceneGetBGMGroupReplace);

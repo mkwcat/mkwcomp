@@ -11,6 +11,7 @@ PAL	USA	JAP	KOR	Symbol
 8085b444	808399b4	8085aab0	80849804	Patch_HudWatchReplayCase
 8085b48c	808399fc	8085aaf8	8084984c	Patch_QuitReplayCase
 8085a67c	80838bec	80859ce8	80848a3c	Patch_ChangeMissionCase
+807ea2b4	807e0a08	807e9920	807d8674	Patch_2DMapCharaSizeFix
 805d1e00	80628468	805d16dc	805bff9c	Patch_WiiWheelOnlyPage
 805eb934	80632c0c	805eb210	805d9ad0	Patch_LicenseSelect
 805eadc8	806320a0	805ea6a4	805d8f64	Patch_LicenseSelectOptions
